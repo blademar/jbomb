@@ -1,6 +1,7 @@
 package jbomb.core.game;
 
 import com.jme3.material.Material;
+import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
@@ -14,17 +15,32 @@ public class JBomb extends BaseGame {
     @Override
     public void simpleInitApp() {
         initSky();
+        initFloor();
     }
     
-    private void makeCube(float x, float y, float z, String name) {
+    private void makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation, Vector2f scaleTexture) {
         Box box = new Box(Vector3f.ZERO, x, y, z);
         Geometry geometry = new Geometry(name, box);
         Material material = new Material(assetManager, MatDefs.UNSHADED);
+        Texture texture = assetManager.loadTexture(texturePath);
+        material.setTexture("ColorMap", texture);
+        geometry.setMaterial(material);
+        geometry.setLocalTranslation(localTranslation);
         
+        if (scaleTexture != null) {
+            box.scaleTextureCoordinates(scaleTexture);
+            texture.setWrap(Texture.WrapMode.Repeat);
+        }
+        
+        rootNode.attachChild(geometry);
+    }
+    
+    private void makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation) {
+        makeCube(x, y, z, name, texturePath, localTranslation, null);
     }
     
     private void initFloor() {
-        
+        makeCube(20f, 0.1f, 20f, "floor", "textures/boxes/f_orange.png", new Vector3f(0f, -0.1f, 0f), new Vector2f(20f, 20f));
     }
 
     private void initSky() {
