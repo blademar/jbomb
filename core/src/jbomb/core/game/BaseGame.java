@@ -1,4 +1,4 @@
-package jbomb.core.base;
+package jbomb.core.game;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.system.AppSettings;
