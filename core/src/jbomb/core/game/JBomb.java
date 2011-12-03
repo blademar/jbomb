@@ -72,7 +72,7 @@ public class JBomb extends BaseGame {
     }
 
     private void initFloor() {
-        makeCube(20f, 0.1f, 20f, "floor", "floor", "f_blue.png", new Vector3f(0f, -0.1f, 0f), new Vector2f(20f, 20f));
+        makeCube(20f, 0.1f, 20f, "floor", "textures/boxes/", "f_blue.png", new Vector3f(0f, -0.1f, 0f), new Vector2f(20f, 20f));
     }
 
     private void initSky() {
