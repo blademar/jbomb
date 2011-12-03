@@ -14,7 +14,8 @@ import jbomb.core.utils.MatDefs;
 
 public class JBomb extends BaseGame {
     
-    Geometry[] test = new Geometry[3];
+    /* test es sólo para probar*/
+    Geometry[] test = new Geometry[6];
     
     @Override
     public void simpleInitApp() {
@@ -23,27 +24,35 @@ public class JBomb extends BaseGame {
         initFloor();
         initScene();
         
-        test[0] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_blue.png", new Vector3f(3, 1, 0), new Vector2f(.5f,.5f));
-        test[1] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_orange.png", new Vector3f(3, 1, 3), new Vector2f(.5f,.5f));
-        test[2] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_gray1.png", new Vector3f(3, 1, -3), new Vector2f(.5f,.5f));
+        /*probando test*/
+        test[0] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_darkgray.png", new Vector3f(3, 1, 0), new Vector2f(1, 1));
+        test[1] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_darkgray.png", new Vector3f(3, 1, 3), new Vector2f(1, 1));
+        test[2] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_darkgray.png", new Vector3f(3, 1, -3), new Vector2f(1, 1));
+        
+        test[3] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_darkgray.png", new Vector3f(3, 4, 0), new Vector2f(1, 1));
+        test[4] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_darkgray.png", new Vector3f(3, 4, 3), new Vector2f(1, 1));
+        test[5] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_darkgray.png", new Vector3f(3, 4, -3), new Vector2f(1, 1));
     }
 
     @Override
     public void simpleUpdate(float tpf) {
-        for(int i = 0; i < test.length; i++) {
-            changeTexture(test[i]);
+        for(int i = 0; i < test.length/2; i++) {
+            changeTexture(test[i], "textures/boxes/", "w_red1.png", "w_red4.png", "w_red2.png");
+        }
+        
+        for(int i = 3; i < test.length; i++) {
+            changeTexture(test[i], "textures/boxes/", "w_green1.png", "w_green2.png", "w_green3.png");
         }
     }
     
-    private void changeTexture(Geometry g) {
+    private void changeTexture(Geometry g, String texturePath, String texture1, String texture2, String texture3) {
         double random = Math.random()*100;
-        String boxesPath = "textures/boxes/";
         if(random >=0 && random <= .1f)
-            g.getMaterial().setTexture("ColorMap", assetManager.loadTexture(boxesPath + "w_gray1.png"));
+            g.getMaterial().setTexture("ColorMap", assetManager.loadTexture(texturePath + texture1));
         else if(random > .1f && random <= .2f)
-            g.getMaterial().setTexture("ColorMap", assetManager.loadTexture(boxesPath + "w_orange.png"));
+            g.getMaterial().setTexture("ColorMap", assetManager.loadTexture(texturePath + texture2));
         else if(random > .2f && random <= .3f)
-            g.getMaterial().setTexture("ColorMap", assetManager.loadTexture(boxesPath + "w_blue.png"));
+            g.getMaterial().setTexture("ColorMap", assetManager.loadTexture(texturePath + texture3));
     }
 
     private void makeWall(float x, float y, float z, String primaryTexture, String secundaryTexture, float separation) {
