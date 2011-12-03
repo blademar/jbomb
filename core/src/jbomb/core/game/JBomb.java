@@ -4,6 +4,7 @@ import com.jme3.material.Material;
 import com.jme3.material.RenderState;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
@@ -82,14 +83,14 @@ public class JBomb extends BaseGame {
     private Geometry makeTransparentCube(float x, float y, float z, String name, String texturePath, String textureName, Vector3f localTranslation, Vector2f scaleTexture) {
         Geometry geometry = makeCube(x, y, z, name, texturePath, textureName, localTranslation, scaleTexture);
         geometry.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
-        geometry.setQueueBucket(Bucket.Transparent);
+        geometry.setQueueBucket(RenderQueue.Bucket.Transparent);
         return geometry;
     }
     
     private Geometry makeTransparentCube(float x, float y, float z, String name, String texturePath, String textureName, Vector3f localTranslation) {
         Geometry geometry = makeCube(x, y, z, name, texturePath, textureName, localTranslation, null);
         geometry.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
-        geometry.setQueueBucket(Bucket.Transparent);
+        geometry.setQueueBucket(RenderQueue.Bucket.Transparent);
         return geometry;
     }
 
