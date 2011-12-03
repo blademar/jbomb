@@ -12,35 +12,66 @@ import jbomb.core.utils.MatDefs;
 
 public class JBomb extends BaseGame {
 
+    private final String boxesPath = "textures/boxes/";
+
     @Override
     public void simpleInitApp() {
+        final float separation = -.15f;
+
+        flyCam.setMoveSpeed(40);
+
         initSky();
         initFloor();
+        makeWall(0, 0, 20, "w_gray1.png", "w_blue.png", separation);
+        makeWall(5, 0, 20, "w_gray1.png", "w_darkblue.png", separation);
+        makeWall(0, 2, 20, "w_gray1.png", "w_red1.png", separation);
+        makeWall(5, 2, 20, "w_gray1.png", "w_red2.png", separation);
+        makeWall(-5, 0, 20, "w_gray1.png", "w_yellow.png", separation);
+        makeWall(-10, 0, 20, "w_gray1.png", "w_brown.png", separation);
+        makeWall(-5, 2, 20, "w_gray1.png", "w_green1.png", separation);
+        makeWall(-10, 2, 20, "w_gray1.png", "w_green3.png", separation);
     }
-    
-    private void makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation, Vector2f scaleTexture) {
+
+    private void makeWall(float x, float y, float z, String primaryTexture, String secundaryTexture, float separation) {
+        makeCube(.5f, .5f, .5f, "StaticWall", boxesPath, primaryTexture, new Vector3f(x + .5f, y + 1.5f, z + .5f), new Vector2f(.5f, .5f));
+        makeCube(.5f, .5f, .5f, "StaticWall", boxesPath, primaryTexture, new Vector3f(x + .5f, y + .5f, z + .5f), new Vector2f(.5f, .5f));
+
+        makeCube(.5f, .5f, .5f, "StaticWall", boxesPath, secundaryTexture, new Vector3f(x + 1.5f, y + .5f, z + .5f + separation), new Vector2f(.5f, .5f));
+        makeCube(.5f, .5f, .5f, "StaticWall", boxesPath, primaryTexture, new Vector3f(x + 1.5f, y + 1.5f, z + .5f), new Vector2f(.5f, .5f));
+
+        makeCube(.5f, .5f, .5f, "StaticWall", boxesPath, primaryTexture, new Vector3f(x + 2.5f, y + 1.5f, z + .5f), new Vector2f(.5f, .5f));
+        makeCube(.5f, .5f, .5f, "StaticWall", boxesPath, primaryTexture, new Vector3f(x + 2.5f, y + .5f, z + .5f), new Vector2f(.5f, .5f));
+
+        makeCube(.5f, .5f, .5f, "StaticWall", boxesPath, secundaryTexture, new Vector3f(x + 3.5f, y + 1.5f, z + .5f), new Vector2f(.5f, .5f));
+        makeCube(.5f, .5f, .5f, "StaticWall", boxesPath, primaryTexture, new Vector3f(x + 3.5f, y + .5f, z + .5f + separation), new Vector2f(.5f, .5f));
+
+        makeCube(.5f, .5f, .5f, "StaticWall", boxesPath, secundaryTexture, new Vector3f(x + 4.5f, y + .5f, z + .5f), new Vector2f(.5f, .5f));
+        makeCube(.5f, .5f, .5f, "StaticWall", boxesPath, primaryTexture, new Vector3f(x + 4.5f, y + 1.5f, z + .5f + separation), new Vector2f(.5f, .5f));
+    }
+
+    private void makeCube(float x, float y, float z, String name, String texturePath, String textureName, Vector3f localTranslation, Vector2f scaleTexture) {
         Box box = new Box(Vector3f.ZERO, x, y, z);
         Geometry geometry = new Geometry(name, box);
         Material material = new Material(assetManager, MatDefs.UNSHADED);
-        Texture texture = assetManager.loadTexture(texturePath);
+        Texture texture = assetManager.loadTexture(texturePath + textureName);
         material.setTexture("ColorMap", texture);
         geometry.setMaterial(material);
         geometry.setLocalTranslation(localTranslation);
-        
+
         if (scaleTexture != null) {
             box.scaleTextureCoordinates(scaleTexture);
             texture.setWrap(Texture.WrapMode.Repeat);
         }
-        
+
         rootNode.attachChild(geometry);
     }
-    
-    private void makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation) {
-        makeCube(x, y, z, name, texturePath, localTranslation, null);
+
+    private void makeCube(float x, float y, float z, String name, String texturePath, String textureName, Vector3f localTranslation) {
+        makeCube(x, y, z, name, texturePath, textureName, localTranslation, null);
     }
-    
+
     private void initFloor() {
-        makeCube(20f, 0.1f, 20f, "floor", "textures/boxes/f_orange.png", new Vector3f(0f, -0.1f, 0f), new Vector2f(20f, 20f));
+        makeCube(20f, 0.1f, 20f, "floor", boxesPath, "f_blue.png", new Vector3f(0f, -0.1f, 0f), new Vector2f(20f, 20f));
     }
 
     private void initSky() {
