@@ -3,7 +3,7 @@ package jbomb.core.game;
 import com.jme3.app.SimpleApplication;
 import com.jme3.system.AppSettings;
 
-public abstract class BaseGame extends SimpleApplication {
+public class BaseGame extends SimpleApplication {
     
     private AppSettings appSettings = new AppSettings(true);
     
@@ -15,5 +15,14 @@ public abstract class BaseGame extends SimpleApplication {
         appSettings.setResolution(640, 480);
         setSettings(appSettings);
         setShowSettings(false);
+    }
+    
+    protected void initConfigurations() {
+        flyCam.setMoveSpeed(40);
+    }
+
+    @Override
+    public void simpleInitApp() {
+        initConfigurations();
     }
 }
