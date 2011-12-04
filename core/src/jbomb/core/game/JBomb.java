@@ -13,22 +13,22 @@ import com.jme3.util.SkyFactory;
 import jbomb.core.utils.MatDefs;
 
 public class JBomb extends BaseGame {
-    
+
     /* test es sólo para probar*/
     Geometry[] test = new Geometry[6];
-    
+
     @Override
     public void simpleInitApp() {
         super.simpleInitApp();
         initSky();
         initFloor();
         initScene();
-        
+
         /*probando test*/
         test[0] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_darkgray.png", new Vector3f(3, 1, 0), new Vector2f(1, 1));
         test[1] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_darkgray.png", new Vector3f(3, 1, 3), new Vector2f(1, 1));
         test[2] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_darkgray.png", new Vector3f(3, 1, -3), new Vector2f(1, 1));
-        
+
         test[3] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_darkgray.png", new Vector3f(3, 4, 0), new Vector2f(1, 1));
         test[4] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_darkgray.png", new Vector3f(3, 4, 3), new Vector2f(1, 1));
         test[5] = makeCube(1, 1, 1, "StaticWall", "textures/boxes/", "w_darkgray.png", new Vector3f(3, 4, -3), new Vector2f(1, 1));
@@ -36,23 +36,24 @@ public class JBomb extends BaseGame {
 
     @Override
     public void simpleUpdate(float tpf) {
-        for(int i = 0; i < test.length/2; i++) {
+        for (int i = 0; i < test.length / 2; i++) {
             changeTexture(test[i], "textures/boxes/", "w_red1.png", "w_red4.png", "w_red2.png");
         }
-        
-        for(int i = 3; i < test.length; i++) {
+
+        for (int i = 3; i < test.length; i++) {
             changeTexture(test[i], "textures/boxes/", "w_green1.png", "w_green2.png", "w_green3.png");
         }
     }
-    
+
     private void changeTexture(Geometry g, String texturePath, String texture1, String texture2, String texture3) {
-        double random = Math.random()*100;
-        if(random >=0 && random <= .1f)
+        double random = Math.random() * 100;
+        if (random >= 0 && random <= .1f) {
             g.getMaterial().setTexture("ColorMap", assetManager.loadTexture(texturePath + texture1));
-        else if(random > .1f && random <= .2f)
+        } else if (random > .1f && random <= .2f) {
             g.getMaterial().setTexture("ColorMap", assetManager.loadTexture(texturePath + texture2));
-        else if(random > .2f && random <= .3f)
+        } else if (random > .2f && random <= .3f) {
             g.getMaterial().setTexture("ColorMap", assetManager.loadTexture(texturePath + texture3));
+        }
     }
 
     private void makeWall(float x, float y, float z, String primaryTexture, String secundaryTexture, float separation) {
@@ -83,11 +84,11 @@ public class JBomb extends BaseGame {
 //        makeWall(-10, 0, 20, "w_gray1.png", "w_brown.png", separation);
 //        makeWall(-5, 2, 20, "w_gray1.png", "w_green1.png", separation);
 //        makeWall(-10, 2, 20, "w_gray1.png", "w_green3.png", separation);
-        
-        makeTransparentCube(20f, 20.2f, 0.1f, "north_glass", "textures/boxes/", "x_white1.png", new Vector3f(0f, 20f, -20.1f), new Vector2f(5f, 5f));
-        makeTransparentCube(20f, 20.2f, 0.1f, "south_glass", "textures/boxes/", "x_white1.png", new Vector3f(0f, 20f, 20.1f), new Vector2f(5f, 5f));
-        makeTransparentCube(0.1f, 20.2f, 20.2f, "west", "textures/boxes/", "x_white1.png", new Vector3f(-20.1f, 20f, 0f), new Vector2f(5f, 5f));
-        makeTransparentCube(0.1f, 20.2f, 20.2f, "east", "textures/boxes/", "x_white1.png", new Vector3f(20.1f, 20f, 0f), new Vector2f(5f, 5f));
+
+        makeTransparentCube(20f, 20.2f, 0.1f, "north_glass", "textures/boxes/", "x_white2.png", new Vector3f(0f, 20f, -20.1f), new Vector2f(5f, 5f));
+        makeTransparentCube(20f, 20.2f, 0.1f, "south_glass", "textures/boxes/", "x_white2.png", new Vector3f(0f, 20f, 20.1f), new Vector2f(5f, 5f));
+        makeTransparentCube(0.1f, 20.2f, 20.2f, "west", "textures/boxes/", "x_white2.png", new Vector3f(-20.1f, 20f, 0f), new Vector2f(5f, 5f));
+        makeTransparentCube(0.1f, 20.2f, 20.2f, "east", "textures/boxes/", "x_white2.png", new Vector3f(20.1f, 20f, 0f), new Vector2f(5f, 5f));
         makeTransparentCube(20f, 0.1f, 20f, "up", "textures/boxes/", "x_white1.png", new Vector3f(0f, 40.1f, 0f), new Vector2f(5f, 5f));
     }
 
@@ -108,7 +109,7 @@ public class JBomb extends BaseGame {
         rootNode.attachChild(geometry);
         return geometry;
     }
-    
+
     private Geometry makeCube(float x, float y, float z, String name, String texturePath, String textureName, Vector3f localTranslation) {
         return makeCube(x, y, z, name, texturePath, textureName, localTranslation, null);
     }
@@ -120,7 +121,7 @@ public class JBomb extends BaseGame {
         geometry.setQueueBucket(RenderQueue.Bucket.Transparent);
         return geometry;
     }
-    
+
     private Geometry makeTransparentCube(float x, float y, float z, String name, String texturePath, String textureName, Vector3f localTranslation) {
         Geometry geometry = makeCube(x, y, z, name, texturePath, textureName, localTranslation, null);
         geometry.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
