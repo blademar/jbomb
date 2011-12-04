@@ -89,7 +89,7 @@ public class JBomb extends BaseGame {
         makeTransparentCube(20f, 20.2f, 0.1f, "south_glass", "textures/boxes/", "x_white2.png", new Vector3f(0f, 20f, 20.1f), new Vector2f(5f, 5f));
         makeTransparentCube(0.1f, 20.2f, 20.2f, "west", "textures/boxes/", "x_white2.png", new Vector3f(-20.1f, 20f, 0f), new Vector2f(5f, 5f));
         makeTransparentCube(0.1f, 20.2f, 20.2f, "east", "textures/boxes/", "x_white2.png", new Vector3f(20.1f, 20f, 0f), new Vector2f(5f, 5f));
-        makeTransparentCube(20f, 0.1f, 20f, "up", "textures/boxes/", "x_white1.png", new Vector3f(0f, 40.1f, 0f), new Vector2f(5f, 5f));
+        makeTransparentCube(20f, 0.1f, 20f, "up", "textures/boxes/", "x_white1.png", new Vector3f(0f, 40.1f, 0f), new Vector2f(10f, 10f));
     }
 
     private Geometry makeCube(float x, float y, float z, String name, String texturePath, String textureName, Vector3f localTranslation, Vector2f scaleTexture) {
