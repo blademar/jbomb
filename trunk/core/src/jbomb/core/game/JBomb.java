@@ -9,17 +9,19 @@ import jbomb.core.utils.GeometryUtils;
 
 public class JBomb extends BaseGame {
     
-    private GeometryUtils geometryUtils = new GeometryUtils(assetManager, rootNode);
+    private GeometryUtils geometryUtils;
 
     @Override
     public void simpleInitApp() {
         super.simpleInitApp();
+        geometryUtils = new GeometryUtils(assetManager, rootNode);
         initSky();
         initFloor();
         initScene();
     }
 
     private void initScene() {
+        geometryUtils.makePlaneXY(20f, 20f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, -20f), true);
         geometryUtils.makePlaneXY(20f, 20f, "south_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, 20f), true);
         geometryUtils.makePlaneYZ(20f, 20f, "west_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 20f, 0f), true);
         geometryUtils.makePlaneYZ(20f, 20f, "east_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 20f, 0f), true);
