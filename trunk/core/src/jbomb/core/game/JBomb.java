@@ -85,11 +85,11 @@ public class JBomb extends BaseGame {
 //        makeWall(-5, 2, 20, "w_gray1.png", "w_green1.png", separation);
 //        makeWall(-10, 2, 20, "w_gray1.png", "w_green3.png", separation);
 
-        makePlaneXY(20f, 20.2f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, -20f), true);
-        makePlaneXY(20f, 20.2f, "south_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, 20f), true);
-        makePlaneYZ(20.2f, 20.2f, "west_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 20f, 0f), true);
-        makePlaneYZ(20.2f, 20.2f, "east_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 20f, 0f), true);
-        makePlaneXZ(20f, 20f, "up_glass", "textures/glass/sunbeam_t2.png", new Vector3f(0f, 40f, 0f), true);
+        makePlaneXY(20f, 20f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, -20f), true);
+        makePlaneXY(20f, 20f, "south_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, 20f), true);
+        makePlaneYZ(20f, 20f, "west_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 20f, 0f), true);
+        makePlaneYZ(20f, 20f, "east_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 20f, 0f), true);
+        makePlaneXZ(20f, 20f, "up_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 40f, 0f), true);
     }
 
     private Geometry makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation, Vector2f scaleTexture, boolean transparent) {
@@ -173,7 +173,7 @@ public class JBomb extends BaseGame {
     }
 
     private void initFloor() {
-        makePlaneXZ(20f, 20f, "floor", "textures/boxes/f_blue.png", Vector3f.ZERO, new Vector2f(20f, 20f));
+        makePlaneXZ(20f, 20f, "floor", "textures/boxes/f_blue.png", Vector3f.ZERO, new Vector2f(20f, 20f), true);
     }
 
     private void initSky() {
