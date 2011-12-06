@@ -22,12 +22,7 @@ public class GeometryUtils {
     public GeometryUtils(AssetManager assetManager, Node roNode, BulletAppState bulletAppState) {
         this.assetManager = assetManager;
         this.rootNode = roNode;
-        
         this.bulletAppState = bulletAppState;
-    }
-    
-    public BulletAppState getBulletAppState() {
-        return bulletAppState;
     }
 
     public Geometry makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation, Vector2f scaleTexture, boolean transparent) {
