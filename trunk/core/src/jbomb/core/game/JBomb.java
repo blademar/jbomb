@@ -50,16 +50,11 @@ public class JBomb extends BaseGame {
     
     private void initPlayer() {
         player = new CharacterControl(new CapsuleCollisionShape(.55f, 1.7f, 1), 0.45f);
-        getPlayer().setJumpSpeed(30);
-        getPlayer().setFallSpeed(40);
-        getPlayer().setGravity(100);
+        getPlayer().setJumpSpeed(12);
+        getPlayer().setFallSpeed(30);
+        getPlayer().setGravity(30);
         getPlayer().setPhysicsLocation(new Vector3f(0, 10, 0));
-        setUpKeys();
     }
-    
-    private void setUpKeys() {
-        
-      }
 
     private void initScene() {
         geometryUtils.makePlaneXY(20f, 20f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, -20f), true);
@@ -85,12 +80,12 @@ public class JBomb extends BaseGame {
         rootNode.attachChild(sky);
     }
     
-    public void makeBall() {
+    public void makeBomb() {
         Sphere sphere = new Sphere(32, 32, 0.4f);
         sphere.setTextureMode(Sphere.TextureMode.Projected);
         Geometry geometry = new Geometry("bomb", sphere);
         Material material = new Material(assetManager, MatDefs.UNSHADED);
-        material.setTexture("ColorMap", assetManager.loadTexture("textures/rocks/rock.png"));
+        material.setTexture("ColorMap", assetManager.loadTexture("textures/rocks/bomb.png"));
         geometry.setMaterial(material);
         geometry.setLocalTranslation(cam.getLocation());
         RigidBodyControl rigidBodyControl = new RigidBodyControl(1f);

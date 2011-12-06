@@ -11,7 +11,7 @@ public class ShootsActionListener extends JBombActionListener {
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
         if (!isPressed)
-            jbomb.makeBall();
+            jbomb.makeBomb();
     }
     
 }
