@@ -1,6 +1,8 @@
 package jbomb.core.utils;
 
 import com.jme3.asset.AssetManager;
+import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState;
 import com.jme3.math.Vector2f;
@@ -15,10 +17,17 @@ public class GeometryUtils {
     
     private AssetManager assetManager;
     private Node rootNode;
+    private BulletAppState bulletAppState;
     
-    public GeometryUtils(AssetManager assetManager, Node roNode) {
+    public GeometryUtils(AssetManager assetManager, Node roNode, BulletAppState bulletAppState) {
         this.assetManager = assetManager;
         this.rootNode = roNode;
+        
+        this.bulletAppState = bulletAppState;
+    }
+    
+    public BulletAppState getBulletAppState() {
+        return bulletAppState;
     }
 
     public Geometry makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation, Vector2f scaleTexture, boolean transparent) {
@@ -37,6 +46,9 @@ public class GeometryUtils {
             geometry.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
             geometry.setQueueBucket(RenderQueue.Bucket.Transparent);
         }
+        RigidBodyControl physics = new RigidBodyControl(0f);
+        geometry.addControl(physics); 
+        bulletAppState.getPhysicsSpace().add(physics);
         rootNode.attachChild(geometry);
         return geometry;
     }
