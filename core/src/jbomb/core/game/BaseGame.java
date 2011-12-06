@@ -18,7 +18,7 @@ public class BaseGame extends SimpleApplication {
     }
     
     protected void initConfigurations() {
-        flyCam.setMoveSpeed(10);
+//        flyCam.setMoveSpeed(10);
     }
 
     @Override

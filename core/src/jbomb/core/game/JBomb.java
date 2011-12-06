@@ -4,58 +4,61 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.input.KeyInput;
-import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.input.MouseInput;
+import com.jme3.input.controls.MouseButtonTrigger;
+import com.jme3.material.Material;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.shape.Sphere;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
+import jbomb.core.listeners.CharacterActionListener;
+import jbomb.core.listeners.ShootsActionListener;
 import jbomb.core.utils.GeometryUtils;
+import jbomb.core.utils.MatDefs;
 
-public class JBomb extends BaseGame implements ActionListener {
+public class JBomb extends BaseGame {
     
     private GeometryUtils geometryUtils;
-    private BulletAppState bulletAppState;
+    private BulletAppState bulletAppState = bulletAppState = new BulletAppState();
     private CharacterControl player;
     private Vector3f walkDirection = new Vector3f();
-    private boolean left = false, right = false, front = false, back = false;
+    private boolean left = false;
+    private boolean right = false;
+    private boolean front = false;
+    private boolean back = false;
+    private ShootsActionListener shootsActionListener = new ShootsActionListener(this);
+    private CharacterActionListener characterActionListener = new CharacterActionListener(this);
 
     @Override
     public void simpleInitApp() {
         super.simpleInitApp();
-        bulletAppState = new BulletAppState();
         geometryUtils = new GeometryUtils(assetManager, rootNode, bulletAppState);
         stateManager.attach(bulletAppState);
         initSky();
+        initMappings();
         initFloor();
         initScene();
         initPlayer();
-        
-        bulletAppState.getPhysicsSpace().add(player);
-//        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+        bulletAppState.getPhysicsSpace().add(getPlayer());
+        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
     }
     
     private void initPlayer() {
         player = new CharacterControl(new CapsuleCollisionShape(.55f, 1.7f, 1), 0.45f);
-        player.setJumpSpeed(30);
-        player.setFallSpeed(40);
-        player.setGravity(100);
-        player.setPhysicsLocation(new Vector3f(0, 10, 0));
+        getPlayer().setJumpSpeed(30);
+        getPlayer().setFallSpeed(40);
+        getPlayer().setGravity(100);
+        getPlayer().setPhysicsLocation(new Vector3f(0, 10, 0));
         setUpKeys();
     }
     
     private void setUpKeys() {
-        inputManager.addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
-        inputManager.addMapping("Right", new KeyTrigger(KeyInput.KEY_D));
-        inputManager.addMapping("Front", new KeyTrigger(KeyInput.KEY_W));
-        inputManager.addMapping("Back", new KeyTrigger(KeyInput.KEY_S));
-        inputManager.addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
-        inputManager.addListener(this, "Left");
-        inputManager.addListener(this, "Right");
-        inputManager.addListener(this, "Front");
-        inputManager.addListener(this, "Back");
-        inputManager.addListener(this, "Jump");
+        
       }
 
     private void initScene() {
@@ -81,32 +84,68 @@ public class JBomb extends BaseGame implements ActionListener {
         Spatial sky = SkyFactory.createSky(assetManager, west, east, north, south, up, down);
         rootNode.attachChild(sky);
     }
-
-    @Override
-    public void onAction(String name, boolean isPressed, float tpf) {
-        if (name.equals("Left")) {
-            if (isPressed) { left = true; } else { left = false; }
-        } else if (name.equals("Right")) {
-            if (isPressed) { right = true; } else { right = false; }
-        } else if (name.equals("Front")) {
-            if (isPressed) { front = true; } else { front = false; }
-        } else if (name.equals("Back")) {
-            if (isPressed) { back = true; } else { back = false; }
-        } else if (name.equals("Jump")) {
-            player.jump();
-        }
+    
+    public void makeBall() {
+        Sphere sphere = new Sphere(32, 32, 0.4f);
+        sphere.setTextureMode(Sphere.TextureMode.Projected);
+        Geometry geometry = new Geometry("bomb", sphere);
+        Material material = new Material(assetManager, MatDefs.UNSHADED);
+        material.setTexture("ColorMap", assetManager.loadTexture("textures/rocks/rock.png"));
+        geometry.setMaterial(material);
+        geometry.setLocalTranslation(cam.getLocation());
+        RigidBodyControl rigidBodyControl = new RigidBodyControl(1f);
+        geometry.addControl(rigidBodyControl);
+        bulletAppState.getPhysicsSpace().add(rigidBodyControl);
+        rootNode.attachChild(geometry);
+        rigidBodyControl.setLinearVelocity(cam.getDirection().mult(25f));
     }
     
-//    @Override
-//    public void simpleUpdate(float tpf) {
-//        Vector3f camDir = cam.getDirection().clone().multLocal(0.2f);
-//        Vector3f camLeft = cam.getLeft().clone().multLocal(0.1f);
-//        walkDirection.set(0, 0, 0);
-//        if (left)  { walkDirection.addLocal(camLeft); }
-//        if (right) { walkDirection.addLocal(camLeft.negate()); }
-//        if (front)    { walkDirection.addLocal(camDir); }
-//        if (back)  { walkDirection.addLocal(camDir.negate()); }
-//        player.setWalkDirection(walkDirection);
-//        cam.setLocation(player.getPhysicsLocation());
-//    }
+    @Override
+    public void simpleUpdate(float tpf) {
+        Vector3f camDir = cam.getDirection().clone().multLocal(0.2f);
+        Vector3f camLeft = cam.getLeft().clone().multLocal(0.1f);
+        walkDirection.set(0, 0, 0);
+        if (left)  { walkDirection.addLocal(camLeft); }
+        if (right) { walkDirection.addLocal(camLeft.negate()); }
+        if (front)    { walkDirection.addLocal(camDir); }
+        if (back)  { walkDirection.addLocal(camDir.negate()); }
+        player.setWalkDirection(walkDirection);
+        cam.setLocation(player.getPhysicsLocation());
+    }
+    
+    private void initMappings() {
+        inputManager.addMapping("shoot", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+        inputManager.addListener(shootsActionListener, "shoot");
+        
+        inputManager.addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
+        inputManager.addMapping("Right", new KeyTrigger(KeyInput.KEY_D));
+        inputManager.addMapping("Front", new KeyTrigger(KeyInput.KEY_W));
+        inputManager.addMapping("Back", new KeyTrigger(KeyInput.KEY_S));
+        inputManager.addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
+        inputManager.addListener(characterActionListener, "Left");
+        inputManager.addListener(characterActionListener, "Right");
+        inputManager.addListener(characterActionListener, "Front");
+        inputManager.addListener(characterActionListener, "Back");
+        inputManager.addListener(characterActionListener, "Jump");
+    }
+
+    public CharacterControl getPlayer() {
+        return player;
+    }
+
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
+
+    public void setRight(boolean right) {
+        this.right = right;
+    }
+
+    public void setFront(boolean front) {
+        this.front = front;
+    }
+
+    public void setBack(boolean back) {
+        this.back = back;
+    }
 }
