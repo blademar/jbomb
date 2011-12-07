@@ -108,6 +108,8 @@ public class JBomb extends BaseGame {
     public void simpleUpdate(float tpf) {
         Vector3f camDir = cam.getDirection().clone().multLocal(0.2f);
         Vector3f camLeft = cam.getLeft().clone().multLocal(0.1f);
+        camDir.y = 0;
+        camLeft.y = 0;
         walkDirection.set(0, 0, 0);
         if (left)  { walkDirection.addLocal(camLeft); }
         if (right) { walkDirection.addLocal(camLeft.negate()); }
