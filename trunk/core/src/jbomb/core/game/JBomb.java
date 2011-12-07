@@ -9,6 +9,8 @@ import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.material.Material;
+import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
@@ -57,15 +59,22 @@ public class JBomb extends BaseGame {
     }
 
     private void initScene() {
-        geometryUtils.makePlaneXY(20f, 20f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, -20f), true);
-        geometryUtils.makePlaneXY(20f, 20f, "south_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, 20f), true);
-        geometryUtils.makePlaneYZ(20f, 20f, "west_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 20f, 0f), true);
-        geometryUtils.makePlaneYZ(20f, 20f, "east_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 20f, 0f), true);
-        geometryUtils.makePlaneXZ(20f, 20f, "up_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 40f, 0f), true);
+        geometryUtils.makePlane(40f, 40f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 0f, -20f),
+                true);
+        geometryUtils.makePlane(40f, 40f, "south_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 0f, 20f),
+                new Quaternion().fromAngleAxis(FastMath.PI, Vector3f.UNIT_Y), true);
+        geometryUtils.makePlane(40f, 40f, "west_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 0f, 20f),
+                new Quaternion().fromAngleAxis(FastMath.PI / 2, Vector3f.UNIT_Y), true);
+        geometryUtils.makePlane(40f, 40f, "east_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 0f, -20f),
+                new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_Y), true);
+        geometryUtils.makePlane(40f, 40f, "up_glass", "textures/glass/sunbeam_t1.png", 
+                new Vector3f(-20f, 40f, -20f), new Quaternion().fromAngleAxis(FastMath.PI / 2, Vector3f.UNIT_X), true);
     }
 
     private void initFloor() {
-        geometryUtils.makePlaneXZ(20f, 20f, "floor", "textures/boxes/f_blue.png", Vector3f.ZERO, new Vector2f(20f, 20f), true);
+        Geometry geometry = geometryUtils.makePlane(
+                40f, 40f, "floor", "textures/boxes/f_blue.png", new Vector3f(-20f, 0f, 20f),
+                new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_X),new Vector2f(20f, 20f), true);
     }
 
     private void initSky() {
