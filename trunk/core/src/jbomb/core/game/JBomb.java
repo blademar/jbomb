@@ -6,6 +6,7 @@ import com.jme3.bullet.control.CharacterControl;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.font.BitmapText;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.material.Material;
@@ -39,6 +40,7 @@ public class JBomb extends BaseGame {
     private ShootsActionListener shootsActionListener = new ShootsActionListener(this);
     private CharacterActionListener characterActionListener = new CharacterActionListener(this);
     private Explosion explosion;
+    private long sum = 0;
 
     @Override
     public void simpleInitApp() {
@@ -46,6 +48,7 @@ public class JBomb extends BaseGame {
         geometryUtils = new GeometryUtils(assetManager, rootNode, bulletAppState);
         initStateManager();
         initSky();
+        initCrossHairs();
         initMappings();
         initFloor();
         initScene();
@@ -105,19 +108,14 @@ public class JBomb extends BaseGame {
         sphere.setTextureMode(Sphere.TextureMode.Projected);
         Geometry geometry = new Geometry("bomb", sphere);
         Material material = new Material(assetManager, MatDefs.UNSHADED);
-        material.setTexture("ColorMap", assetManager.loadTexture("textures/rocks/bomb.png"));
+        material.setTexture("ColorMap", assetManager.loadTexture("textures/rocks/rock.png"));
         geometry.setMaterial(material);
-        geometry.setLocalTranslation(cam.getLocation());
+        geometry.setLocalTranslation(cam.getLocation().add(cam.getDirection().mult(1.5f)));
         RigidBodyControl rigidBodyControl = new RigidBodyControl(1f);
         geometry.addControl(rigidBodyControl);
         bulletAppState.getPhysicsSpace().add(rigidBodyControl);
         rootNode.attachChild(geometry);
         rigidBodyControl.setLinearVelocity(cam.getDirection().mult(25f));
-    }
-    
-    @Override
-    public void simpleUpdate(float tpf) {
-        explosion.update(tpf, speed);
     }
     
     private void initMappings() {
@@ -133,6 +131,18 @@ public class JBomb extends BaseGame {
         inputManager.addListener(characterActionListener, "Front");
         inputManager.addListener(characterActionListener, "Back");
         inputManager.addListener(characterActionListener, "Jump");
+    }
+    
+    protected void initCrossHairs() {
+        guiNode.detachAllChildren();
+        guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
+        BitmapText ch = new BitmapText(guiFont, false);
+        ch.setSize(guiFont.getCharSet().getRenderedSize() * 2);
+        ch.setText("+"); // crosshairs
+        ch.setLocalTranslation( // center
+                settings.getWidth() / 2 - guiFont.getCharSet().getRenderedSize() / 3 * 2,
+                settings.getHeight() / 2 + ch.getLineHeight() / 2, 0);
+        guiNode.attachChild(ch);
     }
 
     public CharacterControl getPlayer() {
