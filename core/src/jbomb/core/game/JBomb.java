@@ -20,6 +20,7 @@ import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
 import jbomb.core.listeners.CharacterActionListener;
 import jbomb.core.listeners.ShootsActionListener;
+import jbomb.core.effects.Explosion;
 import jbomb.core.utils.GeometryUtils;
 import jbomb.core.utils.MatDefs;
 
@@ -35,6 +36,7 @@ public class JBomb extends BaseGame {
     private boolean back = false;
     private ShootsActionListener shootsActionListener = new ShootsActionListener(this);
     private CharacterActionListener characterActionListener = new CharacterActionListener(this);
+    private Explosion explosion;
 
     @Override
     public void simpleInitApp() {
@@ -47,7 +49,10 @@ public class JBomb extends BaseGame {
         initScene();
         initPlayer();
         bulletAppState.getPhysicsSpace().add(getPlayer());
-        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+//        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+        
+        explosion = new Explosion(this);
+        explosion.initExplosion();
     }
     
     private void initPlayer() {
@@ -117,6 +122,8 @@ public class JBomb extends BaseGame {
         if (back)  { walkDirection.addLocal(camDir.negate()); }
         player.setWalkDirection(walkDirection);
         cam.setLocation(player.getPhysicsLocation());
+        
+        explosion.update(tpf, speed);
     }
     
     private void initMappings() {
