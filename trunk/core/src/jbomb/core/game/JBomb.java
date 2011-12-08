@@ -61,6 +61,7 @@ public class JBomb extends BaseGame {
         getPlayer().setFallSpeed(30);
         getPlayer().setGravity(30);
         getPlayer().setPhysicsLocation(new Vector3f(0, 10, 0));
+        
     }
 
     private void initScene() {
