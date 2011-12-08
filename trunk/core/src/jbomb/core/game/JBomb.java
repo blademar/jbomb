@@ -13,11 +13,13 @@ import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
+import com.jme3.renderer.Camera;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Sphere;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
+import jbomb.core.appstates.RunningAppState;
 import jbomb.core.listeners.CharacterActionListener;
 import jbomb.core.listeners.ShootsActionListener;
 import jbomb.core.effects.Explosion;
@@ -27,9 +29,9 @@ import jbomb.core.utils.MatDefs;
 public class JBomb extends BaseGame {
     
     private GeometryUtils geometryUtils;
-    private BulletAppState bulletAppState = bulletAppState = new BulletAppState();
+    private BulletAppState bulletAppState = new BulletAppState();
+    private RunningAppState runningAppState = new RunningAppState();
     private CharacterControl player;
-    private Vector3f walkDirection = new Vector3f();
     private boolean left = false;
     private boolean right = false;
     private boolean front = false;
@@ -42,7 +44,7 @@ public class JBomb extends BaseGame {
     public void simpleInitApp() {
         super.simpleInitApp();
         geometryUtils = new GeometryUtils(assetManager, rootNode, bulletAppState);
-        stateManager.attach(bulletAppState);
+        initStateManager();
         initSky();
         initMappings();
         initFloor();
@@ -50,9 +52,13 @@ public class JBomb extends BaseGame {
         initPlayer();
         bulletAppState.getPhysicsSpace().add(getPlayer());
 //        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
-        
         explosion = new Explosion(this);
         explosion.initExplosion();
+    }
+    
+    private void initStateManager() {
+        stateManager.attach(bulletAppState);
+        stateManager.attach(runningAppState);
     }
     
     private void initPlayer() {
@@ -61,7 +67,6 @@ public class JBomb extends BaseGame {
         getPlayer().setFallSpeed(30);
         getPlayer().setGravity(30);
         getPlayer().setPhysicsLocation(new Vector3f(0, 10, 0));
-        
     }
 
     private void initScene() {
@@ -112,25 +117,12 @@ public class JBomb extends BaseGame {
     
     @Override
     public void simpleUpdate(float tpf) {
-        Vector3f camDir = cam.getDirection().clone().multLocal(0.2f);
-        Vector3f camLeft = cam.getLeft().clone().multLocal(0.1f);
-        camDir.y = 0;
-        camLeft.y = 0;
-        walkDirection.set(0, 0, 0);
-        if (left)  { walkDirection.addLocal(camLeft); }
-        if (right) { walkDirection.addLocal(camLeft.negate()); }
-        if (front)    { walkDirection.addLocal(camDir); }
-        if (back)  { walkDirection.addLocal(camDir.negate()); }
-        player.setWalkDirection(walkDirection);
-        cam.setLocation(player.getPhysicsLocation());
-        
         explosion.update(tpf, speed);
     }
     
     private void initMappings() {
         inputManager.addMapping("shoot", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
         inputManager.addListener(shootsActionListener, "shoot");
-        
         inputManager.addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
         inputManager.addMapping("Right", new KeyTrigger(KeyInput.KEY_D));
         inputManager.addMapping("Front", new KeyTrigger(KeyInput.KEY_W));
@@ -161,5 +153,25 @@ public class JBomb extends BaseGame {
 
     public void setBack(boolean back) {
         this.back = back;
+    }
+    
+    public Camera getCam() {
+        return cam;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isFront() {
+        return front;
+    }
+
+    public boolean isBack() {
+        return back;
     }
 }
