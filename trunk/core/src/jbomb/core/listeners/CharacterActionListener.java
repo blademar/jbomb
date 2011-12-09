@@ -1,25 +1,21 @@
 package jbomb.core.listeners;
 
-import jbomb.core.game.JBomb;
+import com.jme3.input.controls.ActionListener;
+import jbomb.core.game.JBombContext;
 
-public class CharacterActionListener extends JBombActionListener {
-    
-    public CharacterActionListener(JBomb jbomb) {
-        super(jbomb);
-    }
-
+public class CharacterActionListener implements ActionListener {
+        
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
         if (name.equals("Left"))
-            if (isPressed) jbomb.setLeft(true); else jbomb.setLeft(false);
+            if (isPressed) JBombContext.JBOMB.setLeft(true); else JBombContext.JBOMB.setLeft(false);
         else if (name.equals("Right"))
-            if (isPressed) jbomb.setRight(true); else jbomb.setRight(false);
+            if (isPressed) JBombContext.JBOMB.setRight(true); else JBombContext.JBOMB.setRight(false);
         else if (name.equals("Front"))
-            if (isPressed) jbomb.setFront(true); else jbomb.setFront(false);
+            if (isPressed) JBombContext.JBOMB.setFront(true); else JBombContext.JBOMB.setFront(false);
         else if (name.equals("Back")) 
-            if (isPressed) jbomb.setBack(true); else jbomb.setBack(false);
+            if (isPressed) JBombContext.JBOMB.setBack(true); else JBombContext.JBOMB.setBack(false);
         else if (name.equals("Jump"))
-            jbomb.getPlayer().jump();
+            JBombContext.JBOMB.getPlayer().jump();
     }
-    
 }

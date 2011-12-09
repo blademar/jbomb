@@ -1,17 +1,14 @@
 package jbomb.core.listeners;
 
-import jbomb.core.game.JBomb;
+import com.jme3.input.controls.ActionListener;
+import jbomb.core.game.JBombContext;
 
-public class ShootsActionListener extends JBombActionListener {
-
-    public ShootsActionListener(JBomb jbomb) {
-        super(jbomb);
-    }
+public class ShootsActionListener implements ActionListener {
     
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
         if (!isPressed)
-            jbomb.makeBomb();
+            JBombContext.JBOMB.getPlayer().throwBomb();
     }
     
 }

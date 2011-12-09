@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/home/rodrigo/personal/projects/jbomb/core/src/jbomb/core/game/JBomb.java</file>
+        <file>file:/home/rodrigo/repo/core/src/jbomb/core/effects/impl/DefaultExplosion.java</file>
+        <file>file:/home/rodrigo/repo/core/src/jbomb/core/effects/impl/DefaultBombExplosion.java</file>
+        <file>file:/home/rodrigo/repo/core/src/jbomb/core/effects/api/Explosion.java</file>
+        <file>file:/home/rodrigo/repo/core/src/jbomb/core/effects/Explosion.java</file>
+        <file>file:/home/rodrigo/repo/core/src/jbomb/core/weapons/impl/DefaultBomb.java</file>
+        <file>file:/home/rodrigo/repo/core/src/jbomb/core/weapons/impl/GeneralBomb.java</file>
+        <file>file:/home/rodrigo/repo/core/src/jbomb/core/controls/DefaultBombControl.java</file>
     </open-files>
 </project-private>
