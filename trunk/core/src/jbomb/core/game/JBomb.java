@@ -44,7 +44,7 @@ public class JBomb extends BaseGame {
         initFloor();
         initScene();
         getBulletAppState().getPhysicsSpace().add(getPlayer());
-        //bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
     }
     
     private void initStateManager() {
@@ -78,18 +78,18 @@ public class JBomb extends BaseGame {
         
         GeometryUtils.makeCube(
                 5f, 0.1f, 5f, name, texture, new Vector3f(0f, height, 0f), new Vector2f(5f, 5f), true);
-        GeometryUtils.makeCube(
-                2f, 0.1f, 5.5f, name, texture, new Vector3f(0f, height, 10.5f), new Vector2f(5.5f, 2f), true);
-        GeometryUtils.makeCube(
-                14f, 0.1f, 2f, name, texture, new Vector3f(6f, height, 18f), new Vector2f(2f, 14f), true);
-        GeometryUtils.makeCube(
-                2f, 0.1f, 12f, name, texture, new Vector3f(18f, height, 4f), new Vector2f(12f, 2f), true);
-        GeometryUtils.makeCube(
-                5.5f, 0.1f, 2f, name, texture, new Vector3f(-10.5f, height, 0f), new Vector2f(2f, 5.5f), true);
-        GeometryUtils.makeCube(
-                2f, 0.1f, 14f, name, texture, new Vector3f(-18f, height, -6f), new Vector2f(14f, 2f), true);
-        GeometryUtils.makeCube(
-                12f, 0.1f, 2f, name, texture, new Vector3f(-4f, height, -18f), new Vector2f(2f, 14f), true);
+//        GeometryUtils.makeCube(
+//                2f, 0.1f, 5.5f, name, texture, new Vector3f(0f, height, 10.5f), new Vector2f(5.5f, 2f), true);
+//        GeometryUtils.makeCube(
+//                14f, 0.1f, 2f, name, texture, new Vector3f(6f, height, 18f), new Vector2f(2f, 14f), true);
+//        GeometryUtils.makeCube(
+//                2f, 0.1f, 12f, name, texture, new Vector3f(18f, height, 4f), new Vector2f(12f, 2f), true);
+//        GeometryUtils.makeCube(
+//                5.5f, 0.1f, 2f, name, texture, new Vector3f(-10.5f, height, 0f), new Vector2f(2f, 5.5f), true);
+//        GeometryUtils.makeCube(
+//                2f, 0.1f, 14f, name, texture, new Vector3f(-18f, height, -6f), new Vector2f(14f, 2f), true);
+//        GeometryUtils.makeCube(
+//                12f, 0.1f, 2f, name, texture, new Vector3f(-4f, height, -18f), new Vector2f(2f, 14f), true);
     }
 
     private void initSky() {
@@ -128,6 +128,11 @@ public class JBomb extends BaseGame {
                 settings.getWidth() / 2 - guiFont.getCharSet().getRenderedSize() / 3 * 2,
                 settings.getHeight() / 2 + ch.getLineHeight() / 2, 0);
         guiNode.attachChild(ch);
+    }
+
+    @Override
+    public void simpleUpdate(float tpf) {
+        System.out.println(player.getPhysicsLocation());
     }
 
     public Player getPlayer() {
