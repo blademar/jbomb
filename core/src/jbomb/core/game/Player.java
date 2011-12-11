@@ -3,7 +3,7 @@ package jbomb.core.game;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Vector3f;
-import jbomb.core.weapons.impl.DefaultBomb;
+import jbomb.core.weapons.impl.GrandBomb;
 
 public class Player extends CharacterControl {
     
@@ -16,7 +16,7 @@ public class Player extends CharacterControl {
     }
     
     public void throwBomb() {
-        new DefaultBomb();
+        new GrandBomb();
     }
     
 }

@@ -30,6 +30,10 @@ public class BaseExplosion implements Explosion {
         config();
     }
     
+    public BaseExplosion(String name, int numParticles, String fileName, int x, int y) {
+        this(name, new BaseControlExplosion(), numParticles, fileName, x, y);
+    }
+    
     public BaseExplosion(String name, String fileName, int x, int y) {
         this(name, new BaseControlExplosion(), 30, fileName, x, y);
     }
