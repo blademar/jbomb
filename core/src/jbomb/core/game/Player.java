@@ -12,7 +12,7 @@ public class Player extends CharacterControl {
         setJumpSpeed(12);
         setFallSpeed(30);
         setGravity(30);
-        setPhysicsLocation(new Vector3f(0, 10, 0));
+        setPhysicsLocation(new Vector3f(0, 20, 0));
     }
     
     public void throwBomb() {
