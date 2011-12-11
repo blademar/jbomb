@@ -72,4 +72,8 @@ public class BaseBomb implements Bomb {
     public Spatial getSpatial() {
         return geometry;
     }
+    
+    public void setExplosion(Explosion explosion) {
+        this.explosion = explosion;
+    }
 }
