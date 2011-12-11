@@ -52,7 +52,7 @@ public class BaseBomb implements Bomb {
     }
     
     public BaseBomb() {
-        this("rock.png", 0.4f, 1f);
+        this("bomb.png", 0.4f, 1f);
     }
 
     @Override
