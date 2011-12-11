@@ -44,14 +44,14 @@ public class JBomb extends BaseGame {
         initFloor();
         initScene();
         getBulletAppState().getPhysicsSpace().add(getPlayer());
-        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+//        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
     }
     
     private void initStateManager() {
         stateManager.attach(getBulletAppState());
         stateManager.attach(runningAppState);
     }
-
+    
     private void initScene() {
         GeometryUtils.makePlane(40f, 40f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 0f, -20f),
                 true);
@@ -63,13 +63,16 @@ public class JBomb extends BaseGame {
                 new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_Y), true);
         GeometryUtils.makePlane(40f, 40f, "up_glass", "textures/glass/sunbeam_t1.png", 
                 new Vector3f(-20f, 40f, -20f), new Quaternion().fromAngleAxis(FastMath.PI / 2, Vector3f.UNIT_X), true);
+        
         makeFirtPlatform();
+        makeSecondPlatform();
+        makeThirdPlatform();
     }
 
     private void initFloor() {
         GeometryUtils.makePlane(
                 40f, 40f, "floor", "textures/boxes/f_blue.png", new Vector3f(-20f, 0f, 20f),
-                new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_X),new Vector2f(20f, 20f), true);
+                new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_X),new Vector2f(20f, 20f), true);   
     }
     
     private void makeFirtPlatform() {
@@ -90,6 +93,74 @@ public class JBomb extends BaseGame {
                 2f, 0.1f, 14f, name, texture, new Vector3f(-18f, height, -6f), new Vector2f(14f, 2f), true);
         GeometryUtils.makeCube(
                 12f, 0.1f, 2f, name, texture, new Vector3f(-4f, height, -18f), new Vector2f(2f, 14f), true);
+    }
+    
+    private void makeSecondPlatform() {
+        float height = 19.9f;
+        String texture = "textures/boxes/f_gray.png", name = "secondPlatform";
+        
+        GeometryUtils.makeCube(
+                4f, 0.1f, 4f, name, texture, new Vector3f(0f, height, 0f), new Vector2f(4f, 4f), true);
+        GeometryUtils.makeCube(
+                5f, 0.1f, 5f, name, texture, new Vector3f(15f, height, 15f), new Vector2f(5f, 5f), true);
+        GeometryUtils.makeCube(
+                5f, 0.1f, 5f, name, texture, new Vector3f(-15f, height, -15f), new Vector2f(5f, 5f), true);
+        GeometryUtils.makeCube(
+                5f, 0.1f, 5f, name, texture, new Vector3f(-15f, height, 15f), new Vector2f(5f, 5f), true);
+        GeometryUtils.makeCube(
+                5f, 0.1f, 5f, name, texture, new Vector3f(15f, height, -15f), new Vector2f(5f, 5f), true);
+        GeometryUtils.makeCube(
+                10f, 0.1f, 2f, name, texture, new Vector3f(0f, height, 13f), new Vector2f(2f, 10f), true);
+        GeometryUtils.makeCube(
+                10f, 0.1f, 2f, name, texture, new Vector3f(0f, height, -13f), new Vector2f(2f, 10f), true);
+        GeometryUtils.makeCube(
+                2f, 0.1f, 10f, name, texture, new Vector3f(13f, height, 0f), new Vector2f(10f, 2f), true);
+        GeometryUtils.makeCube(
+                2f, 0.1f, 10f, name, texture, new Vector3f(-13f, height, 0f), new Vector2f(10f, 2f), true);
+        GeometryUtils.makeCube(
+                2f, 0.1f, 3.5f, name, texture, new Vector3f(0f, height, 7.5f), new Vector2f(3.5f, 2f), true);
+        GeometryUtils.makeCube(
+                2f, 0.1f, 3.5f, name, texture, new Vector3f(0f, height, -7.5f), new Vector2f(3.5f, 2f), true);
+        GeometryUtils.makeCube(
+                3.5f, 0.1f, 2f, name, texture, new Vector3f(7.5f, height, 0f), new Vector2f(2f, 3.5f), true);
+        GeometryUtils.makeCube(
+                3.5f, 0.1f, 2f, name, texture, new Vector3f(-7.5f, height, 0f), new Vector2f(2f, 3.5f), true);
+    }
+    
+    private void makeThirdPlatform() {
+        float height = 29.9f;
+        String texture = "textures/boxes/f_orange.png", name = "thirdPlatform";
+        
+        GeometryUtils.makeCube(
+                4f, 0.1f, 2f, name, texture, new Vector3f(0f, height, 0f), new Vector2f(2f, 4f), true);
+        GeometryUtils.makeCube(
+                3f, 0.1f, 3f, name, texture, new Vector3f(12f, height, 3f), new Vector2f(3f, 3f), true);
+        GeometryUtils.makeCube(
+                3f, 0.1f, 3f, name, texture, new Vector3f(3f, height, 12f), new Vector2f(3f, 3f), true);
+        GeometryUtils.makeCube(
+                3f, 0.1f, 3f, name, texture, new Vector3f(-12f, height, 12f), new Vector2f(3f, 3f), true);
+        GeometryUtils.makeCube(
+                3f, 0.1f, 3f, name, texture, new Vector3f(-12f, height, -3f), new Vector2f(3f, 3f), true);
+        GeometryUtils.makeCube(
+                3f, 0.1f, 3f, name, texture, new Vector3f(-3f, height, -12f), new Vector2f(3f, 3f), true);
+        GeometryUtils.makeCube(
+                3f, 0.1f, 3f, name, texture, new Vector3f(12f, height, -12f), new Vector2f(3f, 3f), true);
+        GeometryUtils.makeCube(
+                1f, 0.1f, 3.5f, name, texture, new Vector3f(3f, height, 5.5f), new Vector2f(3.5f, 1f), true);
+        GeometryUtils.makeCube(
+                1f, 0.1f, 3.5f, name, texture, new Vector3f(-3f, height, -5.5f), new Vector2f(3.5f, 1f), true);
+        GeometryUtils.makeCube(
+                2.5f, 0.1f, 1f, name, texture, new Vector3f(6.5f, height, 1f), new Vector2f(1f, 2.5f), true);
+        GeometryUtils.makeCube(
+                2.5f, 0.1f, 1f, name, texture, new Vector3f(-6.5f, height, -1f), new Vector2f(1f, 2.5f), true);
+        GeometryUtils.makeCube(
+                1f, 0.1f, 4.5f, name, texture, new Vector3f(12f, height, -4.5f), new Vector2f(4.5f, 1f), true);
+        GeometryUtils.makeCube(
+                1f, 0.1f, 4.5f, name, texture, new Vector3f(-12f, height, 4.5f), new Vector2f(4.5f, 1f), true);
+        GeometryUtils.makeCube(
+                4.5f, 0.1f, 1f, name, texture, new Vector3f(-4.5f, height, 12f), new Vector2f(1f, 4.5f), true);
+        GeometryUtils.makeCube(
+                4.5f, 0.1f, 1f, name, texture, new Vector3f(4.5f, height, -12f), new Vector2f(1f, 4.5f), true);
     }
 
     private void initSky() {

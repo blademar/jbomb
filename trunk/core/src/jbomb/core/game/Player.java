@@ -10,9 +10,9 @@ public class Player extends CharacterControl {
     public Player() {
         super(new CapsuleCollisionShape(.55f, 1.7f, 1), 0.45f);
         setJumpSpeed(12);
-        setFallSpeed(30);
+        setFallSpeed(10);
         setGravity(30);
-        setPhysicsLocation(new Vector3f(0, 20, 0));
+        setPhysicsLocation(new Vector3f(0, 35, 0));
     }
     
     public void throwBomb() {
