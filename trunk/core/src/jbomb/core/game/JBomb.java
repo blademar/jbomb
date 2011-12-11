@@ -11,7 +11,6 @@ import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
-import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
@@ -22,7 +21,6 @@ import jbomb.core.utils.GeometryUtils;
 
 public class JBomb extends BaseGame {
     
-    private GeometryUtils geometryUtils;
     private BulletAppState bulletAppState = new BulletAppState();
     private RunningAppState runningAppState = new RunningAppState();
     private boolean left = false;
@@ -46,7 +44,7 @@ public class JBomb extends BaseGame {
         initFloor();
         initScene();
         getBulletAppState().getPhysicsSpace().add(getPlayer());
-//        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+        //bulletAppState.getPhysicsSpace().enableDebug(assetManager);
     }
     
     private void initStateManager() {
@@ -55,22 +53,43 @@ public class JBomb extends BaseGame {
     }
 
     private void initScene() {
-        geometryUtils.makePlane(40f, 40f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 0f, -20f),
+        GeometryUtils.makePlane(40f, 40f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 0f, -20f),
                 true);
-        geometryUtils.makePlane(40f, 40f, "south_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 0f, 20f),
+        GeometryUtils.makePlane(40f, 40f, "south_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 0f, 20f),
                 new Quaternion().fromAngleAxis(FastMath.PI, Vector3f.UNIT_Y), true);
-        geometryUtils.makePlane(40f, 40f, "west_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 0f, 20f),
+        GeometryUtils.makePlane(40f, 40f, "west_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 0f, 20f),
                 new Quaternion().fromAngleAxis(FastMath.PI / 2, Vector3f.UNIT_Y), true);
-        geometryUtils.makePlane(40f, 40f, "east_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 0f, -20f),
+        GeometryUtils.makePlane(40f, 40f, "east_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 0f, -20f),
                 new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_Y), true);
-        geometryUtils.makePlane(40f, 40f, "up_glass", "textures/glass/sunbeam_t1.png", 
+        GeometryUtils.makePlane(40f, 40f, "up_glass", "textures/glass/sunbeam_t1.png", 
                 new Vector3f(-20f, 40f, -20f), new Quaternion().fromAngleAxis(FastMath.PI / 2, Vector3f.UNIT_X), true);
     }
 
     private void initFloor() {
-        Geometry geometry = geometryUtils.makePlane(
+        GeometryUtils.makePlane(
                 40f, 40f, "floor", "textures/boxes/f_blue.png", new Vector3f(-20f, 0f, 20f),
                 new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_X),new Vector2f(20f, 20f), true);
+        makeFirtPlatform();
+    }
+    
+    private void makeFirtPlatform() {
+        float height = 9.9f;
+        String texture = "textures/boxes/f_purple.png", name = "firstPlatform";
+        
+        GeometryUtils.makeCube(
+                5f, 0.1f, 5f, name, texture, new Vector3f(0f, height, 0f), new Vector2f(5f, 5f), true);
+        GeometryUtils.makeCube(
+                2f, 0.1f, 5.5f, name, texture, new Vector3f(0f, height, 10.5f), new Vector2f(5.5f, 2f), true);
+        GeometryUtils.makeCube(
+                14f, 0.1f, 2f, name, texture, new Vector3f(6f, height, 18f), new Vector2f(2f, 14f), true);
+        GeometryUtils.makeCube(
+                2f, 0.1f, 12f, name, texture, new Vector3f(18f, height, 4f), new Vector2f(12f, 2f), true);
+        GeometryUtils.makeCube(
+                5.5f, 0.1f, 2f, name, texture, new Vector3f(-10.5f, height, 0f), new Vector2f(2f, 5.5f), true);
+        GeometryUtils.makeCube(
+                2f, 0.1f, 14f, name, texture, new Vector3f(-18f, height, -6f), new Vector2f(14f, 2f), true);
+        GeometryUtils.makeCube(
+                12f, 0.1f, 2f, name, texture, new Vector3f(-4f, height, -18f), new Vector2f(2f, 14f), true);
     }
 
     private void initSky() {
