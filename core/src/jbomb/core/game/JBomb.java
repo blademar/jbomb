@@ -1,10 +1,10 @@
 package jbomb.core.game;
 
 import com.jme3.bullet.BulletAppState;
-import com.jme3.input.KeyInput;
-import com.jme3.input.controls.KeyTrigger;
 import com.jme3.font.BitmapText;
+import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
+import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
@@ -43,12 +43,12 @@ public class JBomb extends BaseGame {
         initMappings();
         initFloor();
         initScene();
-        getBulletAppState().getPhysicsSpace().add(getPlayer());
+        bulletAppState.getPhysicsSpace().add(player);
 //        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
     }
     
     private void initStateManager() {
-        stateManager.attach(getBulletAppState());
+        stateManager.attach(bulletAppState);
         stateManager.attach(runningAppState);
     }
     
@@ -72,7 +72,7 @@ public class JBomb extends BaseGame {
     private void initFloor() {
         GeometryUtils.makePlane(
                 40f, 40f, "floor", "textures/boxes/f_blue.png", new Vector3f(-20f, 0f, 20f),
-                new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_X),new Vector2f(20f, 20f), true);   
+                new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_X),new Vector2f(20f, 20f), true);
     }
     
     private void makeFirtPlatform() {
