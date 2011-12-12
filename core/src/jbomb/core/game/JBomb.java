@@ -15,6 +15,7 @@ import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
 import jbomb.core.appstates.RunningAppState;
+import jbomb.core.controls.ElevatorControl;
 import jbomb.core.listeners.CharacterActionListener;
 import jbomb.core.listeners.ShootsActionListener;
 import jbomb.core.utils.GeometryUtils;
@@ -78,6 +79,7 @@ public class JBomb extends BaseGame {
     private void makeFirtPlatform() {
         float height = 9.9f;
         String texture = "textures/boxes/f_purple.png", name = "firstPlatform";
+        ElevatorControl control = new ElevatorControl(9.9f, .1f, 3f, true);
         
         GeometryUtils.makeCube(
                 5f, 0.1f, 5f, name, texture, new Vector3f(0f, height, 0f), new Vector2f(5f, 5f), true);
@@ -93,6 +95,24 @@ public class JBomb extends BaseGame {
                 2f, 0.1f, 14f, name, texture, new Vector3f(-18f, height, -6f), new Vector2f(14f, 2f), true);
         GeometryUtils.makeCube(
                 12f, 0.1f, 2f, name, texture, new Vector3f(-4f, height, -18f), new Vector2f(2f, 14f), true);
+        
+        GeometryUtils.makeElevator(
+                new Vector3f(.5f, .1f, 1f),
+                new Vector3f(-8.5f, .1f, 18f),
+                control);
+        GeometryUtils.makeElevator(
+                new Vector3f(.5f, .1f, 1f), 
+                new Vector3f(8.5f, .1f, -18f), 
+                control);
+        control.setDirection(false);
+        GeometryUtils.makeElevator(
+                new Vector3f(1f, .1f, .5f), 
+                new Vector3f(18f, 9.9f, -8.5f), 
+                control);
+        GeometryUtils.makeElevator(
+                new Vector3f(1f, .1f, .5f), 
+                new Vector3f(-18f, 9.9f, 8.5f), 
+                control);
     }
     
     private void makeSecondPlatform() {
@@ -174,6 +194,7 @@ public class JBomb extends BaseGame {
         Spatial sky = SkyFactory.createSky(assetManager, west, east, north, south, up, down);
         rootNode.attachChild(sky);
     }
+    
     
     private void initMappings() {
         inputManager.addMapping("shoot", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
