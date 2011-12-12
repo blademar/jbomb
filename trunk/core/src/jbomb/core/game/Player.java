@@ -8,7 +8,7 @@ import jbomb.core.weapons.impl.GrandBomb;
 public class Player extends CharacterControl {
     
     public Player() {
-        super(new CapsuleCollisionShape(.55f, 1.7f, 1), 0.45f);
+        super(new CapsuleCollisionShape(.55f, 1.7f), .45f);
         setJumpSpeed(12);
         setFallSpeed(10);
         setGravity(30);
@@ -18,5 +18,4 @@ public class Player extends CharacterControl {
     public void throwBomb() {
         new GrandBomb();
     }
-    
 }
