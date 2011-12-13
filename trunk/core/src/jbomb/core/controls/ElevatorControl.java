@@ -26,7 +26,7 @@ public class ElevatorControl extends JBombAbstractControl {
     
     @Override
     protected Control newInstanceOfMe() {
-        return new ElevatorControl();
+        return this;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class ElevatorControl extends JBombAbstractControl {
     @Override
     protected void controlRender(RenderManager rm, ViewPort vp) {    }
     
-    public void setDirection(boolean up) {
+    public void setUpDirection(boolean up) {
         this.up = up;
         this.down = !up;
     } 
