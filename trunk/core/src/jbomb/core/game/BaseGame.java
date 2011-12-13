@@ -12,7 +12,7 @@ public class BaseGame extends SimpleApplication {
     }
     
     private void initAppSettings() {
-        appSettings.setResolution(1024, 768);
+        appSettings.setResolution(640, 480);
         setSettings(appSettings);
         setShowSettings(false);
     }

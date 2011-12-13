@@ -30,7 +30,7 @@ public class JBomb extends BaseGame {
     private boolean back = false;
     private ShootsActionListener shootsActionListener = new ShootsActionListener();
     private CharacterActionListener characterActionListener = new CharacterActionListener();
-    private Player player = new Player();
+    private Player player;
 
     @Override
     public void simpleInitApp() {
@@ -38,6 +38,7 @@ public class JBomb extends BaseGame {
         JBombContext.ASSET_MANAGER = assetManager;
         JBombContext.ROOT_NODE = rootNode;
         JBombContext.JBOMB = this;
+        player = new Player();
         initStateManager();
         initSky();
         initCrossHairs();
