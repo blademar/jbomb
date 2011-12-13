@@ -1,6 +1,5 @@
 package jbomb.core.controls;
 
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
@@ -8,67 +7,67 @@ import com.jme3.scene.control.Control;
 
 public class ElevatorControl extends JBombAbstractControl {
 
-    private float timer = 0, upY, downY, freezed;
-    private boolean up, down;
+    private float timer = 0, maxY, minY, freezed;
+    private State state;
+
+    @Override
+    protected void controlRender(RenderManager rm, ViewPort vp) {}
     
-    public ElevatorControl() {
-        upY = 1; downY = -1; freezed = 10; 
-        up = true; down = false;
+    private enum State {
+        MOVING_UP, MOVING_DOWN, WAITING_UP, WAITING_DOWN;
     }
     
-    public ElevatorControl(float upY, float downY, float freezedSeconds, boolean up) {
-        this.upY = upY;
-        this.downY = downY;
+    public ElevatorControl() {
+        maxY = 1; minY = -1; freezed = 10;
+    }
+    
+    public ElevatorControl(float maxY, float minY, float freezedSeconds, boolean up) {
+        this.maxY = maxY;
+        this.minY = minY;
         this.freezed = freezedSeconds;
-        this.up = up;
-        this.down = !up;
+        if (up)
+            state = State.MOVING_UP;
+        else
+            state = State.MOVING_DOWN;
     }
     
     @Override
     protected Control newInstanceOfMe() {
-        return this;
+        return new ElevatorControl(maxY, minY, freezed, true);
     }
 
     @Override
     protected void controlUpdate(float tpf) {
-        Vector3f currentLocation = spatial.getControl(RigidBodyControl.class).getPhysicsLocation();
-        
-        if(up && !down) {
-            if(currentLocation.y >= upY) {
-                up = !up;
-                currentLocation.y = upY;
-                spatial.getControl(RigidBodyControl.class).setPhysicsLocation(currentLocation);
+        Vector3f currentLocation = spatial.getLocalTranslation();
+        if(state == State.MOVING_UP) {
+            if (currentLocation.y >= maxY) {
+                currentLocation.y = maxY;
+                spatial.setLocalTranslation(currentLocation);
+                state = State.WAITING_DOWN;
+                timer = 0;
             } else {
-                currentLocation.y += tpf * 3.2;
-                spatial.getControl(RigidBodyControl.class).setPhysicsLocation(currentLocation); 
-            }     
-        } else if(!up && down) {
-            if(currentLocation.y <= downY) {
-                down = !down;
-                currentLocation.y = downY;
-                spatial.getControl(RigidBodyControl.class).setPhysicsLocation(currentLocation);
+                spatial.move(0f, tpf, 0f);
+            }
+        } else if (state == State.MOVING_DOWN) {
+            if (currentLocation.y <= minY) {
+                currentLocation.y = minY;
+                spatial.setLocalTranslation(currentLocation);
+                state = State.WAITING_UP;
+                timer = 0;
             } else {
-                currentLocation.y -= tpf * 3.2;
-                spatial.getControl(RigidBodyControl.class).setPhysicsLocation(currentLocation);
+                spatial.move(0f, -tpf, 0f);
+            }
+        } else if (state == State.WAITING_UP) {
+            timer += tpf;
+            if (timer >= freezed) {
+                state = State.MOVING_UP;
             }
         } else {
-            if(!up && !down)
-                if(timer >= freezed) {
-                    timer = 0;
-                    if(currentLocation.y >= upY)
-                        down = !down;
-                    else
-                        up = !up;
-                } else
-                    timer += tpf;
+            timer += tpf;
+            if (timer >= freezed) {
+                state = State.MOVING_DOWN;
+            }
         }
+        
     }
-
-    @Override
-    protected void controlRender(RenderManager rm, ViewPort vp) {    }
-    
-    public void setUpDirection(boolean up) {
-        this.up = up;
-        this.down = !up;
-    } 
 }

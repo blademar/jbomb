@@ -13,6 +13,4 @@ public class BaseBombSound extends InstanceSound {
     public BaseBombSound() {
         this("bomb/explode1.wav", 3f);
     }
-    
-    
 }

@@ -5,6 +5,6 @@ import jbomb.core.effects.impl.GrandExplosion;
 public class GrandBomb extends BaseBomb {
     
     public GrandBomb() {
-        setExplosion(new GrandExplosion());
+        super("bomb.png", .4f, new GrandExplosion(), 2f);
     }
 }

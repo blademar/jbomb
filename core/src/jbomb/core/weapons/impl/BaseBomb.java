@@ -22,7 +22,7 @@ public class BaseBomb implements Bomb {
    private Sound sound;
    private Explosion explosion;
    private Control control;
-   private float timeForExplosion = 3.5f;
+   private float timeForExplosion;
     
     public BaseBomb(String fileName, float radius, Explosion explosion, Sound sound, BaseBombControl baseBombControl, float timeForExplosion, float mass) {
         control = baseBombControl;
@@ -45,6 +45,10 @@ public class BaseBomb implements Bomb {
         JBombContext.JBOMB.getBulletAppState().getPhysicsSpace().add(rigidBodyControl);
         JBombContext.ROOT_NODE.attachChild(geometry);
         rigidBodyControl.setLinearVelocity(JBombContext.JBOMB.getCam().getDirection().mult(25f));
+    }
+    
+    public BaseBomb(String fileName, float radius, Explosion explosion, float timeForExplosion) {
+        this(fileName, radius, explosion, new BaseBombSound(), new BaseBombControl(), timeForExplosion, 1f);
     }
     
     public BaseBomb(String fileName, float radius, float timeForExplosion) {
