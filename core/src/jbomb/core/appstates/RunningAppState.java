@@ -11,6 +11,7 @@ public class RunningAppState extends AbstractAppState {
     @Override
     public void update(float tpf) {
         moveCam();
+        hearingSounds();
     }
     
     private void moveCam() {
