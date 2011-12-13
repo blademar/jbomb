@@ -8,10 +8,21 @@ import jbomb.core.game.JBombContext;
 
 public class RunningAppState extends AbstractAppState {
     
+    private float timeToReload = 0;
+    
     @Override
     public void update(float tpf) {
         moveCam();
         hearingSounds();
+        reloadBombs(tpf);
+    }
+    
+    private void reloadBombs(float tpf) {
+        if(timeToReload >= 5.5) {
+            timeToReload = 0;
+            JBombContext.JBOMB.getPlayer().reloadBombs();
+        } else
+            timeToReload += tpf;
     }
     
     private void moveCam() {
