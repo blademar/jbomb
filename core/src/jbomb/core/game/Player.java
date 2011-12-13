@@ -10,6 +10,7 @@ import jbomb.core.weapons.impl.GrandBomb;
 public class Player extends CharacterControl {
     
     private Sound throwSound = new InstanceSound("bomb/bounce.wav", 6f);
+    private int bombsAmount = 3;
     
     public Player() {
         super(new CapsuleCollisionShape(.55f, 1.7f), .45f);
@@ -20,7 +21,14 @@ public class Player extends CharacterControl {
     }
     
     public void throwBomb() {
-        throwSound.play(getPhysicsLocation());
-        new GrandBomb();
+        if(bombsAmount > 0) {
+            bombsAmount--;
+            throwSound.play(getPhysicsLocation());
+            new GrandBomb();
+        }
+    }
+    
+    public void reloadBombs() {
+        bombsAmount = 3;
     }
 }
