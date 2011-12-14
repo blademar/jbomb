@@ -42,8 +42,8 @@ public class BaseBomb implements Bomb {
         RigidBodyControl rigidBodyControl = new RigidBodyControl(mass);
         geometry.addControl(rigidBodyControl);
         geometry.addControl(control);
-        JBombContext.JBOMB.getBulletAppState().getPhysicsSpace().add(rigidBodyControl);
-        JBombContext.ROOT_NODE.attachChild(geometry);
+//        JBombContext.JBOMB.getBulletAppState().getPhysicsSpace().add(rigidBodyControl);
+//        JBombContext.ROOT_NODE.attachChild(geometry);
         rigidBodyControl.setLinearVelocity(JBombContext.JBOMB.getCam().getDirection().mult(25f));
     }
     

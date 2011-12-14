@@ -8,7 +8,7 @@ import jbomb.core.game.JBombContext;
 
 public class RunningAppState extends AbstractAppState {
     
-    private float timeToReload = 0;
+    private float timer[] = new float[] {0, 0, 0};
     
     @Override
     public void update(float tpf) {
@@ -18,11 +18,14 @@ public class RunningAppState extends AbstractAppState {
     }
     
     private void reloadBombs(float tpf) {
-        if(timeToReload >= 5.5) {
-            timeToReload = 0;
-            JBombContext.JBOMB.getPlayer().reloadBombs();
-        } else
-            timeToReload += tpf;
+        for (int i = 0; i < timer.length; i++) 
+                if(JBombContext.JBOMB.getPlayer().getBombs()[i] == null)
+                    if(timer[i] >= 5.5f) {
+                        timer[i] = 0;
+                        JBombContext.JBOMB.getPlayer().reloadBomb(i);
+                    } else {
+                        timer[i] += tpf;
+                    }
     }
     
     private void moveCam() {
