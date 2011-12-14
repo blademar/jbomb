@@ -5,6 +5,7 @@ import com.jme3.audio.Listener;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
 import jbomb.core.game.JBombContext;
+import jbomb.core.weapons.impl.BaseBomb;
 
 public class RunningAppState extends AbstractAppState {
     
@@ -15,6 +16,7 @@ public class RunningAppState extends AbstractAppState {
         moveCam();
         hearingSounds();
         reloadBombs(tpf);
+        loadInterface();
     }
     
     private void reloadBombs(float tpf) {
@@ -55,6 +57,15 @@ public class RunningAppState extends AbstractAppState {
         Listener listener = JBombContext.JBOMB.getListener();
         listener.setLocation(cam.getLocation());
         listener.setRotation(cam.getRotation());
+    }
+    
+    private void loadInterface() {
+        BaseBomb[] bombs = JBombContext.JBOMB.getPlayer().getBombs();
+        byte bombsCount = 0;
+        for (BaseBomb b : bombs)
+            if (b != null)
+                bombsCount++;
+        JBombContext.JBOMB.getBombsPictures().setImage(JBombContext.ASSET_MANAGER, "interfaces/pictures/bomb" + bombsCount + ".png", true);
     }
     
 }

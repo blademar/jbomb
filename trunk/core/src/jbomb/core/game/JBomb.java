@@ -14,6 +14,7 @@ import com.jme3.renderer.Camera;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
+import com.jme3.ui.Picture;
 import com.jme3.util.SkyFactory;
 import jbomb.core.appstates.RunningAppState;
 import jbomb.core.listeners.BombSecondsListener;
@@ -34,6 +35,7 @@ public class JBomb extends BaseGame {
     private ShootsActionListener shootsActionListener = new ShootsActionListener();
     private CharacterActionListener characterActionListener = new CharacterActionListener();
     private BombSecondsListener bombSecondsListener = new BombSecondsListener();
+    private Picture bombsPictures = new Picture("bombsPictures");
 
     @Override
     public void simpleInitApp() {
@@ -44,7 +46,7 @@ public class JBomb extends BaseGame {
         player = new Player();
         initStateManager();
         initSky();
-        initCrossHairs();
+        initInterfaces();
         initMappings();
         initFloor();
         initScene();
@@ -76,13 +78,13 @@ public class JBomb extends BaseGame {
 
     private void initFloor() {
         Geometry floor = GeometryUtils.makePlane(
-                                     40f, 40f, "floor", "textures/boxes/f_blue.png", new Vector3f(-20f, 0f, 20f),
+                                     40f, 40f, "floor", "textures/boxes/f_gray.png", new Vector3f(-20f, 0f, 20f),
                                      new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_X),new Vector2f(20f, 20f), true);
     }
     
     private void makeFirtPlatform() {
         float height = 9.9f;
-        String texture = "textures/boxes/f_purple.png", name = "firstPlatform";
+        String texture = "textures/boxes/f_blue.png", name = "firstPlatform";
         
         GeometryUtils.makeCube(
                 5f, 0.1f, 5f, name, texture, new Vector3f(0f, height, 0f), new Vector2f(5f, 5f), true);
@@ -107,7 +109,7 @@ public class JBomb extends BaseGame {
     
     private void makeSecondPlatform() {
         float height = 19.9f;
-        String texture = "textures/boxes/f_gray.png", name = "secondPlatform";
+        String texture = "textures/boxes/f_purple.png", name = "secondPlatform";
         
         GeometryUtils.makeCube(
                 4f, 0.1f, 4f, name, texture, new Vector3f(0f, height, 0f), new Vector2f(4f, 4f), true);
@@ -216,8 +218,7 @@ public class JBomb extends BaseGame {
         inputManager.addListener(bombSecondsListener, "three");
     }
     
-    protected void initCrossHairs() {
-        guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
+    protected void initInterfaces() {
         BitmapText ch = new BitmapText(guiFont, false);
         ch.setSize(guiFont.getCharSet().getRenderedSize() * 2);
         ch.setText("+");
@@ -225,6 +226,12 @@ public class JBomb extends BaseGame {
                 settings.getWidth() / 2 - guiFont.getCharSet().getRenderedSize() / 3 * 2,
                 settings.getHeight() / 2 + ch.getLineHeight() / 2, 0);
         guiNode.attachChild(ch);
+        
+        getBombsPictures().setImage(assetManager, "interfaces/pictures/bomb1.png", true);
+        getBombsPictures().setWidth(64f);
+        getBombsPictures().setHeight(51f);
+        getBombsPictures().setLocalTranslation(settings.getWidth() - 64f, 0f, 0f);
+        guiNode.attachChild(getBombsPictures());
     }
     
     public Player getPlayer() {
@@ -273,5 +280,9 @@ public class JBomb extends BaseGame {
 
     public BulletAppState getBulletAppState() {
         return bulletAppState;
+    }
+
+    public Picture getBombsPictures() {
+        return bombsPictures;
     }
 }
