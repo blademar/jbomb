@@ -46,7 +46,7 @@ public class ElevatorControl extends JBombAbstractControl {
                 state = State.WAITING_DOWN;
                 timer = 0;
             } else {
-                spatial.move(0f, tpf, 0f);
+                spatial.move(0f, tpf * 3, 0f);
             }
         } else if (state == State.MOVING_DOWN) {
             if (currentLocation.y <= minY) {
@@ -55,7 +55,7 @@ public class ElevatorControl extends JBombAbstractControl {
                 state = State.WAITING_UP;
                 timer = 0;
             } else {
-                spatial.move(0f, -tpf, 0f);
+                spatial.move(0f, -tpf * 3, 0f);
             }
         } else if (state == State.WAITING_UP) {
             timer += tpf;

@@ -23,6 +23,7 @@ public class BaseBomb implements Bomb {
    private Explosion explosion;
    private Control control;
    private float timeForExplosion;
+   private float radius;
     
     public BaseBomb(String fileName, float radius, Explosion explosion, Sound sound, BaseBombControl baseBombControl, float timeForExplosion, float mass) {
         control = baseBombControl;
@@ -36,15 +37,11 @@ public class BaseBomb implements Bomb {
         Material material = new Material(JBombContext.ASSET_MANAGER, MatDefs.UNSHADED);
         material.setTexture("ColorMap", JBombContext.ASSET_MANAGER.loadTexture("textures/bomb/" + fileName));
         geometry.setMaterial(material);
-        Vector3f location = JBombContext.JBOMB.getCam().getLocation()
-                .add(JBombContext.JBOMB.getCam().getDirection().normalize().mult(0.5f + radius));
-        geometry.setLocalTranslation(location);
         RigidBodyControl rigidBodyControl = new RigidBodyControl(mass);
         geometry.addControl(rigidBodyControl);
         geometry.addControl(control);
-//        JBombContext.JBOMB.getBulletAppState().getPhysicsSpace().add(rigidBodyControl);
-//        JBombContext.ROOT_NODE.attachChild(geometry);
         rigidBodyControl.setLinearVelocity(JBombContext.JBOMB.getCam().getDirection().mult(25f));
+        this.radius = radius;
     }
     
     public BaseBomb(String fileName, float radius, Explosion explosion, float timeForExplosion) {
@@ -79,5 +76,13 @@ public class BaseBomb implements Bomb {
     
     public void setExplosion(Explosion explosion) {
         this.explosion = explosion;
+    }
+    
+    public void setLocalTranslation(Vector3f localTranslation) {
+        geometry.setLocalTranslation(localTranslation);
+    }
+
+    public float getRadius() {
+        return radius;
     }
 }
