@@ -36,6 +36,7 @@ public class JBomb extends BaseGame {
     private CharacterActionListener characterActionListener = new CharacterActionListener();
     private BombSecondsListener bombSecondsListener = new BombSecondsListener();
     private Picture bombsPictures = new Picture("bombsPictures");
+    private Picture BombsSecondsPictures = new Picture("bombsSecondsPictures");
 
     @Override
     public void simpleInitApp() {
@@ -232,6 +233,12 @@ public class JBomb extends BaseGame {
         getBombsPictures().setHeight(51f);
         getBombsPictures().setLocalTranslation(settings.getWidth() - 64f, 0f, 0f);
         guiNode.attachChild(getBombsPictures());
+        
+        getBombsSecondsPictures().setImage(assetManager, "interfaces/pictures/glass_numbers_1.png", true);
+        getBombsSecondsPictures().setWidth(45f);
+        getBombsSecondsPictures().setHeight(45f);
+        getBombsSecondsPictures().setLocalTranslation(settings.getWidth() - 45f, 55f, 0f);
+        guiNode.attachChild(getBombsSecondsPictures());
     }
     
     public Player getPlayer() {
@@ -284,5 +291,9 @@ public class JBomb extends BaseGame {
 
     public Picture getBombsPictures() {
         return bombsPictures;
+    }
+
+    public Picture getBombsSecondsPictures() {
+        return BombsSecondsPictures;
     }
 }
