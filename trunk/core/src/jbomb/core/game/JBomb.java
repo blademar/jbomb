@@ -16,6 +16,7 @@ import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
 import jbomb.core.appstates.RunningAppState;
+import jbomb.core.listeners.BombSecondsListener;
 import jbomb.core.listeners.CharacterActionListener;
 import jbomb.core.listeners.ShootsActionListener;
 import jbomb.core.scene.Elevator;
@@ -29,9 +30,10 @@ public class JBomb extends BaseGame {
     private boolean right = false;
     private boolean front = false;
     private boolean back = false;
+    private Player player;
     private ShootsActionListener shootsActionListener = new ShootsActionListener();
     private CharacterActionListener characterActionListener = new CharacterActionListener();
-    private Player player;
+    private BombSecondsListener bombSecondsListener = new BombSecondsListener();
 
     @Override
     public void simpleInitApp() {
@@ -199,9 +201,9 @@ public class JBomb extends BaseGame {
         inputManager.addListener(characterActionListener, "Front");
         inputManager.addListener(characterActionListener, "Back");
         inputManager.addListener(characterActionListener, "Jump");
-        inputManager.addListener(characterActionListener, "one");
-        inputManager.addListener(characterActionListener, "two");
-        inputManager.addListener(characterActionListener, "three");
+        inputManager.addListener(bombSecondsListener, "one");
+        inputManager.addListener(bombSecondsListener, "two");
+        inputManager.addListener(bombSecondsListener, "three");
     }
     
     protected void initCrossHairs() {
