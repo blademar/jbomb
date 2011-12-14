@@ -22,7 +22,7 @@ public class RunningAppState extends AbstractAppState {
     private void reloadBombs(float tpf) {
         for (int i = 0; i < timer.length; i++) 
                 if(JBombContext.JBOMB.getPlayer().getBombs()[i] == null)
-                    if(timer[i] >= 5.5f) {
+                    if(timer[i] >= 5f) {
                         timer[i] = 0;
                         JBombContext.JBOMB.getPlayer().reloadBomb(i);
                     } else {
