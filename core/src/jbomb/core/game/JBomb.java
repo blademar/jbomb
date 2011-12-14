@@ -1,8 +1,6 @@
 package jbomb.core.game;
 
-import com.jme3.audio.Listener;
 import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.font.BitmapText;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
@@ -15,7 +13,6 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.shape.Quad;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
 import jbomb.core.appstates.RunningAppState;
@@ -186,7 +183,6 @@ public class JBomb extends BaseGame {
         rootNode.attachChild(sky);
     }
     
-    
     private void initMappings() {
         inputManager.addMapping("shoot", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
         inputManager.addListener(shootsActionListener, "shoot");
@@ -195,11 +191,17 @@ public class JBomb extends BaseGame {
         inputManager.addMapping("Front", new KeyTrigger(KeyInput.KEY_W));
         inputManager.addMapping("Back", new KeyTrigger(KeyInput.KEY_S));
         inputManager.addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
+        inputManager.addMapping("one", new KeyTrigger(KeyInput.KEY_1), new KeyTrigger(KeyInput.KEY_NUMPAD1));
+        inputManager.addMapping("two", new KeyTrigger(KeyInput.KEY_2), new KeyTrigger(KeyInput.KEY_NUMPAD2));
+        inputManager.addMapping("three", new KeyTrigger(KeyInput.KEY_3), new KeyTrigger(KeyInput.KEY_NUMPAD3));
         inputManager.addListener(characterActionListener, "Left");
         inputManager.addListener(characterActionListener, "Right");
         inputManager.addListener(characterActionListener, "Front");
         inputManager.addListener(characterActionListener, "Back");
         inputManager.addListener(characterActionListener, "Jump");
+        inputManager.addListener(characterActionListener, "one");
+        inputManager.addListener(characterActionListener, "two");
+        inputManager.addListener(characterActionListener, "three");
     }
     
     protected void initCrossHairs() {

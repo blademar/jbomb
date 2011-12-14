@@ -14,6 +14,7 @@ public class Player extends CharacterControl {
     
     private Sound throwSound = new InstanceSound("bomb/bounce.wav", 6f);
     private BaseBomb[] bomb = new BaseBomb[3];
+    public float seconds = 1.5f;
     
     public Player() {
         super(new CapsuleCollisionShape(.55f, 1.7f), .45f);
@@ -23,7 +24,7 @@ public class Player extends CharacterControl {
         setPhysicsLocation(new Vector3f(0, 35, 0));
         
         for (int i = 0; i < bomb.length; i++)
-            bomb[i] = new GrandBomb();
+            bomb[i] = new GrandBomb(seconds);
     }
     
     public void throwBomb() {
@@ -42,8 +43,12 @@ public class Player extends CharacterControl {
             }
     }
     
+    public void setSeconds(float seconds) {
+        this.seconds = seconds;
+    }
+    
     public void reloadBomb(int position) {
-        bomb[position] = new GrandBomb();
+        bomb[position] = new GrandBomb(seconds);
     }
     
     public BaseBomb[] getBombs() {
