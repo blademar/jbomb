@@ -23,8 +23,10 @@ public class Player extends CharacterControl {
         setGravity(30);
         setPhysicsLocation(new Vector3f(0, 35, 0));
         
-        for (int i = 0; i < bomb.length; i++)
-            bomb[i] = new GrandBomb(seconds);
+        for (int i = 0; i < bomb.length; i++) {
+            bomb[i] = new GrandBomb();
+            bomb[i].setTimeForExplosion(seconds);
+        } 
     }
     
     public void throwBomb() {
@@ -48,7 +50,8 @@ public class Player extends CharacterControl {
     }
     
     public void reloadBomb(int position) {
-        bomb[position] = new GrandBomb(seconds);
+        bomb[position] = new GrandBomb();
+        bomb[position].setTimeForExplosion(seconds);
     }
     
     public BaseBomb[] getBombs() {

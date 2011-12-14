@@ -4,7 +4,7 @@ import jbomb.core.effects.impl.GrandExplosion;
 
 public class GrandBomb extends BaseBomb {
     
-    public GrandBomb(float seconds) {
-        super("bomb.png", .4f, new GrandExplosion(), seconds);
+    public GrandBomb() {
+        super("bomb.png", .4f, new GrandExplosion(), 1.5f);
     }
 }
