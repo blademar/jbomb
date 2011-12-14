@@ -135,6 +135,11 @@ public class JBomb extends BaseGame {
                 3.5f, 0.1f, 2f, name, texture, new Vector3f(7.5f, height, 0f), new Vector2f(2f, 3.5f), true);
         GeometryUtils.makeCube(
                 3.5f, 0.1f, 2f, name, texture, new Vector3f(-7.5f, height, 0f), new Vector2f(2f, 3.5f), true);
+        
+        new Elevator(new Vector3f(-9f, 10f, 18f), 19.9f, 10f, 3f, true);
+        new Elevator(new Vector3f(9f, 10f, -18f), 19.9f, 10f, 3f, true);
+        new Elevator(new Vector3f(16f, 19.9f, 9f), 19.9f, 10.1f, 3f, false);
+        new Elevator(new Vector3f(-16f, 19.9f, -9f), 19.9f, 10.1f, 3f, false);
     }
     
     private void makeThirdPlatform() {
@@ -171,6 +176,11 @@ public class JBomb extends BaseGame {
                 4.5f, 0.1f, 1f, name, texture, new Vector3f(-4.5f, height, 12f), new Vector2f(1f, 4.5f), true);
         GeometryUtils.makeCube(
                 4.5f, 0.1f, 1f, name, texture, new Vector3f(4.5f, height, -12f), new Vector2f(1f, 4.5f), true);
+        
+        new Elevator(new Vector3f(16f, 29.9f, 3f), 29.9f, 20.1f, 3f, false);
+        new Elevator(new Vector3f(-16f, 29.9f, -3f), 29.9f, 20.1f, 3f, false);
+        new Elevator(new Vector3f(14f, 20.1f, -16f), 29.9f, 20.1f, 3f, true);
+        new Elevator(new Vector3f(-14f, 20.1f, 16f), 29.9f, 20.1f, 3f, true);
     }
 
     private void initSky() {
