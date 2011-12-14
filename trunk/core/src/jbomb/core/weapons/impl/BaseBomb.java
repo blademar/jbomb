@@ -85,4 +85,9 @@ public class BaseBomb implements Bomb {
     public float getRadius() {
         return radius;
     }
+
+    @Override
+    public void setTimeForExplosion(float seconds) {
+        timeForExplosion = seconds;
+    }
 }
