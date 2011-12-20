@@ -44,8 +44,12 @@ public class JBombClient extends BaseGame {
     private NewPlayerListener newPlayerListener = new NewPlayerListener();
     private RemovePlayerListener removePlayerListener = new RemovePlayerListener();
     private ClientPlayer player;
+    private String ip;
     
-    public JBombClient() {
+    
+    
+    public JBombClient(String ip) {
+        this.ip = ip;
         initAppSettings();
     }
 
@@ -53,7 +57,9 @@ public class JBombClient extends BaseGame {
     public void simpleInitApp() {
         super.simpleInitApp();
         try {
-            client = Network.connectToServer("localhost", 6789);
+            if (ip == null)
+                ip = "localhost";
+            client = Network.connectToServer(ip, 6789);
             addMessageListeners();
             client.addClientStateListener(connectionListener);
             client.start();
