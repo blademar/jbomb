@@ -10,7 +10,7 @@ public class RemovePlayerListener extends AbstractClientMessageListener<RemovePl
     @Override
     public void messageReceived(Client source, Message m) {
         RemovePlayerMessage message = (RemovePlayerMessage) m;
-        System.out.println("Removing player #" + message.getPosition());
+        System.out.println("Removing player #" + message.getId());
         doTask(new RemovePlayerTask(), message);
     }
     

@@ -3,9 +3,11 @@ package jbomb.server.game;
 import com.jme3.network.Network;
 import com.jme3.network.Server;
 import java.io.IOException;
+import jbomb.common.appstates.AbstractManager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.common.game.BaseGame;
 import jbomb.server.appstates.RunningServerAppState;
+import jbomb.server.appstates.ServerManager;
 import jbomb.server.listeners.ClientConnectionListener;
 
 public class JBombServer extends BaseGame {
@@ -42,5 +44,10 @@ public class JBombServer extends BaseGame {
     @Override
     public void addMessageListeners() {
         
+    }
+
+    @Override
+    protected AbstractManager<?> createManager() {
+        return new ServerManager();
     }
 }

@@ -22,13 +22,13 @@ public class BombSecondsListener implements ActionListener {
     }
 
     private void setSeconds(float seconds) {
-        ClientPlayer player = ClientContext.PLAYER;
-        player.setSeconds(seconds);
-        for (int i = 0; i < player.getBombs().length; i++) {
-            if (player.getBombs()[i] != null) {
-                player.getBombs()[i].setTimeForExplosion(seconds);
-            }
-        }
+//        ClientPlayer player = ClientContext.PLAYER;
+//        player.setSeconds(seconds);
+//        for (int i = 0; i < player.getBombs().length; i++) {
+//            if (player.getBombs()[i] != null) {
+//                player.getBombs()[i].setTimeForExplosion(seconds);
+//            }
+//        }
     }
     
     private void changeImage(int value) {

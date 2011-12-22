@@ -11,8 +11,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
-import java.util.HashMap;
-import java.util.Map;
+import jbomb.common.appstates.AbstractManager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.CreatePlayerMessage;
@@ -26,15 +25,14 @@ public abstract class BaseGame extends SimpleApplication {
     
     private BulletAppState bulletAppState = new BulletAppState();
     private RunningAppState runningAppState = createRunningAppState();
-    private Map<Integer, Player> playersMap = new HashMap<Integer, Player>();
+    private AbstractManager<?> manager = createManager();
 
     @Override
     public void simpleInitApp() {
+        flyCam.setMoveSpeed(40f);
+        setPauseOnLostFocus(false);
         initStateManager();
-        JBombContext.ASSET_MANAGER = assetManager;
-        JBombContext.ROOT_NODE = rootNode;
-        JBombContext.PHYSICS_SPACE = bulletAppState.getPhysicsSpace();
-        JBombContext.PLAYERS = playersMap;
+        initContext();
         registerMessages();
         initSky();
         initFloor();
@@ -45,6 +43,7 @@ public abstract class BaseGame extends SimpleApplication {
     
     protected void initStateManager() {
         stateManager.attach(bulletAppState);
+        stateManager.attach(manager);
         stateManager.attach(runningAppState);
     }
     
@@ -204,5 +203,15 @@ public abstract class BaseGame extends SimpleApplication {
         Serializer.registerClass(CreatePlayerMessage.class);
         Serializer.registerClass(NewPlayerMessage.class);
         Serializer.registerClass(RemovePlayerMessage.class);
+    }
+
+    protected abstract AbstractManager<?> createManager();
+
+    private void initContext() {
+        JBombContext.ASSET_MANAGER = assetManager;
+        JBombContext.ROOT_NODE = rootNode;
+        JBombContext.PHYSICS_SPACE = bulletAppState.getPhysicsSpace();
+        JBombContext.BASE_GAME = this;
+        JBombContext.MANAGER = manager;
     }
 }
