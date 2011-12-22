@@ -7,8 +7,8 @@ public class ShootsActionListener implements ActionListener {
     
     @Override
     public void onAction(String name, boolean isPressed, float tpf) {
-        if (!isPressed)
-            ClientContext.PLAYER.throwBomb();
+//        if (!isPressed)
+//            ClientContext.PLAYER.throwBomb();
     }
     
 }

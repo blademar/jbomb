@@ -11,16 +11,19 @@ import com.jme3.renderer.Camera;
 import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 import java.io.IOException;
+import jbomb.client.appstates.ClientManager;
 import jbomb.client.appstates.RunningClientAppState;
 import jbomb.client.listeners.BombSecondsListener;
 import jbomb.client.listeners.CharacterActionListener;
 import jbomb.client.listeners.ShootsActionListener;
+import jbomb.common.appstates.AbstractManager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.client.listeners.ServerConnectionListener;
 import jbomb.client.listeners.messages.CreatePlayerListener;
 import jbomb.client.listeners.messages.NewPlayerListener;
 import jbomb.client.listeners.messages.RemovePlayerListener;
 import jbomb.common.game.BaseGame;
+import jbomb.common.game.Player;
 import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.RemovePlayerMessage;
@@ -43,7 +46,7 @@ public class JBombClient extends BaseGame {
     private CreatePlayerListener createPlayerListener = new CreatePlayerListener();
     private NewPlayerListener newPlayerListener = new NewPlayerListener();
     private RemovePlayerListener removePlayerListener = new RemovePlayerListener();
-    private ClientPlayer player;
+    private Player player;
     private String ip;
     
     
@@ -69,12 +72,6 @@ public class JBombClient extends BaseGame {
         ClientContext.APP = this;
 //        initInterfaces();
 //        initMappings();
-    }
-
-    @Override
-    protected void initStateManager() {
-        super.initStateManager();
-        stateManager.attach(runningAppState);
     }
     
     private void initAppSettings() {
@@ -182,7 +179,7 @@ public class JBombClient extends BaseGame {
         client.addMessageListener(removePlayerListener, RemovePlayerMessage.class);
     }
 
-    public void setPlayer(ClientPlayer player) {
+    public void setPlayer(Player player) {
         this.player = player;
     }
 
@@ -191,5 +188,10 @@ public class JBombClient extends BaseGame {
         if (client != null && client.isConnected())
             client.close();
         super.destroy();
+    }
+
+    @Override
+    protected AbstractManager<?> createManager() {
+        return new ClientManager();
     }
 }

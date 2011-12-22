@@ -6,6 +6,8 @@ import com.jme3.network.ConnectionListener;
 import com.jme3.network.Filters;
 import com.jme3.network.HostedConnection;
 import com.jme3.network.Server;
+import java.util.Iterator;
+import jbomb.common.game.JBombContext;
 import jbomb.common.game.Player;
 import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.NewPlayerMessage;
@@ -26,17 +28,22 @@ public class ClientConnectionListener implements ConnectionListener {
             System.out.println("Player #" + conn.getId() + " online.");
             Vector3f loc = null;
             ColorRGBA color = null;
-            for (Integer i : ServerContext.PLAYERS.keySet()) {
-                Player p = ServerContext.PLAYERS.get(i);
+            Iterator<Long> it = JBombContext.MANAGER.keySet().iterator();
+            long key = 0;
+            while (it.hasNext()) {
+                key = it.next();
+                System.out.println("Creating old player #" + key + "...");
+                Player p = (Player) JBombContext.MANAGER.getPhysicObject(key);
                 loc = p.getControl().getPhysicsLocation();
                 color = p.getColor();
                 ServerContext.SERVER.broadcast(Filters.in(conn), 
-                    new NewPlayerMessage(loc, color, i));
+                    new NewPlayerMessage(loc, color, key));
             }
             loc = nextPosition();
             color = nextColor();
             Player player = new Player(loc, color);
-            ServerContext.PLAYERS.put(conn.getId(), player);
+            ServerContext.MANAGER.addPhysicObject(conn.getId(), player);
+            ServerContext.ROOT_NODE.attachChild(player.getGeometry());
             ServerContext.SERVER.broadcast(Filters.in(conn), 
                     new CreatePlayerMessage(loc, color));
             ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), 
@@ -46,11 +53,11 @@ public class ClientConnectionListener implements ConnectionListener {
 
     @Override
     public void connectionRemoved(Server server, HostedConnection conn) {
-        int position = conn.getId();
-        System.out.println("Player #" + conn.getId() + " offline");
-        Player player = ServerContext.PLAYERS.remove(position);
+        int id = conn.getId();
+        System.out.println("Player #" + id + " offline");
+        Player player = (Player) ServerContext.MANAGER.removePhysicObject(id);
         ServerContext.ROOT_NODE.detachChild(player.getGeometry());
-        ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), new RemovePlayerMessage(position));
+        ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), new RemovePlayerMessage(id));
     }
 
     private ColorRGBA nextColor() {

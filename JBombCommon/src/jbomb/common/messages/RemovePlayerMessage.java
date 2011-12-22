@@ -1,24 +1,21 @@
 package jbomb.common.messages;
 
-import com.jme3.network.AbstractMessage;
 import com.jme3.network.serializing.Serializable;
+import jbomb.common.game.JBombContext;
+import jbomb.common.game.Player;
 
 @Serializable
-public class RemovePlayerMessage extends AbstractMessage {
-    
-    private int position;
+public class RemovePlayerMessage extends AbstractPhysicMessage {
     
     public RemovePlayerMessage() {}
     
-    public RemovePlayerMessage(int position) {
-        this.position = position;
+    public RemovePlayerMessage(int id) {
+        super(id);
     }
 
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
+    @Override
+    public void applyData() {
+        Player player = (Player) JBombContext.MANAGER.removePhysicObject(getId());
+        JBombContext.ROOT_NODE.detachChild(player.getGeometry());
     }
 }
