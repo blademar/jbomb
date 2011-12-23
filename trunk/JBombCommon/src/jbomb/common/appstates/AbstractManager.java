@@ -19,7 +19,7 @@ import jbomb.common.messages.AbstractPhysicMessage;
 
 public abstract class AbstractManager<T> implements Manager<T> {
 
-    private float maxTime = .25f;
+    private float maxTime = 1f / 30f;
     private float time;
     private Map<Long, Object> physicsObjects = new HashMap<Long, Object>();
     protected BlockingQueue<AbstractPhysicMessage> messageQueue = new ArrayBlockingQueue<AbstractPhysicMessage>(500);

@@ -11,7 +11,7 @@ import jbomb.common.messages.CharacterMovesMessage;
 public class RunningClientAppState extends RunningAppState {
 //     private float[] timer = new float[] {0, 0, 0};
     private float time;
-    private float maxTime = .25f;
+    private float maxTime = 1f / 30f;
     
     @Override
     public void update(float tpf) {
