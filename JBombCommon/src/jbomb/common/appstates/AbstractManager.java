@@ -7,6 +7,7 @@ import com.jme3.network.Message;
 import com.jme3.renderer.RenderManager;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -18,7 +19,7 @@ import jbomb.common.messages.AbstractPhysicMessage;
 
 public abstract class AbstractManager<T> implements Manager<T> {
 
-    private float maxTime = 0.25f;
+    private float maxTime = (1f / 20f);
     private float time;
     private Map<Long, Object> physicsObjects = new HashMap<Long, Object>();
     protected BlockingQueue<AbstractPhysicMessage> messageQueue = new ArrayBlockingQueue<AbstractPhysicMessage>(500);
@@ -77,8 +78,11 @@ public abstract class AbstractManager<T> implements Manager<T> {
         time += tpf;
         if (time >= maxTime) {
             time = 0;
-            for (AbstractPhysicMessage m : messageQueue) {
-                doOnUpdate(tpf, m);
+            Iterator<AbstractPhysicMessage> it = messageQueue.iterator();
+            while (it.hasNext()) {
+                AbstractPhysicMessage message = it.next();
+                doOnUpdate(tpf, message);
+                it.remove();
             }
         }
     }
@@ -105,7 +109,7 @@ public abstract class AbstractManager<T> implements Manager<T> {
 
     protected void modifyScene(final AbstractPhysicMessage message) {
         JBombContext.BASE_GAME.enqueue(new Callable<Void>() {
-
+            
             @Override
             public Void call() throws Exception {
                 message.applyData();
@@ -127,5 +131,10 @@ public abstract class AbstractManager<T> implements Manager<T> {
     @Override
     public Object getPhysicObject(long l) {
         return physicsObjects.get(l);
+    }
+
+    @Override
+    public int getPhycicObjectSize() {
+        return physicsObjects.size();
     }
 }

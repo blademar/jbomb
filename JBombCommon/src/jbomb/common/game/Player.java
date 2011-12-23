@@ -30,7 +30,6 @@ public class Player {
         geometry.addControl(control);
         control.setPhysicsLocation(location);
         JBombContext.PHYSICS_SPACE.add(control);
-        JBombContext.ROOT_NODE.attachChild(geometry);
     }
 
     public Geometry getGeometry() {

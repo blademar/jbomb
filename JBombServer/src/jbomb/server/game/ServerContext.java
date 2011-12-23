@@ -5,5 +5,4 @@ import jbomb.common.game.JBombContext;
 
 public class ServerContext extends JBombContext {
     public static Server SERVER;
-    public static boolean START;
 }

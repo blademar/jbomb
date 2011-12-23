@@ -6,6 +6,9 @@ import jbomb.server.game.JBombServer;
 public class Main {
 
     public static void main(String[] args) {
-        new JBombServer().start(Type.Headless);
+        String playersNumber = "cuatro";
+        if (args.length != 0)
+            playersNumber = args[0];
+        new JBombServer(playersNumber).start(Type.Headless);
     }
 }

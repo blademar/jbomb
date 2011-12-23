@@ -21,4 +21,6 @@ public interface Manager<T> extends MessageListener<T>, AppState {
     Set<Long> keySet();
     
     Object getPhysicObject(long l);
+    
+    int getPhycicObjectSize();
 }

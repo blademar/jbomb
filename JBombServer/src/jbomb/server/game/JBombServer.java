@@ -1,11 +1,15 @@
 package jbomb.server.game;
 
+import com.jme3.network.HostedConnection;
 import com.jme3.network.Network;
 import com.jme3.network.Server;
 import java.io.IOException;
 import jbomb.common.appstates.AbstractManager;
+import jbomb.common.appstates.Manager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.common.game.BaseGame;
+import jbomb.common.game.JBombContext;
+import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.server.appstates.RunningServerAppState;
 import jbomb.server.appstates.ServerManager;
 import jbomb.server.listeners.ClientConnectionListener;
@@ -14,6 +18,11 @@ public class JBombServer extends BaseGame {
     
     private Server server;
     private ClientConnectionListener connectionListener = new ClientConnectionListener();
+    
+    public JBombServer(String playersNumber) {
+        JBombContext.PLAYERS_COUNT = setPlayersCount(playersNumber);
+        System.out.println("PlayersCount: " + JBombContext.PLAYERS_COUNT);
+    }
 
     @Override
     public void simpleInitApp() {
@@ -43,11 +52,21 @@ public class JBombServer extends BaseGame {
 
     @Override
     public void addMessageListeners() {
-        
+        Manager<HostedConnection> m = (Manager<HostedConnection>) getManager();
+        server.addMessageListener(m, CharacterMovesMessage.class);
     }
 
     @Override
     protected AbstractManager<?> createManager() {
         return new ServerManager();
+    }
+
+    private byte setPlayersCount(String playersNumber) {
+        if ("two".equals(playersNumber))
+                return 2;
+        else if ("three".equals(playersNumber))
+            return 3;
+        else
+            return 4;
     }
 }
