@@ -12,6 +12,7 @@ import jbomb.common.game.Player;
 import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.RemovePlayerMessage;
+import jbomb.common.messages.StartGameMessage;
 import jbomb.server.game.ServerContext;
 
 public class ClientConnectionListener implements ConnectionListener {
@@ -24,7 +25,7 @@ public class ClientConnectionListener implements ConnectionListener {
 
     @Override
     public void connectionAdded(Server server, HostedConnection conn) {
-        if (!ServerContext.START) {
+        if (!JBombContext.STARTED) {
             System.out.println("Player #" + conn.getId() + " online.");
             Vector3f loc = null;
             ColorRGBA color = null;
@@ -32,7 +33,6 @@ public class ClientConnectionListener implements ConnectionListener {
             long key = 0;
             while (it.hasNext()) {
                 key = it.next();
-                System.out.println("Creating old player #" + key + "...");
                 Player p = (Player) JBombContext.MANAGER.getPhysicObject(key);
                 loc = p.getControl().getPhysicsLocation();
                 color = p.getColor();
@@ -42,12 +42,17 @@ public class ClientConnectionListener implements ConnectionListener {
             loc = nextPosition();
             color = nextColor();
             Player player = new Player(loc, color);
-            ServerContext.MANAGER.addPhysicObject(conn.getId(), player);
-            ServerContext.ROOT_NODE.attachChild(player.getGeometry());
+            JBombContext.MANAGER.addPhysicObject(conn.getId(), player);
+            JBombContext.ROOT_NODE.attachChild(player.getGeometry());
             ServerContext.SERVER.broadcast(Filters.in(conn), 
                     new CreatePlayerMessage(loc, color));
             ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), 
                     new NewPlayerMessage(loc, color, conn.getId()));
+            if (JBombContext.MANAGER.getPhycicObjectSize() == JBombContext.PLAYERS_COUNT) {
+                JBombContext.STARTED = true;
+                ServerContext.SERVER.broadcast(new StartGameMessage(true));
+                System.out.println("Starting game...");
+            }
         }
     }
 
@@ -55,8 +60,8 @@ public class ClientConnectionListener implements ConnectionListener {
     public void connectionRemoved(Server server, HostedConnection conn) {
         int id = conn.getId();
         System.out.println("Player #" + id + " offline");
-        Player player = (Player) ServerContext.MANAGER.removePhysicObject(id);
-        ServerContext.ROOT_NODE.detachChild(player.getGeometry());
+        Player player = (Player) JBombContext.MANAGER.removePhysicObject(id);
+        JBombContext.ROOT_NODE.detachChild(player.getGeometry());
         ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), new RemovePlayerMessage(id));
     }
 

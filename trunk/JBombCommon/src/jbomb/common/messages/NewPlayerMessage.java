@@ -21,6 +21,7 @@ public class NewPlayerMessage extends CreatePlayerMessage {
         ColorRGBA color = getColor();
         Vector3f location = getLocation();
         Player player = new Player(location, color);
+        JBombContext.ROOT_NODE.attachChild(player.getGeometry());
         JBombContext.MANAGER.addPhysicObject(getId(), player);
     }
     

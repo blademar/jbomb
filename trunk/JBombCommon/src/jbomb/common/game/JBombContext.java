@@ -12,4 +12,6 @@ public class JBombContext {
     public static PhysicsSpace PHYSICS_SPACE;
     public static BaseGame BASE_GAME;
     public static Manager MANAGER;
+    public static boolean STARTED;
+    public static byte PLAYERS_COUNT;
 }

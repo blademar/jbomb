@@ -1,16 +1,21 @@
 package jbomb.client.appstates;
 
+import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
 import jbomb.client.game.ClientContext;
 import jbomb.common.appstates.RunningAppState;
+import jbomb.common.game.JBombContext;
+import jbomb.common.messages.CharacterMovesMessage;
 
 public class RunningClientAppState extends RunningAppState {
-     private float[] timer = new float[] {0, 0, 0};
+//     private float[] timer = new float[] {0, 0, 0};
+    private float time;
+    private float maxTime = (1f / 20f);
     
     @Override
     public void update(float tpf) {
-//        moveCam();
+        moveCam(tpf);
 //        hearingSounds();
 //        reloadBombs(tpf);
 //        loadInterface();
@@ -27,23 +32,37 @@ public class RunningClientAppState extends RunningAppState {
 //                    }
 //    }
     
-    private void moveCam() {
-        Camera cam = ClientContext.APP.getCam();
-        Vector3f camDir = cam.getDirection().clone().multLocal(0.2f);
-        Vector3f camLeft = cam.getLeft().clone().multLocal(0.1f);
-        camDir.y = 0;
-        camLeft.y = 0;
-        Vector3f walk = new Vector3f();
-        walk.set(0, 0, 0);
-        
-        if (ClientContext.APP.isLeft())
-            walk.addLocal(camLeft);
-        if (ClientContext.APP.isRight())
-            walk.addLocal(camLeft.negate());
-        if (ClientContext.APP.isFront()) 
-            walk.addLocal(camDir); 
-        if (ClientContext.APP.isBack()) 
-            walk.addLocal(camDir.negate());
+    private void moveCam(float tpf) {
+        if (JBombContext.STARTED) {
+            time += tpf;
+            
+            Camera cam = ClientContext.APP.getCam();
+            Vector3f camDir = cam.getDirection().clone().multLocal(0.2f);
+            Vector3f camLeft = cam.getLeft().clone().multLocal(0.1f);
+            camDir.y = 0;
+            camLeft.y = 0;
+            Vector3f walk = new Vector3f();
+            walk.set(0, 0, 0);
+
+            if (ClientContext.APP.isLeft())
+                walk.addLocal(camLeft);
+            if (ClientContext.APP.isRight())
+                walk.addLocal(camLeft.negate());
+            if (ClientContext.APP.isFront()) 
+                walk.addLocal(camDir); 
+            if (ClientContext.APP.isBack()) 
+                walk.addLocal(camDir.negate());
+
+            CharacterControl c = ClientContext.PLAYER.getControl();
+            if (time >= maxTime) {
+                time = 0;
+                
+                ClientContext.CLIENT.send(new CharacterMovesMessage(ClientContext.CLIENT.getId(), c));
+            }
+            
+            c.setWalkDirection(walk);
+            ClientContext.APP.getCam().setLocation(c.getPhysicsLocation());
+        }
         
         
         

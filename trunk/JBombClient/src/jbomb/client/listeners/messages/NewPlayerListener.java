@@ -9,8 +9,9 @@ public class NewPlayerListener extends AbstractClientMessageListener<NewPlayerTa
 
     @Override
     public void messageReceived(Client source, Message m) {
-        System.out.println("Adding new player...");
-        doTask(new NewPlayerTask(), (NewPlayerMessage) m);
+        NewPlayerMessage message = (NewPlayerMessage) m;
+        System.out.println("Adding new player # " + message.getId() + "...");
+        doTask(new NewPlayerTask(), message);
     }
     
 }

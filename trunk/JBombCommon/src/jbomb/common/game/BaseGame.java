@@ -12,6 +12,7 @@ import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
 import jbomb.common.appstates.AbstractManager;
+import jbomb.common.appstates.Manager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.CreatePlayerMessage;
@@ -25,12 +26,13 @@ public abstract class BaseGame extends SimpleApplication {
     
     private BulletAppState bulletAppState = new BulletAppState();
     private RunningAppState runningAppState = createRunningAppState();
-    private AbstractManager<?> manager = createManager();
+    private Manager<?> manager = createManager();
 
     @Override
     public void simpleInitApp() {
         flyCam.setMoveSpeed(40f);
         setPauseOnLostFocus(false);
+        
         initStateManager();
         initContext();
         registerMessages();
@@ -43,7 +45,7 @@ public abstract class BaseGame extends SimpleApplication {
     
     protected void initStateManager() {
         stateManager.attach(bulletAppState);
-        stateManager.attach(manager);
+        stateManager.attach(getManager());
         stateManager.attach(runningAppState);
     }
     
@@ -212,6 +214,10 @@ public abstract class BaseGame extends SimpleApplication {
         JBombContext.ROOT_NODE = rootNode;
         JBombContext.PHYSICS_SPACE = bulletAppState.getPhysicsSpace();
         JBombContext.BASE_GAME = this;
-        JBombContext.MANAGER = manager;
+        JBombContext.MANAGER = getManager();
+    }
+
+    protected Manager<?> getManager() {
+        return manager;
     }
 }
