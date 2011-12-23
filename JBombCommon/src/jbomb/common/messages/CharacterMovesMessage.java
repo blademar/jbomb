@@ -8,23 +8,19 @@ import jbomb.common.game.Player;
 
 @Serializable
 public class CharacterMovesMessage extends AbstractPhysicMessage {
-
-    public Vector3f location = new Vector3f();
+    
     public Vector3f walkDirection = new Vector3f();
     public Vector3f viewDirection = new Vector3f();
 
-    public CharacterMovesMessage() {
-    }
+    public CharacterMovesMessage() {}
 
     public CharacterMovesMessage(long id, CharacterControl character) {
         super(id);
-        character.getPhysicsLocation(location);
         this.walkDirection.set(character.getWalkDirection());
         this.viewDirection.set(character.getViewDirection());
     }
 
     public void readData(CharacterControl character) {
-        character.getPhysicsLocation(location);
         this.walkDirection.set(character.getWalkDirection());
         this.viewDirection.set(character.getViewDirection());
     }
@@ -35,7 +31,6 @@ public class CharacterMovesMessage extends AbstractPhysicMessage {
         if (p != null) {
             System.out.println("Moving player #" + getId());
             CharacterControl c = p.getControl();
-            c.setPhysicsLocation(location);
             c.setWalkDirection(walkDirection);
             c.setViewDirection(viewDirection);
         }
