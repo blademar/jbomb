@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Callable;
 import jbomb.common.game.IDRepository;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.AbstractPhysicMessage;
@@ -90,7 +89,7 @@ public abstract class AbstractManager<T> implements Manager<T> {
             while (it.hasNext()) {
                 message = it.next();
                 if (message instanceof CharacterMovesMessage)
-                    message.doPrediction(tpf);
+                    message.interpolate(time / maxTime);
             }
         }
     }
@@ -113,17 +112,6 @@ public abstract class AbstractManager<T> implements Manager<T> {
     @Override
     public void messageReceived(T source, Message m) {
         messageQueue.add((AbstractPhysicMessage) m);
-    }
-    
-    private void doMessagePrediction(final AbstractPhysicMessage message,final float tpf) {
-        JBombContext.BASE_GAME.enqueue(new Callable<Void>() {
-            
-            @Override
-            public Void call() throws Exception {
-                message.doPrediction(tpf);
-                return null;
-            }
-        });
     }
 
     @Override

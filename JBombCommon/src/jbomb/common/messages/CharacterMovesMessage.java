@@ -12,8 +12,6 @@ public class CharacterMovesMessage extends AbstractPhysicMessage {
     private Vector3f walkDirection = new Vector3f();
     private Vector3f viewDirection = new Vector3f();
     private Vector3f location = new Vector3f();;
-    private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
-    private float sum;
 
     public CharacterMovesMessage() {}
 
@@ -44,13 +42,17 @@ public class CharacterMovesMessage extends AbstractPhysicMessage {
     }
 
     @Override
-    public void doPrediction(float tpf) {
+    public void interpolate(float percent) {
+        System.out.println("Step %: " + percent);
         Player p = (Player) JBombContext.MANAGER.getPhysicObject(getId());
+        Vector3f currentLocation = p.getControl().getPhysicsLocation();
+        System.out.println("Future location: " + location);
+        System.out.println("Current location: " + currentLocation);
+        System.out.println("Interpolated location: " + location);
         Vector3f step = new Vector3f(walkDirection);
         if (p != null) {
-            sum += tpf;
-            System.out.println("sum: " + (sum / maxTime));
-            step.multLocal(sum / maxTime);
+            step.multLocal(percent);
+            System.out.println("Step: " + step);
             p.getControl().setWalkDirection(step);
         }
     }
