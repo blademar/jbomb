@@ -8,6 +8,6 @@ public class ClientManager extends AbstractManager<Client> {
 
     @Override
     public void doOnUpdate(float tpf, AbstractPhysicMessage message) {
-        modifyScene(message);
+        message.applyData();
     }
 }

@@ -11,7 +11,7 @@ import jbomb.common.messages.CharacterMovesMessage;
 public class RunningClientAppState extends RunningAppState {
 //     private float[] timer = new float[] {0, 0, 0};
     private float time;
-    private float maxTime = 1f / 30f;
+    private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
     
     @Override
     public void update(float tpf) {
@@ -56,8 +56,8 @@ public class RunningClientAppState extends RunningAppState {
             CharacterControl c = ClientContext.PLAYER.getControl();
             if (time >= maxTime) {
                 time = 0;
-                
-                ClientContext.CLIENT.send(new CharacterMovesMessage(ClientContext.CLIENT.getId(), c));
+                ClientContext.CLIENT.send(
+                        new CharacterMovesMessage(ClientContext.CLIENT.getId(), c));
             }
             
             c.setWalkDirection(walk);

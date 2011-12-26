@@ -16,10 +16,11 @@ import java.util.concurrent.Callable;
 import jbomb.common.game.IDRepository;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.AbstractPhysicMessage;
+import jbomb.common.messages.CharacterMovesMessage;
 
 public abstract class AbstractManager<T> implements Manager<T> {
 
-    private float maxTime = 1f / 30f;
+    private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
     private float time;
     private Map<Long, Object> physicsObjects = new HashMap<Long, Object>();
     protected BlockingQueue<AbstractPhysicMessage> messageQueue = new ArrayBlockingQueue<AbstractPhysicMessage>(500);
@@ -76,13 +77,20 @@ public abstract class AbstractManager<T> implements Manager<T> {
     @Override
     public void update(float tpf) {
         time += tpf;
+        Iterator<AbstractPhysicMessage> it = messageQueue.iterator();
+        AbstractPhysicMessage message = null;
         if (time >= maxTime) {
             time = 0;
-            Iterator<AbstractPhysicMessage> it = messageQueue.iterator();
             while (it.hasNext()) {
-                AbstractPhysicMessage message = it.next();
+                message = it.next();
                 doOnUpdate(tpf, message);
                 it.remove();
+            }
+        } else {
+            while (it.hasNext()) {
+                message = it.next();
+                if (message instanceof CharacterMovesMessage)
+                    message.doPrediction(tpf);
             }
         }
     }
@@ -106,13 +114,13 @@ public abstract class AbstractManager<T> implements Manager<T> {
     public void messageReceived(T source, Message m) {
         messageQueue.add((AbstractPhysicMessage) m);
     }
-
-    protected void modifyScene(final AbstractPhysicMessage message) {
+    
+    private void doMessagePrediction(final AbstractPhysicMessage message,final float tpf) {
         JBombContext.BASE_GAME.enqueue(new Callable<Void>() {
             
             @Override
             public Void call() throws Exception {
-                message.applyData();
+                message.doPrediction(tpf);
                 return null;
             }
         });
