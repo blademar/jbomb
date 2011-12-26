@@ -11,4 +11,6 @@ public interface PhysicMessage extends Message {
     void setId(long id);
 
     void applyData();
+    
+    void interpolate(float percent);
 }

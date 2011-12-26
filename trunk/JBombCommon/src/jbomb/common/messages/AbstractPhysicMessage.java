@@ -24,5 +24,6 @@ public abstract class AbstractPhysicMessage extends AbstractMessage implements P
         this.id = id;
     }
     
-    public void doPrediction(float tpf) {}
+    @Override
+    public void interpolate(float percent) {}
 }
