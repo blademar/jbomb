@@ -14,4 +14,5 @@ public class JBombContext {
     public static Manager MANAGER;
     public static boolean STARTED;
     public static byte PLAYERS_COUNT;
+    public static float MESSAGES_PER_SECOND = 4f;
 }

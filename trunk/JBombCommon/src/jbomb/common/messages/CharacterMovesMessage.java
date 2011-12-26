@@ -9,31 +9,49 @@ import jbomb.common.game.Player;
 @Serializable
 public class CharacterMovesMessage extends AbstractPhysicMessage {
     
-    public Vector3f walkDirection = new Vector3f();
-    public Vector3f viewDirection = new Vector3f();
+    private Vector3f walkDirection = new Vector3f();
+    private Vector3f viewDirection = new Vector3f();
+    private Vector3f location = new Vector3f();;
+    private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
+    private float sum;
 
     public CharacterMovesMessage() {}
 
     public CharacterMovesMessage(long id, CharacterControl character) {
         super(id);
-        this.walkDirection.set(character.getWalkDirection());
-        this.viewDirection.set(character.getViewDirection());
-    }
-
-    public void readData(CharacterControl character) {
-        this.walkDirection.set(character.getWalkDirection());
-        this.viewDirection.set(character.getViewDirection());
+        walkDirection.set(character.getWalkDirection());
+        viewDirection.set(character.getViewDirection());
+        location.set(character.getPhysicsLocation());
     }
 
     @Override
     public void applyData() {
         Player p = (Player) JBombContext.MANAGER.getPhysicObject(getId());
         if (p != null) {
-            System.out.println("Moving player #" + getId());
             CharacterControl c = p.getControl();
-            c.setWalkDirection(walkDirection);
-            c.setViewDirection(viewDirection);
+            c.setPhysicsLocation(location);
+            c.setWalkDirection(getWalkDirection());
+            c.setViewDirection(getViewDirection());
         }
+    }
 
+    public Vector3f getWalkDirection() {
+        return walkDirection;
+    }
+
+    public Vector3f getViewDirection() {
+        return viewDirection;
+    }
+
+    @Override
+    public void doPrediction(float tpf) {
+        Player p = (Player) JBombContext.MANAGER.getPhysicObject(getId());
+        Vector3f step = new Vector3f(walkDirection);
+        if (p != null) {
+            sum += tpf;
+            System.out.println("sum: " + (sum / maxTime));
+            step.multLocal(sum / maxTime);
+            p.getControl().setWalkDirection(step);
+        }
     }
 }

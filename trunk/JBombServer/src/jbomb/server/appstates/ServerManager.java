@@ -9,7 +9,7 @@ public class ServerManager extends AbstractManager<HostedConnection> {
 
     @Override
     public void doOnUpdate(float tpf, AbstractPhysicMessage message) {
-        modifyScene(message);
+        message.applyData();
         ServerContext.SERVER.broadcast(message);
     }
     
