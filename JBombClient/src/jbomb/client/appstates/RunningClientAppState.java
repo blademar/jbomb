@@ -52,14 +52,13 @@ public class RunningClientAppState extends RunningAppState {
                 walk.addLocal(camDir); 
             if (ClientContext.APP.isBack()) 
                 walk.addLocal(camDir.negate());
-
+            
             CharacterControl c = ClientContext.PLAYER.getControl();
             if (time >= maxTime) {
                 time = 0;
                 ClientContext.CLIENT.send(
-                        new CharacterMovesMessage(ClientContext.CLIENT.getId(), c));
+                        new CharacterMovesMessage(ClientContext.CLIENT.getId(), c, walk));
             }
-            
             c.setWalkDirection(walk);
             ClientContext.APP.getCam().setLocation(c.getPhysicsLocation());
         }

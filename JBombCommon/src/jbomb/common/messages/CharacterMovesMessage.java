@@ -1,6 +1,7 @@
 package jbomb.common.messages;
 
 import com.jme3.bullet.control.CharacterControl;
+import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import com.jme3.network.serializing.Serializable;
 import jbomb.common.game.JBombContext;
@@ -11,13 +12,15 @@ public class CharacterMovesMessage extends AbstractPhysicMessage {
     
     private Vector3f walkDirection = new Vector3f();
     private Vector3f viewDirection = new Vector3f();
-    private Vector3f location = new Vector3f();;
+    private Vector3f location = new Vector3f();
+    private boolean isFirstInterpolation;
+    private Vector3f oldPosition = new Vector3f();
 
     public CharacterMovesMessage() {}
 
-    public CharacterMovesMessage(long id, CharacterControl character) {
+    public CharacterMovesMessage(long id, CharacterControl character, Vector3f walk) {
         super(id);
-        walkDirection.set(character.getWalkDirection());
+        walkDirection.set(walk);
         viewDirection.set(character.getViewDirection());
         location.set(character.getPhysicsLocation());
     }
@@ -28,32 +31,21 @@ public class CharacterMovesMessage extends AbstractPhysicMessage {
         if (p != null) {
             CharacterControl c = p.getControl();
             c.setPhysicsLocation(location);
-            c.setWalkDirection(getWalkDirection());
-            c.setViewDirection(getViewDirection());
+            c.setWalkDirection(walkDirection);
+            c.setViewDirection(viewDirection);
         }
-    }
-
-    public Vector3f getWalkDirection() {
-        return walkDirection;
-    }
-
-    public Vector3f getViewDirection() {
-        return viewDirection;
     }
 
     @Override
     public void interpolate(float percent) {
-        System.out.println("Step %: " + percent);
         Player p = (Player) JBombContext.MANAGER.getPhysicObject(getId());
-        Vector3f currentLocation = p.getControl().getPhysicsLocation();
-        System.out.println("Future location: " + location);
-        System.out.println("Current location: " + currentLocation);
-        System.out.println("Interpolated location: " + location);
-        Vector3f step = new Vector3f(walkDirection);
         if (p != null) {
-            step.multLocal(percent);
-            System.out.println("Step: " + step);
-            p.getControl().setWalkDirection(step);
+            if (!isFirstInterpolation) {
+                oldPosition.set(p.getControl().getPhysicsLocation());
+                isFirstInterpolation = true;
+            }
+            p.getControl().setPhysicsLocation(FastMath.interpolateLinear(percent, oldPosition, location));
+            p.getControl().setWalkDirection(walkDirection);
         }
     }
 }
