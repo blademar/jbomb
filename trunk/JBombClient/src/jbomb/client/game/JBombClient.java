@@ -2,7 +2,9 @@ package jbomb.client.game;
 
 import com.jme3.font.BitmapText;
 import com.jme3.input.KeyInput;
+import com.jme3.input.MouseInput;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.network.Client;
 import com.jme3.network.Network;
 import com.jme3.renderer.Camera;
@@ -15,10 +17,12 @@ import jbomb.client.listeners.CharacterActionListener;
 import jbomb.common.appstates.AbstractManager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.client.listeners.ServerConnectionListener;
+import jbomb.client.listeners.ShootsActionListener;
 import jbomb.client.listeners.messages.CreatePlayerListener;
 import jbomb.client.listeners.messages.NewPlayerListener;
 import jbomb.client.listeners.messages.RemovePlayerListener;
 import jbomb.client.listeners.messages.StartGameListener;
+import jbomb.client.listeners.messages.ThrowBombListener;
 import jbomb.common.appstates.Manager;
 import jbomb.common.game.BaseGame;
 import jbomb.common.messages.CharacterMovesMessage;
@@ -26,6 +30,7 @@ import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.RemovePlayerMessage;
 import jbomb.common.messages.StartGameMessage;
+import jbomb.common.messages.ThrowBombMessage;
 
 public class JBombClient extends BaseGame {
     
@@ -37,7 +42,7 @@ public class JBombClient extends BaseGame {
     private boolean front = false;
     private boolean back = false;
     private AppSettings appSettings = new AppSettings(true);
-//    private ShootsActionListener shootsActionListener = new ShootsActionListener();
+    private ShootsActionListener shootsActionListener = new ShootsActionListener();
     private CharacterActionListener characterActionListener = new CharacterActionListener();
 //    private BombSecondsListener bombSecondsListener = new BombSecondsListener();
     private ServerConnectionListener connectionListener = new ServerConnectionListener();
@@ -45,6 +50,7 @@ public class JBombClient extends BaseGame {
     private NewPlayerListener newPlayerListener = new NewPlayerListener();
     private RemovePlayerListener removePlayerListener = new RemovePlayerListener();
     private StartGameListener startGameListener = new StartGameListener();
+    private ThrowBombListener throwBombListener = new ThrowBombListener();
     private String ip;
     
     
@@ -102,8 +108,8 @@ public class JBombClient extends BaseGame {
     }
     
     private void initMappings() {
-//        inputManager.addMapping("shoot", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
-//        inputManager.addListener(shootsActionListener, "shoot");
+        inputManager.addMapping("shoot", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+        inputManager.addListener(shootsActionListener, "shoot");
         inputManager.addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
         inputManager.addMapping("Right", new KeyTrigger(KeyInput.KEY_D));
         inputManager.addMapping("Front", new KeyTrigger(KeyInput.KEY_W));
@@ -177,6 +183,7 @@ public class JBombClient extends BaseGame {
         client.addMessageListener(newPlayerListener, NewPlayerMessage.class);
         client.addMessageListener(removePlayerListener, RemovePlayerMessage.class);
         client.addMessageListener(startGameListener, StartGameMessage.class);
+        client.addMessageListener(throwBombListener, ThrowBombMessage.class);
         Manager<Client> m = (Manager<Client>) getManager();
         client.addMessageListener(m, CharacterMovesMessage.class);
     }

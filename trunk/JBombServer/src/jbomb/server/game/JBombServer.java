@@ -10,14 +10,17 @@ import jbomb.common.appstates.RunningAppState;
 import jbomb.common.game.BaseGame;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.CharacterMovesMessage;
+import jbomb.common.messages.ThrowBombMessage;
 import jbomb.server.appstates.RunningServerAppState;
 import jbomb.server.appstates.ServerManager;
 import jbomb.server.listeners.ClientConnectionListener;
+import jbomb.server.listeners.messages.ThrowBombListener;
 
 public class JBombServer extends BaseGame {
     
     private Server server;
     private ClientConnectionListener connectionListener = new ClientConnectionListener();
+    private ThrowBombListener throwBombListener = new ThrowBombListener();
     
     public JBombServer(String playersNumber) {
         JBombContext.PLAYERS_COUNT = setPlayersCount(playersNumber);
@@ -27,6 +30,7 @@ public class JBombServer extends BaseGame {
     @Override
     public void simpleInitApp() {
         super.simpleInitApp();
+        JBombContext.MANAGER.getRepository().reserveID(JBombContext.PLAYERS_COUNT);
         try {
             server = Network.createServer(6789);
             addMessageListeners();
@@ -54,6 +58,7 @@ public class JBombServer extends BaseGame {
     public void addMessageListeners() {
         Manager<HostedConnection> m = (Manager<HostedConnection>) getManager();
         server.addMessageListener(m, CharacterMovesMessage.class);
+        server.addMessageListener(throwBombListener, ThrowBombMessage.class);
     }
 
     @Override

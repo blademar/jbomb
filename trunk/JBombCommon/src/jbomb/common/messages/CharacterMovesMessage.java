@@ -46,7 +46,6 @@ public class CharacterMovesMessage extends AbstractPhysicMessage {
             }
             p.getControl().setPhysicsLocation(FastMath.interpolateLinear(percent, oldPosition, location));
             p.getControl().setWalkDirection(walkDirection);
-            System.out.println("Interpolating...");
         }
     }
 }
