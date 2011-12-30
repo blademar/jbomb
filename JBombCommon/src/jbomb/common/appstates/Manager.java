@@ -4,6 +4,7 @@ import com.jme3.app.state.AppState;
 import com.jme3.network.MessageListener;
 import java.util.Collection;
 import java.util.Set;
+import jbomb.common.game.IDRepository;
 import jbomb.common.messages.AbstractPhysicMessage;
 
 public interface Manager<T> extends MessageListener<T>, AppState {
@@ -23,4 +24,6 @@ public interface Manager<T> extends MessageListener<T>, AppState {
     Object getPhysicObject(long l);
     
     int getPhycicObjectSize();
+    
+    IDRepository getRepository();
 }

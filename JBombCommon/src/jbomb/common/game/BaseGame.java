@@ -19,6 +19,7 @@ import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.RemovePlayerMessage;
 import jbomb.common.messages.StartGameMessage;
+import jbomb.common.messages.ThrowBombMessage;
 import jbomb.common.scene.Elevator;
 import jbomb.common.utils.GeometryUtils;
 
@@ -205,6 +206,7 @@ public abstract class BaseGame extends SimpleApplication {
         Serializer.registerClass(CreatePlayerMessage.class);
         Serializer.registerClass(NewPlayerMessage.class);
         Serializer.registerClass(RemovePlayerMessage.class);
+        Serializer.registerClass(ThrowBombMessage.class);
     }
 
     protected abstract AbstractManager<?> createManager();

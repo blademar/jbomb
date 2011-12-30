@@ -34,12 +34,12 @@ public abstract class AbstractManager<T> implements Manager<T> {
     @Override
     public void addPhysicObject(long l, Object o) {
         physicsObjects.put(l, o);
-        repository.occupyIn(l);
+        getRepository().occupyIn(l);
     }
 
     @Override
     public Object removePhysicObject(long l) {
-        repository.releaseIn(l);
+        getRepository().releaseIn(l);
         return physicsObjects.remove(l);
     }
 
@@ -132,5 +132,9 @@ public abstract class AbstractManager<T> implements Manager<T> {
     @Override
     public int getPhycicObjectSize() {
         return physicsObjects.size();
+    }
+
+    public IDRepository getRepository() {
+        return repository;
     }
 }

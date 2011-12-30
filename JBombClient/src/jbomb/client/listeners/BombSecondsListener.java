@@ -2,7 +2,6 @@ package jbomb.client.listeners;
 
 import com.jme3.input.controls.ActionListener;
 import jbomb.client.game.ClientContext;
-import jbomb.client.game.ClientPlayer;
 import jbomb.common.game.JBombContext;
 
 public class BombSecondsListener implements ActionListener {

@@ -3,15 +3,12 @@ package jbomb.common.messages;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.network.serializing.Serializable;
-import jbomb.common.game.JBombContext;
-import jbomb.common.game.Player;
 
 @Serializable
 public class CreatePlayerMessage extends AbstractPhysicMessage {
 
     private Vector3f location;
     private ColorRGBA color;
-    private Player player;
 
     public CreatePlayerMessage() {}
 
@@ -38,11 +35,6 @@ public class CreatePlayerMessage extends AbstractPhysicMessage {
 
     @Override
     public void applyData() {
-        player = new Player(getLocation(), getColor());
-        JBombContext.ROOT_NODE.attachChild(player.getGeometry());
-    }
-
-    public Player getPlayer() {
-        return player;
+        
     }
 }

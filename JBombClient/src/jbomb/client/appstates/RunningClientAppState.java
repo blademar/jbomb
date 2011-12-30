@@ -9,33 +9,35 @@ import jbomb.common.game.JBombContext;
 import jbomb.common.messages.CharacterMovesMessage;
 
 public class RunningClientAppState extends RunningAppState {
-//     private float[] timer = new float[] {0, 0, 0};
+
+    private float[] timer = new float[]{0, 0, 0};
     private float time;
     private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
-    
+
     @Override
     public void update(float tpf) {
         moveCam(tpf);
 //        hearingSounds();
-//        reloadBombs(tpf);
+        reloadBombs(tpf);
 //        loadInterface();
     }
-    
-//    private void reloadBombs(float tpf) {
-//        for (int i = 0; i < timer.length; i++) 
-//                if(JBombContext.BASE_GAME.getPlayer().getBombs()[i] == null)
-//                    if(timer[i] >= 5f) {
-//                        timer[i] = 0;
-//                        JBombContext.BASE_GAME.getPlayer().reloadBomb(i);
-//                    } else {
-//                        timer[i] += tpf;
-//                    }
-//    }
-    
+
+    private void reloadBombs(float tpf) {
+        if (JBombContext.STARTED) 
+            for (int i = 0; i < timer.length; i++)
+                if (ClientContext.PLAYER.getBombs()[i] == null) 
+                    if (timer[i] >= 5f) {
+                        timer[i] = 0;
+                        ClientContext.PLAYER.reloadBomb(i);
+                    } else
+                        timer[i] += tpf;
+                
+    }
+
     private void moveCam(float tpf) {
         if (JBombContext.STARTED) {
             time += tpf;
-            
+
             Camera cam = ClientContext.APP.getCam();
             Vector3f camDir = cam.getDirection().clone().multLocal(0.2f);
             Vector3f camLeft = cam.getLeft().clone().multLocal(0.1f);
@@ -44,16 +46,21 @@ public class RunningClientAppState extends RunningAppState {
             Vector3f walk = new Vector3f();
             walk.set(0, 0, 0);
 
-            if (ClientContext.APP.isLeft())
+            if (ClientContext.APP.isLeft()) {
                 walk.addLocal(camLeft);
-            if (ClientContext.APP.isRight())
+            }
+            if (ClientContext.APP.isRight()) {
                 walk.addLocal(camLeft.negate());
-            if (ClientContext.APP.isFront()) 
-                walk.addLocal(camDir); 
-            if (ClientContext.APP.isBack()) 
+            }
+            if (ClientContext.APP.isFront()) {
+                walk.addLocal(camDir);
+            }
+            if (ClientContext.APP.isBack()) {
                 walk.addLocal(camDir.negate());
-            
+            }
+
             CharacterControl c = ClientContext.PLAYER.getControl();
+            c.setViewDirection(cam.getDirection());
             if (time >= maxTime) {
                 time = 0;
                 ClientContext.CLIENT.send(
@@ -62,13 +69,7 @@ public class RunningClientAppState extends RunningAppState {
             c.setWalkDirection(walk);
             ClientContext.APP.getCam().setLocation(c.getPhysicsLocation());
         }
-        
-        
-        
-//        ClientContext.APP.getPlayer().setWalkDirection(walk);
-//        ClientContext.APP.getCam().setLocation(ClientContext.APP.getPlayer().getPhysicsLocation());
     }
-    
 //    private void hearingSounds() {
 //        Camera cam = JBombContext.BASE_GAME.getCam();
 //        Listener listener = JBombContext.BASE_GAME.getListener();
