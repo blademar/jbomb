@@ -14,20 +14,20 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import jbomb.common.game.IDRepository;
 import jbomb.common.game.JBombContext;
-import jbomb.common.messages.AbstractPhysicMessage;
+import jbomb.common.messages.BasePhysicMessage;
 import jbomb.common.messages.CharacterMovesMessage;
 
 public abstract class AbstractManager<T> implements Manager<T> {
 
     private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
     private float time;
-    private Map<Long, Object> physicsObjects = new HashMap<Long, Object>();
-    protected BlockingQueue<AbstractPhysicMessage> messageQueue = new ArrayBlockingQueue<AbstractPhysicMessage>(500);
+    protected  Map<Long, Object> physicsObjects = new HashMap<Long, Object>();
+    protected BlockingQueue<BasePhysicMessage> messageQueue = new ArrayBlockingQueue<BasePhysicMessage>(100000);
     private AbstractAppState appState = new AbstractAppState();
     private IDRepository repository = new IDRepository();
 
     @Override
-    public void add(AbstractPhysicMessage message) {
+    public void add(BasePhysicMessage message) {
         messageQueue.add(message);
     }
 
@@ -76,8 +76,8 @@ public abstract class AbstractManager<T> implements Manager<T> {
     @Override
     public void update(float tpf) {
         time += tpf;
-        Iterator<AbstractPhysicMessage> it = messageQueue.iterator();
-        AbstractPhysicMessage message = null;
+        Iterator<BasePhysicMessage> it = messageQueue.iterator();
+        BasePhysicMessage message = null;
         if (time >= maxTime) {
             time = 0;
             while (it.hasNext()) {
@@ -88,8 +88,9 @@ public abstract class AbstractManager<T> implements Manager<T> {
         } else {
             while (it.hasNext()) {
                 message = it.next();
-                if (message instanceof CharacterMovesMessage)
+                if (message instanceof CharacterMovesMessage) {
                     message.interpolate(time / maxTime);
+                }
             }
         }
     }
@@ -111,7 +112,7 @@ public abstract class AbstractManager<T> implements Manager<T> {
 
     @Override
     public void messageReceived(T source, Message m) {
-        messageQueue.add((AbstractPhysicMessage) m);
+        messageQueue.add((BasePhysicMessage) m);
     }
 
     @Override
@@ -134,6 +135,7 @@ public abstract class AbstractManager<T> implements Manager<T> {
         return physicsObjects.size();
     }
 
+    @Override
     public IDRepository getRepository() {
         return repository;
     }

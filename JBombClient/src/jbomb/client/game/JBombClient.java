@@ -13,6 +13,7 @@ import com.jme3.ui.Picture;
 import java.io.IOException;
 import jbomb.client.appstates.ClientManager;
 import jbomb.client.appstates.RunningClientAppState;
+import jbomb.client.listeners.BombSecondsListener;
 import jbomb.client.listeners.CharacterActionListener;
 import jbomb.common.appstates.AbstractManager;
 import jbomb.common.appstates.RunningAppState;
@@ -26,6 +27,7 @@ import jbomb.client.listeners.messages.ThrowBombListener;
 import jbomb.common.appstates.Manager;
 import jbomb.common.game.BaseGame;
 import jbomb.common.messages.CharacterMovesMessage;
+import jbomb.common.messages.CoordinateBombMessage;
 import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.RemovePlayerMessage;
@@ -34,6 +36,7 @@ import jbomb.common.messages.ThrowBombMessage;
 
 public class JBombClient extends BaseGame {
     
+    private String ip;
     private Client client;
     private Picture bombsPictures = new Picture("bombsPictures");
     private Picture BombsSecondsPictures = new Picture("bombsSecondsPictures");
@@ -42,18 +45,18 @@ public class JBombClient extends BaseGame {
     private boolean front = false;
     private boolean back = false;
     private AppSettings appSettings = new AppSettings(true);
+    
     private ShootsActionListener shootsActionListener = new ShootsActionListener();
     private CharacterActionListener characterActionListener = new CharacterActionListener();
-//    private BombSecondsListener bombSecondsListener = new BombSecondsListener();
+    private BombSecondsListener bombSecondsListener = new BombSecondsListener();
+    
     private ServerConnectionListener connectionListener = new ServerConnectionListener();
+    
     private CreatePlayerListener createPlayerListener = new CreatePlayerListener();
     private NewPlayerListener newPlayerListener = new NewPlayerListener();
     private RemovePlayerListener removePlayerListener = new RemovePlayerListener();
     private StartGameListener startGameListener = new StartGameListener();
     private ThrowBombListener throwBombListener = new ThrowBombListener();
-    private String ip;
-    
-    
     
     public JBombClient(String ip) {
         this.ip = ip;
@@ -75,7 +78,7 @@ public class JBombClient extends BaseGame {
         }
         ClientContext.APP = this;
         ClientContext.CLIENT = client;
-//        initInterfaces();
+        initInterfaces();
         initMappings();
     }
     
@@ -100,10 +103,10 @@ public class JBombClient extends BaseGame {
         getBombsPictures().setLocalTranslation(settings.getWidth() - 64f, 0f, 0f);
         guiNode.attachChild(getBombsPictures());
         
-        getBombsPictures().setImage(assetManager, "interfaces/pictures/glass_numbers_1.png", true);
-        getBombsPictures().setWidth(45f);
-        getBombsPictures().setHeight(45f);
-        getBombsPictures().setLocalTranslation(settings.getWidth() - 45f, 55f, 0f);
+        getBombsSecondsPictures().setImage(assetManager, "interfaces/pictures/glass_numbers_1.png", true);
+        getBombsSecondsPictures().setWidth(45f);
+        getBombsSecondsPictures().setHeight(45f);
+        getBombsSecondsPictures().setLocalTranslation(settings.getWidth() - 45f, 55f, 0f);
         guiNode.attachChild(getBombsSecondsPictures());
     }
     
@@ -115,17 +118,17 @@ public class JBombClient extends BaseGame {
         inputManager.addMapping("Front", new KeyTrigger(KeyInput.KEY_W));
         inputManager.addMapping("Back", new KeyTrigger(KeyInput.KEY_S));
         inputManager.addMapping("Jump", new KeyTrigger(KeyInput.KEY_SPACE));
-//        inputManager.addMapping("one", new KeyTrigger(KeyInput.KEY_1), new KeyTrigger(KeyInput.KEY_NUMPAD1));
-//        inputManager.addMapping("two", new KeyTrigger(KeyInput.KEY_2), new KeyTrigger(KeyInput.KEY_NUMPAD2));
-//        inputManager.addMapping("three", new KeyTrigger(KeyInput.KEY_3), new KeyTrigger(KeyInput.KEY_NUMPAD3));
+        inputManager.addMapping("one", new KeyTrigger(KeyInput.KEY_1), new KeyTrigger(KeyInput.KEY_NUMPAD1));
+        inputManager.addMapping("two", new KeyTrigger(KeyInput.KEY_2), new KeyTrigger(KeyInput.KEY_NUMPAD2));
+        inputManager.addMapping("three", new KeyTrigger(KeyInput.KEY_3), new KeyTrigger(KeyInput.KEY_NUMPAD3));
         inputManager.addListener(characterActionListener, "Left");
         inputManager.addListener(characterActionListener, "Right");
         inputManager.addListener(characterActionListener, "Front");
         inputManager.addListener(characterActionListener, "Back");
         inputManager.addListener(characterActionListener, "Jump");
-//        inputManager.addListener(bombSecondsListener, "one");
-//        inputManager.addListener(bombSecondsListener, "two");
-//        inputManager.addListener(bombSecondsListener, "three");
+        inputManager.addListener(bombSecondsListener, "one");
+        inputManager.addListener(bombSecondsListener, "two");
+        inputManager.addListener(bombSecondsListener, "three");
     }
     
     public Camera getCam() {
@@ -186,6 +189,7 @@ public class JBombClient extends BaseGame {
         client.addMessageListener(throwBombListener, ThrowBombMessage.class);
         Manager<Client> m = (Manager<Client>) getManager();
         client.addMessageListener(m, CharacterMovesMessage.class);
+        client.addMessageListener(m, CoordinateBombMessage.class);
     }
 
     @Override

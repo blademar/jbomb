@@ -9,6 +9,7 @@ public class BaseSound implements Sound {
     
     private AudioNode audioNode;
     private Type type;
+    private boolean enabled = true;
     
     public BaseSound(String fileName, Type type, boolean buffer, float volume) {
         audioNode = new AudioNode(JBombContext.ASSET_MANAGER, 
@@ -24,11 +25,17 @@ public class BaseSound implements Sound {
 
     @Override
     public void play(Vector3f location) {
-        if (type == Type.INSTANCE) {
-            audioNode.setLocalTranslation(location);
-            audioNode.playInstance();
-        } else
-            audioNode.play();
+        if (enabled) {
+            if (type == Type.INSTANCE) {
+                audioNode.setLocalTranslation(location);
+                audioNode.playInstance();
+            } else
+                audioNode.play();
+        }
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
     
     public enum Type {

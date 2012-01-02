@@ -4,13 +4,13 @@ import com.jme3.network.AbstractMessage;
 import com.jme3.network.serializing.Serializable;
 
 @Serializable
-public abstract class AbstractPhysicMessage extends AbstractMessage implements PhysicMessage {
+public class BasePhysicMessage extends AbstractMessage implements PhysicMessage {
     
     private long id;
 
-    public AbstractPhysicMessage() {}
+    public BasePhysicMessage() {}
     
-    public AbstractPhysicMessage(long id) {
+    public BasePhysicMessage(long id) {
         this.id = id;
     }
 
@@ -26,4 +26,7 @@ public abstract class AbstractPhysicMessage extends AbstractMessage implements P
     
     @Override
     public void interpolate(float percent) {}
+
+    @Override
+    public void applyData() {}
 }

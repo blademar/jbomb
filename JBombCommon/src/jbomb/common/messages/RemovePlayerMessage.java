@@ -5,7 +5,7 @@ import jbomb.common.game.JBombContext;
 import jbomb.common.game.Player;
 
 @Serializable
-public class RemovePlayerMessage extends AbstractPhysicMessage {
+public class RemovePlayerMessage extends BasePhysicMessage {
     
     public RemovePlayerMessage() {}
     

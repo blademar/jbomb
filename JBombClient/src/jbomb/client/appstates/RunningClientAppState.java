@@ -1,5 +1,6 @@
 package jbomb.client.appstates;
 
+import com.jme3.audio.Listener;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
@@ -7,6 +8,7 @@ import jbomb.client.game.ClientContext;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.CharacterMovesMessage;
+import jbomb.common.weapons.impl.BaseBomb;
 
 public class RunningClientAppState extends RunningAppState {
 
@@ -17,21 +19,24 @@ public class RunningClientAppState extends RunningAppState {
     @Override
     public void update(float tpf) {
         moveCam(tpf);
-//        hearingSounds();
+        hearingSounds();
         reloadBombs(tpf);
-//        loadInterface();
+        loadInterface();
     }
 
     private void reloadBombs(float tpf) {
-        if (JBombContext.STARTED) 
-            for (int i = 0; i < timer.length; i++)
-                if (ClientContext.PLAYER.getBombs()[i] == null) 
+        if (JBombContext.STARTED) {
+            for (int i = 0; i < timer.length; i++) {
+                if (ClientContext.PLAYER.getBombs()[i] == null) {
                     if (timer[i] >= 5f) {
                         timer[i] = 0;
                         ClientContext.PLAYER.reloadBomb(i);
-                    } else
+                    } else {
                         timer[i] += tpf;
-                
+                    }
+                }
+            }
+        }
     }
 
     private void moveCam(float tpf) {
@@ -70,19 +75,24 @@ public class RunningClientAppState extends RunningAppState {
             ClientContext.APP.getCam().setLocation(c.getPhysicsLocation());
         }
     }
-//    private void hearingSounds() {
-//        Camera cam = JBombContext.BASE_GAME.getCam();
-//        Listener listener = JBombContext.BASE_GAME.getListener();
-//        listener.setLocation(cam.getLocation());
-//        listener.setRotation(cam.getRotation());
-//    }
-//    
-//    private void loadInterface() {
-//        BaseBomb[] bombs = JBombContext.BASE_GAME.getPlayer().getBombs();
-//        byte bombsCount = 0;
-//        for (BaseBomb b : bombs)
-//            if (b != null)
-//                bombsCount++;
-//        JBombContext.BASE_GAME.getBombsPictures().setImage(JBombContext.ASSET_MANAGER, "interfaces/pictures/bomb" + bombsCount + ".png", true);
-//    }
+
+    private void hearingSounds() {
+        Camera cam = ClientContext.APP.getCam();
+        Listener listener = JBombContext.BASE_GAME.getListener();
+        listener.setLocation(cam.getLocation());
+        listener.setRotation(cam.getRotation());
+    }
+
+    private void loadInterface() {
+        if (JBombContext.STARTED) {
+            BaseBomb[] bombs = ClientContext.PLAYER.getBombs();
+            byte bombsCount = 0;
+            for (BaseBomb b : bombs) {
+                if (b != null) {
+                    bombsCount++;
+                }
+            }
+            ClientContext.APP.getBombsPictures().setImage(JBombContext.ASSET_MANAGER, "interfaces/pictures/bomb" + bombsCount + ".png", true);
+        }
+    }
 }
