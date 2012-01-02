@@ -4,7 +4,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.network.serializing.Serializable;
 
 @Serializable
-public class ThrowBombMessage extends AbstractPhysicMessage {
+public class ThrowBombMessage extends BasePhysicMessage {
     
     private long idClient = 0;
     private Vector3f location = new Vector3f();

@@ -8,7 +8,7 @@ import jbomb.common.game.JBombContext;
 import jbomb.common.game.Player;
 
 @Serializable
-public class CharacterMovesMessage extends AbstractPhysicMessage {
+public class CharacterMovesMessage extends BasePhysicMessage {
     
     private Vector3f walkDirection = new Vector3f();
     private Vector3f viewDirection = new Vector3f();

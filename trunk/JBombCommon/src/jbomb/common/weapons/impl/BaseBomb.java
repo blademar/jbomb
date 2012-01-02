@@ -19,7 +19,7 @@ import jbomb.common.weapons.api.Bomb;
 public class BaseBomb implements Bomb {
     
    private Geometry geometry;
-   private Sound sound;
+   protected Sound sound;
    private Explosion explosion;
    private Control control;
    private float timeForExplosion;
@@ -63,6 +63,8 @@ public class BaseBomb implements Bomb {
         explosion.start();
         sound.play(location);
         JBombContext.ROOT_NODE.detachChild(geometry);
+        long id = ((Long)geometry.getUserData("id"));
+        JBombContext.MANAGER.removePhysicObject(id);
     }
 
     @Override

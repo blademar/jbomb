@@ -26,7 +26,6 @@ public class Player {
         control.setJumpSpeed(12);
         control.setFallSpeed(10);
         control.setGravity(30);
-
         Sphere s = new Sphere(10, 10, .55f);
         geometry = new Geometry("player", s);
         Material m = new Material(JBombContext.ASSET_MANAGER, MatDefs.UNSHADED);
@@ -55,9 +54,9 @@ public class Player {
     }
 
     public void throwBomb(Vector3f location, long idPhysicObject) {
-        BaseBomb bomb = new GrandBomb();
+        BaseBomb bomb = new GrandBomb(false);
+        bomb.getSpatial().setUserData("id", idPhysicObject);
         JBombContext.MANAGER.addPhysicObject(idPhysicObject, bomb);
-        throwSound.play(control.getPhysicsLocation());
         RigidBodyControl bombControl = bomb.getSpatial().getControl(RigidBodyControl.class);
         bombControl.setPhysicsLocation(location);
         JBombContext.ROOT_NODE.attachChild(bomb.getSpatial());

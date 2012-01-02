@@ -15,6 +15,7 @@ import jbomb.common.appstates.AbstractManager;
 import jbomb.common.appstates.Manager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.common.messages.CharacterMovesMessage;
+import jbomb.common.messages.CoordinateBombMessage;
 import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.RemovePlayerMessage;
@@ -207,6 +208,7 @@ public abstract class BaseGame extends SimpleApplication {
         Serializer.registerClass(NewPlayerMessage.class);
         Serializer.registerClass(RemovePlayerMessage.class);
         Serializer.registerClass(ThrowBombMessage.class);
+        Serializer.registerClass(CoordinateBombMessage.class);
     }
 
     protected abstract AbstractManager<?> createManager();

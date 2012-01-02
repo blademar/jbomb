@@ -5,17 +5,17 @@ import com.jme3.network.MessageListener;
 import java.util.Collection;
 import java.util.Set;
 import jbomb.common.game.IDRepository;
-import jbomb.common.messages.AbstractPhysicMessage;
+import jbomb.common.messages.BasePhysicMessage;
 
 public interface Manager<T> extends MessageListener<T>, AppState {
     
-    void add(AbstractPhysicMessage message);
+    void add(BasePhysicMessage message);
     
     void addPhysicObject(long l, Object o);
     
     Object removePhysicObject(long l);
     
-    void doOnUpdate(float tpf, AbstractPhysicMessage message);
+    void doOnUpdate(float tpf, BasePhysicMessage message);
     
     Collection<Object> values();
     
