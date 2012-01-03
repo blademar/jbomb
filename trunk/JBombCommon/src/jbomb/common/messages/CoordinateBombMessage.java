@@ -9,14 +9,15 @@ import jbomb.common.weapons.impl.GrandBomb;
 
 @Serializable
 public class CoordinateBombMessage extends BasePhysicMessage {
-    
+
     private Matrix3f rotation;
     private Vector3f location;
     private Vector3f linearVelocity;
     private Vector3f angularVelocity;
-    
-    public CoordinateBombMessage() {}
-    
+
+    public CoordinateBombMessage() {
+    }
+
     public CoordinateBombMessage(long id, RigidBodyControl control) {
         super(id);
         location = control.getPhysicsLocation(new Vector3f());
@@ -30,10 +31,12 @@ public class CoordinateBombMessage extends BasePhysicMessage {
     @Override
     public void applyData() {
         GrandBomb gb = (GrandBomb) JBombContext.MANAGER.getPhysicObject(getId());
-        RigidBodyControl rigidBody = gb.getSpatial().getControl(RigidBodyControl.class);
-        rigidBody.setPhysicsLocation(location);
-        rigidBody.setPhysicsRotation(rotation);
-        rigidBody.setLinearVelocity(linearVelocity);
-        rigidBody.setAngularVelocity(angularVelocity);
+        if (gb != null) {
+            RigidBodyControl rigidBody = gb.getSpatial().getControl(RigidBodyControl.class);
+            rigidBody.setPhysicsLocation(location);
+            rigidBody.setPhysicsRotation(rotation);
+            rigidBody.setLinearVelocity(linearVelocity);
+            rigidBody.setAngularVelocity(angularVelocity);
+        }
     }
 }

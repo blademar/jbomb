@@ -17,8 +17,7 @@ public class ClientPlayer extends Player {
     public ClientPlayer(Vector3f location, ColorRGBA color) {
         super(location, color);
     }
-
-    @Override
+    
     public void throwBomb(Vector3f location, long idPhysicObject) {
         for (int i = 0; i < bomb.length; i++) {
             if (bomb[i] != null) {

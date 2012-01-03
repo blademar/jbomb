@@ -12,6 +12,7 @@ public class ThrowBombListener extends AbstractClientMessageListener<ThrowBombTa
         ThrowBombMessage message = (ThrowBombMessage) m;
         System.out.println("ThrowBombMessage received");
         System.out.println("idClient: " + message.getIdClient());
+        System.out.println("Id of new bomb: " + message.getId());
         doTask(new ThrowBombTask(), message);
     }
     

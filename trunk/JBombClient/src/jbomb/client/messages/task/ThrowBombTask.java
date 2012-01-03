@@ -12,11 +12,9 @@ public class ThrowBombTask implements Task<ThrowBombMessage> {
         long idClient = message.getIdClient();
         Player player = (Player) JBombContext.MANAGER.getPhysicObject(idClient);
         if (player != null) {
-            player.throwBomb(message.getLocation(), message.getId());
-            System.out.println("Other player trows bomb");
+            player.throwBomb(message.getLocation(), message.getId(), null);
         } else {
             ClientContext.PLAYER.throwBomb(message.getLocation(), message.getId());
-            System.out.println("I trow bomb");
         }
     }
 }

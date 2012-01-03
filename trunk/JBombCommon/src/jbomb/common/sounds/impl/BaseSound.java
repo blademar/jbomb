@@ -34,6 +34,7 @@ public class BaseSound implements Sound {
         }
     }
 
+    @Override
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
