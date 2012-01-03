@@ -20,6 +20,7 @@ import jbomb.common.appstates.RunningAppState;
 import jbomb.client.listeners.ServerConnectionListener;
 import jbomb.client.listeners.ShootsActionListener;
 import jbomb.client.listeners.messages.CreatePlayerListener;
+import jbomb.client.listeners.messages.ExploitBombListener;
 import jbomb.client.listeners.messages.NewPlayerListener;
 import jbomb.client.listeners.messages.RemovePlayerListener;
 import jbomb.client.listeners.messages.StartGameListener;
@@ -29,6 +30,7 @@ import jbomb.common.game.BaseGame;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.CoordinateBombMessage;
 import jbomb.common.messages.CreatePlayerMessage;
+import jbomb.common.messages.ExploitBombMessage;
 import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.RemovePlayerMessage;
 import jbomb.common.messages.StartGameMessage;
@@ -57,6 +59,7 @@ public class JBombClient extends BaseGame {
     private RemovePlayerListener removePlayerListener = new RemovePlayerListener();
     private StartGameListener startGameListener = new StartGameListener();
     private ThrowBombListener throwBombListener = new ThrowBombListener();
+    private ExploitBombListener exploitBombListener = new ExploitBombListener();
     
     public JBombClient(String ip) {
         this.ip = ip;
@@ -187,6 +190,7 @@ public class JBombClient extends BaseGame {
         client.addMessageListener(removePlayerListener, RemovePlayerMessage.class);
         client.addMessageListener(startGameListener, StartGameMessage.class);
         client.addMessageListener(throwBombListener, ThrowBombMessage.class);
+        client.addMessageListener(exploitBombListener, ExploitBombMessage.class);
         Manager<Client> m = (Manager<Client>) getManager();
         client.addMessageListener(m, CharacterMovesMessage.class);
         client.addMessageListener(m, CoordinateBombMessage.class);

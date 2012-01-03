@@ -5,9 +5,8 @@ import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.control.Control;
 import com.jme3.scene.shape.Sphere;
-import jbomb.common.controls.BaseBombControl;
+import jbomb.common.controls.AbstractBombControl;
 import jbomb.common.effects.api.Explosion;
 import jbomb.common.effects.impl.BaseExplosion;
 import jbomb.common.game.JBombContext;
@@ -21,13 +20,10 @@ public class BaseBomb implements Bomb {
    private Geometry geometry;
    protected Sound sound;
    private Explosion explosion;
-   private Control control;
    private float timeForExplosion;
    private float radius;
     
-    public BaseBomb(String fileName, float radius, Explosion explosion, Sound sound, BaseBombControl baseBombControl, float timeForExplosion, float mass) {
-        control = baseBombControl;
-        baseBombControl.setBomb(this);
+    public BaseBomb(String fileName, float radius, Explosion explosion, Sound sound, float timeForExplosion, float mass) {
         this.timeForExplosion = timeForExplosion;
         this.explosion = explosion;
         this.sound = sound;
@@ -39,17 +35,15 @@ public class BaseBomb implements Bomb {
         geometry.setMaterial(material);
         RigidBodyControl rigidBodyControl = new RigidBodyControl(mass);
         geometry.addControl(rigidBodyControl);
-        geometry.addControl(control);
-//        rigidBodyControl.setLinearVelocity(JBombContext.BASE_GAME.getCam().getDirection().mult(25f));
         this.radius = radius;
     }
     
     public BaseBomb(String fileName, float radius, Explosion explosion, float timeForExplosion) {
-        this(fileName, radius, explosion, new BaseBombSound(), new BaseBombControl(), timeForExplosion, 1f);
+        this(fileName, radius, explosion, new BaseBombSound(), timeForExplosion, 1f);
     }
     
     public BaseBomb(String fileName, float radius, float timeForExplosion) {
-        this(fileName, radius, new BaseExplosion(), new BaseBombSound(), new BaseBombControl(), timeForExplosion, 1f);
+        this(fileName, radius, new BaseExplosion(), new BaseBombSound(), timeForExplosion, 1f);
     }
     
     public BaseBomb() {
@@ -91,5 +85,11 @@ public class BaseBomb implements Bomb {
     @Override
     public void setTimeForExplosion(float seconds) {
         timeForExplosion = seconds;
+    }
+
+    @Override
+    public void setControl(AbstractBombControl control) {
+        geometry.addControl(control);
+        control.setBomb(this);
     }
 }

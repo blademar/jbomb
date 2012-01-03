@@ -8,6 +8,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Sphere;
+import jbomb.common.controls.AbstractBombControl;
 import jbomb.common.sounds.api.Sound;
 import jbomb.common.sounds.impl.InstanceSound;
 import jbomb.common.utils.MatDefs;
@@ -52,9 +53,11 @@ public class Player {
     public ColorRGBA getColor() {
         return color;
     }
-
-    public void throwBomb(Vector3f location, long idPhysicObject) {
+    
+    public void throwBomb(Vector3f location, long idPhysicObject, AbstractBombControl abc) {
         BaseBomb bomb = new GrandBomb(false);
+        if (abc != null)
+            bomb.setControl(abc);
         bomb.getSpatial().setUserData("id", idPhysicObject);
         JBombContext.MANAGER.addPhysicObject(idPhysicObject, bomb);
         RigidBodyControl bombControl = bomb.getSpatial().getControl(RigidBodyControl.class);
