@@ -12,10 +12,13 @@ public class ClientPlayer extends Player {
     
     
     private BaseBomb[] bomb = new BaseBomb[3];
-    public float seconds = 1.5f;
+    private float seconds = 1.5f;
+    private volatile boolean hasBombs = true; 
 
     public ClientPlayer(Vector3f location, ColorRGBA color) {
         super(location, color);
+        for(int i = 0; i < bomb.length; i++)
+            reloadBomb(i);
     }
     
     public void throwBomb(Vector3f location, long idPhysicObject) {
@@ -30,6 +33,8 @@ public class ClientPlayer extends Player {
                 JBombContext.PHYSICS_SPACE.add(bombControl);
                 bombControl.setLinearVelocity(control.getViewDirection().mult(25f));
                 bomb[i] = null;
+                if (bomb[0] == null && bomb[1] == null && bomb[2] == null)
+                    setHasBombs(false);
                 break;
             }
         }
@@ -42,9 +47,18 @@ public class ClientPlayer extends Player {
     public void reloadBomb(int position) {
         bomb[position] = new GrandBomb(true);
         bomb[position].setTimeForExplosion(seconds);
+        setHasBombs(true);
     }
 
     public BaseBomb[] getBombs() {
         return bomb;
+    }
+
+    public void setHasBombs(boolean hasBombs) {
+        this.hasBombs = hasBombs;
+    }
+
+    public boolean isHasBombs() {
+        return hasBombs;
     }
 }

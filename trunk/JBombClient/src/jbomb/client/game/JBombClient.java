@@ -115,7 +115,6 @@ public class JBombClient extends BaseGame {
     
     private void initMappings() {
         inputManager.addMapping("shoot", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
-        inputManager.addListener(shootsActionListener, "shoot");
         inputManager.addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
         inputManager.addMapping("Right", new KeyTrigger(KeyInput.KEY_D));
         inputManager.addMapping("Front", new KeyTrigger(KeyInput.KEY_W));
@@ -124,6 +123,7 @@ public class JBombClient extends BaseGame {
         inputManager.addMapping("one", new KeyTrigger(KeyInput.KEY_1), new KeyTrigger(KeyInput.KEY_NUMPAD1));
         inputManager.addMapping("two", new KeyTrigger(KeyInput.KEY_2), new KeyTrigger(KeyInput.KEY_NUMPAD2));
         inputManager.addMapping("three", new KeyTrigger(KeyInput.KEY_3), new KeyTrigger(KeyInput.KEY_NUMPAD3));
+        inputManager.addListener(shootsActionListener, "shoot");
         inputManager.addListener(characterActionListener, "Left");
         inputManager.addListener(characterActionListener, "Right");
         inputManager.addListener(characterActionListener, "Front");
