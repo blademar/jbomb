@@ -48,7 +48,6 @@ public class AbstractElevatorControl extends JBombAbstractControl {
                 currentLocation.y = maxY;
                 spatial.setLocalTranslation(currentLocation);
                 state = State.WAITING_UP;
-                timer = 0;
             } else {
                 spatial.move(0f, tpf * 3, 0f);
             }
@@ -57,7 +56,6 @@ public class AbstractElevatorControl extends JBombAbstractControl {
                 currentLocation.y = minY;
                 spatial.setLocalTranslation(currentLocation);
                 state = State.WAITING_DOWN;
-                timer = 0;
             } else {
                 spatial.move(0f, -tpf * 3, 0f);
             }

@@ -13,11 +13,25 @@ public class ServerElevatorControl extends AbstractElevatorControl {
     @Override
     protected void controlUpdate(float tpf) {
         super.controlUpdate(tpf);
-        if (state == State.WAITING_UP)
-            if (timer >= freezed)
+        if (state == State.WAITING_UP) {
+            if (timer >= freezed) {
+                timer = 0;
+                state = State.MOVING_DOWN;
                 ServerContext.SERVER.broadcast(new ElevatorMovesMessage((Long) spatial.getUserData("id")));
-        else if(state == State.WAITING_DOWN)
-            if (timer >= freezed)
+            } else {
+                timer += tpf;
+            }
+        } else if(state == State.WAITING_DOWN) {
+            if (timer >= freezed) {
+                timer = 0;
+                state = State.MOVING_UP;
                 ServerContext.SERVER.broadcast(new ElevatorMovesMessage((Long) spatial.getUserData("id")));
+            } else {
+                timer += tpf;
+            }
+        }
+        
+        System.out.println(spatial.getLocalTranslation());
+        System.out.println(state);
     }
 }

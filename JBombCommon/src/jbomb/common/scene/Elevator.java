@@ -19,7 +19,7 @@ public class Elevator {
        System.out.println("Creating elevator: " + id);
        JBombContext.MANAGER.addPhysicObject(id, geometry);
        geometry.setUserData("id", id);
-       geometry.setUserData("move", true);
+       geometry.setUserData("move", false);
        geometry.getControl(RigidBodyControl.class).setMass(1f);
        geometry.getControl(RigidBodyControl.class).setKinematic(true);
        control = JBombContext.BASE_GAME.createElevatorControl(upY, downY, freezedSeconds, up);
