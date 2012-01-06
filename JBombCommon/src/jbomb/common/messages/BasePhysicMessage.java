@@ -8,9 +8,12 @@ public class BasePhysicMessage extends AbstractMessage implements PhysicMessage 
     
     private long id;
 
-    public BasePhysicMessage() {}
+    public BasePhysicMessage() {
+        super(true);
+    }
     
     public BasePhysicMessage(long id) {
+        this();
         this.id = id;
     }
 

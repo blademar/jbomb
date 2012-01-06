@@ -10,9 +10,10 @@ public class ThrowBombTask implements Task<ThrowBombMessage> {
     @Override
     public void doThis(ThrowBombMessage message) {
         long idClient = message.getIdClient();
+        byte timeExplosion = message.getTimeExplosion();
         Player player = (Player) JBombContext.MANAGER.getPhysicObject(idClient);
         if (player != null) {
-            player.throwBomb(message.getLocation(), message.getId(), null);
+            player.throwBomb(message.getLocation(), message.getId(), null, timeExplosion);
         } else {
             ClientContext.PLAYER.throwBomb(message.getLocation(), message.getId());
         }
