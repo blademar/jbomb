@@ -33,5 +33,7 @@ public class ClientElevatorControl extends AbstractElevatorControl {
                 }
             }
         }
+        
+        System.out.println((Boolean) spatial.getUserData("move"));
     }
 }
