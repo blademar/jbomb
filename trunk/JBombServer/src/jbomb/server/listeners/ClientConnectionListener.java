@@ -22,33 +22,40 @@ public class ClientConnectionListener implements ConnectionListener {
     private ColorRGBA[] colors = {ColorRGBA.Blue, ColorRGBA.Red, ColorRGBA.Yellow, ColorRGBA.Green};
     private byte currentColor = 0;
     private byte currentPosition = 0;
+    private byte connectedPlayers = 0;
 
     @Override
     public void connectionAdded(Server server, HostedConnection conn) {
         if (!JBombContext.STARTED) {
             System.out.println("Player #" + conn.getId() + " online.");
+            connectedPlayers++;
             Vector3f loc = null;
             ColorRGBA color = null;
             Iterator<Long> it = JBombContext.MANAGER.keySet().iterator();
             long key = 0;
+            Player p = null;
+            Object physicObject = null;
             while (it.hasNext()) {
                 key = it.next();
-                Player p = (Player) JBombContext.MANAGER.getPhysicObject(key);
-                loc = p.getControl().getPhysicsLocation();
-                color = p.getColor();
-                ServerContext.SERVER.broadcast(Filters.in(conn), 
-                    new NewPlayerMessage(loc, color, key));
+                 physicObject = JBombContext.MANAGER.getPhysicObject(key);
+                if (physicObject instanceof Player) {
+                    p = (Player) physicObject;
+                    loc = p.getControl().getPhysicsLocation();
+                    color = p.getColor();
+                    ServerContext.SERVER.broadcast(Filters.in(conn),
+                            new NewPlayerMessage(loc, color, key));
+                }
             }
             loc = nextPosition();
             color = nextColor();
             Player player = new Player(loc, color);
             JBombContext.MANAGER.addPhysicObject(conn.getId(), player);
             JBombContext.ROOT_NODE.attachChild(player.getGeometry());
-            ServerContext.SERVER.broadcast(Filters.in(conn), 
+            ServerContext.SERVER.broadcast(Filters.in(conn),
                     new CreatePlayerMessage(loc, color));
-            ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), 
+            ServerContext.SERVER.broadcast(Filters.notEqualTo(conn),
                     new NewPlayerMessage(loc, color, conn.getId()));
-            if (JBombContext.MANAGER.getPhycicObjectSize() == JBombContext.PLAYERS_COUNT) {
+            if (connectedPlayers == JBombContext.PLAYERS_COUNT) {
                 JBombContext.STARTED = true;
                 ServerContext.SERVER.broadcast(new StartGameMessage(true));
                 System.out.println("Starting game...");

@@ -17,7 +17,7 @@ import jbomb.common.game.JBombContext;
 import jbomb.common.messages.BasePhysicMessage;
 import jbomb.common.messages.CharacterMovesMessage;
 
-public abstract class AbstractManager<T> implements Manager<T> {
+public abstract class BaseManager<T> implements Manager<T> {
 
     private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
     private float time;
@@ -35,12 +35,15 @@ public abstract class AbstractManager<T> implements Manager<T> {
     public void addPhysicObject(long l, Object o) {
         physicsObjects.put(l, o);
         getRepository().occupyIn(l);
+        showPhysicsObject();
     }
 
     @Override
     public Object removePhysicObject(long l) {
         getRepository().releaseIn(l);
-        return physicsObjects.remove(l);
+        Object o = physicsObjects.remove(l);
+        showPhysicsObject();
+        return o;
     }
 
     @Override
@@ -138,5 +141,11 @@ public abstract class AbstractManager<T> implements Manager<T> {
     @Override
     public IDRepository getRepository() {
         return repository;
+    }
+
+    private void showPhysicsObject() {
+        Set<Long> keySet = physicsObjects.keySet();
+        for (Long id : keySet)
+            System.out.println("id: " + id + ": " + physicsObjects.get(id));
     }
 }

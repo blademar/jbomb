@@ -2,13 +2,13 @@ package jbomb.server.appstates;
 
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.network.HostedConnection;
-import jbomb.common.appstates.AbstractManager;
+import jbomb.common.appstates.BaseManager;
 import jbomb.common.messages.BasePhysicMessage;
 import jbomb.common.messages.CoordinateBombMessage;
 import jbomb.common.weapons.impl.GrandBomb;
 import jbomb.server.game.ServerContext;
 
-public class ServerManager extends AbstractManager<HostedConnection> {
+public class ServerManager extends BaseManager<HostedConnection> {
 
     @Override
     public void doOnUpdate(float tpf, BasePhysicMessage message) {
