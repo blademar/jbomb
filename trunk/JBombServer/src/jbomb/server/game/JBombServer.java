@@ -32,7 +32,6 @@ public class JBombServer extends BaseGame {
     @Override
     public void simpleInitApp() {
         super.simpleInitApp();
-        JBombContext.MANAGER.getRepository().reserveID(JBombContext.PLAYERS_COUNT);
         try {
             server = Network.createServer(6789);
             addMessageListeners();
