@@ -31,7 +31,7 @@ public class ServerElevatorControl extends AbstractElevatorControl {
             }
         }
         
-        System.out.println(spatial.getLocalTranslation());
-        System.out.println(state);
+//        System.out.println(spatial.getLocalTranslation());
+//        System.out.println(state);
     }
 }
