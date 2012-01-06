@@ -11,7 +11,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
-import jbomb.common.appstates.AbstractManager;
+import jbomb.common.appstates.BaseManager;
 import jbomb.common.appstates.Manager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.common.controls.AbstractElevatorControl;
@@ -213,9 +213,10 @@ public abstract class BaseGame extends SimpleApplication {
         Serializer.registerClass(ElevatorMovesMessage.class);
         Serializer.registerClass(CoordinateBombMessage.class);
         Serializer.registerClass(ExploitBombMessage.class);
+        Serializer.registerClass(ThrowBombMessage.class);
     }
 
-    protected abstract AbstractManager<?> createManager();
+    protected abstract BaseManager<?> createManager();
 
     private void initContext() {
         JBombContext.ASSET_MANAGER = assetManager;

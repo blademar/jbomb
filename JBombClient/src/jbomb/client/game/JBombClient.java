@@ -16,7 +16,7 @@ import jbomb.client.appstates.RunningClientAppState;
 import jbomb.client.controls.ClientElevatorControl;
 import jbomb.client.listeners.BombSecondsListener;
 import jbomb.client.listeners.CharacterActionListener;
-import jbomb.common.appstates.AbstractManager;
+import jbomb.common.appstates.BaseManager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.client.listeners.ServerConnectionListener;
 import jbomb.client.listeners.ShootsActionListener;
@@ -206,7 +206,7 @@ public class JBombClient extends BaseGame {
     }
 
     @Override
-    protected AbstractManager<?> createManager() {
+    protected BaseManager<?> createManager() {
         return new ClientManager();
     }
 

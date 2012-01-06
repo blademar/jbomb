@@ -6,7 +6,7 @@ import java.util.Map;
 public class IDRepository {
     
     private Map<Long, Boolean> idMap = new HashMap<Long, Boolean>();
-    private long count = 0;
+    private long count = 4;
     
     public void occupyIn(long l) {
         idMap.put(l, false);

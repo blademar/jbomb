@@ -4,7 +4,7 @@ import com.jme3.network.HostedConnection;
 import com.jme3.network.Network;
 import com.jme3.network.Server;
 import java.io.IOException;
-import jbomb.common.appstates.AbstractManager;
+import jbomb.common.appstates.BaseManager;
 import jbomb.common.appstates.Manager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.common.controls.AbstractElevatorControl;
@@ -64,7 +64,7 @@ public class JBombServer extends BaseGame {
     }
 
     @Override
-    protected AbstractManager<?> createManager() {
+    protected BaseManager<?> createManager() {
         return new ServerManager();
     }
 

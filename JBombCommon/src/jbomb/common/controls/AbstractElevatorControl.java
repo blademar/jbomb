@@ -61,16 +61,6 @@ public class AbstractElevatorControl extends JBombAbstractControl {
             } else {
                 spatial.move(0f, -tpf * 3, 0f);
             }
-        } else if (state == State.WAITING_UP) {
-            timer += tpf;
-            if (timer >= freezed) {
-                state = State.MOVING_DOWN; 
-            }
-        } else if(state == State.WAITING_DOWN) {
-            timer += tpf;
-            if (timer >= freezed) {
-                state = State.MOVING_UP;
-            }
         }
     }
 
