@@ -34,15 +34,14 @@ public abstract class BaseManager<T> implements Manager<T> {
     @Override
     public void addPhysicObject(long l, Object o) {
         physicsObjects.put(l, o);
-        getRepository().occupyIn(l);
-        showPhysicsObject();
+//        showPhysicsObject();
     }
 
     @Override
     public Object removePhysicObject(long l) {
         getRepository().releaseIn(l);
         Object o = physicsObjects.remove(l);
-        showPhysicsObject();
+//        showPhysicsObject();
         return o;
     }
 
@@ -144,8 +143,8 @@ public abstract class BaseManager<T> implements Manager<T> {
     }
 
     private void showPhysicsObject() {
-        Set<Long> keySet = physicsObjects.keySet();
-        for (Long id : keySet)
+        for (Long id : physicsObjects.keySet())
             System.out.println("id: " + id + ": " + physicsObjects.get(id));
+        System.out.println("Count: " + repository.getCount());
     }
 }

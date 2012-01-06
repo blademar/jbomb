@@ -14,9 +14,9 @@ public class ThrowBombListener implements MessageListener<HostedConnection> {
 
     @Override
     public void messageReceived(HostedConnection source, Message m) {
-        System.out.println("ThrowBombMessage received");
+//        System.out.println("ThrowBombMessage received");
         long idPhysicObject = JBombContext.MANAGER.getRepository().nextFree();
-        System.out.println("Id of new bomb: " + idPhysicObject);
+//        System.out.println("Id of new bomb: " + idPhysicObject);
         Player player = (Player) JBombContext.MANAGER.getPhysicObject(source.getId());
         Vector3f bombLocation = player.getControl().getPhysicsLocation().add(player.getControl().getViewDirection().normalize().mult(1.2f));
         ServerContext.SERVER.broadcast(new ThrowBombMessage(idPhysicObject, source.getId(), bombLocation));

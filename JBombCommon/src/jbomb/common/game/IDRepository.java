@@ -18,19 +18,17 @@ public class IDRepository {
                 idMap.put(l, false);
                 return l;
             }
-        occupyIn(count);
+        occupyIn(getCount());
         count++;
-        return count - 1;
+//        System.out.println("Aumentando count:" + count);
+        return getCount() - 1;
     }
     
     public void releaseIn(long l) {
         idMap.put(l, true);
     }
-    
-    public void reserveID(byte num) {
-        for (int i = 0; i < num; i++) {
-            occupyIn(i);
-            count++;
-        }
+
+    public long getCount() {
+        return count;
     }
 }
