@@ -13,6 +13,7 @@ import com.jme3.ui.Picture;
 import java.io.IOException;
 import jbomb.client.appstates.ClientManager;
 import jbomb.client.appstates.RunningClientAppState;
+import jbomb.client.controls.ClientElevatorControl;
 import jbomb.client.listeners.BombSecondsListener;
 import jbomb.client.listeners.CharacterActionListener;
 import jbomb.common.appstates.AbstractManager;
@@ -26,6 +27,7 @@ import jbomb.client.listeners.messages.RemovePlayerListener;
 import jbomb.client.listeners.messages.StartGameListener;
 import jbomb.client.listeners.messages.ThrowBombListener;
 import jbomb.common.appstates.Manager;
+import jbomb.common.controls.AbstractElevatorControl;
 import jbomb.common.game.BaseGame;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.CoordinateBombMessage;
@@ -206,5 +208,10 @@ public class JBombClient extends BaseGame {
     @Override
     protected AbstractManager<?> createManager() {
         return new ClientManager();
+    }
+
+    @Override
+    public AbstractElevatorControl createElevatorControl(float maxY, float minY, float seconds, boolean up) {
+        return new ClientElevatorControl(maxY, minY, up);
     }
 }

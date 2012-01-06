@@ -7,12 +7,14 @@ import java.io.IOException;
 import jbomb.common.appstates.AbstractManager;
 import jbomb.common.appstates.Manager;
 import jbomb.common.appstates.RunningAppState;
+import jbomb.common.controls.AbstractElevatorControl;
 import jbomb.common.game.BaseGame;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.ThrowBombMessage;
 import jbomb.server.appstates.RunningServerAppState;
 import jbomb.server.appstates.ServerManager;
+import jbomb.server.controls.ServerElevatorControl;
 import jbomb.server.listeners.ClientConnectionListener;
 import jbomb.server.listeners.messages.ThrowBombListener;
 
@@ -73,5 +75,10 @@ public class JBombServer extends BaseGame {
             return 3;
         else
             return 4;
+    }
+
+    @Override
+    public AbstractElevatorControl createElevatorControl(float maxY, float minY, float seconds, boolean up) {
+        return new ServerElevatorControl(maxY, minY, seconds, up);
     }
 }
