@@ -54,8 +54,10 @@ public class Player {
         return color;
     }
     
-    public void throwBomb(Vector3f location, long idPhysicObject, AbstractBombControl abc) {
+    public void throwBomb(Vector3f location, long idPhysicObject, AbstractBombControl abc,
+            byte timeExplosion) {
         BaseBomb bomb = new GrandBomb(false);
+        bomb.setTimeForExplosion(timeExplosion);
         if (abc != null)
             bomb.setControl(abc);
         bomb.getSpatial().setUserData("id", idPhysicObject);

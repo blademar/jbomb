@@ -8,13 +8,19 @@ public class ThrowBombMessage extends BasePhysicMessage {
     
     private long idClient = 0;
     private Vector3f location = new Vector3f();
+    private byte timeExplosion = 0;
     
     public ThrowBombMessage() {}
     
-    public ThrowBombMessage(long id, long idClient, Vector3f location) {
+    public ThrowBombMessage(byte timeExplosion) {
+        this.timeExplosion = timeExplosion;
+    }
+    
+    public ThrowBombMessage(long id, long idClient, Vector3f location, byte timeExplosion) {
         super(id);
         this.idClient = idClient;
         this.location = location;
+        this.timeExplosion = timeExplosion;
     }
 
     @Override
@@ -24,15 +30,11 @@ public class ThrowBombMessage extends BasePhysicMessage {
         return idClient;
     }
 
-    public void setIdClient(long idClient) {
-        this.idClient = idClient;
-    }
-
     public Vector3f getLocation() {
         return location;
     }
 
-    public void setLocation(Vector3f location) {
-        this.location = location;
+    public byte getTimeExplosion() {
+        return timeExplosion;
     }
 }

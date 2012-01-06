@@ -12,7 +12,7 @@ public class ClientPlayer extends Player {
     
     
     private BaseBomb[] bomb = new BaseBomb[3];
-    private float seconds = 1.5f;
+    private byte seconds = 1;
     private volatile boolean hasBombs = true; 
 
     public ClientPlayer(Vector3f location, ColorRGBA color) {
@@ -40,13 +40,13 @@ public class ClientPlayer extends Player {
         }
     }
 
-    public void setSeconds(float seconds) {
+    public void setSeconds(byte seconds) {
         this.seconds = seconds;
     }
 
     public void reloadBomb(int position) {
         bomb[position] = new GrandBomb(true);
-        bomb[position].setTimeForExplosion(seconds);
+        bomb[position].setTimeForExplosion(getSeconds());
         setHasBombs(true);
     }
 
@@ -60,5 +60,9 @@ public class ClientPlayer extends Player {
 
     public boolean isHasBombs() {
         return hasBombs;
+    }
+
+    public byte getSeconds() {
+        return seconds;
     }
 }
