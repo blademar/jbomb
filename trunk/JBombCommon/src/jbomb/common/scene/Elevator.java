@@ -7,16 +7,18 @@ import com.jme3.scene.Geometry;
 import jbomb.common.controls.AbstractElevatorControl;
 import jbomb.common.game.JBombContext;
 import jbomb.common.utils.GeometryUtils;
+import org.apache.log4j.Logger;
 
 public class Elevator {
     
+    private static final Logger LOGGER = Logger.getLogger(Elevator.class);
     private Geometry geometry;
     private AbstractElevatorControl control;
     
     public Elevator(String name, String texture, Vector3f localTraslation, float upY, float downY, float freezedSeconds, boolean up, boolean transparency) {
        geometry = GeometryUtils.makeCube(1f, .1f, 1f, name, texture, localTraslation, new Vector2f(1f, 1f), transparency);
        long id = JBombContext.MANAGER.getRepository().nextFree();
-       System.out.println("Creating elevator: " + id);
+       LOGGER.debug("Creating elevator: " + id);
        JBombContext.MANAGER.addPhysicObject(id, geometry);
        geometry.setUserData("id", id);
        geometry.setUserData("move", false);

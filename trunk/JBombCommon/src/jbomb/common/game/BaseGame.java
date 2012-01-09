@@ -11,6 +11,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
+import java.net.URL;
 import jbomb.common.appstates.BaseManager;
 import jbomb.common.appstates.Manager;
 import jbomb.common.appstates.RunningAppState;
@@ -26,12 +27,19 @@ import jbomb.common.messages.StartGameMessage;
 import jbomb.common.messages.ThrowBombMessage;
 import jbomb.common.scene.Elevator;
 import jbomb.common.utils.GeometryUtils;
+import org.apache.log4j.xml.DOMConfigurator;
 
 public abstract class BaseGame extends SimpleApplication {
     
     private BulletAppState bulletAppState = new BulletAppState();
     private RunningAppState runningAppState = createRunningAppState();
     private Manager<?> manager = createManager();
+    
+    public BaseGame() {
+        URL urlConfig = BaseGame.class.getResource("/jbomb/common/config/log4j.xml");
+        DOMConfigurator.configure(urlConfig);
+        loadLog4jConfig();
+    }
 
     @Override
     public void simpleInitApp() {
@@ -231,4 +239,5 @@ public abstract class BaseGame extends SimpleApplication {
     }
     
     public abstract AbstractElevatorControl createElevatorControl(float maxY, float minY, float seconds, boolean up);
+    public abstract void loadLog4jConfig();
 }

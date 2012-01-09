@@ -11,6 +11,7 @@ import com.jme3.renderer.Camera;
 import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 import java.io.IOException;
+import java.net.URL;
 import jbomb.client.appstates.ClientManager;
 import jbomb.client.appstates.RunningClientAppState;
 import jbomb.client.controls.ClientElevatorControl;
@@ -39,9 +40,12 @@ import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.RemovePlayerMessage;
 import jbomb.common.messages.StartGameMessage;
 import jbomb.common.messages.ThrowBombMessage;
+import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 
 public class JBombClient extends BaseGame {
     
+    private static final Logger LOGGER = Logger.getLogger(JBombClient.class);
     private String ip;
     private Client client;
     private Picture bombsPictures = new Picture("bombsPictures");
@@ -82,7 +86,7 @@ public class JBombClient extends BaseGame {
             client.addClientStateListener(connectionListener);
             client.start();
         } catch (IOException ex) {
-            System.out.println("Error al conectar con el servidor: " + ex);
+            LOGGER.error("Error al conectar con el servidor", ex);
         }
         ClientContext.APP = this;
         ClientContext.CLIENT = client;
@@ -217,5 +221,11 @@ public class JBombClient extends BaseGame {
     @Override
     public AbstractElevatorControl createElevatorControl(float maxY, float minY, float seconds, boolean up) {
         return new ClientElevatorControl(maxY, minY, up);
+    }
+
+    @Override
+    public void loadLog4jConfig() {
+        URL urlConfig = BaseGame.class.getResource("/jbomb/client/config/log4j.xml");
+        DOMConfigurator.configure(urlConfig);
     }
 }

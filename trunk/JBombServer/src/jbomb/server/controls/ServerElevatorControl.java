@@ -3,9 +3,10 @@ package jbomb.server.controls;
 import jbomb.common.controls.AbstractElevatorControl;
 import jbomb.common.messages.ElevatorMovesMessage;
 import jbomb.server.game.ServerContext;
+import org.apache.log4j.Logger;
 
 public class ServerElevatorControl extends AbstractElevatorControl {
-
+    
     public ServerElevatorControl(float maxY, float minY, float freezedSeconds, boolean up) {
         super(maxY, minY, freezedSeconds, up);
     }
@@ -30,8 +31,5 @@ public class ServerElevatorControl extends AbstractElevatorControl {
                 timer += tpf;
             }
         }
-        
-//        System.out.println(spatial.getLocalTranslation());
-//        System.out.println(state);
     }
 }
