@@ -20,7 +20,6 @@ public class IDRepository {
             }
         occupyIn(getCount());
         count++;
-//        System.out.println("Aumentando count:" + count);
         return getCount() - 1;
     }
     

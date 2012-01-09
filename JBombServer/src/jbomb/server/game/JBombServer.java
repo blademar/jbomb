@@ -4,6 +4,7 @@ import com.jme3.network.HostedConnection;
 import com.jme3.network.Network;
 import com.jme3.network.Server;
 import java.io.IOException;
+import java.net.URL;
 import jbomb.common.appstates.BaseManager;
 import jbomb.common.appstates.Manager;
 import jbomb.common.appstates.RunningAppState;
@@ -17,16 +18,19 @@ import jbomb.server.appstates.ServerManager;
 import jbomb.server.controls.ServerElevatorControl;
 import jbomb.server.listeners.ClientConnectionListener;
 import jbomb.server.listeners.messages.ThrowBombListener;
+import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 
 public class JBombServer extends BaseGame {
     
+    private static final Logger LOGGER = Logger.getLogger(JBombServer.class);
     private Server server;
     private ClientConnectionListener connectionListener = new ClientConnectionListener();
     private ThrowBombListener throwBombListener = new ThrowBombListener();
     
     public JBombServer(String playersNumber) {
         JBombContext.PLAYERS_COUNT = setPlayersCount(playersNumber);
-        System.out.println("PlayersCount: " + JBombContext.PLAYERS_COUNT);
+        LOGGER.debug("PlayersCount: " + JBombContext.PLAYERS_COUNT);
     }
 
     @Override
@@ -38,7 +42,7 @@ public class JBombServer extends BaseGame {
             server.addConnectionListener(connectionListener);
             server.start();
         } catch (IOException ex) {
-            System.out.println("Error al iniciar el servidor: " + ex);
+            LOGGER.error("Error al iniciar el servidor", ex);
         }
         ServerContext.SERVER = server;
     }
@@ -79,5 +83,11 @@ public class JBombServer extends BaseGame {
     @Override
     public AbstractElevatorControl createElevatorControl(float maxY, float minY, float seconds, boolean up) {
         return new ServerElevatorControl(maxY, minY, seconds, up);
+    }
+
+    @Override
+    public void loadLog4jConfig() {
+        URL urlConfig = BaseGame.class.getResource("/jbomb/server/config/log4j.xml");
+        DOMConfigurator.configure(urlConfig);
     }
 }

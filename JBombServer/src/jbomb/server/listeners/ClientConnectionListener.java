@@ -14,9 +14,11 @@ import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.RemovePlayerMessage;
 import jbomb.common.messages.StartGameMessage;
 import jbomb.server.game.ServerContext;
+import org.apache.log4j.Logger;
 
 public class ClientConnectionListener implements ConnectionListener {
 
+    private static final Logger LOGGER = Logger.getLogger(ClientConnectionListener.class);
     private Vector3f[] positions = {new Vector3f(0f, 0f, -5f), new Vector3f(-5f, 0f, 0f),
         new Vector3f(0f, 0f, 5f), new Vector3f(5f, 0f, 0f)};
     private ColorRGBA[] colors = {ColorRGBA.Blue, ColorRGBA.Red, ColorRGBA.Yellow, ColorRGBA.Green};
@@ -27,7 +29,7 @@ public class ClientConnectionListener implements ConnectionListener {
     @Override
     public void connectionAdded(Server server, HostedConnection conn) {
         if (!JBombContext.STARTED) {
-            System.out.println("Player #" + conn.getId() + " online.");
+            LOGGER.debug("Player #" + conn.getId() + " online.");
             connectedPlayers++;
             Vector3f loc = null;
             ColorRGBA color = null;
@@ -58,7 +60,7 @@ public class ClientConnectionListener implements ConnectionListener {
             if (connectedPlayers == JBombContext.PLAYERS_COUNT) {
                 JBombContext.STARTED = true;
                 ServerContext.SERVER.broadcast(new StartGameMessage(true));
-                System.out.println("Starting game...");
+                LOGGER.debug("Starting game...");
             }
         }
     }
@@ -66,7 +68,7 @@ public class ClientConnectionListener implements ConnectionListener {
     @Override
     public void connectionRemoved(Server server, HostedConnection conn) {
         int id = conn.getId();
-        System.out.println("Player #" + id + " offline");
+        LOGGER.debug("Player #" + id + " offline");
         Player player = (Player) JBombContext.MANAGER.removePhysicObject(id);
         JBombContext.ROOT_NODE.detachChild(player.getGeometry());
         ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), new RemovePlayerMessage(id));

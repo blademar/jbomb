@@ -16,9 +16,11 @@ import jbomb.common.game.IDRepository;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.BasePhysicMessage;
 import jbomb.common.messages.CharacterMovesMessage;
+import org.apache.log4j.Logger;
 
 public abstract class BaseManager<T> implements Manager<T> {
 
+    private static final Logger LOGGER = Logger.getLogger(BaseManager.class);
     private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
     private float time;
     protected  Map<Long, Object> physicsObjects = new HashMap<Long, Object>();
@@ -144,7 +146,7 @@ public abstract class BaseManager<T> implements Manager<T> {
 
     private void showPhysicsObject() {
         for (Long id : physicsObjects.keySet())
-            System.out.println("id: " + id + ": " + physicsObjects.get(id));
-        System.out.println("Count: " + repository.getCount());
+            LOGGER.debug("id: " + id + ": " + physicsObjects.get(id));
+        LOGGER.debug("Count: " + repository.getCount());
     }
 }
