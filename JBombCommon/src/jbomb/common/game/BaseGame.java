@@ -9,18 +9,18 @@ import com.jme3.math.Vector3f;
 import com.jme3.network.serializing.Serializer;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.control.Control;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
 import java.net.URL;
 import jbomb.common.appstates.BaseManager;
 import jbomb.common.appstates.Manager;
 import jbomb.common.appstates.RunningAppState;
-import jbomb.common.controls.AbstractElevatorControl;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.CoordinateBombMessage;
 import jbomb.common.messages.CreatePlayerMessage;
-import jbomb.common.messages.ExploitBombMessage;
 import jbomb.common.messages.ElevatorMovesMessage;
+import jbomb.common.messages.ExploitBombMessage;
 import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.RemovePlayerMessage;
 import jbomb.common.messages.StartGameMessage;
@@ -76,20 +76,20 @@ public abstract class BaseGame extends SimpleApplication {
     }
     
     private void initScene() {
-        new Elevator(new Vector3f(-9f, .1f, 18f), 9.9f, .1f, 3f, true);
-        new Elevator(new Vector3f(9f, .1f, -18f), 9.9f, .1f, 3f, true);
-        new Elevator(new Vector3f(18f, 9.9f, -9f), 9.9f, .1f, 3f, false);
-        new Elevator(new Vector3f(-18f, 9.9f, 9f), 9.9f, .1f, 3f, false);
+        new Elevator(new Vector3f(-9f, .1f, 18f), 9.9f, .1f, 3f, true, getElevatorServerControlled());
+        new Elevator(new Vector3f(9f, .1f, -18f), 9.9f, .1f, 3f, true, getElevatorServerControlled());
+        new Elevator(new Vector3f(18f, 9.9f, -9f), 9.9f, .1f, 3f, false, getElevatorServerControlled());
+        new Elevator(new Vector3f(-18f, 9.9f, 9f), 9.9f, .1f, 3f, false, getElevatorServerControlled());
 
-        new Elevator(new Vector3f(-9f, 10.1f, 18f), 19.9f, 10.1f, 3f, true);
-        new Elevator(new Vector3f(9f, 10.1f, -18f), 19.9f, 10.1f, 3f, true);
-        new Elevator(new Vector3f(16f, 19.9f, 9f), 19.9f, 10.1f, 3f, false);
-        new Elevator(new Vector3f(-16f, 19.9f, -9f), 19.9f, 10.1f, 3f, false);
+        new Elevator(new Vector3f(-9f, 10.1f, 18f), 19.9f, 10.1f, 3f, true, getElevatorServerControlled());
+        new Elevator(new Vector3f(9f, 10.1f, -18f), 19.9f, 10.1f, 3f, true, getElevatorServerControlled());
+        new Elevator(new Vector3f(16f, 19.9f, 9f), 19.9f, 10.1f, 3f, false, getElevatorServerControlled());
+        new Elevator(new Vector3f(-16f, 19.9f, -9f), 19.9f, 10.1f, 3f, false, getElevatorServerControlled());
 
-        new Elevator(new Vector3f(16f, 29.9f, 3f), 29.9f, 20.1f, 3f, false);
-        new Elevator(new Vector3f(-16f, 29.9f, -3f), 29.9f, 20.1f, 3f, false);
-        new Elevator(new Vector3f(14f, 20.1f, -16f), 29.9f, 20.1f, 3f, true);
-        new Elevator(new Vector3f(-14f, 20.1f, 16f), 29.9f, 20.1f, 3f, true); 
+        new Elevator(new Vector3f(16f, 29.9f, 3f), 29.9f, 20.1f, 3f, false, getElevatorServerControlled());
+        new Elevator(new Vector3f(-16f, 29.9f, -3f), 29.9f, 20.1f, 3f, false, getElevatorServerControlled());
+        new Elevator(new Vector3f(14f, 20.1f, -16f), 29.9f, 20.1f, 3f, true, getElevatorServerControlled());
+        new Elevator(new Vector3f(-14f, 20.1f, 16f), 29.9f, 20.1f, 3f, true, getElevatorServerControlled());
     }
 
     private void initFloor() {
@@ -218,10 +218,10 @@ public abstract class BaseGame extends SimpleApplication {
         Serializer.registerClass(CreatePlayerMessage.class);
         Serializer.registerClass(NewPlayerMessage.class);
         Serializer.registerClass(RemovePlayerMessage.class);
-        Serializer.registerClass(ElevatorMovesMessage.class);
         Serializer.registerClass(CoordinateBombMessage.class);
         Serializer.registerClass(ExploitBombMessage.class);
         Serializer.registerClass(ThrowBombMessage.class);
+        Serializer.registerClass(ElevatorMovesMessage.class);
     }
 
     protected abstract BaseManager<?> createManager();
@@ -238,6 +238,13 @@ public abstract class BaseGame extends SimpleApplication {
         return manager;
     }
     
-    public abstract AbstractElevatorControl createElevatorControl(float maxY, float minY, float seconds, boolean up);
     public abstract void loadLog4jConfig();
+
+    protected boolean getElevatorServerControlled() {
+        return false;
+    }
+
+    public Control createElevatorControl(float upY, float downY, float freezedSeconds, boolean up) {
+        return null;
+    }
 }

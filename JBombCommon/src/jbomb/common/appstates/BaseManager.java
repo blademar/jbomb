@@ -5,7 +5,6 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.network.Message;
 import com.jme3.renderer.RenderManager;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -16,6 +15,7 @@ import jbomb.common.game.IDRepository;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.BasePhysicMessage;
 import jbomb.common.messages.CharacterMovesMessage;
+import jbomb.common.messages.ElevatorMovesMessage;
 import org.apache.log4j.Logger;
 
 public abstract class BaseManager<T> implements Manager<T> {
@@ -27,11 +27,6 @@ public abstract class BaseManager<T> implements Manager<T> {
     protected BlockingQueue<BasePhysicMessage> messageQueue = new ArrayBlockingQueue<BasePhysicMessage>(100000);
     private AbstractAppState appState = new AbstractAppState();
     private IDRepository repository = new IDRepository();
-
-    @Override
-    public void add(BasePhysicMessage message) {
-        messageQueue.add(message);
-    }
 
     @Override
     public void addPhysicObject(long l, Object o) {
@@ -92,7 +87,7 @@ public abstract class BaseManager<T> implements Manager<T> {
         } else {
             while (it.hasNext()) {
                 message = it.next();
-                if (message instanceof CharacterMovesMessage) {
+                if (message instanceof CharacterMovesMessage || message instanceof ElevatorMovesMessage) {
                     message.interpolate(time / maxTime);
                 }
             }
@@ -120,16 +115,6 @@ public abstract class BaseManager<T> implements Manager<T> {
     }
 
     @Override
-    public Collection<Object> values() {
-        return physicsObjects.values();
-    }
-
-    @Override
-    public Set<Long> keySet() {
-        return physicsObjects.keySet();
-    }
-
-    @Override
     public Object getPhysicObject(long l) {
         return physicsObjects.get(l);
     }
@@ -148,5 +133,10 @@ public abstract class BaseManager<T> implements Manager<T> {
         for (Long id : physicsObjects.keySet())
             LOGGER.debug("id: " + id + ": " + physicsObjects.get(id));
         LOGGER.debug("Count: " + repository.getCount());
+    }
+
+    @Override
+    public Set<Long> keySet() {
+        return physicsObjects.keySet();
     }
 }

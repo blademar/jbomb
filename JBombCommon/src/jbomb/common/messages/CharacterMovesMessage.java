@@ -6,10 +6,12 @@ import com.jme3.math.Vector3f;
 import com.jme3.network.serializing.Serializable;
 import jbomb.common.game.JBombContext;
 import jbomb.common.game.Player;
+import org.apache.log4j.Logger;
 
 @Serializable
 public class CharacterMovesMessage extends BasePhysicMessage {
-    
+
+    private static final Logger LOGGER = Logger.getLogger(CharacterMovesMessage.class);
     private Vector3f walkDirection = new Vector3f();
     private Vector3f viewDirection = new Vector3f();
     private Vector3f location = new Vector3f();
@@ -45,6 +47,7 @@ public class CharacterMovesMessage extends BasePhysicMessage {
                 isFirstInterpolation = true;
             }
             p.getControl().setPhysicsLocation(FastMath.interpolateLinear(percent, oldPosition, location));
+//            LOGGER.debug("Interpolated to: " + FastMath.interpolateLinear(percent, oldPosition, location));
             p.getControl().setWalkDirection(walkDirection);
         }
     }

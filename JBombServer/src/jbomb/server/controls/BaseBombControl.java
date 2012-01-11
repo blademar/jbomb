@@ -10,7 +10,7 @@ public class BaseBombControl extends AbstractBombControl {
 
     @Override
     protected void doOnExploit(float tpf) {
-        long id = ((BaseBomb) bomb).getSpatial().getUserData("id");
+        long id = (Long) ((BaseBomb) bomb).getSpatial().getUserData("id");
         ServerContext.SERVER.broadcast(new ExploitBombMessage(id));
     }
 
