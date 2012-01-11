@@ -3,19 +3,19 @@ package jbomb.server.game;
 import com.jme3.network.HostedConnection;
 import com.jme3.network.Network;
 import com.jme3.network.Server;
+import com.jme3.scene.control.Control;
 import java.io.IOException;
 import java.net.URL;
 import jbomb.common.appstates.BaseManager;
 import jbomb.common.appstates.Manager;
 import jbomb.common.appstates.RunningAppState;
-import jbomb.common.controls.AbstractElevatorControl;
+import jbomb.server.controls.ElevatorControl;
 import jbomb.common.game.BaseGame;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.ThrowBombMessage;
 import jbomb.server.appstates.RunningServerAppState;
 import jbomb.server.appstates.ServerManager;
-import jbomb.server.controls.ServerElevatorControl;
 import jbomb.server.listeners.ClientConnectionListener;
 import jbomb.server.listeners.messages.ThrowBombListener;
 import org.apache.log4j.Logger;
@@ -81,13 +81,18 @@ public class JBombServer extends BaseGame {
     }
 
     @Override
-    public AbstractElevatorControl createElevatorControl(float maxY, float minY, float seconds, boolean up) {
-        return new ServerElevatorControl(maxY, minY, seconds, up);
-    }
-
-    @Override
     public void loadLog4jConfig() {
         URL urlConfig = BaseGame.class.getResource("/jbomb/server/config/log4j.xml");
         DOMConfigurator.configure(urlConfig);
+    }
+
+    @Override
+    protected boolean getElevatorServerControlled() {
+        return true;
+    }
+
+    @Override
+    public Control createElevatorControl(float upY, float downY, float freezedSeconds, boolean up) {
+        return new ElevatorControl(upY, downY, freezedSeconds, up);
     }
 }

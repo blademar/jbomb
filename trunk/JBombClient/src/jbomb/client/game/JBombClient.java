@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.net.URL;
 import jbomb.client.appstates.ClientManager;
 import jbomb.client.appstates.RunningClientAppState;
-import jbomb.client.controls.ClientElevatorControl;
 import jbomb.client.listeners.BombSecondsListener;
 import jbomb.client.listeners.CharacterActionListener;
 import jbomb.common.appstates.BaseManager;
@@ -22,14 +21,12 @@ import jbomb.common.appstates.RunningAppState;
 import jbomb.client.listeners.ServerConnectionListener;
 import jbomb.client.listeners.ShootsActionListener;
 import jbomb.client.listeners.messages.CreatePlayerListener;
-import jbomb.client.listeners.messages.ElevatorMovesListener;
 import jbomb.client.listeners.messages.ExploitBombListener;
 import jbomb.client.listeners.messages.NewPlayerListener;
 import jbomb.client.listeners.messages.RemovePlayerListener;
 import jbomb.client.listeners.messages.StartGameListener;
 import jbomb.client.listeners.messages.ThrowBombListener;
 import jbomb.common.appstates.Manager;
-import jbomb.common.controls.AbstractElevatorControl;
 import jbomb.common.game.BaseGame;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.CoordinateBombMessage;
@@ -68,7 +65,6 @@ public class JBombClient extends BaseGame {
     private StartGameListener startGameListener = new StartGameListener();
     private ThrowBombListener throwBombListener = new ThrowBombListener();
     private ExploitBombListener exploitBombListener = new ExploitBombListener();
-    private ElevatorMovesListener elevatorMovesListener = new ElevatorMovesListener();
     
     public JBombClient(String ip) {
         this.ip = ip;
@@ -200,10 +196,10 @@ public class JBombClient extends BaseGame {
         client.addMessageListener(startGameListener, StartGameMessage.class);
         client.addMessageListener(throwBombListener, ThrowBombMessage.class);
         client.addMessageListener(exploitBombListener, ExploitBombMessage.class);
-        client.addMessageListener(elevatorMovesListener, ElevatorMovesMessage.class);
         Manager<Client> m = (Manager<Client>) getManager();
         client.addMessageListener(m, CharacterMovesMessage.class);
         client.addMessageListener(m, CoordinateBombMessage.class);
+        client.addMessageListener(m, ElevatorMovesMessage.class);
     }
 
     @Override
@@ -216,11 +212,6 @@ public class JBombClient extends BaseGame {
     @Override
     protected BaseManager<?> createManager() {
         return new ClientManager();
-    }
-
-    @Override
-    public AbstractElevatorControl createElevatorControl(float maxY, float minY, float seconds, boolean up) {
-        return new ClientElevatorControl(maxY, minY, up);
     }
 
     @Override

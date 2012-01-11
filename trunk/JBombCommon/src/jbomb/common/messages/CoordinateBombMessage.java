@@ -15,8 +15,7 @@ public class CoordinateBombMessage extends BasePhysicMessage {
     private Vector3f linearVelocity;
     private Vector3f angularVelocity;
 
-    public CoordinateBombMessage() {
-    }
+    public CoordinateBombMessage() {}
 
     public CoordinateBombMessage(long id, RigidBodyControl control) {
         super(id);

@@ -11,7 +11,7 @@ public class JBombContext {
     public static Node ROOT_NODE;
     public static PhysicsSpace PHYSICS_SPACE;
     public static BaseGame BASE_GAME;
-    public static Manager MANAGER;
+    public static Manager<?> MANAGER;
     public static boolean STARTED;
     public static byte PLAYERS_COUNT;
     public static float MESSAGES_PER_SECOND = 20f;
