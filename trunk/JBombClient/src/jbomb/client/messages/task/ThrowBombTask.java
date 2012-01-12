@@ -13,7 +13,7 @@ public class ThrowBombTask implements Task<ThrowBombMessage> {
         byte timeExplosion = message.getTimeExplosion();
         Player player = (Player) JBombContext.MANAGER.getPhysicObject(idClient);
         if (player != null) {
-            player.throwBomb(message.getLocation(), message.getId(), null, timeExplosion);
+            player.throwBomb(message.getLocation(), message.getId(), null, timeExplosion, true);
         } else {
             ClientContext.PLAYER.throwBomb(message.getLocation(), message.getId());
         }

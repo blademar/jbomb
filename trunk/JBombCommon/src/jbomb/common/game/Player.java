@@ -55,12 +55,14 @@ public class Player {
     }
     
     public void throwBomb(Vector3f location, long idPhysicObject, AbstractBombControl abc,
-            byte timeExplosion) {
-        BaseBomb bomb = new GrandBomb(false);
+            byte timeExplosion, boolean enableSound) {
+        BaseBomb bomb = new GrandBomb(enableSound);
         bomb.setTimeForExplosion(timeExplosion);
         if (abc != null)
             bomb.setControl(abc);
         bomb.getSpatial().setUserData("id", idPhysicObject);
+        if (enableSound)
+            throwSound.play(control.getPhysicsLocation());
         JBombContext.MANAGER.addPhysicObject(idPhysicObject, bomb);
         RigidBodyControl bombControl = bomb.getSpatial().getControl(RigidBodyControl.class);
         bombControl.setPhysicsLocation(location);

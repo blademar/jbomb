@@ -10,7 +10,6 @@ import jbomb.common.weapons.impl.GrandBomb;
 
 public class ClientPlayer extends Player {
     
-    
     private BaseBomb[] bomb = new BaseBomb[3];
     private byte seconds = 1;
     private volatile boolean hasBombs = true; 

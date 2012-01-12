@@ -42,7 +42,7 @@ public class ElevatorMovesMessage extends BasePhysicMessage {
                 isFirstInterpolation = true;
             }
             e.getGeometry().setLocalTranslation(FastMath.interpolateLinear(percent, oldPosition, location));
-            LOGGER.debug("Interpolando elevador");
+//            LOGGER.debug("Interpolando elevador");
         }
     }
 }
