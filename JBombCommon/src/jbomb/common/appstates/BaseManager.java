@@ -84,14 +84,15 @@ public abstract class BaseManager<T> implements Manager<T> {
                 doOnUpdate(tpf, message);
                 it.remove();
             }
-        } else {
-            while (it.hasNext()) {
-                message = it.next();
-                if (message instanceof CharacterMovesMessage || message instanceof ElevatorMovesMessage) {
-                    message.interpolate(time / maxTime);
-                }
-            }
         }
+//        else {
+//            while (it.hasNext()) {
+//                message = it.next();
+//                if (message instanceof CharacterMovesMessage || message instanceof ElevatorMovesMessage) {
+//                    message.interpolate(time / maxTime);
+//                }
+//            }
+//        }
     }
 
     @Override

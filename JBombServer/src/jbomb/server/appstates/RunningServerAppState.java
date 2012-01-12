@@ -2,7 +2,6 @@ package jbomb.server.appstates;
 
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
-import java.util.Set;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.CoordinateBombMessage;
@@ -35,7 +34,7 @@ public class RunningServerAppState extends RunningAppState {
                 CoordinateBombMessage cbm = new CoordinateBombMessage(l,
                         gb.getSpatial().getControl(RigidBodyControl.class));
                 ServerContext.SERVER.broadcast(cbm);
-                LOGGER.debug("Enviando mensaje de coordinateBomb");
+//                LOGGER.debug("Enviando mensaje de coordinateBomb");
             }
         }
     }
@@ -47,7 +46,7 @@ public class RunningServerAppState extends RunningAppState {
                 Elevator e = (Elevator) o;
                 Vector3f location = e.getGeometry().getControl(RigidBodyControl.class).getPhysicsLocation();
                 ServerContext.SERVER.broadcast(new ElevatorMovesMessage(e.getId(), location));
-                LOGGER.debug("Enviando mensaje de elevador");
+//                LOGGER.debug("Enviando mensaje de elevador");
             }
         }
     }
