@@ -24,6 +24,6 @@ public class ThrowBombListener implements MessageListener<HostedConnection> {
         Vector3f bombLocation = player.getControl().getPhysicsLocation().add(player.getControl().getViewDirection().normalize().mult(1.2f));
         ServerContext.SERVER.broadcast(new ThrowBombMessage(idPhysicObject, source.getId(), 
                 bombLocation, timeExplosion));
-        player.throwBomb(bombLocation, idPhysicObject, new BaseBombControl(), timeExplosion);
+        player.throwBomb(bombLocation, idPhysicObject, new BaseBombControl(), timeExplosion, false);
     }
 }
