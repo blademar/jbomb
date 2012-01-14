@@ -3,7 +3,7 @@ package jbomb.common.game;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.scene.Node;
-import jbomb.common.appstates.Manager;
+import jbomb.common.appstates.AbstractManager;
 
 public class JBombContext {
 
@@ -11,7 +11,7 @@ public class JBombContext {
     public static Node ROOT_NODE;
     public static PhysicsSpace PHYSICS_SPACE;
     public static BaseGame BASE_GAME;
-    public static Manager<?> MANAGER;
+    public static AbstractManager<?> MANAGER;
     public static boolean STARTED;
     public static byte PLAYERS_COUNT;
     public static float MESSAGES_PER_SECOND = 20f;
