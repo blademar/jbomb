@@ -6,8 +6,7 @@ import com.jme3.network.Server;
 import com.jme3.scene.control.Control;
 import java.io.IOException;
 import java.net.URL;
-import jbomb.common.appstates.BaseManager;
-import jbomb.common.appstates.Manager;
+import jbomb.common.appstates.AbstractManager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.server.controls.ElevatorControl;
 import jbomb.common.game.BaseGame;
@@ -61,13 +60,13 @@ public class JBombServer extends BaseGame {
 
     @Override
     public void addMessageListeners() {
-        Manager<HostedConnection> m = (Manager<HostedConnection>) getManager();
+        AbstractManager<HostedConnection> m = (AbstractManager<HostedConnection>) getManager();
         server.addMessageListener(m, CharacterMovesMessage.class);
         server.addMessageListener(throwBombListener, ThrowBombMessage.class);
     }
 
     @Override
-    protected BaseManager<?> createManager() {
+    protected AbstractManager<?> createManager() {
         return new ServerManager();
     }
 

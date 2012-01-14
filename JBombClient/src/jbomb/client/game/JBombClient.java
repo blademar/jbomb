@@ -16,7 +16,7 @@ import jbomb.client.appstates.ClientManager;
 import jbomb.client.appstates.RunningClientAppState;
 import jbomb.client.listeners.BombSecondsListener;
 import jbomb.client.listeners.CharacterActionListener;
-import jbomb.common.appstates.BaseManager;
+import jbomb.common.appstates.AbstractManager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.client.listeners.ServerConnectionListener;
 import jbomb.client.listeners.ShootsActionListener;
@@ -26,7 +26,7 @@ import jbomb.client.listeners.messages.NewPlayerListener;
 import jbomb.client.listeners.messages.RemovePlayerListener;
 import jbomb.client.listeners.messages.StartGameListener;
 import jbomb.client.listeners.messages.ThrowBombListener;
-import jbomb.common.appstates.Manager;
+import jbomb.common.appstates.AbstractManager;
 import jbomb.common.game.BaseGame;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.CoordinateBombMessage;
@@ -196,7 +196,7 @@ public class JBombClient extends BaseGame {
         client.addMessageListener(startGameListener, StartGameMessage.class);
         client.addMessageListener(throwBombListener, ThrowBombMessage.class);
         client.addMessageListener(exploitBombListener, ExploitBombMessage.class);
-        Manager<Client> m = (Manager<Client>) getManager();
+        AbstractManager<Client> m = (AbstractManager<Client>) getManager();
         client.addMessageListener(m, CharacterMovesMessage.class);
         client.addMessageListener(m, CoordinateBombMessage.class);
         client.addMessageListener(m, ElevatorMovesMessage.class);
@@ -210,7 +210,7 @@ public class JBombClient extends BaseGame {
     }
 
     @Override
-    protected BaseManager<?> createManager() {
+    protected AbstractManager<?> createManager() {
         return new ClientManager();
     }
 

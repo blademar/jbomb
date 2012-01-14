@@ -13,8 +13,7 @@ import com.jme3.scene.control.Control;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
 import java.net.URL;
-import jbomb.common.appstates.BaseManager;
-import jbomb.common.appstates.Manager;
+import jbomb.common.appstates.AbstractManager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.CoordinateBombMessage;
@@ -33,7 +32,7 @@ public abstract class BaseGame extends SimpleApplication {
     
     private BulletAppState bulletAppState = new BulletAppState();
     private RunningAppState runningAppState = createRunningAppState();
-    private Manager<?> manager = createManager();
+    private AbstractManager<?> manager = createManager();
     
     public BaseGame() {
         URL urlConfig = BaseGame.class.getResource("/jbomb/common/config/log4j.xml");
@@ -224,7 +223,7 @@ public abstract class BaseGame extends SimpleApplication {
         Serializer.registerClass(ElevatorMovesMessage.class);
     }
 
-    protected abstract BaseManager<?> createManager();
+    protected abstract AbstractManager<?> createManager();
 
     private void initContext() {
         JBombContext.ASSET_MANAGER = assetManager;
@@ -234,7 +233,7 @@ public abstract class BaseGame extends SimpleApplication {
         JBombContext.MANAGER = getManager();
     }
 
-    protected Manager<?> getManager() {
+    protected AbstractManager<?> getManager() {
         return manager;
     }
     

@@ -2,8 +2,10 @@ package jbomb.common.appstates;
 
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
+import com.jme3.app.state.AppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.network.Message;
+import com.jme3.network.MessageListener;
 import com.jme3.renderer.RenderManager;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,28 +20,30 @@ import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.ElevatorMovesMessage;
 import org.apache.log4j.Logger;
 
-public abstract class BaseManager<T> implements Manager<T> {
+public abstract class AbstractManager<T> implements MessageListener<T>, AppState {
 
-    private static final Logger LOGGER = Logger.getLogger(BaseManager.class);
+    private static final Logger LOGGER = Logger.getLogger(AbstractManager.class);
     private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
     private float time;
-    protected  Map<Long, Object> physicsObjects = new HashMap<Long, Object>();
+    protected Map<Long, Object> physicsObjects = new HashMap<Long, Object>();
     protected BlockingQueue<BasePhysicMessage> messageQueue = new ArrayBlockingQueue<BasePhysicMessage>(100000);
     private AbstractAppState appState = new AbstractAppState();
     private IDRepository repository = new IDRepository();
 
-    @Override
     public void addPhysicObject(long l, Object o) {
-        physicsObjects.put(l, o);
+        synchronized (physicsObjects) {
+            physicsObjects.put(l, o);
 //        showPhysicsObject();
+        }
     }
-
-    @Override
-    public Object removePhysicObject(long l) {
-        getRepository().releaseIn(l);
-        Object o = physicsObjects.remove(l);
+    
+    public synchronized Object removePhysicObject(long l) {
+        synchronized (physicsObjects) {
+            getRepository().releaseIn(l);
+            Object o = physicsObjects.remove(l);
 //        showPhysicsObject();
-        return o;
+            return o;
+        }
     }
 
     @Override
@@ -84,8 +88,7 @@ public abstract class BaseManager<T> implements Manager<T> {
                 doOnUpdate(tpf, message);
                 it.remove();
             }
-        }
-        else {
+        } else {
             while (it.hasNext()) {
                 message = it.next();
                 if (message instanceof CharacterMovesMessage || message instanceof ElevatorMovesMessage) {
@@ -115,29 +118,36 @@ public abstract class BaseManager<T> implements Manager<T> {
         messageQueue.add((BasePhysicMessage) m);
     }
 
-    @Override
     public Object getPhysicObject(long l) {
-        return physicsObjects.get(l);
+        synchronized (physicsObjects) {
+            return physicsObjects.get(l);
+        }
     }
 
-    @Override
     public int getPhycicObjectSize() {
-        return physicsObjects.size();
+        synchronized (physicsObjects) {
+            return physicsObjects.size();
+        }
     }
 
-    @Override
     public IDRepository getRepository() {
         return repository;
     }
 
     private void showPhysicsObject() {
-        for (Long id : physicsObjects.keySet())
-            LOGGER.debug("id: " + id + ": " + physicsObjects.get(id));
-        LOGGER.debug("Count: " + repository.getCount());
+        synchronized (physicsObjects) {
+            for (Long id : physicsObjects.keySet()) {
+                LOGGER.debug("id: " + id + ": " + physicsObjects.get(id));
+            }
+            LOGGER.debug("Count: " + repository.getCount());
+        }
+    }
+    
+    public Set<Long> keySet() {
+        synchronized(physicsObjects) {
+            return physicsObjects.keySet();
+        }
     }
 
-    @Override
-    public Set<Long> keySet() {
-        return physicsObjects.keySet();
-    }
+    protected abstract void doOnUpdate(float tpf, BasePhysicMessage message);
 }
