@@ -12,10 +12,12 @@ import jbomb.server.controls.ElevatorControl;
 import jbomb.common.game.BaseGame;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.CharacterMovesMessage;
+import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.ThrowBombMessage;
 import jbomb.server.appstates.RunningServerAppState;
 import jbomb.server.appstates.ServerManager;
 import jbomb.server.listeners.ClientConnectionListener;
+import jbomb.server.listeners.messages.CreatePlayerListener;
 import jbomb.server.listeners.messages.ThrowBombListener;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -26,6 +28,7 @@ public class JBombServer extends BaseGame {
     private Server server;
     private ClientConnectionListener connectionListener = new ClientConnectionListener();
     private ThrowBombListener throwBombListener = new ThrowBombListener();
+    private CreatePlayerListener createPlayerListener = new CreatePlayerListener();
     
     public JBombServer(String playersNumber) {
         JBombContext.PLAYERS_COUNT = setPlayersCount(playersNumber);
@@ -63,6 +66,7 @@ public class JBombServer extends BaseGame {
         AbstractManager<HostedConnection> m = (AbstractManager<HostedConnection>) getManager();
         server.addMessageListener(m, CharacterMovesMessage.class);
         server.addMessageListener(throwBombListener, ThrowBombMessage.class);
+        server.addMessageListener(createPlayerListener, CreatePlayerMessage.class);
     }
 
     @Override
