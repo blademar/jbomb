@@ -9,6 +9,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Sphere;
 import jbomb.common.controls.AbstractBombControl;
+import jbomb.common.controls.ThrowBombControl;
 import jbomb.common.sounds.api.Sound;
 import jbomb.common.sounds.impl.InstanceSound;
 import jbomb.common.utils.MatDefs;
@@ -64,10 +65,10 @@ public class Player {
         if (enableSound)
             throwSound.play(control.getPhysicsLocation());
         JBombContext.MANAGER.addPhysicObject(idPhysicObject, bomb);
-        RigidBodyControl bombControl = bomb.getSpatial().getControl(RigidBodyControl.class);
-        bombControl.setPhysicsLocation(location);
+        ThrowBombControl tbc = bomb.getSpatial().getControl(ThrowBombControl.class);
+        tbc.setPhysicsLocation(location);
         JBombContext.ROOT_NODE.attachChild(bomb.getSpatial());
-        JBombContext.PHYSICS_SPACE.add(bombControl);
-        bombControl.setLinearVelocity(control.getViewDirection().mult(25f));
+        JBombContext.PHYSICS_SPACE.add(tbc);
+        tbc.setDirection(control.getViewDirection().mult(25f));
     }
 }
