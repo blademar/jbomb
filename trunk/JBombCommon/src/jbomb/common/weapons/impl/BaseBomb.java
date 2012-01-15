@@ -7,6 +7,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Sphere;
 import jbomb.common.controls.AbstractBombControl;
+import jbomb.common.controls.ThrowBombControl;
 import jbomb.common.effects.api.Explosion;
 import jbomb.common.effects.impl.BaseExplosion;
 import jbomb.common.game.JBombContext;
@@ -33,8 +34,8 @@ public class BaseBomb implements Bomb {
         Material material = new Material(JBombContext.ASSET_MANAGER, MatDefs.UNSHADED);
         material.setTexture("ColorMap", JBombContext.ASSET_MANAGER.loadTexture("textures/bomb/" + fileName));
         geometry.setMaterial(material);
-        RigidBodyControl rigidBodyControl = new RigidBodyControl(mass);
-        geometry.addControl(rigidBodyControl);
+        ThrowBombControl tbc = new ThrowBombControl(mass);
+        geometry.addControl(tbc);
         this.radius = radius;
     }
     

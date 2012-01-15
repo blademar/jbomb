@@ -3,6 +3,7 @@ package jbomb.client.game;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
+import jbomb.common.controls.ThrowBombControl;
 import jbomb.common.game.JBombContext;
 import jbomb.common.game.Player;
 import jbomb.common.weapons.impl.BaseBomb;
@@ -26,11 +27,11 @@ public class ClientPlayer extends Player {
                 JBombContext.MANAGER.addPhysicObject(idPhysicObject, bomb[i]);
                 bomb[i].getSpatial().setUserData("id", idPhysicObject);
                 throwSound.play(control.getPhysicsLocation());
-                RigidBodyControl bombControl = bomb[i].getSpatial().getControl(RigidBodyControl.class);
-                bombControl.setPhysicsLocation(location);
+                ThrowBombControl tbc = bomb[i].getSpatial().getControl(ThrowBombControl.class);
+                tbc.setPhysicsLocation(location);
                 JBombContext.ROOT_NODE.attachChild(bomb[i].getSpatial());
-                JBombContext.PHYSICS_SPACE.add(bombControl);
-                bombControl.setLinearVelocity(control.getViewDirection().mult(25f));
+                JBombContext.PHYSICS_SPACE.add(tbc);
+                tbc.setDirection(control.getViewDirection().mult(25f));
                 bomb[i] = null;
                 if (bomb[0] == null && bomb[1] == null && bomb[2] == null)
                     setHasBombs(false);
