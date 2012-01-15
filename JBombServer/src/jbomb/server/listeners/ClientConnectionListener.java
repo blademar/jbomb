@@ -39,7 +39,7 @@ public class ClientConnectionListener implements ConnectionListener {
                  physicObject = JBombContext.MANAGER.getPhysicObject(key);
                 if (physicObject instanceof Player) {
                     p = (Player) physicObject;
-                    loc = p.getControl().getPhysicsLocation();
+                    loc = p.getGeometry().getLocalTranslation();
                     color = p.getColor();
                     ServerContext.SERVER.broadcast(Filters.in(conn),
                             new NewPlayerMessage(loc, color, key));

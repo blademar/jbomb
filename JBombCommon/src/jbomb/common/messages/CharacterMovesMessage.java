@@ -12,7 +12,6 @@ import org.apache.log4j.Logger;
 public class CharacterMovesMessage extends BasePhysicMessage {
 
     private static final Logger LOGGER = Logger.getLogger(CharacterMovesMessage.class);
-    private Vector3f walkDirection = new Vector3f();
     private Vector3f viewDirection = new Vector3f();
     private Vector3f location = new Vector3f();
     private boolean isFirstInterpolation;
@@ -22,7 +21,6 @@ public class CharacterMovesMessage extends BasePhysicMessage {
 
     public CharacterMovesMessage(long id, CharacterControl character, Vector3f walk) {
         super(id);
-        walkDirection.set(walk);
         viewDirection.set(character.getViewDirection());
         location.set(character.getPhysicsLocation());
     }
@@ -31,10 +29,8 @@ public class CharacterMovesMessage extends BasePhysicMessage {
     public void applyData() {
         Player p = (Player) JBombContext.MANAGER.getPhysicObject(getId());
         if (p != null) {
-            CharacterControl c = p.getControl();
-            c.setPhysicsLocation(location);
-            c.setWalkDirection(walkDirection);
-            c.setViewDirection(viewDirection);
+            p.getGeometry().setLocalTranslation(location);
+            p.setViewDirection(viewDirection);
         }
     }
 
@@ -43,12 +39,11 @@ public class CharacterMovesMessage extends BasePhysicMessage {
         Player p = (Player) JBombContext.MANAGER.getPhysicObject(getId());
         if (p != null) {
             if (!isFirstInterpolation) {
-                oldPosition.set(p.getControl().getPhysicsLocation());
+                oldPosition.set(p.getGeometry().getLocalTranslation());
                 isFirstInterpolation = true;
             }
-            p.getControl().setPhysicsLocation(FastMath.interpolateLinear(percent, oldPosition, location));
+            p.getGeometry().setLocalTranslation(FastMath.interpolateLinear(percent, oldPosition, location));
 //            LOGGER.debug("Interpolated to: " + FastMath.interpolateLinear(percent, oldPosition, location));
-            p.getControl().setWalkDirection(walkDirection);
         }
     }
 }

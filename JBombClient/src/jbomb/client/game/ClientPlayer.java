@@ -1,8 +1,10 @@
 package jbomb.client.game;
 
-import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
+import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
+import com.jme3.scene.control.Control;
 import jbomb.common.controls.ThrowBombControl;
 import jbomb.common.game.JBombContext;
 import jbomb.common.game.Player;
@@ -13,7 +15,8 @@ public class ClientPlayer extends Player {
     
     private BaseBomb[] bomb = new BaseBomb[3];
     private byte seconds = 1;
-    private volatile boolean hasBombs = true; 
+    private volatile boolean hasBombs = true;
+    private CharacterControl control;
 
     public ClientPlayer(Vector3f location, ColorRGBA color) {
         super(location, color);
@@ -64,5 +67,26 @@ public class ClientPlayer extends Player {
 
     public byte getSeconds() {
         return seconds;
+    }
+
+    @Override
+    protected void setControl(Control control) {
+        this.control = (CharacterControl) control;
+        geometry.addControl(control);
+        this.control.setPhysicsLocation(location);
+        JBombContext.PHYSICS_SPACE.add(this.control);
+    }
+
+    @Override
+    protected Control createControl() {
+        return new CharacterControl(new CapsuleCollisionShape(.55f, 1.7f), .45f);
+    }
+
+    public void jump() {
+        control.jump();
+    }
+
+    public CharacterControl getControl() {
+        return control;
     }
 }
