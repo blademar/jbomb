@@ -40,13 +40,15 @@ public class RunningServerAppState extends RunningAppState {
     }
 
     private void coordinateElevators() {
-        for (long l : JBombContext.MANAGER.keySet()) {
-            Object o = JBombContext.MANAGER.getPhysicObject(l);
-            if (o instanceof Elevator) {
-                Elevator e = (Elevator) o;
-                Vector3f location = e.getGeometry().getControl(RigidBodyControl.class).getPhysicsLocation();
-                ServerContext.SERVER.broadcast(new ElevatorMovesMessage(e.getId(), location));
+        synchronized (JBombContext.MANAGER.getPhysicsObjects()) {
+            for (long l : JBombContext.MANAGER.keySet()) {
+                Object o = JBombContext.MANAGER.getPhysicObject(l);
+                if (o instanceof Elevator) {
+                    Elevator e = (Elevator) o;
+                    Vector3f location = e.getGeometry().getControl(RigidBodyControl.class).getPhysicsLocation();
+                    ServerContext.SERVER.broadcast(new ElevatorMovesMessage(e.getId(), location));
 //                LOGGER.debug("Enviando mensaje de elevador");
+                }
             }
         }
     }
