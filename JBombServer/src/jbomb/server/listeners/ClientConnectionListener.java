@@ -12,7 +12,6 @@ import jbomb.common.game.Player;
 import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.RemovePlayerMessage;
-import jbomb.common.messages.StartGameMessage;
 import jbomb.server.game.ServerContext;
 import org.apache.log4j.Logger;
 
@@ -24,13 +23,11 @@ public class ClientConnectionListener implements ConnectionListener {
     private ColorRGBA[] colors = {ColorRGBA.Blue, ColorRGBA.Red, ColorRGBA.Yellow, ColorRGBA.Green};
     private byte currentColor = 0;
     private byte currentPosition = 0;
-    private byte connectedPlayers = 0;
 
     @Override
     public void connectionAdded(Server server, HostedConnection conn) {
         if (!JBombContext.STARTED) {
             LOGGER.debug("Player #" + conn.getId() + " online.");
-            connectedPlayers++;
             Vector3f loc = null;
             ColorRGBA color = null;
             Iterator<Long> it = JBombContext.MANAGER.keySet().iterator();
@@ -57,11 +54,6 @@ public class ClientConnectionListener implements ConnectionListener {
                     new CreatePlayerMessage(loc, color));
             ServerContext.SERVER.broadcast(Filters.notEqualTo(conn),
                     new NewPlayerMessage(loc, color, conn.getId()));
-            if (connectedPlayers == JBombContext.PLAYERS_COUNT) {
-                JBombContext.STARTED = true;
-                ServerContext.SERVER.broadcast(new StartGameMessage(true));
-                LOGGER.debug("Starting game...");
-            }
         }
     }
 

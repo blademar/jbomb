@@ -7,14 +7,14 @@ import com.jme3.network.serializing.Serializable;
 @Serializable
 public class CreatePlayerMessage extends BasePhysicMessage {
 
-    private Vector3f location;
-    private ColorRGBA color;
+    private Vector3f location = new Vector3f();
+    private ColorRGBA color = ColorRGBA.White;
 
     public CreatePlayerMessage() {}
 
     public CreatePlayerMessage(Vector3f location, ColorRGBA color) {
         this.color = color;
-        this.location = location;
+        this.location.set(location);
     }
 
     public Vector3f getLocation() {
