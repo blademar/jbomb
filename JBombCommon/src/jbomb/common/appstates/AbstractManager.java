@@ -25,22 +25,22 @@ public abstract class AbstractManager<T> implements MessageListener<T>, AppState
     private static final Logger LOGGER = Logger.getLogger(AbstractManager.class);
     private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
     private float time;
-    protected Map<Long, Object> physicsObjects = new HashMap<Long, Object>();
+    private Map<Long, Object> physicsObjects = new HashMap<Long, Object>();
     protected BlockingQueue<BasePhysicMessage> messageQueue = new ArrayBlockingQueue<BasePhysicMessage>(100000);
     private AbstractAppState appState = new AbstractAppState();
     private IDRepository repository = new IDRepository();
 
     public void addPhysicObject(long l, Object o) {
-        synchronized (physicsObjects) {
-            physicsObjects.put(l, o);
+        synchronized (getPhysicsObjects()) {
+            getPhysicsObjects().put(l, o);
 //        showPhysicsObject();
         }
     }
     
     public synchronized Object removePhysicObject(long l) {
-        synchronized (physicsObjects) {
+        synchronized (getPhysicsObjects()) {
             getRepository().releaseIn(l);
-            Object o = physicsObjects.remove(l);
+            Object o = getPhysicsObjects().remove(l);
 //        showPhysicsObject();
             return o;
         }
@@ -88,7 +88,8 @@ public abstract class AbstractManager<T> implements MessageListener<T>, AppState
                 doOnUpdate(tpf, message);
                 it.remove();
             }
-        } else {
+        }
+        else {
             while (it.hasNext()) {
                 message = it.next();
                 if (message instanceof CharacterMovesMessage || message instanceof ElevatorMovesMessage) {
@@ -119,14 +120,14 @@ public abstract class AbstractManager<T> implements MessageListener<T>, AppState
     }
 
     public Object getPhysicObject(long l) {
-        synchronized (physicsObjects) {
-            return physicsObjects.get(l);
+        synchronized (getPhysicsObjects()) {
+            return getPhysicsObjects().get(l);
         }
     }
 
     public int getPhycicObjectSize() {
-        synchronized (physicsObjects) {
-            return physicsObjects.size();
+        synchronized (getPhysicsObjects()) {
+            return getPhysicsObjects().size();
         }
     }
 
@@ -135,19 +136,26 @@ public abstract class AbstractManager<T> implements MessageListener<T>, AppState
     }
 
     private void showPhysicsObject() {
-        synchronized (physicsObjects) {
-            for (Long id : physicsObjects.keySet()) {
-                LOGGER.debug("id: " + id + ": " + physicsObjects.get(id));
+        synchronized (getPhysicsObjects()) {
+            for (Long id : getPhysicsObjects().keySet()) {
+                LOGGER.debug("id: " + id + ": " + getPhysicsObjects().get(id));
             }
             LOGGER.debug("Count: " + repository.getCount());
         }
     }
     
     public Set<Long> keySet() {
-        synchronized(physicsObjects) {
-            return physicsObjects.keySet();
+        synchronized(getPhysicsObjects()) {
+            return getPhysicsObjects().keySet();
         }
     }
 
     protected abstract void doOnUpdate(float tpf, BasePhysicMessage message);
+
+    /**
+     * @return the physicsObjects
+     */
+    public Map<Long, Object> getPhysicsObjects() {
+        return physicsObjects;
+    }
 }
