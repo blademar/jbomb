@@ -17,13 +17,13 @@ import jbomb.common.utils.MatDefs;
 import jbomb.common.weapons.api.Bomb;
 
 public class BaseBomb implements Bomb {
-    
-   private Geometry geometry;
-   protected Sound sound;
-   private Explosion explosion;
-   private float timeForExplosion;
-   private float radius;
-    
+
+    private Geometry geometry;
+    protected Sound sound;
+    private Explosion explosion;
+    private float timeForExplosion;
+    private float radius;
+
     public BaseBomb(String fileName, float radius, Explosion explosion, Sound sound, float timeForExplosion, float mass) {
         this.timeForExplosion = timeForExplosion;
         this.explosion = explosion;
@@ -38,15 +38,15 @@ public class BaseBomb implements Bomb {
         geometry.addControl(tbc);
         this.radius = radius;
     }
-    
+
     public BaseBomb(String fileName, float radius, Explosion explosion, float timeForExplosion) {
         this(fileName, radius, explosion, new BaseBombSound(), timeForExplosion, 1f);
     }
-    
+
     public BaseBomb(String fileName, float radius, float timeForExplosion) {
         this(fileName, radius, new BaseExplosion(), new BaseBombSound(), timeForExplosion, 1f);
     }
-    
+
     public BaseBomb() {
         this("bomb.png", 0.4f, 1f);
     }
@@ -58,7 +58,7 @@ public class BaseBomb implements Bomb {
         explosion.start();
         sound.play(location);
         JBombContext.ROOT_NODE.detachChild(geometry);
-        long id = ((Long)geometry.getUserData("id"));
+        long id = ((Long) geometry.getUserData("id"));
         JBombContext.MANAGER.removePhysicObject(id);
     }
 
@@ -66,15 +66,15 @@ public class BaseBomb implements Bomb {
     public float getTimeForExplosion() {
         return timeForExplosion;
     }
-    
+
     public Spatial getSpatial() {
         return geometry;
     }
-    
+
     public void setExplosion(Explosion explosion) {
         this.explosion = explosion;
     }
-    
+
     public void setLocalTranslation(Vector3f localTranslation) {
         geometry.setLocalTranslation(localTranslation);
     }

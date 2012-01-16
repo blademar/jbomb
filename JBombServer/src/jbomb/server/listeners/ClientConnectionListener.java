@@ -7,6 +7,7 @@ import com.jme3.network.Filters;
 import com.jme3.network.HostedConnection;
 import com.jme3.network.Server;
 import java.util.Iterator;
+import java.util.concurrent.Callable;
 import jbomb.common.game.JBombContext;
 import jbomb.common.game.Player;
 import jbomb.common.messages.CreatePlayerMessage;
@@ -25,7 +26,7 @@ public class ClientConnectionListener implements ConnectionListener {
     private byte currentPosition = 0;
 
     @Override
-    public void connectionAdded(Server server, HostedConnection conn) {
+    public void connectionAdded(Server server, final HostedConnection conn) {
         if (!JBombContext.STARTED) {
             LOGGER.debug("Player #" + conn.getId() + " online.");
             Vector3f loc = null;
@@ -36,7 +37,7 @@ public class ClientConnectionListener implements ConnectionListener {
             Object physicObject = null;
             while (it.hasNext()) {
                 key = it.next();
-                 physicObject = JBombContext.MANAGER.getPhysicObject(key);
+                physicObject = JBombContext.MANAGER.getPhysicObject(key);
                 if (physicObject instanceof Player) {
                     p = (Player) physicObject;
                     loc = p.getGeometry().getLocalTranslation();
@@ -45,15 +46,23 @@ public class ClientConnectionListener implements ConnectionListener {
                             new NewPlayerMessage(loc, color, key));
                 }
             }
-            loc = nextPosition();
-            color = nextColor();
-            Player player = new Player(loc, color);
-            JBombContext.MANAGER.addPhysicObject(conn.getId(), player);
-            ServerContext.playersNode.attachChild(player.getGeometry());
+            final Vector3f loc2 = nextPosition();
+            final ColorRGBA color2 = nextColor();
+            JBombContext.BASE_GAME.enqueue(new Callable<Void>() {
+
+                @Override
+                public Void call() throws Exception {
+                    
+                    Player player = new Player(loc2, color2);
+                    JBombContext.MANAGER.addPhysicObject(conn.getId(), player);
+                    ServerContext.playersNode.attachChild(player.getGeometry());
+                    return null;
+                }
+            });
             ServerContext.SERVER.broadcast(Filters.in(conn),
-                    new CreatePlayerMessage(loc, color));
+                    new CreatePlayerMessage(loc2, color2));
             ServerContext.SERVER.broadcast(Filters.notEqualTo(conn),
-                    new NewPlayerMessage(loc, color, conn.getId()));
+                    new NewPlayerMessage(loc2, color2, conn.getId()));
         }
     }
 

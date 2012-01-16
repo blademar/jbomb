@@ -17,7 +17,6 @@ public abstract class AbstractClientMessageListener<T extends Task<U>, U extends
                 task.doThis(message);
                 return null;
             }
-            
         });
     }
 }

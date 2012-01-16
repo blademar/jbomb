@@ -8,6 +8,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.control.Control;
 import com.jme3.scene.shape.Sphere;
+import java.util.concurrent.Callable;
 import jbomb.common.controls.AbstractBombControl;
 import jbomb.common.controls.ThrowBombControl;
 import jbomb.common.sounds.api.Sound;
@@ -43,22 +44,31 @@ public class Player {
     public ColorRGBA getColor() {
         return color;
     }
-    
-    public void throwBomb(Vector3f location, long idPhysicObject, AbstractBombControl abc,
-            byte timeExplosion, boolean enableSound) {
-        BaseBomb bomb = new GrandBomb(enableSound);
-        bomb.setTimeForExplosion(timeExplosion);
-        if (abc != null)
-            bomb.setControl(abc);
-        bomb.getSpatial().setUserData("id", idPhysicObject);
-        if (enableSound)
-            throwSound.play(control.getPhysicsLocation());
-        JBombContext.MANAGER.addPhysicObject(idPhysicObject, bomb);
-        ThrowBombControl tbc = bomb.getSpatial().getControl(ThrowBombControl.class);
-        tbc.setPhysicsLocation(location);
-        JBombContext.ROOT_NODE.attachChild(bomb.getSpatial());
-        JBombContext.PHYSICS_SPACE.add(tbc);
-        tbc.setDirection(getViewDirection().mult(25f));
+
+    public void throwBomb(final Vector3f location, final long idPhysicObject, final AbstractBombControl abc,
+            final byte timeExplosion, final boolean enableSound) {
+        JBombContext.BASE_GAME.enqueue(new Callable<Void>() {
+
+            @Override
+            public Void call() throws Exception {
+                BaseBomb bomb = new GrandBomb(enableSound);
+                bomb.setTimeForExplosion(timeExplosion);
+                if (abc != null) {
+                    bomb.setControl(abc);
+                }
+                bomb.getSpatial().setUserData("id", idPhysicObject);
+                if (enableSound) {
+                    throwSound.play(control.getPhysicsLocation());
+                }
+                JBombContext.MANAGER.addPhysicObject(idPhysicObject, bomb);
+                ThrowBombControl tbc = bomb.getSpatial().getControl(ThrowBombControl.class);
+                tbc.setPhysicsLocation(location);
+                JBombContext.ROOT_NODE.attachChild(bomb.getSpatial());
+                JBombContext.PHYSICS_SPACE.add(tbc);
+                tbc.setDirection(getViewDirection().mult(25f));
+                return null;
+            }
+        });
     }
 
     public void setViewDirection(Vector3f viewDirection) {
@@ -78,7 +88,7 @@ public class Player {
     protected Control createControl() {
         return new RigidBodyControl(new CapsuleCollisionShape(.55f, 1.7f), .45f);
     }
-    
+
     public Vector3f getViewDirection() {
         return viewDirection;
     }
