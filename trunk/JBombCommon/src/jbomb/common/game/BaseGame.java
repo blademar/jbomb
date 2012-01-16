@@ -57,6 +57,7 @@ public abstract class BaseGame extends SimpleApplication {
     
     protected void initStateManager() {
         stateManager.attach(bulletAppState);
+        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
         stateManager.attach(getManager());
         stateManager.attach(runningAppState);
     }

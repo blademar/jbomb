@@ -3,6 +3,7 @@ package jbomb.server.game;
 import com.jme3.network.HostedConnection;
 import com.jme3.network.Network;
 import com.jme3.network.Server;
+import com.jme3.scene.Node;
 import com.jme3.scene.control.Control;
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +39,8 @@ public class JBombServer extends BaseGame {
     @Override
     public void simpleInitApp() {
         super.simpleInitApp();
+        ServerContext.playersNode = new Node();
+        JBombContext.ROOT_NODE.attachChild(ServerContext.playersNode);
         try {
             server = Network.createServer(6789);
             addMessageListeners();

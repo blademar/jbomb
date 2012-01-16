@@ -10,5 +10,6 @@ public class Main {
         if (args.length != 0)
             playersNumber = args[0];
         new JBombServer(playersNumber).start(Type.Headless);
+//        new JBombServer(playersNumber).start();
     }
 }

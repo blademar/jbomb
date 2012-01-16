@@ -49,7 +49,7 @@ public class ClientConnectionListener implements ConnectionListener {
             color = nextColor();
             Player player = new Player(loc, color);
             JBombContext.MANAGER.addPhysicObject(conn.getId(), player);
-            JBombContext.ROOT_NODE.attachChild(player.getGeometry());
+            ServerContext.playersNode.attachChild(player.getGeometry());
             ServerContext.SERVER.broadcast(Filters.in(conn),
                     new CreatePlayerMessage(loc, color));
             ServerContext.SERVER.broadcast(Filters.notEqualTo(conn),
@@ -62,7 +62,7 @@ public class ClientConnectionListener implements ConnectionListener {
         int id = conn.getId();
         LOGGER.debug("Player #" + id + " offline");
         Player player = (Player) JBombContext.MANAGER.removePhysicObject(id);
-        JBombContext.ROOT_NODE.detachChild(player.getGeometry());
+        ServerContext.playersNode.detachChild(player.getGeometry());
         ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), new RemovePlayerMessage(id));
     }
 
