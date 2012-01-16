@@ -70,6 +70,7 @@ public class Player {
         this.control = (RigidBodyControl) control;
         this.control.setMass(1f);
         this.control.setKinematic(true);
+        JBombContext.PHYSICS_SPACE.add(this.control);
         geometry.addControl(control);
         geometry.setLocalTranslation(location);
     }
