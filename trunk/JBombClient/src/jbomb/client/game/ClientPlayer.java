@@ -34,7 +34,6 @@ public class ClientPlayer extends Player {
                 tbc.setPhysicsLocation(location);
                 JBombContext.ROOT_NODE.attachChild(bomb[i].getSpatial());
                 JBombContext.PHYSICS_SPACE.add(tbc);
-                tbc.setDirection(control.getViewDirection().mult(25f));
                 bomb[i] = null;
                 if (bomb[0] == null && bomb[1] == null && bomb[2] == null)
                     setHasBombs(false);
