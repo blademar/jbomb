@@ -4,6 +4,7 @@ import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Matrix3f;
 import com.jme3.math.Vector3f;
 import com.jme3.network.serializing.Serializable;
+import jbomb.common.controls.ThrowBombControl;
 import jbomb.common.game.JBombContext;
 import jbomb.common.weapons.impl.GrandBomb;
 
@@ -31,11 +32,11 @@ public class CoordinateBombMessage extends BasePhysicMessage {
     public void applyData() {
         GrandBomb gb = (GrandBomb) JBombContext.MANAGER.getPhysicObject(getId());
         if (gb != null) {
-            RigidBodyControl rigidBody = gb.getSpatial().getControl(RigidBodyControl.class);
-            rigidBody.setPhysicsLocation(location);
-            rigidBody.setPhysicsRotation(rotation);
-            rigidBody.setLinearVelocity(linearVelocity);
-            rigidBody.setAngularVelocity(angularVelocity);
+            ThrowBombControl control = gb.getSpatial().getControl(ThrowBombControl.class);
+            control.setPhysicsLocation(location);
+            control.setPhysicsRotation(rotation);
+            control.setLinearVelocity(linearVelocity);
+            control.setAngularVelocity(angularVelocity);
         }
     }
 }

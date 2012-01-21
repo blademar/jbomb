@@ -3,13 +3,21 @@ package jbomb.common.controls;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.PhysicsTickListener;
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.math.Matrix3f;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import org.apache.log4j.Logger;
 
 public class ThrowBombControl extends RigidBodyControl implements PhysicsTickListener {
 
-    private boolean throwBomb = false;
-    private Vector3f direction;
+    private boolean linear;
+    private boolean angular;
+    private boolean rotation;
+    private boolean location;
+    private Vector3f linearVelocity;
+    private Vector3f angularVelocity;
+    private Vector3f physicLocation;
+    private Matrix3f physicRotation;
     private static final Logger LOGGER = Logger.getLogger(ThrowBombControl.class);
 
     public ThrowBombControl(float mass) {
@@ -18,20 +26,54 @@ public class ThrowBombControl extends RigidBodyControl implements PhysicsTickLis
 
     @Override
     public void prePhysicsTick(PhysicsSpace ps, float f) {
-        if (throwBomb) {
-            LOGGER.debug("Aplicando fuerza a bomba");
-            setLinearVelocity(direction);
-            throwBomb = false;
+        if (linear) {
+//            LOGGER.debug("Aplicando fuerza linear a bomba");
+            super.setLinearVelocity(linearVelocity);
+            linear = false;
+        }
+        if (angular) {
+//            LOGGER.debug("Aplicando fuerza angular a bomba");
+            super.setAngularVelocity(angularVelocity);
+            angular = false;
+        }
+        if (location) {
+            super.setPhysicsLocation(physicLocation);
+            location = false;
+        }
+        if (rotation) {
+            super.setPhysicsRotation(physicRotation);
+            rotation = false;
         }
     }
 
     @Override
-    public void physicsTick(PhysicsSpace ps, float f) {}
-    
-    public void setDirection(Vector3f direction) {
-        this.direction = direction;
-        throwBomb = true;
+    public void setLinearVelocity(Vector3f vec) {
+        linearVelocity = vec;
+        linear = true;
     }
+
+    @Override
+    public void setAngularVelocity(Vector3f vec) {
+        angularVelocity = vec;
+        angular = true;
+    }
+
+    @Override
+    public void setPhysicsLocation(Vector3f location) {
+        physicLocation = location;
+        this.location = true;
+    }
+
+    @Override
+    public void setPhysicsRotation(Matrix3f rotation) {
+        physicRotation = rotation;
+        this.rotation = true;
+    }
+
+
+
+    @Override
+    public void physicsTick(PhysicsSpace ps, float f) {}
 
     @Override
     public void setPhysicsSpace(PhysicsSpace space) {
