@@ -65,7 +65,7 @@ public class Player {
                 tbc.setPhysicsLocation(location);
                 JBombContext.ROOT_NODE.attachChild(bomb.getSpatial());
                 JBombContext.PHYSICS_SPACE.add(tbc);
-                tbc.setDirection(getViewDirection().mult(25f));
+                tbc.setLinearVelocity(getViewDirection().mult(25f));
                 return null;
             }
         });
