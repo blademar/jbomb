@@ -16,6 +16,8 @@ import java.util.concurrent.BlockingQueue;
 import jbomb.common.game.IDRepository;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.BasePhysicMessage;
+import jbomb.common.messages.CharacterMovesMessage;
+import jbomb.common.messages.ElevatorMovesMessage;
 import org.apache.log4j.Logger;
 
 public abstract class AbstractManager<T> implements MessageListener<T>, AppState {
@@ -87,14 +89,14 @@ public abstract class AbstractManager<T> implements MessageListener<T>, AppState
                 it.remove();
             }
         }
-//        else {
-//            while (it.hasNext()) {
-//                message = it.next();
-//                if (message instanceof CharacterMovesMessage || message instanceof ElevatorMovesMessage) {
-//                    message.interpolate(time / maxTime);
-//                }
-//            }
-//        }
+        else {
+            while (it.hasNext()) {
+                message = it.next();
+                if (message instanceof CharacterMovesMessage || message instanceof ElevatorMovesMessage) {
+                    message.interpolate(time / maxTime);
+                }
+            }
+        }
     }
 
     @Override
