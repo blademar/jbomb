@@ -6,5 +6,5 @@ import jbomb.common.game.JBombContext;
 
 public class ServerContext extends JBombContext {
     public static Server SERVER;
-    public static Node playersNode;
+    public static Node NODE_PLAYERS;
 }

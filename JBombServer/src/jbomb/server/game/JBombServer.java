@@ -39,8 +39,8 @@ public class JBombServer extends BaseGame {
     @Override
     public void simpleInitApp() {
         super.simpleInitApp();
-        ServerContext.playersNode = new Node();
-        JBombContext.ROOT_NODE.attachChild(ServerContext.playersNode);
+        ServerContext.NODE_PLAYERS = new Node();
+        JBombContext.ROOT_NODE.attachChild(ServerContext.NODE_PLAYERS);
         try {
             server = Network.createServer(6789);
             addMessageListeners();
