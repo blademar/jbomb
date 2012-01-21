@@ -4,7 +4,6 @@ import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.PhysicsTickListener;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import org.apache.log4j.Logger;
 
@@ -12,12 +11,8 @@ public class ThrowBombControl extends RigidBodyControl implements PhysicsTickLis
 
     private boolean linear;
     private boolean angular;
-    private boolean rotation;
-    private boolean location;
     private Vector3f linearVelocity;
     private Vector3f angularVelocity;
-    private Vector3f physicLocation;
-    private Matrix3f physicRotation;
     private static final Logger LOGGER = Logger.getLogger(ThrowBombControl.class);
 
     public ThrowBombControl(float mass) {
@@ -36,14 +31,6 @@ public class ThrowBombControl extends RigidBodyControl implements PhysicsTickLis
             super.setAngularVelocity(angularVelocity);
             angular = false;
         }
-        if (location) {
-            super.setPhysicsLocation(physicLocation);
-            location = false;
-        }
-        if (rotation) {
-            super.setPhysicsRotation(physicRotation);
-            rotation = false;
-        }
     }
 
     @Override
@@ -57,21 +44,7 @@ public class ThrowBombControl extends RigidBodyControl implements PhysicsTickLis
         angularVelocity = vec;
         angular = true;
     }
-
-    @Override
-    public void setPhysicsLocation(Vector3f location) {
-        physicLocation = location;
-        this.location = true;
-    }
-
-    @Override
-    public void setPhysicsRotation(Matrix3f rotation) {
-        physicRotation = rotation;
-        this.rotation = true;
-    }
-
-
-
+    
     @Override
     public void physicsTick(PhysicsSpace ps, float f) {}
 
