@@ -3,7 +3,6 @@ package jbomb.common.controls;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.PhysicsTickListener;
 import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.math.Matrix3f;
 import com.jme3.math.Vector3f;
 import org.apache.log4j.Logger;
 

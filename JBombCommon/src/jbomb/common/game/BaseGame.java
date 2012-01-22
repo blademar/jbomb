@@ -18,6 +18,7 @@ import jbomb.common.appstates.RunningAppState;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.CoordinateBombMessage;
 import jbomb.common.messages.CreatePlayerMessage;
+import jbomb.common.messages.DamageMessage;
 import jbomb.common.messages.ElevatorMovesMessage;
 import jbomb.common.messages.ExploitBombMessage;
 import jbomb.common.messages.NewPlayerMessage;
@@ -57,7 +58,7 @@ public abstract class BaseGame extends SimpleApplication {
     
     protected void initStateManager() {
         stateManager.attach(bulletAppState);
-//        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
         stateManager.attach(getManager());
         stateManager.attach(runningAppState);
     }
@@ -423,6 +424,7 @@ public abstract class BaseGame extends SimpleApplication {
         Serializer.registerClass(ExploitBombMessage.class);
         Serializer.registerClass(ThrowBombMessage.class);
         Serializer.registerClass(ElevatorMovesMessage.class);
+        Serializer.registerClass(DamageMessage.class);
     }
 
     protected abstract AbstractManager<?> createManager();
