@@ -13,6 +13,7 @@ import jbomb.common.game.Player;
 import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.RemovePlayerMessage;
+import jbomb.server.controls.ScorePlayerControl;
 import jbomb.server.game.ServerContext;
 import org.apache.log4j.Logger;
 
@@ -54,6 +55,9 @@ public class ClientConnectionListener implements ConnectionListener {
                 public Void call() throws Exception {
                     
                     Player player = new Player(loc2, color2);
+                    player.getGeometry().setUserData("id", conn.getId());
+                    player.getGeometry().setName("Player(" + conn.getId() + ")");
+                    player.getGeometry().addControl(new ScorePlayerControl());
                     JBombContext.MANAGER.addPhysicObject(conn.getId(), player);
                     ServerContext.NODE_PLAYERS.attachChild(player.getGeometry());
                     return null;

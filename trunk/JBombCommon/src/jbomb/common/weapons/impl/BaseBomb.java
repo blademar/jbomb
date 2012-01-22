@@ -1,6 +1,7 @@
 package jbomb.common.weapons.impl;
 
-import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.bullet.collision.shapes.SphereCollisionShape;
+import com.jme3.bullet.control.GhostControl;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
@@ -53,13 +54,17 @@ public class BaseBomb implements Bomb {
 
     @Override
     public void exploit() {
-        Vector3f location = geometry.getControl(RigidBodyControl.class).getPhysicsLocation();
+        GhostControl ghostControl = new GhostControl(new SphereCollisionShape(6f));
+        geometry.addControl(ghostControl);
+        JBombContext.PHYSICS_SPACE.add(ghostControl);
+        Vector3f location = geometry.getLocalTranslation();
         explosion.setLocation(location);
         explosion.start();
         sound.play(location);
         JBombContext.ROOT_NODE.detachChild(geometry);
         long id = ((Long) geometry.getUserData("id"));
         JBombContext.MANAGER.removePhysicObject(id);
+        JBombContext.PHYSICS_SPACE.remove(ghostControl);
     }
 
     @Override

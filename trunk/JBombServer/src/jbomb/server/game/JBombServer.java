@@ -17,6 +17,7 @@ import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.ThrowBombMessage;
 import jbomb.server.appstates.RunningServerAppState;
 import jbomb.server.appstates.ServerManager;
+import jbomb.server.listeners.BombCollisionListener;
 import jbomb.server.listeners.ClientConnectionListener;
 import jbomb.server.listeners.messages.CreatePlayerListener;
 import jbomb.server.listeners.messages.ThrowBombListener;
@@ -39,6 +40,7 @@ public class JBombServer extends BaseGame {
     @Override
     public void simpleInitApp() {
         super.simpleInitApp();
+        JBombContext.PHYSICS_SPACE.addCollisionListener(new BombCollisionListener());
         ServerContext.NODE_PLAYERS = new Node();
         JBombContext.ROOT_NODE.attachChild(ServerContext.NODE_PLAYERS);
         try {

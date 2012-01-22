@@ -16,11 +16,11 @@ import jbomb.client.appstates.ClientManager;
 import jbomb.client.appstates.RunningClientAppState;
 import jbomb.client.listeners.BombSecondsListener;
 import jbomb.client.listeners.CharacterActionListener;
-import jbomb.common.appstates.AbstractManager;
 import jbomb.common.appstates.RunningAppState;
 import jbomb.client.listeners.ServerConnectionListener;
 import jbomb.client.listeners.ShootsActionListener;
 import jbomb.client.listeners.messages.CreatePlayerListener;
+import jbomb.client.listeners.messages.DamageMessageListener;
 import jbomb.client.listeners.messages.ExploitBombListener;
 import jbomb.client.listeners.messages.NewPlayerListener;
 import jbomb.client.listeners.messages.RemovePlayerListener;
@@ -31,6 +31,7 @@ import jbomb.common.game.BaseGame;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.CoordinateBombMessage;
 import jbomb.common.messages.CreatePlayerMessage;
+import jbomb.common.messages.DamageMessage;
 import jbomb.common.messages.ElevatorMovesMessage;
 import jbomb.common.messages.ExploitBombMessage;
 import jbomb.common.messages.NewPlayerMessage;
@@ -65,7 +66,8 @@ public class JBombClient extends BaseGame {
     private StartGameListener startGameListener = new StartGameListener();
     private ThrowBombListener throwBombListener = new ThrowBombListener();
     private ExploitBombListener exploitBombListener = new ExploitBombListener();
-    
+    private DamageMessageListener damageMessageListener = new DamageMessageListener();
+
     public JBombClient(String ip) {
         this.ip = ip;
         initAppSettings();
@@ -196,6 +198,7 @@ public class JBombClient extends BaseGame {
         client.addMessageListener(startGameListener, StartGameMessage.class);
         client.addMessageListener(throwBombListener, ThrowBombMessage.class);
         client.addMessageListener(exploitBombListener, ExploitBombMessage.class);
+        client.addMessageListener(damageMessageListener, DamageMessage.class);
         AbstractManager<Client> m = (AbstractManager<Client>) getManager();
         client.addMessageListener(m, CharacterMovesMessage.class);
         client.addMessageListener(m, CoordinateBombMessage.class);
