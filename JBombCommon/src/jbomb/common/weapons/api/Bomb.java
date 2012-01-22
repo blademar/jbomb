@@ -1,6 +1,7 @@
 package jbomb.common.weapons.api;
 
 import jbomb.common.controls.AbstractBombControl;
+import jbomb.common.effects.api.Explosion;
 
 public interface Bomb {
     
@@ -11,4 +12,6 @@ public interface Bomb {
     float getTimeForExplosion();
     
     void setControl(AbstractBombControl control);
+
+    Explosion getExplosion();
 }
