@@ -1,6 +1,7 @@
 package jbomb.common.effects.impl;
 
 import com.jme3.math.Vector3f;
+import com.jme3.scene.Geometry;
 import java.util.ArrayList;
 import java.util.List;
 import jbomb.common.effects.api.Explosion;
@@ -43,5 +44,9 @@ public abstract class MultiExplosion implements Explosion {
                 maxTime = e.getTimeForDie();
         return maxTime;
     }
-    
+
+    @Override
+    public Geometry getGeometry() {
+        return explosionList.get(0).getGeometry();
+    }
 }
