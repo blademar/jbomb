@@ -50,13 +50,12 @@ public class ClientConnectionListener implements ConnectionListener {
             final Vector3f loc2 = nextPosition();
             final ColorRGBA color2 = nextColor();
             JBombContext.BASE_GAME.enqueue(new Callable<Void>() {
-
                 @Override
                 public Void call() throws Exception {
-                    
                     Player player = new Player(loc2, color2);
                     player.getGeometry().setUserData("id", conn.getId());
                     player.getGeometry().setName("Player(" + conn.getId() + ")");
+                    player.getGeometry().setUserData("health", 100f);
                     player.getGeometry().addControl(new ScorePlayerControl());
                     JBombContext.MANAGER.addPhysicObject(conn.getId(), player);
                     ServerContext.NODE_PLAYERS.attachChild(player.getGeometry());

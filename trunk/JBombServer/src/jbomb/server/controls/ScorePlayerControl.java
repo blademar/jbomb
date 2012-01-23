@@ -10,10 +10,11 @@ import jbomb.server.game.ServerContext;
 
 public class ScorePlayerControl extends JBombAbstractControl {
 
-    private volatile int damage;
+    private volatile float damage;
     private float time, maxTime = 1f;
-    private int temporalDamage;
+    private float temporalDamage;
     private int id;
+    private float health;
 
     @Override
     protected Control newInstanceOfMe() {
@@ -30,7 +31,10 @@ public class ScorePlayerControl extends JBombAbstractControl {
                     temporalDamage = damage;
                     damage = 0;
                 }
-                ServerContext.SERVER.broadcast(new DamageMessage((long) id, temporalDamage));
+                health = (Float) spatial.getUserData("health");
+                health -= temporalDamage;
+                spatial.setUserData("health", health);
+                ServerContext.SERVER.broadcast(new DamageMessage((long) id, health));
             }
         }
     }
@@ -39,7 +43,7 @@ public class ScorePlayerControl extends JBombAbstractControl {
     protected void controlRender(RenderManager rm, ViewPort vp) {
     }
 
-    public synchronized void sumDamage(int value) {
+    public synchronized void sumDamage(float value) {
         damage += value;
     }
 

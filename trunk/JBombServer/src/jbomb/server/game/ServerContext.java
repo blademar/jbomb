@@ -7,4 +7,5 @@ import jbomb.common.game.JBombContext;
 public class ServerContext extends JBombContext {
     public static Server SERVER;
     public static Node NODE_PLAYERS;
+    public static byte PLAYERS_COUNT;
 }

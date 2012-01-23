@@ -33,8 +33,8 @@ public class JBombServer extends BaseGame {
     private CreatePlayerListener createPlayerListener = new CreatePlayerListener();
     
     public JBombServer(String playersNumber) {
-        JBombContext.PLAYERS_COUNT = setPlayersCount(playersNumber);
-        LOGGER.debug("PlayersCount: " + JBombContext.PLAYERS_COUNT);
+        ServerContext.PLAYERS_COUNT = setPlayersCount(playersNumber);
+        LOGGER.debug("PlayersCount: " + ServerContext.PLAYERS_COUNT);
     }
 
     @Override

@@ -5,16 +5,16 @@ import com.jme3.network.serializing.Serializable;
 @Serializable
 public class DamageMessage extends BasePhysicMessage {
 
-    private int damage;
+    private float damage;
 
     public DamageMessage() {}
 
-    public DamageMessage(long id, int damage) {
+    public DamageMessage(long id, float damage) {
         super(id);
         this.damage = damage;
     }
 
-    public int getDamage() {
+    public float getDamage() {
         return damage;
     }
 }

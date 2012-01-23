@@ -19,11 +19,11 @@ public class BombCollisionListener implements PhysicsCollisionListener {
         if (nodeA != null && nodeB != null) {
             if (nodeA.getParent() == ServerContext.NODE_PLAYERS
                     && ("bomb".equals(nodeB.getName()) || "wormsExplosion".equals(nodeB.getName()))) {
-                nodeA.getControl(ScorePlayerControl.class).sumDamage(1);
+                nodeA.getControl(ScorePlayerControl.class).sumDamage(.1f);
 //                LOGGER.debug("Collision: " + nodeA.getName() + " with " + nodeB.getName());
             } else if (nodeB.getParent() == ServerContext.NODE_PLAYERS
                     && ("bomb".equals(nodeA.getName()) || "wormsExplosion".equals(nodeA.getName()))) {
-                nodeB.getControl(ScorePlayerControl.class).sumDamage(1);
+                nodeB.getControl(ScorePlayerControl.class).sumDamage(.1f);
 //                LOGGER.debug("Collision: " + nodeB.getName() + " with " + nodeA.getName());
             }
         }
