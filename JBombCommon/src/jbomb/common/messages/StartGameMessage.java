@@ -7,18 +7,21 @@ import com.jme3.network.serializing.Serializable;
 public class StartGameMessage extends AbstractMessage {
     
     private boolean start;
-    
+    private byte playersCount;
+
     public StartGameMessage() {}
     
-    public StartGameMessage(boolean start) {
+    public StartGameMessage(boolean start, byte playersCount) {
         this.start = start;
+        this.playersCount = playersCount;
     }
 
     public boolean isStart() {
         return start;
     }
 
-    public void setStart(boolean start) {
-        this.start = start;
+    public byte getPlayersCount() {
+        return playersCount;
     }
+    
 }

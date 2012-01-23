@@ -5,6 +5,7 @@ import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
+import com.jme3.math.Vector3f;
 import com.jme3.network.Client;
 import com.jme3.network.Network;
 import com.jme3.renderer.Camera;
@@ -12,6 +13,7 @@ import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.Callable;
 import jbomb.client.appstates.ClientManager;
 import jbomb.client.appstates.RunningClientAppState;
 import jbomb.client.listeners.BombSecondsListener;
@@ -42,24 +44,22 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
 public class JBombClient extends BaseGame {
-    
+
     private static final Logger LOGGER = Logger.getLogger(JBombClient.class);
     private String ip;
     private Client client;
     private Picture bombsPictures = new Picture("bombsPictures");
     private Picture BombsSecondsPictures = new Picture("bombsSecondsPictures");
+    private BitmapText[] health;
     private boolean left = false;
     private boolean right = false;
     private boolean front = false;
     private boolean back = false;
     private AppSettings appSettings = new AppSettings(true);
-    
     private ShootsActionListener shootsActionListener = new ShootsActionListener();
     private CharacterActionListener characterActionListener = new CharacterActionListener();
     private BombSecondsListener bombSecondsListener = new BombSecondsListener();
-    
     private ServerConnectionListener connectionListener = new ServerConnectionListener();
-    
     private CreatePlayerListener createPlayerListener = new CreatePlayerListener();
     private NewPlayerListener newPlayerListener = new NewPlayerListener();
     private RemovePlayerListener removePlayerListener = new RemovePlayerListener();
@@ -77,8 +77,9 @@ public class JBombClient extends BaseGame {
     public void simpleInitApp() {
         super.simpleInitApp();
         try {
-            if (ip == null)
+            if (ip == null) {
                 ip = "localhost";
+            }
             client = Network.connectToServer(ip, 6789);
             addMessageListeners();
             client.addClientStateListener(connectionListener);
@@ -91,13 +92,13 @@ public class JBombClient extends BaseGame {
         initInterfaces();
         initMappings();
     }
-    
+
     private void initAppSettings() {
         appSettings.setResolution(640, 480);
         setSettings(appSettings);
         setShowSettings(false);
     }
-    
+
     private void initInterfaces() {
         BitmapText ch = new BitmapText(guiFont, false);
         ch.setSize(guiFont.getCharSet().getRenderedSize() * 2);
@@ -106,20 +107,46 @@ public class JBombClient extends BaseGame {
                 settings.getWidth() / 2 - guiFont.getCharSet().getRenderedSize() / 3 * 2,
                 settings.getHeight() / 2 + ch.getLineHeight() / 2, 0);
         guiNode.attachChild(ch);
-        
+
         getBombsPictures().setImage(assetManager, "interfaces/pictures/bomb1.png", true);
         getBombsPictures().setWidth(64f);
         getBombsPictures().setHeight(51f);
-        getBombsPictures().setLocalTranslation(settings.getWidth() - 64f, 0f, 0f);
+        getBombsPictures().setLocalTranslation(settings.getWidth() - 64f - 5f, 0f, 0f);
         guiNode.attachChild(getBombsPictures());
-        
+
         getBombsSecondsPictures().setImage(assetManager, "interfaces/pictures/glass_numbers_1.png", true);
         getBombsSecondsPictures().setWidth(45f);
         getBombsSecondsPictures().setHeight(45f);
-        getBombsSecondsPictures().setLocalTranslation(settings.getWidth() - 45f, 55f, 0f);
+        getBombsSecondsPictures().setLocalTranslation(settings.getWidth() - 45 - 5f, 55f, 0f);
         guiNode.attachChild(getBombsSecondsPictures());
     }
-    
+
+    public void initHealthMarker(final byte playersCount) {
+        enqueue(new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                health = new BitmapText[playersCount];
+                float up = 0f;
+                Picture picture = null;
+                for (byte i = 0; i < playersCount; i++) {
+                    picture = new Picture("HealthPlayer" + i);
+                    picture.setImage(assetManager, "interfaces/pictures/" + (i + 1) + ".png", true);
+                    picture.setWidth(32f);
+                    picture.setHeight(32f);
+                    picture.setLocalTranslation(settings.getWidth() - 32f - 5f, 130f + up, 0f);
+                    guiNode.attachChild(picture);
+
+                    health[i] = new BitmapText(guiFont, false);
+                    health[i].setText("100%");
+                    health[i].setLocalTranslation(settings.getWidth() - (32f + 10f) * 2, 157f + up, 0f);
+                    guiNode.attachChild(health[i]);
+                    up += 50f;
+                }
+                return null;
+            }
+        });
+    }
+
     private void initMappings() {
         inputManager.addMapping("shoot", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
         inputManager.addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
@@ -140,11 +167,11 @@ public class JBombClient extends BaseGame {
         inputManager.addListener(bombSecondsListener, "two");
         inputManager.addListener(bombSecondsListener, "three");
     }
-    
+
     public Camera getCam() {
         return cam;
     }
-    
+
     public void setLeft(boolean left) {
         this.left = left;
     }
@@ -207,8 +234,9 @@ public class JBombClient extends BaseGame {
 
     @Override
     public void destroy() {
-        if (client != null && client.isConnected())
+        if (client != null && client.isConnected()) {
             client.close();
+        }
         super.destroy();
     }
 
@@ -221,5 +249,9 @@ public class JBombClient extends BaseGame {
     public void loadLog4jConfig() {
         URL urlConfig = BaseGame.class.getResource("/jbomb/client/config/log4j.xml");
         DOMConfigurator.configure(urlConfig);
+    }
+
+    public BitmapText getHealtWithId(int id) {
+        return health[id];
     }
 }

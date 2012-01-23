@@ -17,9 +17,9 @@ public class CreatePlayerListener implements MessageListener<HostedConnection> {
     public void messageReceived(HostedConnection s, Message msg) {
         connectedPlayers++;
         LOGGER.debug("Connected players: " + connectedPlayers);
-        if (connectedPlayers == JBombContext.PLAYERS_COUNT) {
+        if (connectedPlayers == ServerContext.PLAYERS_COUNT) {
             JBombContext.STARTED = true;
-            ServerContext.SERVER.broadcast(new StartGameMessage(true));
+            ServerContext.SERVER.broadcast(new StartGameMessage(true, ServerContext.PLAYERS_COUNT));
             LOGGER.debug("Starting game...");
         }
     }
