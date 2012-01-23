@@ -167,6 +167,107 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "4th_bridge", pink, new Vector3f(-10.5f, 21.5f, 4.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "4th_bridge", purple, new Vector3f(-10.5f, 20.5f, 4.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, 1.5f, .5f, "4th_bridge", purple, new Vector3f(-10.5f, 21.5f, 5.5f), new Vector2f(.5f, 1.5f));
+        
+        GeometryUtils.makeCube(.5f, .25f, .5f, "7th_wall", darkgray, new Vector3f(9.5f, 19.75f, -19.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .25f, .5f, "7th_wall", darkgray, new Vector3f(9.5f, 19.75f, -16.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(2.5f, .25f, .5f, "7th_wall", darkgray, new Vector3f(7.5f, 19.75f, -15.5f), new Vector2f(2.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "7th_wall", purple, new Vector3f(9.5f, 20.5f, -19.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "7th_wall", purple, new Vector3f(9.5f, 20.5f, -16.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "7th_wall", purple, new Vector3f(9.5f, 21.5f, -15.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "7th_wall", pink, new Vector3f(8.5f, 20.5f, -15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "7th_wall", purple, new Vector3f(8.5f, 21.5f, -15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "7th_wall", pink, new Vector3f(7.5f, 21.5f, -15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "7th_wall", purple, new Vector3f(7.5f, 20.5f, -15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(1f, 1.5f, .5f, "7th_wall", purple, new Vector3f(6f, 21.5f, -15.5f), new Vector2f(1f, 1.5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "7th_wall", purple, new Vector3f(6.5f, 23.5f, -15.5f), new Vector2f(.5f, .5f));
+        
+        GeometryUtils.makeCube(2.5f, .25f, .5f, "8th_wall", darkgray, new Vector3f(17.5f, 19.75f, -9.5f), new Vector2f(2.5f, .5f));
+        GeometryUtils.makeCube(.5f, .25f, 3.5f, "8th_wall", darkgray, new Vector3f(15.5f, 19.75f, -5.5f), new Vector2f(3.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "8th_wall", purple, new Vector3f(19.5f, 21f, -9.5f), new Vector2f(.5f, 1f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "8th_wall", pink, new Vector3f(18.5f, 20.5f, -9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "8th_wall", purple, new Vector3f(17.5f, 21.5f, -9.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "8th_wall", purple, new Vector3f(16.5f, 20.5f, -9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "8th_wall", pink, new Vector3f(16.5f, 21.5f, -9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 2f, .5f, "8th_wall", purple, new Vector3f(15.5f, 22f, -9.5f), new Vector2f(.5f, 2f));
+        GeometryUtils.makeCube(.5f, 1f, 1f, "8th_wall", purple, new Vector3f(15.5f, 21f, -8f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "8th_wall", purple, new Vector3f(15.5f, 22.5f, -7.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "8th_wall", purple, new Vector3f(15.5f, 20.5f, -6.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "8th_wall", pink, new Vector3f(15.5f, 21.5f, -6.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1.5f, 1f, "8th_wall", purple, new Vector3f(15.5f, 21.5f, -5f), new Vector2f(1f, 1.5f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "8th_wall", purple, new Vector3f(15.5f, 21f, -3.5f), new Vector2f(.5f, 1f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "8th_wall", pink, new Vector3f(15.5f, 20.5f, -2.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "8th_wall", purple, new Vector3f(15.5f, 22f, -2.5f), new Vector2f(.5f, 1f));
+        
+        GeometryUtils.makeCube(1f, .25f, .5f, "9th_wall", darkgray, new Vector3f(19f, 19.75f, 9.5f), new Vector2f(1f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "9th_wall", purple, new Vector3f(19.5f, 20.5f, 9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "9th_wall", pink, new Vector3f(19.5f, 21.5f, 9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "9th_wall", pink, new Vector3f(18.5f, 20.5f, 9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "9th_wall", purple, new Vector3f(18.5f, 21.5f, 9.5f), new Vector2f(.5f, .5f));
+        
+        GeometryUtils.makeCube(.5f, .25f, 1.5f, "9th_wall", darkgray, new Vector3f(10.5f, 19.75f, 8.5f), new Vector2f(1f, .5f));
+        GeometryUtils.makeCube(.5f, .25f, 1f, "9th_wall", darkgray, new Vector3f(9.5f, 19.75f, 10f), new Vector2f(1f, .5f));
+        GeometryUtils.makeCube(.5f, .25f, .5f, "9th_wall", darkgray, new Vector3f(8.5f, 19.75f, 10.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "9th_wall", pink, new Vector3f(10.5f, 20.5f, 7.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "9th_wall", purple, new Vector3f(10.5f, 21.5f, 8.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "9th_wall", purple, new Vector3f(10.5f, 20.5f, 9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "9th_wall", pink, new Vector3f(10.5f, 21.5f, 9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 2f, .5f, "9th_wall", purple, new Vector3f(9.5f, 22f, 9.5f), new Vector2f(.5f, 2f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "9th_wall", purple, new Vector3f(9.5f, 21.5f, 10.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "9th_wall", purple, new Vector3f(8.5f, 21f, 10.5f), new Vector2f(.5f, 1f));
+        
+        GeometryUtils.makeCube(.5f, .25f, .5f, "10th_wall", darkgray, new Vector3f(-9.5f, 19.75f, 19.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .25f, .5f, "10th_wall", darkgray, new Vector3f(-9.5f, 19.75f, 16.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(2.5f, .25f, .5f, "10th_wall", darkgray, new Vector3f(-7.5f, 19.75f, 15.5f), new Vector2f(2.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "10th_wall", purple, new Vector3f(-9.5f, 21f, 19.5f), new Vector2f(.5f, 1f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", pink, new Vector3f(-9.5f, 22.5f, 19.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "10th_wall", purple, new Vector3f(-9.5f, 24f, 19.5f), new Vector2f(.5f, 1f));
+        GeometryUtils.makeCube(.5f, .5f, 1f, "10th_wall", purple, new Vector3f(-9.5f, 23.5f, 18f), new Vector2f(1f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", purple, new Vector3f(-9.5f, 20.5f, 16.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", purple, new Vector3f(-9.5f, 22.5f, 16.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", pink, new Vector3f(-9.5f, 23.5f, 16.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", purple, new Vector3f(-9.5f, 23.5f, 15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", purple, new Vector3f(-9.5f, 21.5f, 15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", pink, new Vector3f(-9.5f, 22.5f, 15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", pink, new Vector3f(-9.5f, 20.5f, 15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "10th_wall", purple, new Vector3f(-8.5f, 21.5f, 15.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", purple, new Vector3f(-7.5f, 20.5f, 15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", pink, new Vector3f(-7.5f, 22.5f, 15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", purple, new Vector3f(-6.5f, 21.5f, 15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", purple, new Vector3f(-5.5f, 20.5f, 15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", purple, new Vector3f(-5.5f, 22.5f, 15.5f), new Vector2f(.5f, .5f));
+        
+        GeometryUtils.makeCube(2.5f, .25f, .5f, "11th_wall", darkgray, new Vector3f(-17.5f, 19.75f, 9.5f), new Vector2f(2.5f, .5f));
+        GeometryUtils.makeCube(.5f, .25f, .5f, "11th_wall", darkgray, new Vector3f(-15.5f, 19.75f, 8.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .25f, 2.5f, "11th_wall", darkgray, new Vector3f(-15.5f, 19.75f, 4.5f), new Vector2f(2.5f, .5f));
+        GeometryUtils.makeCube(1f, 1f, .5f, "11th_wall", purple, new Vector3f(-19f, 21f, 9.5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "11th_wall", purple, new Vector3f(-19.5f, 22.5f, 9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 2f, .5f, "11th_wall", purple, new Vector3f(-17.5f, 22f, 9.5f), new Vector2f(.5f, 2f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "11th_wall", purple, new Vector3f(-16.5f, 20.5f, 9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "11th_wall", pink, new Vector3f(-16.5f, 21.5f, 9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "11th_wall", purple, new Vector3f(-15.5f, 21.5f, 9.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "11th_wall", purple, new Vector3f(-15.5f, 21f, 8.5f), new Vector2f(.5f, 1f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "11th_wall", purple, new Vector3f(-15.5f, 21.5f, 6.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "11th_wall", purple, new Vector3f(-15.5f, 21f, 5.5f), new Vector2f(.5f, 1f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "11th_wall", pink, new Vector3f(-15.5f, 21.5f, 4.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, 1f, "11th_wall", purple, new Vector3f(-15.5f, 20.5f, 4f), new Vector2f(1f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, 1f, "11th_wall", purple, new Vector3f(-15.5f, 22.5f, 4f), new Vector2f(1f, .5f));
+        GeometryUtils.makeCube(.5f, 2f, .5f, "11th_wall", purple, new Vector3f(-15.5f, 22f, 2.5f), new Vector2f(.5f, 2f));
+        
+        GeometryUtils.makeCube(1f, .25f, .5f, "12th_wall", darkgray, new Vector3f(-19f, 19.75f, -9.5f), new Vector2f(1f, .5f));
+        GeometryUtils.makeCube(1f, 1f, .5f, "12th_wall", purple, new Vector3f(-19f, 21f, -9.5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "12th_wall", purple, new Vector3f(-19.5f, 22.5f, -9.5f), new Vector2f(.5f, .5f));
+        
+        GeometryUtils.makeCube(.5f, .25f, 1f, "12th_wall", darkgray, new Vector3f(-10.5f, 19.75f, -8f), new Vector2f(1f, .5f));
+        GeometryUtils.makeCube(1f, .25f, .5f, "12th_wall", darkgray, new Vector3f(-10f, 19.75f, -9.5f), new Vector2f(1f, .5f));
+        GeometryUtils.makeCube(1f, .25f, .5f, "12th_wall", darkgray, new Vector3f(-9f, 19.75f, -10.5f), new Vector2f(1f, .5f));
+        GeometryUtils.makeCube(.5f, 1f, 1.5f, "12th_wall", purple, new Vector3f(-10.5f, 21f, -8.5f), new Vector2f(1.5f, 1f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "12th_wall", pink, new Vector3f(-10.5f, 22.5f, -9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "12th_wall", purple, new Vector3f(-9.5f, 20.5f, -9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "12th_wall", pink, new Vector3f(-9.5f, 21.5f, -9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "12th_wall", purple, new Vector3f(-9.5f, 22.5f, -9.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "12th_wall", pink, new Vector3f(-9.5f, 20.5f, -10.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "12th_wall", purple, new Vector3f(-9.5f, 22.5f, -10.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "12th_wall", purple, new Vector3f(-8.5f, 21f, -10.5f), new Vector2f(.5f, 1f));
     }
     
     public void makeWallsAtFirstPlatform() {
