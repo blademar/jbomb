@@ -58,7 +58,7 @@ public abstract class BaseGame extends SimpleApplication {
     
     protected void initStateManager() {
         stateManager.attach(bulletAppState);
-        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
+//        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
         stateManager.attach(getManager());
         stateManager.attach(runningAppState);
     }
@@ -77,6 +77,7 @@ public abstract class BaseGame extends SimpleApplication {
         
         makeWallsAtBase();
         makeWallsAtFirstPlatform();
+        makeWallsAtSecondPlatform();
     }
     
     private void initScene() {
@@ -94,6 +95,78 @@ public abstract class BaseGame extends SimpleApplication {
         new Elevator(new Vector3f(-16f, 29.9f, -3f), 29.9f, 20.1f, 3f, false, getElevatorServerControlled());
         new Elevator(new Vector3f(14f, 20.1f, -16f), 29.9f, 20.1f, 3f, true, getElevatorServerControlled());
         new Elevator(new Vector3f(-14f, 20.1f, 16f), 29.9f, 20.1f, 3f, true, getElevatorServerControlled());
+    }
+    
+    public void makeWallsAtSecondPlatform() {
+        String pink = "textures/boxes/w_pink.png", 
+                purple = "textures/boxes/w_purple.png", 
+                darkgray = "textures/boxes/w_darkgray.png",
+                glass = "textures/glass/sunbeam_t2.png";
+        
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(4.5f, 21.5f, 4.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(4.5f, 20.5f, 3.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(3.5f, 20.5f, 4.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(-4.5f, 21.5f, -4.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(-4.5f, 20.5f, -3.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(-3.5f, 20.5f, -4.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "2nd_platformPilar", darkgray, new Vector3f(-4.5f, 21f, 4.5f), new Vector2f(.5f, 1f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(-4.5f, 20.5f, 3.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(-3.5f, 20.5f, 4.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "2nd_platformPilar", darkgray, new Vector3f(4.5f, 21f, -4.5f), new Vector2f(.5f, 1f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(4.5f, 20.5f, -3.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(3.5f, 20.5f, -4.5f), new Vector2f(.5f, .5f));
+        
+        GeometryUtils.makeCube(.5f, .25f, 3f, "1st_bridge", darkgray, new Vector3f(-2.5f, 19.75f, 8f), new Vector2f(3f, .5f));
+        GeometryUtils.makeCube(.5f, 2.5f, .5f, "1st_bridge", purple, new Vector3f(-2.5f, 22.5f, 5.5f), new Vector2f(.5f, 2.5f));
+        GeometryUtils.makeCube(.5f, .5f, 2.5f, "1st_bridge", purple, new Vector3f(-2.5f, 24.5f, 8.5f), new Vector2f(2.5f, .5f));
+        GeometryUtils.makeCube(2f, .5f, .5f, "1st_bridge", purple, new Vector3f(0f, 24.5f, 5.5f), new Vector2f(2f, .5f));
+        GeometryUtils.makeCube(.1f, 2f, 2.5f, "1st_bridge", glass, new Vector3f(-2.525f, 22f, 8.5f), new Vector2f(2.5f, 2f), true);
+        GeometryUtils.makeCube(2f, .1f, 2.5f, "1st_bridge", glass, new Vector3f(0f, 24.525f, 8.5f), new Vector2f(2f, 2.5f), true);
+        
+        GeometryUtils.makeCube(.5f, .25f, 3f, "2nd_bridge", darkgray, new Vector3f(2.5f, 19.75f, -8f), new Vector2f(3f, .5f));
+        GeometryUtils.makeCube(.5f, 2.5f, .5f, "2nd_bridge", purple, new Vector3f(2.5f, 22.5f, -5.5f), new Vector2f(.5f, 2.5f));
+        GeometryUtils.makeCube(.5f, 2.5f, .5f, "2nd_bridge", purple, new Vector3f(2.5f, 22.5f, -10.5f), new Vector2f(.5f, 2.5f));
+        GeometryUtils.makeCube(2f, .5f, .5f, "2nd_bridge", purple, new Vector3f(0f, 24.5f, -5.5f), new Vector2f(2f, .5f));
+        GeometryUtils.makeCube(2f, .5f, .5f, "2nd_bridge", purple, new Vector3f(0f, 24.5f, -10.5f), new Vector2f(2f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, 3f, "2nd_bridge", purple, new Vector3f(-2.5f, 24.5f, -8f), new Vector2f(3f, .5f));
+        GeometryUtils.makeCube(.1f, 2.2625f, 2f, "2nd_bridge", glass, new Vector3f(2.525f, 22.2625f, -8f), new Vector2f(2f, 2.25f), true);
+        GeometryUtils.makeCube(2.3125f, .1f, 2f, "2nd_bridge", glass, new Vector3f(.3125f, 24.625f, -8f), new Vector2f(2f, 2f), true);
+        
+        GeometryUtils.makeCube(3f, .25f, .5f, "3rd_bridge", darkgray, new Vector3f(8f, 19.75f, -2.5f), new Vector2f(3f, .5f));
+        GeometryUtils.makeCube(3f, .25f, .5f, "3rd_bridge", darkgray, new Vector3f(8f, 19.75f, 2.5f), new Vector2f(3f, .5f));
+        GeometryUtils.makeCube(.5f, 2f, .5f, "3rd_bridge", purple, new Vector3f(5.5f, 22f, 2.5f), new Vector2f(.5f, 2f));
+        GeometryUtils.makeCube(.5f, 2f, .5f, "3rd_bridge", purple, new Vector3f(5.5f, 22f, -2.5f), new Vector2f(.5f, 2f));
+        GeometryUtils.makeCube(.5f, 2f, .5f, "3rd_bridge", purple, new Vector3f(10.5f, 22f, 2.5f), new Vector2f(.5f, 2f));
+        GeometryUtils.makeCube(.5f, 2f, .5f, "3rd_bridge", purple, new Vector3f(10.5f, 22f, -2.5f), new Vector2f(.5f, 2f));
+        GeometryUtils.makeCube(2f, 1.5f, .1f, "3rd_bridge", glass, new Vector3f(8f, 21.5f, -2.525f), new Vector2f(2f, 1.5f), true);
+        GeometryUtils.makeCube(2f, 1.5f, .1f, "3rd_bridge", glass, new Vector3f(8f, 21.5f, 2.525f), new Vector2f(2f, 1.5f), true);
+        GeometryUtils.makeCube(3f, .1f, 2f, "3rd_bridge", glass, new Vector3f(8f, 23.525f, 0f), new Vector2f(3f, 2f), true);
+        GeometryUtils.makeCube(.5f, .25f, 1.5f, "3rd_bridge", darkgray, new Vector3f(10.5f, 19.75f, -4.5f), new Vector2f(1.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "3rd_bridge", pink, new Vector3f(10.5f, 20.5f, -3.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "3rd_bridge", purple, new Vector3f(10.5f, 22f, -3.5f), new Vector2f(.5f, 1f));
+        GeometryUtils.makeCube(.5f, 1f, .5f, "3rd_bridge", purple, new Vector3f(10.5f, 21f, -4.5f), new Vector2f(.5f, 1f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "3rd_bridge", purple, new Vector3f(10.5f, 20.5f, -5.5f), new Vector2f(.5f, .5f));
+        
+        GeometryUtils.makeCube(3f, .25f, .5f, "4th_bridge", darkgray, new Vector3f(-8f, 19.75f, -2.5f), new Vector2f(3f, .5f));
+        GeometryUtils.makeCube(3f, .25f, .5f, "4th_bridge", darkgray, new Vector3f(-8f, 19.75f, 2.5f), new Vector2f(3f, .5f));
+        GeometryUtils.makeCube(3f, .5f, .5f, "4th_bridge", purple, new Vector3f(-8f, 23.5f, -2.5f), new Vector2f(3f, .5f));
+        GeometryUtils.makeCube(3f, .5f, .5f, "4th_bridge", purple, new Vector3f(-8f, 23.5f, 2.5f), new Vector2f(3f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, 2f, "4th_bridge", purple, new Vector3f(-5.5f, 23.5f, 0f), new Vector2f(2f, .5f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "4th_bridge", purple, new Vector3f(-5.5f, 21.5f, 2.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "4th_bridge", purple, new Vector3f(-5.5f, 21.5f, -2.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "4th_bridge", purple, new Vector3f(-10.5f, 21.5f, 2.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "4th_bridge", purple, new Vector3f(-10.5f, 21.5f, -2.5f), new Vector2f(.5f, 1.5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "4th_bridge", purple, new Vector3f(-5.5f, 24.5f, 2.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "4th_bridge", purple, new Vector3f(-10.5f, 24.5f, -2.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(2f, 1.5f, .1f, "4th_bridge", glass, new Vector3f(-8f, 21.5f, -2.525f), new Vector2f(2f, 1.5f), true);
+        GeometryUtils.makeCube(2f, 1.5f, .1f, "4th_bridge", glass, new Vector3f(-8f, 21.5f, 2.525f), new Vector2f(2f, 1.5f), true);
+        GeometryUtils.makeCube(2.5f, .1f, 2f, "4th_bridge", glass, new Vector3f(-8.5f, 23.525f, 0f), new Vector2f(2.5f, 2f), true);
+        GeometryUtils.makeCube(.5f, .25f, 1.5f, "4th_bridge", darkgray, new Vector3f(-10.5f, 19.75f, 4.5f), new Vector2f(1.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "4th_bridge", pink, new Vector3f(-10.5f, 20.5f, 3.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "4th_bridge", purple, new Vector3f(-10.5f, 21.5f, 3.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "4th_bridge", pink, new Vector3f(-10.5f, 21.5f, 4.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, .5f, .5f, "4th_bridge", purple, new Vector3f(-10.5f, 20.5f, 4.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(.5f, 1.5f, .5f, "4th_bridge", purple, new Vector3f(-10.5f, 21.5f, 5.5f), new Vector2f(.5f, 1.5f));
     }
     
     public void makeWallsAtFirstPlatform() {
@@ -196,6 +269,8 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, 1f, .5f, "6th_wall", boxTextures + "w_darkblue.png", new Vector3f(-12.5f, 14f, -15.5f), new Vector2f(.5f, 1f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "6th_wall", boxTextures + "w_darkblue.png", new Vector3f(-11.5f, 10.5f, -15.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "6th_wall", boxTextures + "w_darkblue.png", new Vector3f(-11.5f, 12.5f, -15.5f), new Vector2f(.5f, .5f));
+        GeometryUtils.makeCube(2f, .1f, 2.5f, "6nd_wall", boxTextures + "f_blue.png", new Vector3f(-18f, 13.9f, -17.5f), new Vector2f(2.5f, 2f), true);
+        GeometryUtils.makeCube(1f, .1f, 2f, "6nd_wall", boxTextures + "f_blue.png", new Vector3f(-15f, 13.9f, -18f), new Vector2f(2f, 1f), true);
         
         GeometryUtils.makeCube(.5f, 5f, .5f, "1st_platformPilar", basePilars, new Vector3f(4.5f, 15f, 4.5f), new Vector2f(.5f, 5f));
         GeometryUtils.makeCube(.5f, 5f, .5f, "1st_platformPilar", basePilars, new Vector3f(4.5f, 15f, -4.5f), new Vector2f(.5f, 5f));
