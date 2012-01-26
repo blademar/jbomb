@@ -64,16 +64,11 @@ public abstract class BaseGame extends SimpleApplication {
     }
     
     private void initWalls() {
-        GeometryUtils.makePlane(40f, 40f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 0f, -20f),
-                true);
-        GeometryUtils.makePlane(40f, 40f, "south_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 0f, 20f),
-                new Quaternion().fromAngleAxis(FastMath.PI, Vector3f.UNIT_Y), true);
-        GeometryUtils.makePlane(40f, 40f, "west_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 0f, 20f),
-                new Quaternion().fromAngleAxis(FastMath.PI / 2, Vector3f.UNIT_Y), true);
-        GeometryUtils.makePlane(40f, 40f, "east_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 0f, -20f),
-                new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_Y), true);
-        GeometryUtils.makePlane(40f, 40f, "up_glass", "textures/glass/sunbeam_t1.png", 
-                new Vector3f(-20f, 40f, -20f), new Quaternion().fromAngleAxis(FastMath.PI / 2, Vector3f.UNIT_X), true);
+        GeometryUtils.makeCube(20f, 20f, .1f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, -20.1f), true);
+        GeometryUtils.makeCube(20f, 20f, .1f, "south_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, 20.1f), true);
+        GeometryUtils.makeCube(.1f, 20f, 20f, "west_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20.1f, 20f, 0f), true);
+        GeometryUtils.makeCube(.1f, 20f, 20f, "east_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20.1f, 20f, 0f), true);
+        GeometryUtils.makeCube(20f, .1f, 20f, "up_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 40.1f, 0f), true);
         
         makeWallsAtBase();
         makeWallsAtFirstPlatform();
@@ -773,9 +768,7 @@ public abstract class BaseGame extends SimpleApplication {
     }
 
     private void initFloor() {
-        Geometry floor = GeometryUtils.makePlane(
-                                     40f, 40f, "floor", "textures/boxes/f_gray.png", new Vector3f(-20f, 0f, 20f),
-                                     new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_X),new Vector2f(20f, 20f), true);
+        GeometryUtils.makeCube(20f, .1f, 20f, "floor", "textures/boxes/f_gray.png", new Vector3f(0, -.1f, 0f), new Vector2f(20f, 20f), true);
     }
     
     private void makeFirtPlatform() {
