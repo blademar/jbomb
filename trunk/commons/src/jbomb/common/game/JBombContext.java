@@ -7,6 +7,8 @@ import jbomb.common.appstates.AbstractManager;
 
 public class JBombContext {
 
+    protected JBombContext() {}
+
     public static AssetManager ASSET_MANAGER;
     public static Node ROOT_NODE;
     public static PhysicsSpace PHYSICS_SPACE;
