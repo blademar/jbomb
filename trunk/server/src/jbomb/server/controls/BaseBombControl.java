@@ -10,7 +10,7 @@ import jbomb.server.game.ServerContext;
 public class BaseBombControl extends AbstractBombControl {
 
     @Override
-    protected void doBeforeExploit(float tpf) {
+    protected void doBeforeExploit() {
         Geometry geometry = (Geometry) getSpatial();
         long id = (Long) geometry.getUserData("id");
         GhostBombControl ghostBombControl = new GhostBombControl();

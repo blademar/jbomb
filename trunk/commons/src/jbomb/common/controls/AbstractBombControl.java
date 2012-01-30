@@ -11,10 +11,8 @@ public abstract class AbstractBombControl extends JBombAbstractControl {
 
     @Override
     protected void controlUpdate(float tpf) {
-        if (time >= bomb.getTimeForExplosion()) {
-            doBeforeExploit(tpf);
-            bomb.exploit();
-        }
+        if (time >= bomb.getTimeForExplosion()) 
+            forceExploit();
         else
             time += tpf;
     }
@@ -25,6 +23,11 @@ public abstract class AbstractBombControl extends JBombAbstractControl {
     public void setBomb(Bomb bomb) {
         this.bomb = bomb;
     }
+    
+    public void forceExploit() {
+        doBeforeExploit();
+        bomb.exploit();
+    }
 
-    protected abstract void doBeforeExploit(float tpf);
+    protected abstract void doBeforeExploit();
 }
