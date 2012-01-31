@@ -3,7 +3,6 @@ package jbomb.server.listeners.messages;
 import com.jme3.network.HostedConnection;
 import com.jme3.network.Message;
 import com.jme3.network.MessageListener;
-import jbomb.common.game.JBombContext;
 import jbomb.common.messages.StartGameMessage;
 import jbomb.server.game.ServerContext;
 import org.apache.log4j.Logger;
@@ -18,7 +17,7 @@ public class CreatePlayerListener implements MessageListener<HostedConnection> {
         connectedPlayers++;
         LOGGER.debug("Connected players: " + connectedPlayers);
         if (connectedPlayers == ServerContext.PLAYERS_COUNT) {
-            JBombContext.STARTED = true;
+            ServerContext.APP.startGame();
             ServerContext.SERVER.broadcast(new StartGameMessage(true, ServerContext.PLAYERS_COUNT));
             LOGGER.debug("Starting game...");
         }

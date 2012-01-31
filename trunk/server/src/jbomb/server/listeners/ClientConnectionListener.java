@@ -28,7 +28,7 @@ public class ClientConnectionListener implements ConnectionListener {
 
     @Override
     public void connectionAdded(Server server, final HostedConnection conn) {
-        if (!JBombContext.STARTED) {
+        if (!ServerContext.APP.isRunning()) {
             LOGGER.debug("Player #" + conn.getId() + " online.");
             Vector3f loc = null;
             ColorRGBA color = null;

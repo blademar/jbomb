@@ -8,6 +8,7 @@ import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Quad;
 import com.jme3.texture.Texture;
@@ -15,7 +16,7 @@ import jbomb.common.game.JBombContext;
 
 public class GeometryUtils {
 
-    public static Geometry makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation, Vector2f scaleTexture, boolean transparent) {
+    public static Geometry makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation, Vector2f scaleTexture, boolean transparent, Node node) {
         Box box = new Box(Vector3f.ZERO, x, y, z);
         Geometry geometry = new Geometry(name, box);
         Material material = new Material(JBombContext.ASSET_MANAGER, MatDefs.UNSHADED);
@@ -34,20 +35,27 @@ public class GeometryUtils {
         RigidBodyControl physics = new RigidBodyControl(0f);
         geometry.addControl(physics); 
         JBombContext.PHYSICS_SPACE.add(physics);
-        JBombContext.ROOT_NODE.attachChild(geometry);
+        if (node == null)
+            JBombContext.ROOT_NODE.attachChild(geometry);
+        else
+            node.attachChild(geometry);
         return geometry;
     }
     
+    public static Geometry makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation, Vector2f scaleTexture, boolean transparent) {
+        return makeCube(x, y, z, name, texturePath, localTranslation, scaleTexture, transparent, null);
+    }
+    
     public static Geometry makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation, Vector2f scaleTexture) {
-        return makeCube(x, y, z, name, texturePath, localTranslation, scaleTexture, false);
+        return makeCube(x, y, z, name, texturePath, localTranslation, scaleTexture, false, null);
     }
     
     public static Geometry makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation, boolean transparent) {
-        return makeCube(x, y, z, name, texturePath, localTranslation, null, transparent);
+        return makeCube(x, y, z, name, texturePath, localTranslation, null, transparent, null);
     }
 
     public static Geometry makeCube(float x, float y, float z, String name, String texturePath, Vector3f localTranslation) {
-        return makeCube(x, y, z, name, texturePath, localTranslation, null, false);
+        return makeCube(x, y, z, name, texturePath, localTranslation, null, false, null);
     }    
     
     public static Geometry makePlane(float x, float y, String name, String texturePath, Vector3f localTranslation, Quaternion quaternion, Vector2f scaleTexture, boolean transparent) {

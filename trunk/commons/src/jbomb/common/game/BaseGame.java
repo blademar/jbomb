@@ -5,23 +5,14 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.network.serializing.Serializer;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.Control;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
 import java.net.URL;
 import jbomb.common.appstates.AbstractManager;
-import jbomb.common.appstates.RunningAppState;
-import jbomb.common.messages.CharacterMovesMessage;
-import jbomb.common.messages.CoordinateBombMessage;
-import jbomb.common.messages.CreatePlayerMessage;
-import jbomb.common.messages.DamageMessage;
-import jbomb.common.messages.ElevatorMovesMessage;
-import jbomb.common.messages.ExploitBombMessage;
-import jbomb.common.messages.NewPlayerMessage;
-import jbomb.common.messages.RemovePlayerMessage;
-import jbomb.common.messages.StartGameMessage;
-import jbomb.common.messages.ThrowBombMessage;
+import jbomb.common.messages.*;
 import jbomb.common.scene.Elevator;
 import jbomb.common.utils.GeometryUtils;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -29,7 +20,6 @@ import org.apache.log4j.xml.DOMConfigurator;
 public abstract class BaseGame extends SimpleApplication {
     
     private BulletAppState bulletAppState = new BulletAppState();
-    private RunningAppState runningAppState = createRunningAppState();
     private AbstractManager<?> manager = createManager();
     
     public BaseGame() {
@@ -57,7 +47,6 @@ public abstract class BaseGame extends SimpleApplication {
         stateManager.attach(bulletAppState);
 //        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
         stateManager.attach(getManager());
-        stateManager.attach(runningAppState);
     }
     
     private void initWalls() {
@@ -878,8 +867,6 @@ public abstract class BaseGame extends SimpleApplication {
         return bulletAppState;
     }
     
-    protected abstract RunningAppState createRunningAppState();
-    
     protected abstract void addMessageListeners();
     
     private void registerMessages() {
@@ -900,6 +887,8 @@ public abstract class BaseGame extends SimpleApplication {
     private void initContext() {
         JBombContext.ASSET_MANAGER = assetManager;
         JBombContext.ROOT_NODE = rootNode;
+        JBombContext.NODE_ELEVATORS = new Node("Node_elevators");
+        JBombContext.ROOT_NODE.attachChild(JBombContext.NODE_ELEVATORS);
         JBombContext.PHYSICS_SPACE = bulletAppState.getPhysicsSpace();
         JBombContext.BASE_GAME = this;
         JBombContext.MANAGER = getManager();

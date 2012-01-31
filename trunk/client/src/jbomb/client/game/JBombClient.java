@@ -72,6 +72,10 @@ public class JBombClient extends BaseGame {
         this.ip = ip;
         initAppSettings();
     }
+    
+    public void startGame(byte playersCount) {
+        stateManager.attach(new RunningClientAppState(playersCount));
+    }
 
     @Override
     public void simpleInitApp() {
@@ -89,8 +93,6 @@ public class JBombClient extends BaseGame {
         }
         ClientContext.APP = this;
         ClientContext.CLIENT = client;
-        initInterfaces();
-        initMappings();
     }
 
     private void initAppSettings() {
@@ -99,7 +101,7 @@ public class JBombClient extends BaseGame {
         setShowSettings(false);
     }
 
-    private void initInterfaces() {
+    public void initInterfaces() {
         BitmapText ch = new BitmapText(guiFont, false);
         ch.setSize(guiFont.getCharSet().getRenderedSize() * 2);
         ch.setText("+");
@@ -147,7 +149,7 @@ public class JBombClient extends BaseGame {
         });
     }
 
-    private void initMappings() {
+    public void initMappings() {
         inputManager.addMapping("shoot", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
         inputManager.addMapping("Left", new KeyTrigger(KeyInput.KEY_A));
         inputManager.addMapping("Right", new KeyTrigger(KeyInput.KEY_D));
@@ -210,11 +212,6 @@ public class JBombClient extends BaseGame {
 
     public Picture getBombsSecondsPictures() {
         return BombsSecondsPictures;
-    }
-
-    @Override
-    public RunningAppState createRunningAppState() {
-        return new RunningClientAppState();
     }
 
     @Override

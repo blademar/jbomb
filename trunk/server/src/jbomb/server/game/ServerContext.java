@@ -11,4 +11,6 @@ public class ServerContext extends JBombContext {
     public static Server SERVER;
     public static Node NODE_PLAYERS;
     public static byte PLAYERS_COUNT;
+    public static JBombServer APP;
+    public static Node NODE_ELEVATORS;
 }

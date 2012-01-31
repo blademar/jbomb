@@ -18,7 +18,7 @@ public class Elevator {
 
     public Elevator(String name, String texture, Vector3f localTraslation, float upY, float downY, float freezedSeconds, boolean up, boolean transparency,
             boolean serverControlled) {
-        geometry = GeometryUtils.makeCube(1f, .1f, 1f, name, texture, localTraslation, new Vector2f(1f, 1f), transparency);
+        geometry = GeometryUtils.makeCube(1f, .1f, 1f, name, texture, localTraslation, new Vector2f(1f, 1f), transparency, JBombContext.NODE_ELEVATORS);
         id = JBombContext.MANAGER.getRepository().nextFree();
         LOGGER.debug("Creating elevator: " + id);
         JBombContext.MANAGER.addPhysicObject(id, this);
