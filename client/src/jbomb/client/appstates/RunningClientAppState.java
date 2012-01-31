@@ -1,5 +1,7 @@
 package jbomb.client.appstates;
 
+import com.jme3.app.Application;
+import com.jme3.app.state.AppStateManager;
 import com.jme3.audio.Listener;
 import com.jme3.bullet.control.CharacterControl;
 import com.jme3.math.Vector3f;
@@ -15,6 +17,19 @@ public class RunningClientAppState extends RunningAppState {
     private float[] timer = new float[]{0, 0, 0};
     private float time;
     private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
+    private byte playersCount;
+
+    public RunningClientAppState(byte playersCount) {
+        this.playersCount = playersCount;
+    }
+
+    @Override
+    public void initialize(AppStateManager stateManager, Application app) {
+        super.initialize(stateManager, app);
+        ClientContext.APP.initMappings();
+        ClientContext.APP.initInterfaces();
+        ClientContext.APP.initHealthMarker(playersCount);
+    }
 
     @Override
     public void update(float tpf) {
@@ -25,55 +40,51 @@ public class RunningClientAppState extends RunningAppState {
     }
 
     private void reloadBombs(float tpf) {
-        if (JBombContext.STARTED) {
-            for (int i = 0; i < timer.length; i++) {
-                if (ClientContext.PLAYER.getBombs()[i] == null) {
-                    if (timer[i] >= 5f) {
-                        timer[i] = 0;
-                        ClientContext.PLAYER.reloadBomb(i);
-                    } else {
-                        timer[i] += tpf;
-                    }
+        for (int i = 0; i < timer.length; i++) {
+            if (ClientContext.PLAYER.getBombs()[i] == null) {
+                if (timer[i] >= 5f) {
+                    timer[i] = 0;
+                    ClientContext.PLAYER.reloadBomb(i);
+                } else {
+                    timer[i] += tpf;
                 }
             }
         }
     }
 
     private void moveCam(float tpf) {
-        if (JBombContext.STARTED) {
-            time += tpf;
+        time += tpf;
 
-            Camera cam = ClientContext.APP.getCam();
-            Vector3f camDir = cam.getDirection().clone().multLocal(0.2f);
-            Vector3f camLeft = cam.getLeft().clone().multLocal(0.1f);
-            camDir.y = 0;
-            camLeft.y = 0;
-            Vector3f walk = new Vector3f();
-            walk.set(0, 0, 0);
+        Camera cam = ClientContext.APP.getCam();
+        Vector3f camDir = cam.getDirection().clone().multLocal(0.2f);
+        Vector3f camLeft = cam.getLeft().clone().multLocal(0.1f);
+        camDir.y = 0;
+        camLeft.y = 0;
+        Vector3f walk = new Vector3f();
+        walk.set(0, 0, 0);
 
-            if (ClientContext.APP.isLeft()) {
-                walk.addLocal(camLeft);
-            }
-            if (ClientContext.APP.isRight()) {
-                walk.addLocal(camLeft.negate());
-            }
-            if (ClientContext.APP.isFront()) {
-                walk.addLocal(camDir);
-            }
-            if (ClientContext.APP.isBack()) {
-                walk.addLocal(camDir.negate());
-            }
-
-            CharacterControl c = ClientContext.PLAYER.getControl();
-            c.setViewDirection(cam.getDirection());
-            if (time >= maxTime) {
-                time = 0;
-                ClientContext.CLIENT.send(
-                        new CharacterMovesMessage(ClientContext.CLIENT.getId(), c, walk));
-            }
-            c.setWalkDirection(walk);
-            ClientContext.APP.getCam().setLocation(c.getPhysicsLocation());
+        if (ClientContext.APP.isLeft()) {
+            walk.addLocal(camLeft);
         }
+        if (ClientContext.APP.isRight()) {
+            walk.addLocal(camLeft.negate());
+        }
+        if (ClientContext.APP.isFront()) {
+            walk.addLocal(camDir);
+        }
+        if (ClientContext.APP.isBack()) {
+            walk.addLocal(camDir.negate());
+        }
+
+        CharacterControl c = ClientContext.PLAYER.getControl();
+        c.setViewDirection(cam.getDirection());
+        if (time >= maxTime) {
+            time = 0;
+            ClientContext.CLIENT.send(
+                    new CharacterMovesMessage(ClientContext.CLIENT.getId(), c, walk));
+        }
+        c.setWalkDirection(walk);
+        ClientContext.APP.getCam().setLocation(c.getPhysicsLocation());
     }
 
     private void hearingSounds() {
@@ -84,15 +95,13 @@ public class RunningClientAppState extends RunningAppState {
     }
 
     private void loadInterface() {
-        if (JBombContext.STARTED) {
-            BaseBomb[] bombs = ClientContext.PLAYER.getBombs();
-            byte bombsCount = 0;
-            for (BaseBomb b : bombs) {
-                if (b != null) {
-                    bombsCount++;
-                }
+        BaseBomb[] bombs = ClientContext.PLAYER.getBombs();
+        byte bombsCount = 0;
+        for (BaseBomb b : bombs) {
+            if (b != null) {
+                bombsCount++;
             }
-            ClientContext.APP.getBombsPictures().setImage(JBombContext.ASSET_MANAGER, "interfaces/pictures/bomb" + bombsCount + ".png", true);
         }
+        ClientContext.APP.getBombsPictures().setImage(JBombContext.ASSET_MANAGER, "interfaces/pictures/bomb" + bombsCount + ".png", true);
     }
 }

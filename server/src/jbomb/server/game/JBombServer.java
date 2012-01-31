@@ -8,8 +8,6 @@ import com.jme3.scene.control.Control;
 import java.io.IOException;
 import java.net.URL;
 import jbomb.common.appstates.AbstractManager;
-import jbomb.common.appstates.RunningAppState;
-import jbomb.server.controls.ElevatorControl;
 import jbomb.common.game.BaseGame;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.CharacterMovesMessage;
@@ -17,6 +15,7 @@ import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.ThrowBombMessage;
 import jbomb.server.appstates.RunningServerAppState;
 import jbomb.server.appstates.ServerManager;
+import jbomb.server.controls.ElevatorControl;
 import jbomb.server.listeners.BombCollisionListener;
 import jbomb.server.listeners.ClientConnectionListener;
 import jbomb.server.listeners.messages.CreatePlayerListener;
@@ -51,6 +50,7 @@ public class JBombServer extends BaseGame {
         } catch (IOException ex) {
             LOGGER.error("Error al iniciar el servidor", ex);
         }
+        ServerContext.APP = this;
         ServerContext.SERVER = server;
     }
     
@@ -62,8 +62,20 @@ public class JBombServer extends BaseGame {
     }
 
     @Override
-    protected RunningAppState createRunningAppState() {
-        return new RunningServerAppState();
+    protected void initStateManager() {
+        super.initStateManager();
+    }
+    
+    public void startGame() {
+        stateManager.attach(new RunningServerAppState());
+    }
+    
+    public boolean isRunning() {
+        RunningServerAppState state = stateManager.getState(RunningServerAppState.class);
+        if (state != null)
+            return state.isEnabled();
+        else 
+            return false;
     }
 
     @Override

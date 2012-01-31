@@ -1,6 +1,5 @@
 package jbomb.server.controls;
 
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
@@ -21,6 +20,7 @@ public class ElevatorControl extends JBombAbstractControl {
     
     public ElevatorControl() {
         maxY = 1; minY = -1; freezed = 10;
+        setEnabled(false);
     }
     
     public ElevatorControl(float maxY, float minY, float freezedSeconds, boolean up) {
@@ -31,6 +31,7 @@ public class ElevatorControl extends JBombAbstractControl {
             state = State.MOVING_UP;
         else
             state = State.MOVING_DOWN;
+        setEnabled(false);
     }
     
     @Override
