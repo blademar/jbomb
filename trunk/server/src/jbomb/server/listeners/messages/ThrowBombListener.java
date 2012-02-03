@@ -17,12 +17,14 @@ public class ThrowBombListener implements MessageListener<HostedConnection> {
     @Override
     public void messageReceived(HostedConnection source, Message m) {
 //        LOGGER.debug("ThrowBombMessage received");
-        byte timeExplosion = ((ThrowBombMessage) m).getTimeExplosion();
+        ThrowBombMessage tbm = (ThrowBombMessage) m;
+        byte timeExplosion = tbm.getTimeExplosion();
+        long idClient = tbm.getIdClient();
         long idPhysicObject = JBombContext.MANAGER.getRepository().nextFree();
 //        LOGGER.debug("Id of new bomb: " + idPhysicObject);
-        Player player = (Player) JBombContext.MANAGER.getPhysicObject(source.getId());
+        Player player = (Player) JBombContext.MANAGER.getPhysicObject(idClient);
         Vector3f bombLocation = player.getGeometry().getLocalTranslation().add(player.getViewDirection().normalize().mult(1.2f));
-        ServerContext.SERVER.broadcast(new ThrowBombMessage(idPhysicObject, source.getId(), 
+        ServerContext.SERVER.broadcast(new ThrowBombMessage(idPhysicObject, idClient, 
                 bombLocation, timeExplosion));
         player.throwBomb(bombLocation, idPhysicObject, new BaseBombControl(), timeExplosion, false);
     }

@@ -50,10 +50,12 @@ public class RunningServerAppState extends RunningAppState {
     }
 
     private void coordinateBombs() {
+        Object o = null;
+        GrandBomb gb = null;
         for (long l : JBombContext.MANAGER.keySet()) {
-            Object o = JBombContext.MANAGER.getPhysicObject(l);
+            o = JBombContext.MANAGER.getPhysicObject(l);
             if (o instanceof GrandBomb) {
-                GrandBomb gb = (GrandBomb) o;
+                gb = (GrandBomb) o;
                 CoordinateBombMessage cbm = new CoordinateBombMessage(l,
                         gb.getSpatial().getControl(RigidBodyControl.class));
                 ServerContext.SERVER.broadcast(cbm);

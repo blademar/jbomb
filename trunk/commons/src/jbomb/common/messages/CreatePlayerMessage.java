@@ -12,7 +12,8 @@ public class CreatePlayerMessage extends BasePhysicMessage {
 
     public CreatePlayerMessage() {}
 
-    public CreatePlayerMessage(Vector3f location, ColorRGBA color) {
+    public CreatePlayerMessage(Vector3f location, ColorRGBA color, long id) {
+        super(id);
         this.color = color;
         this.location.set(location);
     }

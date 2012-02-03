@@ -17,18 +17,27 @@ public class RunningClientAppState extends RunningAppState {
     private float[] timer = new float[]{0, 0, 0};
     private float time;
     private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
-    private byte playersCount;
-
-    public RunningClientAppState(byte playersCount) {
-        this.playersCount = playersCount;
-    }
 
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
         ClientContext.APP.initMappings();
+        ClientContext.APP.addListeners();
         ClientContext.APP.initInterfaces();
-        ClientContext.APP.initHealthMarker(playersCount);
+        ClientContext.APP.initHealthMarker();
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        if (!enabled) {
+            ClientContext.APP.removeListeners();
+            ClientContext.APP.cleanScreen();
+        } else {
+            ClientContext.APP.addListeners();
+            ClientContext.APP.initInterfaces();
+            ClientContext.APP.initHealthMarker();
+        }
     }
 
     @Override
@@ -81,7 +90,7 @@ public class RunningClientAppState extends RunningAppState {
         if (time >= maxTime) {
             time = 0;
             ClientContext.CLIENT.send(
-                    new CharacterMovesMessage(ClientContext.CLIENT.getId(), c, walk));
+                    new CharacterMovesMessage(ClientContext.PLAYER.getIdUserData(), c, walk));
         }
         c.setWalkDirection(walk);
         ClientContext.APP.getCam().setLocation(c.getPhysicsLocation());

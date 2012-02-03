@@ -88,8 +88,7 @@ public abstract class AbstractManager<T> implements MessageListener<T>, AppState
                 doOnUpdate(tpf, message);
                 it.remove();
             }
-        }
-        else {
+        } else {
             while (it.hasNext()) {
                 message = it.next();
                 if (message instanceof CharacterMovesMessage || message instanceof ElevatorMovesMessage) {

@@ -41,6 +41,10 @@ public class ClientPlayer extends Player {
             }
         }
     }
+    
+    public void setInitialPosition(Vector3f location) {
+        control.setPhysicsLocation(location);
+    }
 
     public void setSeconds(byte seconds) {
         this.seconds = seconds;

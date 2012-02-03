@@ -14,6 +14,7 @@ public class DamageTask implements Task<DamageMessage> {
 
     @Override
     public void doThis(DamageMessage message) {
-        ClientContext.APP.getHealtWithId((int) message.getId()).setText(DF.format(message.getDamage()) + "%");
+        ClientContext.APP.getHealtWithId((int) message.getId()).setText(DF.format(message.getDamage()) 
+                + "%");
     }
 }
