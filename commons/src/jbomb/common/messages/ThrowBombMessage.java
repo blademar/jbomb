@@ -12,8 +12,9 @@ public class ThrowBombMessage extends BasePhysicMessage {
     
     public ThrowBombMessage() {}
     
-    public ThrowBombMessage(byte timeExplosion) {
+    public ThrowBombMessage(long idClient, byte timeExplosion) {
         this.timeExplosion = timeExplosion;
+        this.idClient = idClient;
     }
     
     public ThrowBombMessage(long id, long idClient, Vector3f location, byte timeExplosion) {

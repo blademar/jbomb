@@ -77,12 +77,12 @@ public class Player {
     }
 
     protected void setControl(Control control) {
+        geometry.setLocalTranslation(location);
         this.control = (RigidBodyControl) control;
         this.control.setMass(1f);
         this.control.setKinematic(true);
         JBombContext.PHYSICS_SPACE.add(this.control);
         geometry.addControl(control);
-        geometry.setLocalTranslation(location);
     }
 
     protected Control createControl() {
@@ -91,5 +91,13 @@ public class Player {
 
     public Vector3f getViewDirection() {
         return viewDirection;
+    }
+    
+    public void setIdUserData(int id) {
+        geometry.setUserData("id", id);
+    }
+    
+    public int getIdUserData() {
+        return geometry.getUserData("id");
     }
 }

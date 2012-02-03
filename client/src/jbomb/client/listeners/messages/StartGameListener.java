@@ -4,7 +4,6 @@ import com.jme3.network.Client;
 import com.jme3.network.Message;
 import com.jme3.network.MessageListener;
 import jbomb.client.game.ClientContext;
-import jbomb.common.messages.StartGameMessage;
 import org.apache.log4j.Logger;
 
 public class StartGameListener implements MessageListener<Client> {
@@ -13,8 +12,7 @@ public class StartGameListener implements MessageListener<Client> {
     
     @Override
     public void messageReceived(Client source, Message m) {
-        StartGameMessage startGameMessage = (StartGameMessage) m;
-        ClientContext.APP.startGame(startGameMessage.getPlayersCount());
+        ClientContext.APP.startGame();
         LOGGER.debug("Starting game...");
     }
     

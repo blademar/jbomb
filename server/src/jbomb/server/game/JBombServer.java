@@ -70,6 +70,10 @@ public class JBombServer extends BaseGame {
         stateManager.attach(new RunningServerAppState());
     }
     
+    public void resetGame() {
+        stateManager.getState(RunningServerAppState.class).setEnabled(false);
+    }
+    
     public boolean isRunning() {
         RunningServerAppState state = stateManager.getState(RunningServerAppState.class);
         if (state != null)

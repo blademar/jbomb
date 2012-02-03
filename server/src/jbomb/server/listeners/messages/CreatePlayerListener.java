@@ -8,17 +8,16 @@ import jbomb.server.game.ServerContext;
 import org.apache.log4j.Logger;
 
 public class CreatePlayerListener implements MessageListener<HostedConnection> {
-
-    private byte connectedPlayers = 0;
+    
     private static final Logger LOGGER = Logger.getLogger(CreatePlayerListener.class);
 
     @Override
     public void messageReceived(HostedConnection s, Message msg) {
-        connectedPlayers++;
-        LOGGER.debug("Connected players: " + connectedPlayers);
-        if (connectedPlayers == ServerContext.PLAYERS_COUNT) {
+        ServerContext.CONNECTED_PLAYERS++;
+        LOGGER.debug("Connected players: " + ServerContext.CONNECTED_PLAYERS);
+        if (ServerContext.CONNECTED_PLAYERS == ServerContext.PLAYERS_COUNT) {
             ServerContext.APP.startGame();
-            ServerContext.SERVER.broadcast(new StartGameMessage(true, ServerContext.PLAYERS_COUNT));
+            ServerContext.SERVER.broadcast(new StartGameMessage());
             LOGGER.debug("Starting game...");
         }
     }

@@ -5,7 +5,6 @@ import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
-import com.jme3.math.Vector3f;
 import com.jme3.network.Client;
 import com.jme3.network.Network;
 import com.jme3.renderer.Camera;
@@ -13,33 +12,22 @@ import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import jbomb.client.appstates.ClientManager;
 import jbomb.client.appstates.RunningClientAppState;
 import jbomb.client.listeners.BombSecondsListener;
 import jbomb.client.listeners.CharacterActionListener;
-import jbomb.common.appstates.RunningAppState;
 import jbomb.client.listeners.ServerConnectionListener;
 import jbomb.client.listeners.ShootsActionListener;
-import jbomb.client.listeners.messages.CreatePlayerListener;
-import jbomb.client.listeners.messages.DamageMessageListener;
-import jbomb.client.listeners.messages.ExploitBombListener;
-import jbomb.client.listeners.messages.NewPlayerListener;
-import jbomb.client.listeners.messages.RemovePlayerListener;
-import jbomb.client.listeners.messages.StartGameListener;
-import jbomb.client.listeners.messages.ThrowBombListener;
+import jbomb.client.listeners.messages.*;
 import jbomb.common.appstates.AbstractManager;
 import jbomb.common.game.BaseGame;
-import jbomb.common.messages.CharacterMovesMessage;
-import jbomb.common.messages.CoordinateBombMessage;
-import jbomb.common.messages.CreatePlayerMessage;
-import jbomb.common.messages.DamageMessage;
-import jbomb.common.messages.ElevatorMovesMessage;
-import jbomb.common.messages.ExploitBombMessage;
-import jbomb.common.messages.NewPlayerMessage;
-import jbomb.common.messages.RemovePlayerMessage;
-import jbomb.common.messages.StartGameMessage;
-import jbomb.common.messages.ThrowBombMessage;
+import jbomb.common.game.JBombContext;
+import jbomb.common.game.Player;
+import jbomb.common.messages.*;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
@@ -50,7 +38,7 @@ public class JBombClient extends BaseGame {
     private Client client;
     private Picture bombsPictures = new Picture("bombsPictures");
     private Picture BombsSecondsPictures = new Picture("bombsSecondsPictures");
-    private BitmapText[] health;
+    private Map<Integer, BitmapText> health;
     private boolean left = false;
     private boolean right = false;
     private boolean front = false;
@@ -67,23 +55,34 @@ public class JBombClient extends BaseGame {
     private ThrowBombListener throwBombListener = new ThrowBombListener();
     private ExploitBombListener exploitBombListener = new ExploitBombListener();
     private DamageMessageListener damageMessageListener = new DamageMessageListener();
+    private StartingNewGameListener startingNewGameListener = new StartingNewGameListener();
+    
+    private RunningClientAppState runningClientAppState;
 
     public JBombClient(String ip) {
         this.ip = ip;
         initAppSettings();
     }
     
-    public void startGame(byte playersCount) {
-        stateManager.attach(new RunningClientAppState(playersCount));
+    public void startGame() {
+        if (runningClientAppState != null && stateManager.hasState(runningClientAppState))
+            runningClientAppState.setEnabled(true);
+        else {
+            runningClientAppState = new RunningClientAppState();
+            stateManager.attach(runningClientAppState);
+        }
+    }
+    
+    public void resetGame() {
+        stateManager.getState(RunningClientAppState.class).setEnabled(false);
     }
 
     @Override
     public void simpleInitApp() {
         super.simpleInitApp();
         try {
-            if (ip == null) {
+            if (ip == null)
                 ip = "localhost";
-            }
             client = Network.connectToServer(ip, 6789);
             addMessageListeners();
             client.addClientStateListener(connectionListener);
@@ -91,6 +90,7 @@ public class JBombClient extends BaseGame {
         } catch (IOException ex) {
             LOGGER.error("Error al conectar con el servidor", ex);
         }
+        guiNode.detachAllChildren();
         ClientContext.APP = this;
         ClientContext.CLIENT = client;
     }
@@ -123,25 +123,36 @@ public class JBombClient extends BaseGame {
         guiNode.attachChild(getBombsSecondsPictures());
     }
 
-    public void initHealthMarker(final byte playersCount) {
+    public void initHealthMarker() {
         enqueue(new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                health = new BitmapText[playersCount];
+                health = new HashMap<Integer, BitmapText>();
+                Object o = null;
+                Player pl = null;
+                BitmapText bmt = null;
+                health.put(ClientContext.PLAYER.getIdUserData(), new BitmapText(guiFont, false));
+                for (long l : JBombContext.MANAGER.keySet()) {
+                    o = JBombContext.MANAGER.getPhysicObject(l);
+                    if (o instanceof Player) {
+                        pl = (Player) o;
+                        health.put(pl.getIdUserData(), new BitmapText(guiFont, false));
+                    }
+                }
                 float up = 0f;
                 Picture picture = null;
-                for (byte i = 0; i < playersCount; i++) {
+                for (Integer i : health.keySet()) {
                     picture = new Picture("HealthPlayer" + i);
                     picture.setImage(assetManager, "interfaces/pictures/" + (i + 1) + ".png", true);
                     picture.setWidth(32f);
                     picture.setHeight(32f);
                     picture.setLocalTranslation(settings.getWidth() - 32f - 5f, 130f + up, 0f);
                     guiNode.attachChild(picture);
-
-                    health[i] = new BitmapText(guiFont, false);
-                    health[i].setText("100%");
-                    health[i].setLocalTranslation(settings.getWidth() - (32f + 10f) * 2, 157f + up, 0f);
-                    guiNode.attachChild(health[i]);
+                    
+                    bmt = health.get(i);
+                    bmt.setText("100%");
+                    bmt.setLocalTranslation(settings.getWidth() - (32f + 10f) * 2, 157f + up, 0f);
+                    guiNode.attachChild(bmt);
                     up += 50f;
                 }
                 return null;
@@ -159,6 +170,9 @@ public class JBombClient extends BaseGame {
         inputManager.addMapping("one", new KeyTrigger(KeyInput.KEY_1), new KeyTrigger(KeyInput.KEY_NUMPAD1));
         inputManager.addMapping("two", new KeyTrigger(KeyInput.KEY_2), new KeyTrigger(KeyInput.KEY_NUMPAD2));
         inputManager.addMapping("three", new KeyTrigger(KeyInput.KEY_3), new KeyTrigger(KeyInput.KEY_NUMPAD3));
+    }
+    
+    public void addListeners() {
         inputManager.addListener(shootsActionListener, "shoot");
         inputManager.addListener(characterActionListener, "Left");
         inputManager.addListener(characterActionListener, "Right");
@@ -168,6 +182,12 @@ public class JBombClient extends BaseGame {
         inputManager.addListener(bombSecondsListener, "one");
         inputManager.addListener(bombSecondsListener, "two");
         inputManager.addListener(bombSecondsListener, "three");
+    }
+    
+    public void removeListeners() {
+        inputManager.removeListener(shootsActionListener);
+        inputManager.removeListener(characterActionListener);
+        inputManager.removeListener(bombSecondsListener);
     }
 
     public Camera getCam() {
@@ -223,6 +243,7 @@ public class JBombClient extends BaseGame {
         client.addMessageListener(throwBombListener, ThrowBombMessage.class);
         client.addMessageListener(exploitBombListener, ExploitBombMessage.class);
         client.addMessageListener(damageMessageListener, DamageMessage.class);
+        client.addMessageListener(startingNewGameListener, StartingNewGameMessage.class);
         AbstractManager<Client> m = (AbstractManager<Client>) getManager();
         client.addMessageListener(m, CharacterMovesMessage.class);
         client.addMessageListener(m, CoordinateBombMessage.class);
@@ -249,6 +270,10 @@ public class JBombClient extends BaseGame {
     }
 
     public BitmapText getHealtWithId(int id) {
-        return health[id];
+        return health.get(id);
+    }
+    
+    public void cleanScreen() {
+        guiNode.detachAllChildren();
     }
 }

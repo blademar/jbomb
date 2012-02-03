@@ -1,4 +1,4 @@
-package jbomb.client.listeners.messages;
+    package jbomb.client.listeners.messages;
 
 import com.jme3.network.Client;
 import com.jme3.network.Message;
@@ -12,7 +12,7 @@ public class CreatePlayerListener extends AbstractClientMessageListener<CreatePl
     @Override
     public void messageReceived(Client source, Message m) {
         CreatePlayerMessage message = (CreatePlayerMessage) m;
-        LOGGER.debug("Creating player #" + source.getId() + "...");
+        LOGGER.debug("Creating player #" + message.getId() + "...");
         doTask(new CreatePlayerTask(), message);
     }
 }
