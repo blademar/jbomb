@@ -150,10 +150,7 @@ public abstract class AbstractManager<T> implements MessageListener<T>, AppState
     }
 
     protected abstract void doOnUpdate(float tpf, BasePhysicMessage message);
-
-    /**
-     * @return the physicsObjects
-     */
+    
     public Map<Long, Object> getPhysicsObjects() {
         return physicsObjects;
     }
