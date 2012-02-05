@@ -87,6 +87,7 @@ public class ClientConnectionListener implements ConnectionListener {
     public void connectionRemoved(Server server, HostedConnection conn) {
         InternPlayer ip = getInternPlayerByConn(conn.getId());
         LOGGER.debug("Client #" + ip.getConn() + " with id #" + ip.getId() + " offline.");
+        releaseIn(ip);
         Player player = (Player) JBombContext.MANAGER.removePhysicObject(ip.getId());
         ServerContext.NODE_PLAYERS.detachChild(player.getGeometry());
         ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), new RemovePlayerMessage(ip.getId()));
@@ -124,6 +125,7 @@ public class ClientConnectionListener implements ConnectionListener {
 
     private synchronized void occupyIn(InternPlayer ip) {
         freeIds.put(ip, false);
+        LOGGER.debug("Occupy in: " + ip.getId());
     }
 
     private synchronized int nextId(long conn) {
@@ -134,11 +136,12 @@ public class ClientConnectionListener implements ConnectionListener {
                 return ip.getId();
             }
         }
-        return -1;
+        throw new RuntimeException("Error al obtener id");
     }
 
     private synchronized void releaseIn(InternPlayer ip) {
         freeIds.put(ip, true);
+        LOGGER.debug("Release in: " + ip.getId());
     }
 
     private synchronized InternPlayer getInternPlayerByConn(int id) {
