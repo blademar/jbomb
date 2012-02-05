@@ -24,6 +24,8 @@ public class IDRepository {
     }
     
     public void releaseIn(long l) {
+        if (l < 4)
+            return;
         idMap.put(l, true);
     }
 
