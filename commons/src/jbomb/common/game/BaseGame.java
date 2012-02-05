@@ -2,6 +2,8 @@ package jbomb.common.game;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.network.serializing.Serializer;
@@ -18,10 +20,10 @@ import jbomb.common.utils.GeometryUtils;
 import org.apache.log4j.xml.DOMConfigurator;
 
 public abstract class BaseGame extends SimpleApplication {
-    
+
     private BulletAppState bulletAppState = new BulletAppState();
     private AbstractManager<?> manager = createManager();
-    
+
     public BaseGame() {
         URL urlConfig = BaseGame.class.getResource("/jbomb/common/config/log4j.xml");
         DOMConfigurator.configure(urlConfig);
@@ -32,7 +34,7 @@ public abstract class BaseGame extends SimpleApplication {
     public void simpleInitApp() {
         flyCam.setMoveSpeed(40f);
         setPauseOnLostFocus(false);
-        
+
         initStateManager();
         initContext();
         registerMessages();
@@ -42,26 +44,31 @@ public abstract class BaseGame extends SimpleApplication {
         initPlatforms();
         initScene();
     }
-    
+
     protected void initStateManager() {
         stateManager.attach(bulletAppState);
 //        bulletAppState.getPhysicsSpace().enableDebug(assetManager);
         stateManager.attach(getManager());
     }
-    
+
     private void initWalls() {
-        GeometryUtils.makeCube(20f, 20f, .1f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, -20.1f), true);
-        GeometryUtils.makeCube(20f, 20f, .1f, "south_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 20f, 20.1f), true);
-        GeometryUtils.makeCube(.1f, 20f, 20f, "west_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20.1f, 20f, 0f), true);
-        GeometryUtils.makeCube(.1f, 20f, 20f, "east_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20.1f, 20f, 0f), true);
-        GeometryUtils.makeCube(20f, .1f, 20f, "up_glass", "textures/glass/sunbeam_t1.png", new Vector3f(0f, 40.1f, 0f), true);
-        
+        GeometryUtils.makePlane(40f, 40f, "north_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 0f, -20f),
+                true);
+        GeometryUtils.makePlane(40f, 40f, "south_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 0f, 20f),
+                new Quaternion().fromAngleAxis(FastMath.PI, Vector3f.UNIT_Y), true);
+        GeometryUtils.makePlane(40f, 40f, "west_glass", "textures/glass/sunbeam_t1.png", new Vector3f(-20f, 0f, 20f),
+                new Quaternion().fromAngleAxis(FastMath.PI / 2, Vector3f.UNIT_Y), true);
+        GeometryUtils.makePlane(40f, 40f, "east_glass", "textures/glass/sunbeam_t1.png", new Vector3f(20f, 0f, -20f),
+                new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_Y), true);
+        GeometryUtils.makePlane(40f, 40f, "up_glass", "textures/glass/sunbeam_t1.png",
+                new Vector3f(-20f, 40f, -20f), new Quaternion().fromAngleAxis(FastMath.PI / 2, Vector3f.UNIT_X), true);
+
         makeWallsAtBase();
         makeWallsAtFirstPlatform();
         makeWallsAtSecondPlatform();
         makeWallsAtThirdPlatform();
     }
-    
+
     private void initScene() {
         new Elevator(new Vector3f(-9f, .1f, 18f), 9.9f, .1f, 3f, true, getElevatorServerControlled());
         new Elevator(new Vector3f(9f, .1f, -18f), 9.9f, .1f, 3f, true, getElevatorServerControlled());
@@ -78,13 +85,13 @@ public abstract class BaseGame extends SimpleApplication {
         new Elevator(new Vector3f(14f, 20.1f, -16f), 29.9f, 20.1f, 3f, true, getElevatorServerControlled());
         new Elevator(new Vector3f(-14f, 20.1f, 16f), 29.9f, 20.1f, 3f, true, getElevatorServerControlled());
     }
-    
+
     public void makeWallsAtThirdPlatform() {
         String orange1 = "textures/boxes/w_orange1.png",
                 orange2 = "textures/boxes/w_orange2.png",
                 darkgray = "textures/boxes/w_darkgray.png",
                 glass = "textures/glass/sunbeam_t2.png";
-        
+
         GeometryUtils.makeCube(.5f, .25f, 1f, "13th_wall", darkgray, new Vector3f(15.5f, 29.75f, 1f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(.5f, .25f, 1f, "13th_wall", darkgray, new Vector3f(15.5f, 29.75f, 5f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(3f, .25f, .5f, "13th_wall", darkgray, new Vector3f(12f, 29.75f, 6.5f), new Vector2f(3f, .5f));
@@ -98,7 +105,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(1f, 1.5f, .5f, "13th_wall", orange1, new Vector3f(12f, 31.5f, 6.5f), new Vector2f(1f, 1.5f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "13th_wall", orange1, new Vector3f(10.5f, 31f, 6.5f), new Vector2f(.5f, 1f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "13th_wall", orange1, new Vector3f(9.5f, 30.5f, 6.5f), new Vector2f(.5f, .5f));
-        
+
         GeometryUtils.makeCube(.5f, .25f, 1f, "14th_wall", darkgray, new Vector3f(-15.5f, 29.75f, -1f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(.5f, .25f, 1f, "14th_wall", darkgray, new Vector3f(-15.5f, 29.75f, -5f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(3f, .25f, .5f, "14th_wall", darkgray, new Vector3f(-12f, 29.75f, -6.5f), new Vector2f(3f, .5f));
@@ -112,7 +119,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(1f, 1.5f, .5f, "14th_wall", orange1, new Vector3f(-12f, 31.5f, -6.5f), new Vector2f(1f, 1.5f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "14th_wall", orange1, new Vector3f(-10.5f, 31f, -6.5f), new Vector2f(.5f, 1f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "14th_wall", orange1, new Vector3f(-9.5f, 30.5f, -6.5f), new Vector2f(.5f, .5f));
-        
+
         GeometryUtils.makeCube(1.5f, .25f, .5f, "15th_wall", darkgray, new Vector3f(5.5f, 29.75f, 8.5f), new Vector2f(1.5f, .5f));
         GeometryUtils.makeCube(.5f, .25f, 3f, "15th_wall", darkgray, new Vector3f(6.5f, 29.75f, 12f), new Vector2f(3f, .5f));
         GeometryUtils.makeCube(3f, .25f, .5f, "15th_wall", darkgray, new Vector3f(3f, 29.75f, 15.5f), new Vector2f(3f, .5f));
@@ -153,7 +160,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.1f, 2f, 3.5f, "15th_wall", glass, new Vector3f(6.525f, 33f, 12f), true);
         GeometryUtils.makeCube(3.5f, 2f, .1f, "15th_wall", glass, new Vector3f(3f, 33f, 15.525f), true);
         GeometryUtils.makeCube(.1f, 2f, 1f, "15th_wall", glass, new Vector3f(-.4f, 33f, 14.425f), true);
-        
+
         GeometryUtils.makeCube(1.5f, .25f, .5f, "16th_wall", darkgray, new Vector3f(-5.5f, 29.75f, -8.5f), new Vector2f(1.5f, .5f));
         GeometryUtils.makeCube(.5f, .25f, 3f, "16th_wall", darkgray, new Vector3f(-6.5f, 29.75f, -12f), new Vector2f(3f, .5f));
         GeometryUtils.makeCube(3f, .25f, .5f, "16th_wall", darkgray, new Vector3f(-3f, 29.75f, -15.5f), new Vector2f(3f, .5f));
@@ -194,7 +201,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.1f, 2f, 3.5f, "16th_wall", glass, new Vector3f(-6.525f, 33f, -12f), true);
         GeometryUtils.makeCube(3.5f, 2f, .1f, "16th_wall", glass, new Vector3f(-3f, 33f, -15.525f), true);
         GeometryUtils.makeCube(.1f, 2f, 1f, "16th_wall", glass, new Vector3f(.4f, 33f, -14.425f), true);
-        
+
         GeometryUtils.makeCube(1.5f, .25f, .5f, "17th_wall", darkgray, new Vector3f(-14.5f, 29.75f, 8.5f), new Vector2f(1.5f, .5f));
         GeometryUtils.makeCube(.5f, .25f, 3f, "17th_wall", darkgray, new Vector3f(-15.5f, 29.75f, 12f), new Vector2f(3f, .5f));
         GeometryUtils.makeCube(2f, .25f, .5f, "17th_wall", darkgray, new Vector3f(-11f, 29.75f, 15.5f), new Vector2f(2f, .5f));
@@ -234,7 +241,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.1f, 2f, 3.5f, "17th_wall", glass, new Vector3f(-15.525f, 33f, 12f), true);
         GeometryUtils.makeCube(2.25f, 2f, .1f, "17th_wall", glass, new Vector3f(-10.55f, 33f, 15.525f), true);
         GeometryUtils.makeCube(.1f, 2f, 1f, "17th_wall", glass, new Vector3f(-8.4f, 33f, 14.425f), true);
-        
+
         GeometryUtils.makeCube(1.5f, .25f, .5f, "18th_wall", darkgray, new Vector3f(14.5f, 29.75f, -8.5f), new Vector2f(1.5f, .5f));
         GeometryUtils.makeCube(.5f, .25f, 3f, "18th_wall", darkgray, new Vector3f(15.5f, 29.75f, -12f), new Vector2f(3f, .5f));
         GeometryUtils.makeCube(2f, .25f, .5f, "18th_wall", darkgray, new Vector3f(11f, 29.75f, -15.5f), new Vector2f(2f, .5f));
@@ -275,13 +282,13 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(2.25f, 2f, .1f, "18th_wall", glass, new Vector3f(10.55f, 33f, -15.525f), true);
         GeometryUtils.makeCube(.1f, 2f, 1f, "18th_wall", glass, new Vector3f(8.4f, 33f, -14.425f), true);
     }
-    
+
     public void makeWallsAtSecondPlatform() {
-        String pink = "textures/boxes/w_pink.png", 
-                purple = "textures/boxes/w_purple.png", 
+        String pink = "textures/boxes/w_pink.png",
+                purple = "textures/boxes/w_purple.png",
                 darkgray = "textures/boxes/w_darkgray.png",
                 glass = "textures/glass/sunbeam_t2.png";
-        
+
         GeometryUtils.makeCube(.5f, 1.5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(4.5f, 21.5f, 4.5f), new Vector2f(.5f, 1.5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(4.5f, 20.5f, 3.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(3.5f, 20.5f, 4.5f), new Vector2f(.5f, .5f));
@@ -294,14 +301,14 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, 1f, .5f, "2nd_platformPilar", darkgray, new Vector3f(4.5f, 21f, -4.5f), new Vector2f(.5f, 1f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(4.5f, 20.5f, -3.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_platformPilar", darkgray, new Vector3f(3.5f, 20.5f, -4.5f), new Vector2f(.5f, .5f));
-        
+
         GeometryUtils.makeCube(.5f, .25f, 3f, "1st_bridge", darkgray, new Vector3f(-2.5f, 19.75f, 8f), new Vector2f(3f, .5f));
         GeometryUtils.makeCube(.5f, 2.5f, .5f, "1st_bridge", purple, new Vector3f(-2.5f, 22.5f, 5.5f), new Vector2f(.5f, 2.5f));
         GeometryUtils.makeCube(.5f, .5f, 2.5f, "1st_bridge", purple, new Vector3f(-2.5f, 24.5f, 8.5f), new Vector2f(2.5f, .5f));
         GeometryUtils.makeCube(2f, .5f, .5f, "1st_bridge", purple, new Vector3f(0f, 24.5f, 5.5f), new Vector2f(2f, .5f));
         GeometryUtils.makeCube(.1f, 2f, 2.5f, "1st_bridge", glass, new Vector3f(-2.525f, 22f, 8.5f), new Vector2f(2.5f, 2f), true);
         GeometryUtils.makeCube(2f, .1f, 2.5f, "1st_bridge", glass, new Vector3f(0f, 24.525f, 8.5f), new Vector2f(2f, 2.5f), true);
-        
+
         GeometryUtils.makeCube(.5f, .25f, 3f, "2nd_bridge", darkgray, new Vector3f(2.5f, 19.75f, -8f), new Vector2f(3f, .5f));
         GeometryUtils.makeCube(.5f, 2.5f, .5f, "2nd_bridge", purple, new Vector3f(2.5f, 22.5f, -5.5f), new Vector2f(.5f, 2.5f));
         GeometryUtils.makeCube(.5f, 2.5f, .5f, "2nd_bridge", purple, new Vector3f(2.5f, 22.5f, -10.5f), new Vector2f(.5f, 2.5f));
@@ -310,7 +317,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, 3f, "2nd_bridge", purple, new Vector3f(-2.5f, 24.5f, -8f), new Vector2f(3f, .5f));
         GeometryUtils.makeCube(.1f, 2.2625f, 2f, "2nd_bridge", glass, new Vector3f(2.525f, 22.2625f, -8f), new Vector2f(2f, 2.25f), true);
         GeometryUtils.makeCube(2.3125f, .1f, 2f, "2nd_bridge", glass, new Vector3f(.3125f, 24.625f, -8f), new Vector2f(2f, 2f), true);
-        
+
         GeometryUtils.makeCube(3f, .25f, .5f, "3rd_bridge", darkgray, new Vector3f(8f, 19.75f, -2.5f), new Vector2f(3f, .5f));
         GeometryUtils.makeCube(3f, .25f, .5f, "3rd_bridge", darkgray, new Vector3f(8f, 19.75f, 2.5f), new Vector2f(3f, .5f));
         GeometryUtils.makeCube(.5f, 2f, .5f, "3rd_bridge", purple, new Vector3f(5.5f, 22f, 2.5f), new Vector2f(.5f, 2f));
@@ -325,7 +332,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, 1f, .5f, "3rd_bridge", purple, new Vector3f(10.5f, 22f, -3.5f), new Vector2f(.5f, 1f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "3rd_bridge", purple, new Vector3f(10.5f, 21f, -4.5f), new Vector2f(.5f, 1f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "3rd_bridge", purple, new Vector3f(10.5f, 20.5f, -5.5f), new Vector2f(.5f, .5f));
-        
+
         GeometryUtils.makeCube(3f, .25f, .5f, "4th_bridge", darkgray, new Vector3f(-8f, 19.75f, -2.5f), new Vector2f(3f, .5f));
         GeometryUtils.makeCube(3f, .25f, .5f, "4th_bridge", darkgray, new Vector3f(-8f, 19.75f, 2.5f), new Vector2f(3f, .5f));
         GeometryUtils.makeCube(3f, .5f, .5f, "4th_bridge", purple, new Vector3f(-8f, 23.5f, -2.5f), new Vector2f(3f, .5f));
@@ -346,7 +353,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "4th_bridge", pink, new Vector3f(-10.5f, 21.5f, 4.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "4th_bridge", purple, new Vector3f(-10.5f, 20.5f, 4.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, 1.5f, .5f, "4th_bridge", purple, new Vector3f(-10.5f, 21.5f, 5.5f), new Vector2f(.5f, 1.5f));
-        
+
         GeometryUtils.makeCube(.5f, .25f, .5f, "7th_wall", darkgray, new Vector3f(9.5f, 19.75f, -19.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .25f, .5f, "7th_wall", darkgray, new Vector3f(9.5f, 19.75f, -16.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(2.5f, .25f, .5f, "7th_wall", darkgray, new Vector3f(7.5f, 19.75f, -15.5f), new Vector2f(2.5f, .5f));
@@ -359,7 +366,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "7th_wall", purple, new Vector3f(7.5f, 20.5f, -15.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(1f, 1.5f, .5f, "7th_wall", purple, new Vector3f(6f, 21.5f, -15.5f), new Vector2f(1f, 1.5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "7th_wall", purple, new Vector3f(6.5f, 23.5f, -15.5f), new Vector2f(.5f, .5f));
-        
+
         GeometryUtils.makeCube(2.5f, .25f, .5f, "8th_wall", darkgray, new Vector3f(17.5f, 19.75f, -9.5f), new Vector2f(2.5f, .5f));
         GeometryUtils.makeCube(.5f, .25f, 3.5f, "8th_wall", darkgray, new Vector3f(15.5f, 19.75f, -5.5f), new Vector2f(3.5f, .5f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "8th_wall", purple, new Vector3f(19.5f, 21f, -9.5f), new Vector2f(.5f, 1f));
@@ -376,13 +383,13 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, 1f, .5f, "8th_wall", purple, new Vector3f(15.5f, 21f, -3.5f), new Vector2f(.5f, 1f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "8th_wall", pink, new Vector3f(15.5f, 20.5f, -2.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "8th_wall", purple, new Vector3f(15.5f, 22f, -2.5f), new Vector2f(.5f, 1f));
-        
+
         GeometryUtils.makeCube(1f, .25f, .5f, "9th_wall", darkgray, new Vector3f(19f, 19.75f, 9.5f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "9th_wall", purple, new Vector3f(19.5f, 20.5f, 9.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "9th_wall", pink, new Vector3f(19.5f, 21.5f, 9.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "9th_wall", pink, new Vector3f(18.5f, 20.5f, 9.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "9th_wall", purple, new Vector3f(18.5f, 21.5f, 9.5f), new Vector2f(.5f, .5f));
-        
+
         GeometryUtils.makeCube(.5f, .25f, 1.5f, "9th_wall", darkgray, new Vector3f(10.5f, 19.75f, 8.5f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(.5f, .25f, 1f, "9th_wall", darkgray, new Vector3f(9.5f, 19.75f, 10f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(.5f, .25f, .5f, "9th_wall", darkgray, new Vector3f(8.5f, 19.75f, 10.5f), new Vector2f(.5f, .5f));
@@ -393,7 +400,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, 2f, .5f, "9th_wall", purple, new Vector3f(9.5f, 22f, 9.5f), new Vector2f(.5f, 2f));
         GeometryUtils.makeCube(.5f, 1.5f, .5f, "9th_wall", purple, new Vector3f(9.5f, 21.5f, 10.5f), new Vector2f(.5f, 1.5f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "9th_wall", purple, new Vector3f(8.5f, 21f, 10.5f), new Vector2f(.5f, 1f));
-        
+
         GeometryUtils.makeCube(.5f, .25f, .5f, "10th_wall", darkgray, new Vector3f(-9.5f, 19.75f, 19.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .25f, .5f, "10th_wall", darkgray, new Vector3f(-9.5f, 19.75f, 16.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(2.5f, .25f, .5f, "10th_wall", darkgray, new Vector3f(-7.5f, 19.75f, 15.5f), new Vector2f(2.5f, .5f));
@@ -414,7 +421,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", purple, new Vector3f(-6.5f, 21.5f, 15.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", purple, new Vector3f(-5.5f, 20.5f, 15.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "10th_wall", purple, new Vector3f(-5.5f, 22.5f, 15.5f), new Vector2f(.5f, .5f));
-        
+
         GeometryUtils.makeCube(2.5f, .25f, .5f, "11th_wall", darkgray, new Vector3f(-17.5f, 19.75f, 9.5f), new Vector2f(2.5f, .5f));
         GeometryUtils.makeCube(.5f, .25f, .5f, "11th_wall", darkgray, new Vector3f(-15.5f, 19.75f, 8.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .25f, 2.5f, "11th_wall", darkgray, new Vector3f(-15.5f, 19.75f, 4.5f), new Vector2f(2.5f, .5f));
@@ -431,11 +438,11 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, 1f, "11th_wall", purple, new Vector3f(-15.5f, 20.5f, 4f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(.5f, .5f, 1f, "11th_wall", purple, new Vector3f(-15.5f, 22.5f, 4f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(.5f, 2f, .5f, "11th_wall", purple, new Vector3f(-15.5f, 22f, 2.5f), new Vector2f(.5f, 2f));
-        
+
         GeometryUtils.makeCube(1f, .25f, .5f, "12th_wall", darkgray, new Vector3f(-19f, 19.75f, -9.5f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(1f, 1f, .5f, "12th_wall", purple, new Vector3f(-19f, 21f, -9.5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "12th_wall", purple, new Vector3f(-19.5f, 22.5f, -9.5f), new Vector2f(.5f, .5f));
-        
+
         GeometryUtils.makeCube(.5f, .25f, 1f, "12th_wall", darkgray, new Vector3f(-10.5f, 19.75f, -8f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(1f, .25f, .5f, "12th_wall", darkgray, new Vector3f(-10f, 19.75f, -9.5f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(1f, .25f, .5f, "12th_wall", darkgray, new Vector3f(-9f, 19.75f, -10.5f), new Vector2f(1f, .5f));
@@ -448,7 +455,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, 1.5f, .5f, "12th_wall", purple, new Vector3f(-9.5f, 22.5f, -10.5f), new Vector2f(.5f, 1.5f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "12th_wall", purple, new Vector3f(-8.5f, 21f, -10.5f), new Vector2f(.5f, 1f));
     }
-    
+
     public void makeWallsAtFirstPlatform() {
         String boxTextures = "textures/boxes/", glass = "textures/glass/sunbeam_t2.png", basePilars = boxTextures + "w_darkgray.png";
         GeometryUtils.makeCube(.5f, .5f, .5f, "1st_wall", boxTextures + "w_blue2.png", new Vector3f(15.5f, 10.5f, 7.5f), new Vector2f(.5f, .5f));
@@ -469,7 +476,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "1st_wall", boxTextures + "w_blue2.png", new Vector3f(15.5f, 10.5f, -7.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.1f, 2f, 1.5f, "1st_wall", glass, new Vector3f(15.525f, 12f, -2.5f), new Vector2f(1.5f, 2f), true);
         GeometryUtils.makeCube(.5f, .25f, 8f, "1st_wall", boxTextures + "w_darkgray.png", new Vector3f(15.5f, 9.75f, 0f), new Vector2f(8f, .5f));
-        
+
         GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_wall", boxTextures + "w_darkblue.png", new Vector3f(15.5f, 10.5f, 10.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "2nd_wall", boxTextures + "w_darkblue.png", new Vector3f(15.5f, 11f, 11.5f), new Vector2f(.5f, 1f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "2nd_wall", boxTextures + "w_blue1.png", new Vector3f(15.5f, 10.5f, 12.5f), new Vector2f(.5f, .5f));
@@ -496,7 +503,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(1f, .1f, 2f, "2nd_wall", boxTextures + "f_blue.png", new Vector3f(15f, 13.9f, 18f), new Vector2f(2f, 1f), true);
         GeometryUtils.makeCube(.5f, .25f, 3f, "2nd_wall", boxTextures + "w_darkgray.png", new Vector3f(15.5f, 9.75f, 13f), new Vector2f(3f, .5f));
         GeometryUtils.makeCube(3.5f, .25f, .5f, "2md_wall", boxTextures + "w_darkgray.png", new Vector3f(11.5f, 9.75f, 15.5f), new Vector2f(3.5f, .5f));
-        
+
         GeometryUtils.makeCube(5f, .25f, .5f, "3rd_wall", boxTextures + "w_darkgray.png", new Vector3f(0f, 9.75f, 15.5f), new Vector2f(5f, .5f));
         GeometryUtils.makeCube(1f, 1f, .5f, "3rd_wall", boxTextures + "w_blue2.png", new Vector3f(3f, 11f, 15.5f), new Vector2f(1f, 1f));
         GeometryUtils.makeCube(1f, 1f, .5f, "3rd_wall", boxTextures + "w_blue2.png", new Vector3f(-3f, 11f, 15.5f), new Vector2f(1f, 1f));
@@ -507,7 +514,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "3rd_wall", boxTextures + "w_blue1.png", new Vector3f(1.5f, 13.5f, 15.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "3rd_wall", boxTextures + "w_blue1.png", new Vector3f(-1.5f, 13.5f, 15.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(1f, .5f, .5f, "3rd_wall", boxTextures + "w_blue1.png", new Vector3f(0f, 14.5f, 15.5f), new Vector2f(1f, .5f));
-        
+
         GeometryUtils.makeCube(.5f, 1.5f, .5f, "4th_wall", boxTextures + "w_blue2.png", new Vector3f(-5.5f, 11.5f, -2.5f), new Vector2f(.5f, -1.5f));
         GeometryUtils.makeCube(.5f, 1.5f, .5f, "4th_wall", boxTextures + "w_blue2.png", new Vector3f(-9.5f, 11.5f, -2.5f), new Vector2f(.5f, -1.5f));
         GeometryUtils.makeCube(2.5f, .25f, .5f, "4th_wall", boxTextures + "w_darkgray.png", new Vector3f(-7.5f, 9.75f, -2.5f), new Vector2f(.5f, 2.5f));
@@ -522,7 +529,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, 1.5f, .5f, "4th_wall", boxTextures + "w_blue2.png", new Vector3f(-15.5f, 11.5f, -2.5f), new Vector2f(.5f, -1.5f));
         GeometryUtils.makeCube(.5f, 1f, 1f, "4th_wall", boxTextures + "w_blue2.png", new Vector3f(-15.5f, 11f, -4f), new Vector2f(1f, 1f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "4th_wall", boxTextures + "w_blue2.png", new Vector3f(-15.5f, 10.5f, -5.5f), new Vector2f(.5f, .5f));
-        
+
         GeometryUtils.makeCube(3.5f, .25f, .5f, "5th_wall", boxTextures + "w_darkgray.png", new Vector3f(.5f, 9.75f, -15.5f), new Vector2f(3.5f, .5f));
         GeometryUtils.makeCube(1.5f, 1f, .5f, "5th_wall", boxTextures + "w_blue2.png", new Vector3f(-1.5f, 11f, -15.5f), new Vector2f(-1.5f, 1f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "5th_wall", boxTextures + "w_blue2.png", new Vector3f(-1.5f, 12.5f, -15.5f), new Vector2f(.5f, .5f));
@@ -531,7 +538,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "5th_wall", boxTextures + "w_blue2.png", new Vector3f(2.5f, 10.5f, -15.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "5th_wall", boxTextures + "w_blue2.png", new Vector3f(2.5f, 12.5f, -15.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "5th_wall", boxTextures + "w_blue2.png", new Vector3f(3.5f, 11f, -15.5f), new Vector2f(-.5f, 1f));
-        
+
         GeometryUtils.makeCube(.5f, .25f, 1.5f, "6th_wall", boxTextures + "w_darkgray.png", new Vector3f(-15.5f, 9.75f, -14.5f), new Vector2f(1.5f, .5f));
         GeometryUtils.makeCube(2f, .25f, .5f, "6th_wall", boxTextures + "w_darkgray.png", new Vector3f(-13f, 9.75f, -15.5f), new Vector2f(2f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "6th_wall", boxTextures + "w_blue1.png", new Vector3f(-15.5f, 10.5f, -13.5f), new Vector2f(.5f, .5f));
@@ -551,7 +558,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "6th_wall", boxTextures + "w_darkblue.png", new Vector3f(-11.5f, 12.5f, -15.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(2f, .1f, 2.5f, "6nd_wall", boxTextures + "f_blue.png", new Vector3f(-18f, 13.9f, -17.5f), new Vector2f(2.5f, 2f), true);
         GeometryUtils.makeCube(1f, .1f, 2f, "6nd_wall", boxTextures + "f_blue.png", new Vector3f(-15f, 13.9f, -18f), new Vector2f(2f, 1f), true);
-        
+
         GeometryUtils.makeCube(.5f, 5f, .5f, "1st_platformPilar", basePilars, new Vector3f(4.5f, 15f, 4.5f), new Vector2f(.5f, 5f));
         GeometryUtils.makeCube(.5f, 5f, .5f, "1st_platformPilar", basePilars, new Vector3f(4.5f, 15f, -4.5f), new Vector2f(.5f, 5f));
         GeometryUtils.makeCube(.5f, 5f, .5f, "1st_platformPilar", basePilars, new Vector3f(-4.5f, 15f, 4.5f), new Vector2f(.5f, 5f));
@@ -575,7 +582,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "1st_platformPilar", basePilars, new Vector3f(4.5f, 10.5f, 2.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "1st_platformPilar", basePilars, new Vector3f(4.5f, 10.5f, -2.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "1st_platformPilar", basePilars, new Vector3f(-4.5f, 10.5f, 2.5f), new Vector2f(.5f, .5f));
-        GeometryUtils.makeCube(.5f, .5f, .5f, "1st_platformPilar", basePilars, new Vector3f(-4.5f, 10.5f, -2.5f), new Vector2f(.5f, .5f));       
+        GeometryUtils.makeCube(.5f, .5f, .5f, "1st_platformPilar", basePilars, new Vector3f(-4.5f, 10.5f, -2.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, 1.5f, .5f, "1st_platformPilar", basePilars, new Vector3f(3.5f, 17.5f, 4.5f), new Vector2f(.5f, 1.5f));
         GeometryUtils.makeCube(.5f, 1.5f, .5f, "1st_platformPilar", basePilars, new Vector3f(3.5f, 17.5f, -4.5f), new Vector2f(.5f, 1.5f));
         GeometryUtils.makeCube(.5f, 1.5f, .5f, "1st_platformPilar", basePilars, new Vector3f(4.5f, 17.5f, 3.5f), new Vector2f(.5f, 1.5f));
@@ -601,12 +608,12 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.1f, 1.5f, .5f, "1st_plateformPilar", glass, new Vector3f(-4.525f, 14.5f, 3.5f), new Vector2f(.5f, 1.5f), true);
         GeometryUtils.makeCube(.1f, 1.5f, .5f, "1st_plateformPilar", glass, new Vector3f(-4.525f, 14.5f, -3.5f), new Vector2f(.5f, 1.5f), true);
     }
-    
+
     public void makeWallsAtBase() {
-        String basePilars = "textures/boxes/w_darkgray.png", 
+        String basePilars = "textures/boxes/w_darkgray.png",
                 red = "textures/boxes/w_red2.png",
                 green1 = "textures/boxes/w_green1.png",
-                green2 ="textures/boxes/w_green2.png",
+                green2 = "textures/boxes/w_green2.png",
                 green3 = "textures/boxes/w_green3.png";
 
         GeometryUtils.makeCube(.5f, 4.5f, .5f, "basePilar", basePilars, new Vector3f(4.5f, 5.5f, 4.5f), new Vector2f(-.5f, 4.5f));
@@ -645,7 +652,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(4.5f, 8.5f, -1.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(-4.5f, 6.5f, -3.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(-4.5f, 8.5f, -1.5f), new Vector2f(.5f, .5f));
-        
+
         GeometryUtils.makeCube(1f, 1f, 1f, "19th_wall", basePilars, new Vector3f(-4f, 1f, 9f));
         GeometryUtils.makeCube(1f, 1f, 1f, "19th_wall", basePilars, new Vector3f(-4f, 1f, 14f));
         GeometryUtils.makeCube(1f, 1f, 1f, "19th_wall", basePilars, new Vector3f(-4f, 1f, 19f));
@@ -660,7 +667,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.25f, .5f, .5f, "19th_wall", red, new Vector3f(-4f, 4.5f, 13f), new Vector2f(-.5f, .5f));
         GeometryUtils.makeCube(.25f, .5f, .5f, "19th_wall", red, new Vector3f(-4f, 4.5f, 15f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.25f, .5f, .5f, "19th_wall", red, new Vector3f(-4f, 4.5f, 18f), new Vector2f(-.5f, .5f));
-        
+
         GeometryUtils.makeCube(1f, 1f, 1f, "20th_wall", basePilars, new Vector3f(4f, 1f, -9f));
         GeometryUtils.makeCube(1f, 1f, 1f, "20th_wall", basePilars, new Vector3f(4f, 1f, -14f));
         GeometryUtils.makeCube(1f, 1f, 1f, "20th_wall", basePilars, new Vector3f(4f, 1f, -19f));
@@ -675,7 +682,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.25f, .5f, .5f, "20th_wall", red, new Vector3f(4f, 4.5f, -13f), new Vector2f(-.5f, .5f));
         GeometryUtils.makeCube(.25f, .5f, .5f, "20th_wall", red, new Vector3f(4f, 4.5f, -15f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.25f, .5f, .5f, "20th_wall", red, new Vector3f(4f, 4.5f, -18f), new Vector2f(-.5f, .5f));
-        
+
         GeometryUtils.makeCube(1f, 1f, 1f, "21th_wall", green2, new Vector3f(11f, 1f, 0f));
         GeometryUtils.makeCube(1f, 1f, 1f, "21th_wall", green2, new Vector3f(15f, 1f, 0f));
         GeometryUtils.makeCube(1f, 1f, 1f, "21th_wall", green2, new Vector3f(19f, 1f, 0f));
@@ -690,7 +697,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "21th_wall", green3, new Vector3f(19.5f, .5f, 1.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "21th_wall", green3, new Vector3f(19.5f, 1f, -1.5f), new Vector2f(.5f, 1f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "21th_wall", green3, new Vector3f(19.5f, 3f, .5f), new Vector2f(.5f, 1f));
-        
+
         GeometryUtils.makeCube(1f, 1f, 1f, "22th_wall", green2, new Vector3f(-11f, 1f, 0f));
         GeometryUtils.makeCube(1f, 1f, 1f, "22th_wall", green2, new Vector3f(-15f, 1f, 0f));
         GeometryUtils.makeCube(1f, 1f, 1f, "22th_wall", green2, new Vector3f(-19f, 1f, 0f));
@@ -705,10 +712,10 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "22th_wall", green3, new Vector3f(-19.5f, .5f, 1.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "22th_wall", green3, new Vector3f(-19.5f, 1f, -1.5f), new Vector2f(.5f, 1f));
         GeometryUtils.makeCube(.5f, 1f, .5f, "22th_wall", green3, new Vector3f(-19.5f, 3f, .5f), new Vector2f(.5f, 1f));
-        
+
         GeometryUtils.makeCube(5.5f, .5f, 5.5f, "23th_wall", basePilars, new Vector3f(14.5f, 7.5f, 14.5f), new Vector2f(5.5f, 5.5f));
         GeometryUtils.makeCube(.5f, 3f, .5f, "23th_wall", basePilars, new Vector3f(10.5f, 4f, 10.5f), new Vector2f(.5f, 3f));
-        GeometryUtils.makeCube(.5f, 3.5f, .5f, "23th_wall", basePilars, new Vector3f(19.5f, 3.5f, 10.5f), new Vector2f(.5f, 3.5f)); 
+        GeometryUtils.makeCube(.5f, 3.5f, .5f, "23th_wall", basePilars, new Vector3f(19.5f, 3.5f, 10.5f), new Vector2f(.5f, 3.5f));
         GeometryUtils.makeCube(.5f, 3.5f, .5f, "23th_wall", basePilars, new Vector3f(10.5f, 3.5f, 19.5f), new Vector2f(.5f, 3.5f));
         GeometryUtils.makeCube(1f, .5f, 1f, "23th_wall", basePilars, new Vector3f(10.5f, .5f, 10.5f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "23th_wall", basePilars, new Vector3f(9.5f, .5f, 19.5f), new Vector2f(.5f, .5f));
@@ -728,10 +735,10 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.5f, .5f, .5f, "23th_wall", basePilars, new Vector3f(17.5f, 5.5f, 10.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "23th_wall", basePilars, new Vector3f(12.5f, 5.5f, 10.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(1f, 1f, 1f, "23th_wall", green1, new Vector3f(15f, 1f, 15f));
-        
+
         GeometryUtils.makeCube(5.5f, .5f, 5.5f, "24th_wall", basePilars, new Vector3f(-14.5f, 7.5f, -14.5f), new Vector2f(5.5f, 5.5f));
         GeometryUtils.makeCube(.5f, 3f, .5f, "24th_wall", basePilars, new Vector3f(-10.5f, 4f, -10.5f), new Vector2f(.5f, 3f));
-        GeometryUtils.makeCube(.5f, 3.5f, .5f, "24th_wall", basePilars, new Vector3f(-19.5f, 3.5f, -10.5f), new Vector2f(.5f, 3.5f)); 
+        GeometryUtils.makeCube(.5f, 3.5f, .5f, "24th_wall", basePilars, new Vector3f(-19.5f, 3.5f, -10.5f), new Vector2f(.5f, 3.5f));
         GeometryUtils.makeCube(.5f, 3.5f, .5f, "24th_wall", basePilars, new Vector3f(-10.5f, 3.5f, -19.5f), new Vector2f(.5f, 3.5f));
         GeometryUtils.makeCube(1f, .5f, 1f, "24th_wall", basePilars, new Vector3f(-10.5f, .5f, -10.5f), new Vector2f(1f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "24th_wall", basePilars, new Vector3f(-9.5f, .5f, -19.5f), new Vector2f(.5f, .5f));
@@ -754,13 +761,15 @@ public abstract class BaseGame extends SimpleApplication {
     }
 
     private void initFloor() {
-        GeometryUtils.makeCube(20f, .1f, 20f, "floor", "textures/boxes/f_gray.png", new Vector3f(0, -.1f, 0f), new Vector2f(20f, 20f), true);
+        GeometryUtils.makePlane(
+                40f, 40f, "floor", "textures/boxes/f_gray.png", new Vector3f(-20f, 0f, 20f),
+                new Quaternion().fromAngleAxis(-FastMath.PI / 2, Vector3f.UNIT_X), new Vector2f(20f, 20f), true);
     }
-    
+
     private void makeFirtPlatform() {
         float height = 9.9f;
         String texture = "textures/boxes/f_blue.png", name = "firstPlatform";
-        
+
         GeometryUtils.makeCube(
                 4f, 0.1f, 4f, name, texture, new Vector3f(0f, height, 0f), new Vector2f(4f, 4f), true);
         GeometryUtils.makeCube(
@@ -776,11 +785,11 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(
                 12f, 0.1f, 2f, name, texture, new Vector3f(-4f, height, -18f), new Vector2f(2f, 14f), true);
     }
-    
+
     private void makeSecondPlatform() {
         float height = 19.9f;
         String texture = "textures/boxes/f_purple.png", name = "secondPlatform";
-        
+
         GeometryUtils.makeCube(
                 4f, 0.1f, 4f, name, texture, new Vector3f(0f, height, 0f), new Vector2f(4f, 4f), true);
         GeometryUtils.makeCube(
@@ -808,11 +817,11 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(
                 3f, 0.1f, 2f, name, texture, new Vector3f(-8f, height, 0f), new Vector2f(2f, 3f), true);
     }
-    
+
     private void makeThirdPlatform() {
         float height = 29.9f;
         String texture = "textures/boxes/f_orange.png", name = "thirdPlatform";
-        
+
         GeometryUtils.makeCube(
                 4f, 0.1f, 2f, name, texture, new Vector3f(0f, height, 0f), new Vector2f(2f, 4f), true);
         GeometryUtils.makeCube(
@@ -844,7 +853,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(
                 4.5f, 0.1f, 1f, name, texture, new Vector3f(4.5f, height, -12f), new Vector2f(1f, 4.5f), true);
     }
-    
+
     private void initSky() {
         String basePath = "textures/sky/space2/";
         Texture west = assetManager.loadTexture(basePath + "west.png");
@@ -856,19 +865,19 @@ public abstract class BaseGame extends SimpleApplication {
         Spatial sky = SkyFactory.createSky(assetManager, west, east, north, south, up, down);
         rootNode.attachChild(sky);
     }
-    
+
     private void initPlatforms() {
         makeFirtPlatform();
         makeSecondPlatform();
         makeThirdPlatform();
-    } 
-    
+    }
+
     public BulletAppState getBulletAppState() {
         return bulletAppState;
     }
-    
+
     protected abstract void addMessageListeners();
-    
+
     private void registerMessages() {
         Serializer.registerClass(CharacterMovesMessage.class);
         Serializer.registerClass(StartGameMessage.class);
@@ -898,7 +907,7 @@ public abstract class BaseGame extends SimpleApplication {
     protected AbstractManager<?> getManager() {
         return manager;
     }
-    
+
     public abstract void loadLog4jConfig();
 
     protected boolean getElevatorServerControlled() {
