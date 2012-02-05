@@ -10,6 +10,7 @@ public class StartGameTask implements Task<StartGameMessage> {
 
     @Override
     public void doThis(StartGameMessage message) {
+        ClientContext.APP.cleanScreen();
         ClientContext.APP.addListeners();
         ClientContext.APP.initInterfaces();
         ClientContext.APP.initHealthMarker();

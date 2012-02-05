@@ -12,7 +12,6 @@ import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -38,6 +37,7 @@ public class JBombClient extends BaseGame {
     private Client client;
     private Picture bombsPictures = new Picture("bombsPictures");
     private Picture BombsSecondsPictures = new Picture("bombsSecondsPictures");
+    private Picture counterPicture = new Picture("counterPicture");
     private Map<Integer, BitmapText> health;
     private boolean left = false;
     private boolean right = false;
@@ -56,6 +56,7 @@ public class JBombClient extends BaseGame {
     private ExploitBombListener exploitBombListener = new ExploitBombListener();
     private DamageMessageListener damageMessageListener = new DamageMessageListener();
     private StartingNewGameListener startingNewGameListener = new StartingNewGameListener();
+    private CounterListener counterListener = new CounterListener();
     
     private RunningClientAppState runningClientAppState;
 
@@ -100,6 +101,18 @@ public class JBombClient extends BaseGame {
         appSettings.setTitle("jBomb");
         setSettings(appSettings);
         setShowSettings(false);
+    }
+    
+    public void initGuiCounter() {
+        counterPicture.setImage(assetManager, "interfaces/pictures/ready3.png", true);
+        counterPicture.setWidth(128f);
+        counterPicture.setHeight(128f);
+        counterPicture.setLocalTranslation(settings.getWidth() / 2 - 64f, settings.getHeight() / 2 - 64f, 0f);
+        guiNode.attachChild(counterPicture);
+    }
+    
+    public void changeCounter(byte num) {
+        counterPicture.setImage(assetManager, "interfaces/pictures/ready" + num + ".png", true);
     }
 
     public void initInterfaces() {
@@ -245,6 +258,7 @@ public class JBombClient extends BaseGame {
         client.addMessageListener(exploitBombListener, ExploitBombMessage.class);
         client.addMessageListener(damageMessageListener, DamageMessage.class);
         client.addMessageListener(startingNewGameListener, StartingNewGameMessage.class);
+        client.addMessageListener(counterListener, CounterMessage.class);
         AbstractManager<Client> m = (AbstractManager<Client>) getManager();
         client.addMessageListener(m, CharacterMovesMessage.class);
         client.addMessageListener(m, CoordinateBombMessage.class);

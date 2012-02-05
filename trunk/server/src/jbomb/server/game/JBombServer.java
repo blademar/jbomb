@@ -13,6 +13,7 @@ import jbomb.common.game.JBombContext;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.ThrowBombMessage;
+import jbomb.server.appstates.CounterAppState;
 import jbomb.server.appstates.RunningServerAppState;
 import jbomb.server.appstates.ServerManager;
 import jbomb.server.controls.ElevatorControl;
@@ -30,6 +31,7 @@ public class JBombServer extends BaseGame {
     private ClientConnectionListener connectionListener = new ClientConnectionListener();
     private ThrowBombListener throwBombListener = new ThrowBombListener();
     private CreatePlayerListener createPlayerListener = new CreatePlayerListener();
+    private CounterAppState counterAppState = new CounterAppState();
     
     public JBombServer(String playersNumber) {
         ServerContext.PLAYERS_COUNT = setPlayersCount(playersNumber);
@@ -64,6 +66,13 @@ public class JBombServer extends BaseGame {
     @Override
     protected void initStateManager() {
         super.initStateManager();
+    }
+    
+    public void initCounter() {
+        if (!stateManager.hasState(counterAppState))
+            stateManager.attach(counterAppState);
+        else
+            counterAppState.setEnabled(true);
     }
     
     public void startGame() {
