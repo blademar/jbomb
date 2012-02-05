@@ -97,6 +97,7 @@ public class JBombClient extends BaseGame {
 
     private void initAppSettings() {
         appSettings.setResolution(640, 480);
+        appSettings.setTitle("jBomb");
         setSettings(appSettings);
         setShowSettings(false);
     }
