@@ -57,23 +57,22 @@ public class JBombClient extends BaseGame {
     private DamageMessageListener damageMessageListener = new DamageMessageListener();
     private StartingNewGameListener startingNewGameListener = new StartingNewGameListener();
     private CounterListener counterListener = new CounterListener();
-    
     private RunningClientAppState runningClientAppState;
 
     public JBombClient(String ip) {
         this.ip = ip;
         initAppSettings();
     }
-    
+
     public void startGame() {
-        if (runningClientAppState != null && stateManager.hasState(runningClientAppState))
+        if (runningClientAppState != null && stateManager.hasState(runningClientAppState)) {
             runningClientAppState.setEnabled(true);
-        else {
+        } else {
             runningClientAppState = new RunningClientAppState();
             stateManager.attach(runningClientAppState);
         }
     }
-    
+
     public void resetGame() {
         stateManager.getState(RunningClientAppState.class).setEnabled(false);
     }
@@ -82,8 +81,9 @@ public class JBombClient extends BaseGame {
     public void simpleInitApp() {
         super.simpleInitApp();
         try {
-            if (ip == null)
+            if (ip == null) {
                 ip = "localhost";
+            }
             client = Network.connectToServer(ip, 6789);
             addMessageListeners();
             client.addClientStateListener(connectionListener);
@@ -102,7 +102,7 @@ public class JBombClient extends BaseGame {
         setSettings(appSettings);
         setShowSettings(false);
     }
-    
+
     public void initGuiCounter() {
         counterPicture.setImage(assetManager, "interfaces/pictures/ready3.png", true);
         counterPicture.setWidth(128f);
@@ -110,7 +110,7 @@ public class JBombClient extends BaseGame {
         counterPicture.setLocalTranslation(settings.getWidth() / 2 - 64f, settings.getHeight() / 2 - 64f, 0f);
         guiNode.attachChild(counterPicture);
     }
-    
+
     public void changeCounter(byte num) {
         counterPicture.setImage(assetManager, "interfaces/pictures/ready" + num + ".png", true);
     }
@@ -139,13 +139,28 @@ public class JBombClient extends BaseGame {
 
     public void initHealthMarker() {
         enqueue(new Callable<Void>() {
+
             @Override
             public Void call() throws Exception {
                 health = new HashMap<Integer, BitmapText>();
                 Object o = null;
                 Player pl = null;
                 BitmapText bmt = null;
-                health.put(ClientContext.PLAYER.getIdUserData(), new BitmapText(guiFont, false));
+                Picture picture = null;
+                float up = 0f;
+                int id = ClientContext.PLAYER.getIdUserData();
+                health.put(id, new BitmapText(guiFont, false));
+                picture = new Picture("HealthPlayer" + id);
+                picture.setImage(assetManager, "interfaces/pictures/" + (id + 1) + ".png", true);
+                picture.setWidth(32f);
+                picture.setHeight(32f);
+                picture.setLocalTranslation(settings.getWidth() - 32f - 5f, 130f + up, 0f);
+                guiNode.attachChild(picture);
+                bmt = health.get(id);
+                bmt.setText("100%");
+                bmt.setLocalTranslation(settings.getWidth() - (32f + 10f) * 2, 157f + up, 0f);
+                guiNode.attachChild(bmt);
+                up += 50f;
                 for (long l : JBombContext.MANAGER.keySet()) {
                     o = JBombContext.MANAGER.getPhysicObject(l);
                     if (o instanceof Player) {
@@ -153,9 +168,9 @@ public class JBombClient extends BaseGame {
                         health.put(pl.getIdUserData(), new BitmapText(guiFont, false));
                     }
                 }
-                float up = 0f;
-                Picture picture = null;
                 for (Integer i : health.keySet()) {
+                    if (i == id)
+                        continue;
                     picture = new Picture("HealthPlayer" + i);
                     picture.setImage(assetManager, "interfaces/pictures/" + (i + 1) + ".png", true);
                     picture.setWidth(32f);
@@ -185,7 +200,7 @@ public class JBombClient extends BaseGame {
         inputManager.addMapping("two", new KeyTrigger(KeyInput.KEY_2), new KeyTrigger(KeyInput.KEY_NUMPAD2));
         inputManager.addMapping("three", new KeyTrigger(KeyInput.KEY_3), new KeyTrigger(KeyInput.KEY_NUMPAD3));
     }
-    
+
     public void addListeners() {
         inputManager.addListener(shootsActionListener, "shoot");
         inputManager.addListener(characterActionListener, "Left");
@@ -197,7 +212,7 @@ public class JBombClient extends BaseGame {
         inputManager.addListener(bombSecondsListener, "two");
         inputManager.addListener(bombSecondsListener, "three");
     }
-    
+
     public void removeListeners() {
         inputManager.removeListener(shootsActionListener);
         inputManager.removeListener(characterActionListener);
@@ -287,7 +302,7 @@ public class JBombClient extends BaseGame {
     public BitmapText getHealtWithId(int id) {
         return health.get(id);
     }
-    
+
     public void cleanScreen() {
         guiNode.detachAllChildren();
     }
