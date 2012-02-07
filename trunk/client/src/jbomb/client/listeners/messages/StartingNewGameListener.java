@@ -12,7 +12,9 @@ public class StartingNewGameListener extends AbstractClientMessageListener<Start
     
     @Override
     public void messageReceived(Client source, Message m) {
+        StartingNewGameMessage message = (StartingNewGameMessage) m;
         LOGGER.debug("StartingNewGameMessage received...");
-        doTask(new StartingNewGameTask(), (StartingNewGameMessage) m);
+        LOGGER.debug("Winner: " + message.isWinner());
+        doTask(new StartingNewGameTask(), message);
     }
 }

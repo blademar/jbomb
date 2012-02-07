@@ -891,6 +891,8 @@ public abstract class BaseGame extends SimpleApplication {
         Serializer.registerClass(DamageMessage.class);
         Serializer.registerClass(StartingNewGameMessage.class);
         Serializer.registerClass(CounterMessage.class);
+        Serializer.registerClass(DeadPlayerMessage.class);
+        Serializer.registerClass(WinnerMessage.class);
     }
 
     protected abstract AbstractManager<?> createManager();

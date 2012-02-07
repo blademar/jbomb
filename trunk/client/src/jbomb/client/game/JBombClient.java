@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import jbomb.client.appstates.ClientManager;
 import jbomb.client.appstates.RunningClientAppState;
+import jbomb.client.controls.WinnerLooserControl;
 import jbomb.client.listeners.BombSecondsListener;
 import jbomb.client.listeners.CharacterActionListener;
 import jbomb.client.listeners.ServerConnectionListener;
@@ -37,7 +38,13 @@ public class JBombClient extends BaseGame {
     private Client client;
     private Picture bombsPictures = new Picture("bombsPictures");
     private Picture BombsSecondsPictures = new Picture("bombsSecondsPictures");
+    private BitmapText winnerMessage;
+    private BitmapText youWinner;
+    private BitmapText pointer;
+    private BitmapText wait;
     private Picture counterPicture = new Picture("counterPicture");
+    private Picture winner = new Picture("winner");
+    private Picture looser = new Picture("looser");
     private Map<Integer, BitmapText> health;
     private boolean left = false;
     private boolean right = false;
@@ -57,6 +64,9 @@ public class JBombClient extends BaseGame {
     private DamageMessageListener damageMessageListener = new DamageMessageListener();
     private StartingNewGameListener startingNewGameListener = new StartingNewGameListener();
     private CounterListener counterListener = new CounterListener();
+    private DeadPlayerListener deadPlayerListener = new DeadPlayerListener();
+    private WinnerListener winnerListener = new WinnerListener();
+    
     private RunningClientAppState runningClientAppState;
 
     public JBombClient(String ip) {
@@ -92,12 +102,13 @@ public class JBombClient extends BaseGame {
             LOGGER.error("Error al conectar con el servidor", ex);
         }
         guiNode.detachAllChildren();
+        initPictures();
         ClientContext.APP = this;
         ClientContext.CLIENT = client;
     }
 
     private void initAppSettings() {
-        appSettings.setResolution(640, 480);
+        appSettings.setResolution(320, 240);
         appSettings.setTitle("jBomb");
         setSettings(appSettings);
         setShowSettings(false);
@@ -116,24 +127,8 @@ public class JBombClient extends BaseGame {
     }
 
     public void initInterfaces() {
-        BitmapText ch = new BitmapText(guiFont, false);
-        ch.setSize(guiFont.getCharSet().getRenderedSize() * 2);
-        ch.setText("+");
-        ch.setLocalTranslation(
-                settings.getWidth() / 2 - guiFont.getCharSet().getRenderedSize() / 3 * 2,
-                settings.getHeight() / 2 + ch.getLineHeight() / 2, 0);
-        guiNode.attachChild(ch);
-
-        getBombsPictures().setImage(assetManager, "interfaces/pictures/bomb1.png", true);
-        getBombsPictures().setWidth(64f);
-        getBombsPictures().setHeight(51f);
-        getBombsPictures().setLocalTranslation(settings.getWidth() - 64f - 5f, 0f, 0f);
+        guiNode.attachChild(pointer);
         guiNode.attachChild(getBombsPictures());
-
-        getBombsSecondsPictures().setImage(assetManager, "interfaces/pictures/glass_numbers_1.png", true);
-        getBombsSecondsPictures().setWidth(45f);
-        getBombsSecondsPictures().setHeight(45f);
-        getBombsSecondsPictures().setLocalTranslation(settings.getWidth() - 45 - 5f, 55f, 0f);
         guiNode.attachChild(getBombsSecondsPictures());
     }
 
@@ -274,6 +269,8 @@ public class JBombClient extends BaseGame {
         client.addMessageListener(damageMessageListener, DamageMessage.class);
         client.addMessageListener(startingNewGameListener, StartingNewGameMessage.class);
         client.addMessageListener(counterListener, CounterMessage.class);
+        client.addMessageListener(deadPlayerListener, DeadPlayerMessage.class);
+        client.addMessageListener(winnerListener, WinnerMessage.class);
         AbstractManager<Client> m = (AbstractManager<Client>) getManager();
         client.addMessageListener(m, CharacterMovesMessage.class);
         client.addMessageListener(m, CoordinateBombMessage.class);
@@ -305,5 +302,97 @@ public class JBombClient extends BaseGame {
 
     public void cleanScreen() {
         guiNode.detachAllChildren();
+    }
+    
+    public void cleanScreenBombs() {
+        guiNode.detachChild(bombsPictures);
+        guiNode.detachChild(BombsSecondsPictures);
+    }
+    
+    public void youAreLooser() {
+        LOGGER.debug("Setting looser image");
+        guiNode.attachChild(looser);
+    }
+    
+    public void youAreWinner() {
+        LOGGER.debug("Setting winner image");
+        guiNode.attachChild(winner);
+        guiNode.detachChild(pointer);
+        youWinner.setLocalTranslation(
+                settings.getWidth() / 2 - youWinner.getLineWidth() / 2,
+                settings.getHeight() / 2 + youWinner.getLineHeight() / 2,
+                1);
+        guiNode.attachChild(youWinner);
+    }
+    
+    private void initPictures() {
+        looser.setImage(assetManager, "interfaces/pictures/looser.png", true);
+        looser.addControl(new WinnerLooserControl());
+        looser.setWidth(324f);
+        looser.setHeight(594f);
+        looser.setLocalTranslation(settings.getWidth() / 2 - 162f, settings.getHeight() / 2 - 247f, 0f);
+        winner.setImage(assetManager, "interfaces/pictures/winner.png", true);
+        winner.addControl(new WinnerLooserControl());
+        winner.setWidth(512f);
+        winner.setHeight(512f);
+        winner.setLocalTranslation(settings.getWidth() / 2 - 256f, settings.getHeight() / 2 - 256f, 0f);
+        getBombsPictures().setImage(assetManager, "interfaces/pictures/bomb1.png", true);
+        getBombsPictures().setWidth(64f);
+        getBombsPictures().setHeight(51f);
+        getBombsPictures().setLocalTranslation(settings.getWidth() - 64f - 5f, 0f, 0f);
+        getBombsSecondsPictures().setImage(assetManager, "interfaces/pictures/glass_numbers_1.png", true);
+        getBombsSecondsPictures().setWidth(45f);
+        getBombsSecondsPictures().setHeight(45f);
+        getBombsSecondsPictures().setLocalTranslation(settings.getWidth() - 45 - 5f, 55f, 0f);
+        winnerMessage = new BitmapText(guiFont, false);
+        winnerMessage.setSize(guiFont.getCharSet().getRenderedSize() * 1.5f);
+        winnerMessage.setText("The winner is # player");
+        pointer = new BitmapText(guiFont, false);
+        pointer.setSize(guiFont.getCharSet().getRenderedSize() * 2);
+        pointer.setText("+");
+        pointer.setLocalTranslation(
+                settings.getWidth() / 2 - guiFont.getCharSet().getRenderedSize() / 3 * 2,
+                settings.getHeight() / 2 + pointer.getLineHeight() / 2, 0);
+        wait = new BitmapText(guiFont, false);
+        wait.setSize(guiFont.getCharSet().getRenderedSize() * 1.5f);
+        wait.setText("Wait a moment please");
+        wait.setLocalTranslation(
+                settings.getWidth() / 2 - wait.getLineWidth() / 2,
+                settings.getHeight() / 2 - 10f,
+                1);
+        youWinner = new BitmapText(guiFont, false);
+        youWinner.setSize(guiFont.getCharSet().getRenderedSize() * 1.5f);
+        youWinner.setText("Congratulations, You are the winner!");
+    }
+    
+    public void printWinnerMessage(int id) {
+        guiNode.detachChild(pointer);
+        String message = winnerMessage.getText();
+        String color = null;
+        switch(id) {
+            case 0:
+                color = "blue";
+                break;
+            case 1:
+                color = "red";
+                break;
+            case 2:
+                color = "yellow";
+                break;
+            case 3:
+                color = "green";
+                break;
+        }
+        message = message.replace("#", color);
+        winnerMessage.setText(message);
+        winnerMessage.setLocalTranslation(
+                settings.getWidth() / 2 - winnerMessage.getLineWidth() / 2,
+                settings.getHeight() / 2 + winnerMessage.getLineHeight() / 2,
+                1);
+        guiNode.attachChild(winnerMessage);
+    }
+    
+    public void waitMoment() {
+        guiNode.attachChild(wait);
     }
 }
