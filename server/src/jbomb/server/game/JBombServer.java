@@ -77,6 +77,7 @@ public class JBombServer extends BaseGame {
     
     public void startGame() {
         stateManager.attach(new RunningServerAppState());
+        ServerContext.ROUND_FINISHED = false;
     }
     
     public void resetGame() {

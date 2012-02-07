@@ -16,6 +16,7 @@ public class RemovePlayerMessage extends BasePhysicMessage {
     @Override
     public void applyData() {
         Player player = (Player) JBombContext.MANAGER.removePhysicObject(getId());
-        JBombContext.ROOT_NODE.detachChild(player.getGeometry());
+        if (player != null)
+            JBombContext.ROOT_NODE.detachChild(player.getGeometry());
     }
 }

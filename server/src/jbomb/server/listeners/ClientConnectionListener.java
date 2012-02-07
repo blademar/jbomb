@@ -40,6 +40,7 @@ public class ClientConnectionListener implements ConnectionListener {
 
     @Override
     public void connectionAdded(Server server, final HostedConnection conn) {
+        ServerContext.CONNECTION_LIST.add(conn);
         if (!ServerContext.APP.isRunning()) {
             final int nextId = nextId(conn.getId());
             LOGGER.debug("Client #" + conn.getId() + " with id #" + nextId + " online.");
@@ -70,6 +71,7 @@ public class ClientConnectionListener implements ConnectionListener {
                     player.getGeometry().setUserData("id", nextId);
                     player.getGeometry().setName("Player(" + conn.getId() + ", " + nextId + ")");
                     player.getGeometry().setUserData("health", 100f);
+                    player.getGeometry().setUserData("conn", conn.getId());
                     player.getGeometry().addControl(new ScorePlayerControl());
                     JBombContext.MANAGER.addPhysicObject(nextId, player);
                     ServerContext.NODE_PLAYERS.attachChild(player.getGeometry());
@@ -84,35 +86,44 @@ public class ClientConnectionListener implements ConnectionListener {
     }
 
     @Override
-    public void connectionRemoved(Server server, HostedConnection conn) {
-        InternPlayer ip = getInternPlayerByConn(conn.getId());
-        LOGGER.debug("Client #" + ip.getConn() + " with id #" + ip.getId() + " offline.");
-        releaseIn(ip);
-        Player player = (Player) JBombContext.MANAGER.removePhysicObject(ip.getId());
-        ServerContext.NODE_PLAYERS.detachChild(player.getGeometry());
-        ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), new RemovePlayerMessage(ip.getId()));
-        ServerContext.CONNECTED_PLAYERS--;
-        if (ServerContext.CONNECTED_PLAYERS <= 1) {
-            LOGGER.debug("Starting new game");
-            Vector3f nextPosition = null;
-            if (ServerContext.CONNECTED_PLAYERS == 1) {
-                List<Spatial> children = ServerContext.NODE_PLAYERS.getChildren();
-                int idPlayer = ((Integer) children.get(0).getUserData("id"));
-                nextPosition = nextPosition(idPlayer);
-                ServerContext.SERVER.broadcast(new StartingNewGameMessage(nextPosition));
-            }
-            ServerContext.APP.resetGame();
-            for (Spatial s : JBombContext.NODE_ELEVATORS.getChildren()) {
-                s.setLocalTranslation((Vector3f) s.getUserData("initialLocation"));
-            }
-            List<Spatial> children = ServerContext.NODE_PLAYERS.getChildren();
-            if (children.size() > 0) {
-                LOGGER.debug("Reset positions of remaining players: " + children.size());
-                for (Spatial s : children) {
-                    s.getControl(RigidBodyControl.class).setPhysicsLocation(nextPosition);
+    public void connectionRemoved(Server server, final HostedConnection conn) {
+        ServerContext.CONNECTION_LIST.remove(conn);
+        JBombContext.BASE_GAME.enqueue(new Callable<Void>() {
+
+            @Override
+            public Void call() throws Exception {
+                InternPlayer ip = getInternPlayerByConn(conn.getId());
+                LOGGER.debug("Client #" + ip.getConn() + " with id #" + ip.getId() + " offline.");
+                releaseIn(ip);
+                Player player = (Player) JBombContext.MANAGER.removePhysicObject(ip.getId());
+                if (player != null)
+                    ServerContext.NODE_PLAYERS.detachChild(player.getGeometry());
+                ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), new RemovePlayerMessage(ip.getId()));
+                ServerContext.CONNECTED_PLAYERS--;
+                if (ServerContext.CONNECTED_PLAYERS <= 1) {
+                    LOGGER.debug("Starting new game");
+                    Vector3f nextPosition = null;
+                    if (ServerContext.CONNECTED_PLAYERS == 1 && ServerContext.NODE_PLAYERS.getChildren().size() > 0) {
+                        List<Spatial> children = ServerContext.NODE_PLAYERS.getChildren();
+                        int idPlayer = ((Integer) children.get(0).getUserData("id"));
+                        nextPosition = nextPosition(idPlayer);
+                        ServerContext.SERVER.broadcast(new StartingNewGameMessage(nextPosition, 
+                                !ServerContext.ROUND_FINISHED));
+                    }
+                    ServerContext.APP.resetGame();
+                    for (Spatial s : JBombContext.NODE_ELEVATORS.getChildren()) {
+                        s.setLocalTranslation((Vector3f) s.getUserData("initialLocation"));
+                    }
+                    List<Spatial> children = ServerContext.NODE_PLAYERS.getChildren();
+                    if (children.size() > 0) {
+                        for (Spatial s : children) {
+                            s.getControl(RigidBodyControl.class).setPhysicsLocation(nextPosition);
+                        }
+                    }
                 }
+                return null;
             }
-        }
+        });
     }
 
     private ColorRGBA nextColor(int id) {

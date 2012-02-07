@@ -20,5 +20,7 @@ public class StartingNewGameTask implements Task<StartingNewGameMessage> {
             s.setLocalTranslation((Vector3f) s.getUserData("initialLocation"));
         }
         ClientContext.PLAYER.setInitialPosition(message.getInitialPosition());
+        if (message.isWinner())
+            ClientContext.APP.youAreWinner();
     }
 }

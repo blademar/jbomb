@@ -8,11 +8,13 @@ import com.jme3.network.serializing.Serializable;
 public class StartingNewGameMessage extends AbstractMessage {
     
     private Vector3f initialPosition = new Vector3f();
+    private boolean winner = false;
     
     public StartingNewGameMessage() {}
     
-    public StartingNewGameMessage(Vector3f initialPosition) {
+    public StartingNewGameMessage(Vector3f initialPosition, boolean winner) {
         this.initialPosition.set(initialPosition);
+        this.winner = winner;
     }
 
     public Vector3f getInitialPosition() {
@@ -21,5 +23,9 @@ public class StartingNewGameMessage extends AbstractMessage {
 
     public void setInitialPosition(Vector3f initialPosition) {
         this.initialPosition = initialPosition;
+    }
+
+    public boolean isWinner() {
+        return winner;
     }
 }
