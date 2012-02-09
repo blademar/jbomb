@@ -50,7 +50,7 @@ public class JBombClient extends BaseGame {
     private boolean right = false;
     private boolean front = false;
     private boolean back = false;
-    private AppSettings appSettings = new AppSettings(true);
+    
     private ShootsActionListener shootsActionListener = new ShootsActionListener();
     private CharacterActionListener characterActionListener = new CharacterActionListener();
     private BombSecondsListener bombSecondsListener = new BombSecondsListener();
@@ -71,7 +71,6 @@ public class JBombClient extends BaseGame {
 
     public JBombClient(String ip) {
         this.ip = ip;
-        initAppSettings();
     }
 
     public void startGame() {
@@ -105,13 +104,6 @@ public class JBombClient extends BaseGame {
         initPictures();
         ClientContext.APP = this;
         ClientContext.CLIENT = client;
-    }
-
-    private void initAppSettings() {
-        appSettings.setResolution(640, 480);
-        appSettings.setTitle("jBomb");
-        setSettings(appSettings);
-        setShowSettings(false);
     }
 
     public void initGuiCounter() {

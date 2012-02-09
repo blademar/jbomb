@@ -41,6 +41,7 @@ public class JBombServer extends BaseGame {
     @Override
     public void simpleInitApp() {
         super.simpleInitApp();
+        guiNode.detachAllChildren();
         JBombContext.PHYSICS_SPACE.addCollisionListener(new BombCollisionListener());
         ServerContext.NODE_PLAYERS = new Node("Node_players");
         JBombContext.ROOT_NODE.attachChild(ServerContext.NODE_PLAYERS);
