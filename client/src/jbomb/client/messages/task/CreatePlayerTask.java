@@ -15,6 +15,7 @@ public class CreatePlayerTask implements Task<CreatePlayerMessage> {
         JBombContext.ROOT_NODE.attachChild(player.getGeometry());
         ClientContext.PLAYER = player;
         ClientContext.APP.getCam().setLocation(message.getLocation());
-        ClientContext.CLIENT.send(new CreatePlayerMessage());
+        if (message.isNewPlayer())
+            ClientContext.CLIENT.send(new CreatePlayerMessage());
     }
 }
