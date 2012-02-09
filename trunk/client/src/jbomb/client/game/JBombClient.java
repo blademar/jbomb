@@ -8,7 +8,6 @@ import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.network.Client;
 import com.jme3.network.Network;
 import com.jme3.renderer.Camera;
-import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 import java.io.IOException;
 import java.net.URL;
@@ -107,6 +106,7 @@ public class JBombClient extends BaseGame {
     }
 
     public void initGuiCounter() {
+        guiNode.detachAllChildren();
         counterPicture.setImage(assetManager, "interfaces/pictures/ready3.png", true);
         counterPicture.setWidth(128f);
         counterPicture.setHeight(128f);
