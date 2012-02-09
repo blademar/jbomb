@@ -10,6 +10,7 @@ import com.jme3.network.serializing.Serializer;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.Control;
+import com.jme3.system.AppSettings;
 import com.jme3.texture.Texture;
 import com.jme3.util.SkyFactory;
 import java.net.URL;
@@ -23,11 +24,20 @@ public abstract class BaseGame extends SimpleApplication {
 
     private BulletAppState bulletAppState = new BulletAppState();
     private AbstractManager<?> manager = createManager();
+    private AppSettings appSettings = new AppSettings(true);
 
     public BaseGame() {
         URL urlConfig = BaseGame.class.getResource("/jbomb/common/config/log4j.xml");
         DOMConfigurator.configure(urlConfig);
         loadLog4jConfig();
+        initAppSettings();
+    }
+    
+    private void initAppSettings() {
+        appSettings.setResolution(320, 240);
+        appSettings.setTitle("jBomb");
+        setSettings(appSettings);
+        setShowSettings(false);
     }
 
     @Override
