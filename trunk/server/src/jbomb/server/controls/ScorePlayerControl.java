@@ -46,6 +46,7 @@ public class ScorePlayerControl extends JBombAbstractControl {
                     ServerContext.SERVER.broadcast(new DeadPlayerMessage(id, "Player #" + id + " has died!"));
                     ServerContext.NODE_PLAYERS.detachChild(spatial);
                     JBombContext.MANAGER.removePhysicObject(id);
+                    ServerContext.APP.releaseId(id);
                     PlayerExplosion explosion = new PlayerExplosion();
                     explosion.setLocation(spatial.getLocalTranslation());
                     explosion.start();
@@ -56,10 +57,12 @@ public class ScorePlayerControl extends JBombAbstractControl {
                         ServerContext.ROUND_FINISHED = true;
                         ServerContext.NODE_PLAYERS.detachAllChildren();
                         JBombContext.MANAGER.removePhysicObject(winnerId);
-                    }
-                    ServerContext.APP.resetGame();
-                    for (Spatial s : JBombContext.NODE_ELEVATORS.getChildren()) {
-                        s.setLocalTranslation((Vector3f) s.getUserData("initialLocation"));
+                        ServerContext.APP.releaseId(winnerId);
+                        ServerContext.APP.resetGame();
+                        for (Spatial s : JBombContext.NODE_ELEVATORS.getChildren()) {
+                            s.setLocalTranslation((Vector3f) s.getUserData("initialLocation"));
+                        }
+                        ServerContext.APP.initWaitingTime();
                     }
                 }
                 spatial.setUserData("health", health);

@@ -9,6 +9,7 @@ public class CreatePlayerMessage extends BasePhysicMessage {
 
     private Vector3f location = new Vector3f();
     private ColorRGBA color = ColorRGBA.White;
+    private boolean newPlayer = true;
 
     public CreatePlayerMessage() {}
 
@@ -37,5 +38,13 @@ public class CreatePlayerMessage extends BasePhysicMessage {
     @Override
     public void applyData() {
         
+    }
+
+    public boolean isNewPlayer() {
+        return newPlayer;
+    }
+
+    public void setNewPlayer(boolean newPlayer) {
+        this.newPlayer = newPlayer;
     }
 }
