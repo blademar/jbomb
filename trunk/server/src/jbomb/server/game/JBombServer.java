@@ -118,7 +118,6 @@ public class JBombServer extends BaseGame {
     }
 
     public void releaseId(int id) {
-        LOGGER.debug("Liberando id: " + id);
         connectionListener.releaseIn(connectionListener.getInternPlayerById(id));
     }
 

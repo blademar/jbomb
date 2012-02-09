@@ -53,6 +53,7 @@ public class ScorePlayerControl extends JBombAbstractControl {
                     if (ServerContext.NODE_PLAYERS.getChildren().size() == 1) {
                         Spatial winner = ServerContext.NODE_PLAYERS.getChildren().iterator().next();
                         int winnerId = (Integer) winner.getUserData("id");
+                        LOGGER.debug("Winner player #" + winnerId);
                         ServerContext.SERVER.broadcast(new WinnerMessage(winnerId));
                         ServerContext.ROUND_FINISHED = true;
                         ServerContext.NODE_PLAYERS.detachAllChildren();
