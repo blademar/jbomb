@@ -45,10 +45,10 @@ public class JBombClient extends BaseGame {
     private Picture winner = new Picture("winner");
     private Picture looser = new Picture("looser");
     private Map<Integer, BitmapText> health;
-    private boolean left = false;
-    private boolean right = false;
-    private boolean front = false;
-    private boolean back = false;
+    private boolean left;
+    private boolean right;
+    private boolean front;
+    private boolean back;
     
     private ShootsActionListener shootsActionListener = new ShootsActionListener();
     private CharacterActionListener characterActionListener = new CharacterActionListener();
@@ -70,6 +70,10 @@ public class JBombClient extends BaseGame {
 
     public JBombClient(String ip) {
         this.ip = ip;
+    }
+    
+    public void resetDirections() {
+        left = right = front = back = false;
     }
 
     public void startGame() {
