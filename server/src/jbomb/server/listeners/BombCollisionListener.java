@@ -22,13 +22,13 @@ public class BombCollisionListener implements PhysicsCollisionListener {
                 if ("bomb".equals(nodeB.getName())) 
                     nodeB.getControl(BaseBombControl.class).forceExploit();
                 else if ("wormsExplosion".equals(nodeB.getName()))
-                    nodeA.getControl(ScorePlayerControl.class).sumDamage(10f);
+                    nodeA.getControl(ScorePlayerControl.class).sumDamage(.1f);
 //                LOGGER.debug("Collision: " + nodeA.getName() + " with " + nodeB.getName());
             } else if (nodeB.getParent() == ServerContext.NODE_PLAYERS) {
                 if ("bomb".equals(nodeA.getName()))
                     nodeA.getControl(BaseBombControl.class).forceExploit();
                 else if ("wormsExplosion".equals(nodeA.getName()))
-                    nodeB.getControl(ScorePlayerControl.class).sumDamage(10f);
+                    nodeB.getControl(ScorePlayerControl.class).sumDamage(.1f);
 //                LOGGER.debug("Collision: " + nodeB.getName() + " with " + nodeA.getName());
             }
         }

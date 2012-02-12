@@ -42,7 +42,7 @@ public abstract class BaseGame extends SimpleApplication {
     }
     
     private void initAppSettings() {
-        appSettings.setResolution(320, 240);
+        appSettings.setResolution(640, 480);
         appSettings.setTitle("jBomb");
         setSettings(appSettings);
         setShowSettings(false);
