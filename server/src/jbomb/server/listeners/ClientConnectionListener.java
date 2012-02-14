@@ -13,7 +13,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
-import java.util.logging.Level;
 import jbomb.common.game.JBombContext;
 import jbomb.common.game.Player;
 import jbomb.common.messages.CreatePlayerMessage;
@@ -27,8 +26,8 @@ import org.apache.log4j.Logger;
 public class ClientConnectionListener implements ConnectionListener {
 
     private static final Logger LOGGER = Logger.getLogger(ClientConnectionListener.class);
-    private Vector3f[] positions = {new Vector3f(0f, 0f, -5f), new Vector3f(-5f, 0f, 0f),
-        new Vector3f(0f, 0f, 5f), new Vector3f(5f, 0f, 0f)};
+    private Vector3f[] positions = {new Vector3f(18f, 1.4f, 18f), new Vector3f(-18f, 1.4f, -18f),
+        new Vector3f(18f, 21.4f, 18f), new Vector3f(-18f, 21.4f, -18f)};
     private ColorRGBA[] colors = {ColorRGBA.Blue, ColorRGBA.Red, ColorRGBA.Yellow, ColorRGBA.Green};
     private Map<InternPlayer, Boolean> freeIds = new HashMap<InternPlayer, Boolean>();
     private boolean buzzy;
