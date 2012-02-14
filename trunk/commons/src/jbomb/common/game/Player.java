@@ -16,6 +16,7 @@ import jbomb.common.sounds.impl.InstanceSound;
 import jbomb.common.utils.MatDefs;
 import jbomb.common.weapons.impl.BaseBomb;
 import jbomb.common.weapons.impl.GrandBomb;
+import org.apache.log4j.Logger;
 
 public class Player {
 
@@ -25,8 +26,10 @@ public class Player {
     protected Sound throwSound = new InstanceSound("bomb/bounce.wav", 6f);
     private Vector3f viewDirection = new Vector3f();
     protected Vector3f location = new Vector3f();
+    private static final Logger LOGGER = Logger.getLogger(Player.class);
 
     public Player(Vector3f location, ColorRGBA color) {
+        LOGGER.debug("Creating player at: " + location);
         Sphere s = new Sphere(10, 10, .55f);
         geometry = new Geometry("player", s);
         Material m = new Material(JBombContext.ASSET_MANAGER, MatDefs.UNSHADED);
