@@ -24,6 +24,7 @@ import jbomb.server.appstates.RunningServerAppState;
 import jbomb.server.appstates.ServerManager;
 import jbomb.server.appstates.WaitingAppState;
 import jbomb.server.controls.ElevatorControl;
+import jbomb.server.controls.MeteoriteControl;
 import jbomb.server.controls.ScorePlayerControl;
 import jbomb.server.listeners.BombCollisionListener;
 import jbomb.server.listeners.ClientConnectionListener;
@@ -190,4 +191,11 @@ public class JBombServer extends BaseGame {
     public Control createElevatorControl(float upY, float downY, float freezedSeconds, boolean up) {
         return new ElevatorControl(upY, downY, freezedSeconds, up);
     }
+
+    @Override
+    public Control createMeteoriteControl(Vector3f point, Vector3f location, float speed) {
+        return new MeteoriteControl(point, location, speed);
+    }
+    
+    
 }

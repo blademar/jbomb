@@ -19,6 +19,7 @@ import java.net.URL;
 import jbomb.common.appstates.AbstractManager;
 import jbomb.common.messages.*;
 import jbomb.common.scene.Elevator;
+import jbomb.common.scene.Meteorite;
 import jbomb.common.utils.GeometryUtils;
 import org.apache.log4j.xml.DOMConfigurator;
 
@@ -27,6 +28,8 @@ public abstract class BaseGame extends SimpleApplication {
     private BulletAppState bulletAppState = new BulletAppState();
     private AbstractManager<?> manager = createManager();
     private AppSettings appSettings = new AppSettings(true);
+    
+    private Meteorite meteorite;
 
     public BaseGame() {
         URL urlConfig = BaseGame.class.getResource("/jbomb/common/config/log4j.xml");
@@ -103,6 +106,8 @@ public abstract class BaseGame extends SimpleApplication {
         new Elevator(new Vector3f(-16f, 29.9f, -3f), 29.9f, 20.1f, 3f, false, getElevatorServerControlled());
         new Elevator(new Vector3f(14f, 20.1f, -16f), 29.9f, 20.1f, 3f, true, getElevatorServerControlled());
         new Elevator(new Vector3f(-14f, 20.1f, 16f), 29.9f, 20.1f, 3f, true, getElevatorServerControlled());
+        
+        meteorite = new Meteorite(1.3f, new Vector3f(600f, 175f, 20f), new Vector3f(22.5f, 20f, 0f), 3f);
     }
 
     public void makeWallsAtThirdPlatform() {
@@ -912,6 +917,7 @@ public abstract class BaseGame extends SimpleApplication {
         Serializer.registerClass(CounterMessage.class);
         Serializer.registerClass(DeadPlayerMessage.class);
         Serializer.registerClass(WinnerMessage.class);
+        Serializer.registerClass(MeteoriteMovesMessage.class);
     }
 
     protected abstract AbstractManager<?> createManager();
@@ -938,5 +944,13 @@ public abstract class BaseGame extends SimpleApplication {
 
     public Control createElevatorControl(float upY, float downY, float freezedSeconds, boolean up) {
         return null;
+    }
+    
+    public Control createMeteoriteControl(Vector3f point, Vector3f location, float speed) {
+        return null;
+    }
+
+    public Meteorite getMeteorite() {
+        return meteorite;
     }
 }

@@ -13,6 +13,8 @@ public interface Explosion {
     
     void setLocation(Vector3f location);
     
+    void setTimeforDie(float time);
+    
     float getTimeForDie();
 
     Geometry getGeometry();

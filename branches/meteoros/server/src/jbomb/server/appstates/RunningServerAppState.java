@@ -10,6 +10,7 @@ import jbomb.common.appstates.RunningAppState;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.CoordinateBombMessage;
 import jbomb.common.messages.ElevatorMovesMessage;
+import jbomb.common.messages.MeteoriteMovesMessage;
 import jbomb.common.scene.Elevator;
 import jbomb.common.weapons.impl.GrandBomb;
 import jbomb.server.controls.ElevatorControl;

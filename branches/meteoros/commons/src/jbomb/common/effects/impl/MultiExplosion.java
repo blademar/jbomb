@@ -49,4 +49,10 @@ public abstract class MultiExplosion implements Explosion {
     public Geometry getGeometry() {
         return explosionList.get(0).getGeometry();
     }
+
+    @Override
+    public void setTimeforDie(float time) {
+        for (Explosion e: explosionList)
+            e.setTimeforDie(time);
+    }
 }
