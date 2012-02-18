@@ -271,6 +271,7 @@ public class JBombClient extends BaseGame {
         client.addMessageListener(m, CharacterMovesMessage.class);
         client.addMessageListener(m, CoordinateBombMessage.class);
         client.addMessageListener(m, ElevatorMovesMessage.class);
+        client.addMessageListener(m, MeteoriteMovesMessage.class);
     }
 
     @Override

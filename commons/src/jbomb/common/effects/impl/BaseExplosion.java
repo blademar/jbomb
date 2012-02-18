@@ -17,6 +17,7 @@ public class BaseExplosion implements Explosion {
     protected ParticleEmitter emitter;
     private int x, y;
     private Control control;
+    private float timeForDie = 1f;
     
     public BaseExplosion(String name, BaseControlExplosion baseControlExplosion, int numParticles, String fileName, int x, int y) {
         this.control = baseControlExplosion;
@@ -83,11 +84,16 @@ public class BaseExplosion implements Explosion {
 
     @Override
     public float getTimeForDie() {
-        return 1f;
+        return timeForDie;
     }
 
     @Override
     public Geometry getGeometry() {
         return emitter;
+    }
+
+    @Override
+    public void setTimeforDie(float time) {
+        timeForDie = time;
     }
 }
