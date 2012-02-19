@@ -352,7 +352,7 @@ public class JBombClient extends BaseGame {
                 settings.getHeight() / 2 + pointer.getLineHeight() / 2, 0);
         wait = new BitmapText(guiFont, false);
         wait.setSize(guiFont.getCharSet().getRenderedSize() * 1.5f);
-        wait.setText("Wait a moment please");
+        wait.setText("Espere unos momentos por favor");
         wait.setLocalTranslation(
                 settings.getWidth() / 2 - wait.getLineWidth() / 2,
                 settings.getHeight() / 2 - 10f,
@@ -368,16 +368,16 @@ public class JBombClient extends BaseGame {
         String color = null;
         switch(id) {
             case 0:
-                color = "blue";
+                color = "azul";
                 break;
             case 1:
-                color = "red";
+                color = "rojo";
                 break;
             case 2:
-                color = "yellow";
+                color = "amarillo";
                 break;
             case 3:
-                color = "green";
+                color = "verde";
                 break;
         }
         message = message.replace("#", color);
