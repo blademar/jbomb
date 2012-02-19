@@ -7,8 +7,8 @@ import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.network.serializing.Serializer;
-import com.jme3.post.FilterPostProcessor;
-import com.jme3.post.filters.CartoonEdgeFilter;
+//import com.jme3.post.FilterPostProcessor;
+//import com.jme3.post.filters.CartoonEdgeFilter;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.Control;
@@ -35,11 +35,11 @@ public abstract class BaseGame extends SimpleApplication {
         initAppSettings();
     }
     
-    private void setCartoonMode() {
-        viewPort.addProcessor(new FilterPostProcessor(assetManager) {{
-            addFilter(new CartoonEdgeFilter());
-        }});
-    }
+//    private void setCartoonMode() {
+//        viewPort.addProcessor(new FilterPostProcessor(assetManager) {{
+//            addFilter(new CartoonEdgeFilter());
+//        }});
+//    }
     
     private void initAppSettings() {
         appSettings.setResolution(640, 480);

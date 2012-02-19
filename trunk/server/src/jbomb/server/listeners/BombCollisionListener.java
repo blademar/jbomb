@@ -6,11 +6,11 @@ import com.jme3.scene.Spatial;
 import jbomb.server.controls.BaseBombControl;
 import jbomb.server.controls.ScorePlayerControl;
 import jbomb.server.game.ServerContext;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 public class BombCollisionListener implements PhysicsCollisionListener {
 
-    private static final Logger LOGGER = Logger.getLogger(BombCollisionListener.class);
+//    private static final Logger LOGGER = Logger.getLogger(BombCollisionListener.class);
     private Spatial nodeA, nodeB;
 
     @Override

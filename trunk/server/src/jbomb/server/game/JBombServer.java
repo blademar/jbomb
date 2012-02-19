@@ -152,7 +152,8 @@ public class JBombServer extends BaseGame {
         }
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void addMessageListeners() {
         AbstractManager<HostedConnection> m = (AbstractManager<HostedConnection>) getManager();
         server.addMessageListener(m, CharacterMovesMessage.class);

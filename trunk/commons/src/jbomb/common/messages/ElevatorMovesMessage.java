@@ -5,12 +5,12 @@ import com.jme3.math.Vector3f;
 import com.jme3.network.serializing.Serializable;
 import jbomb.common.game.JBombContext;
 import jbomb.common.scene.Elevator;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 @Serializable
 public class ElevatorMovesMessage extends BasePhysicMessage {
 
-    private static final Logger LOGGER = Logger.getLogger(ElevatorMovesMessage.class);
+//    private static final Logger LOGGER = Logger.getLogger(ElevatorMovesMessage.class);
     private Vector3f location = new Vector3f();
     private Vector3f oldPosition = new Vector3f();
     private boolean isFirstInterpolation;
