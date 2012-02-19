@@ -5,11 +5,11 @@ import com.jme3.scene.Spatial;
 import jbomb.client.game.ClientContext;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.StartingNewGameMessage;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 public class StartingNewGameTask implements Task<StartingNewGameMessage> {
 
-    private static final Logger LOGGER = Logger.getLogger(StartingNewGameTask.class);
+//    private static final Logger LOGGER = Logger.getLogger(StartingNewGameTask.class);
     
     @Override
     public void doThis(StartingNewGameMessage message) {

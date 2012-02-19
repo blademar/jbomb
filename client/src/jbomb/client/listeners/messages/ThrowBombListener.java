@@ -4,11 +4,11 @@ import com.jme3.network.Client;
 import com.jme3.network.Message;
 import jbomb.client.messages.task.ThrowBombTask;
 import jbomb.common.messages.ThrowBombMessage;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 public class ThrowBombListener extends AbstractClientMessageListener<ThrowBombTask, ThrowBombMessage> {
 
-    private static final Logger LOGGER = Logger.getLogger(ThrowBombListener.class);
+//    private static final Logger LOGGER = Logger.getLogger(ThrowBombListener.class);
     
     @Override
     public void messageReceived(Client source, Message m) {

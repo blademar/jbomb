@@ -11,14 +11,14 @@ import jbomb.common.appstates.RunningAppState;
 import jbomb.common.game.JBombContext;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.weapons.impl.BaseBomb;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 public class RunningClientAppState extends RunningAppState {
 
     private float[] timer = new float[]{0, 0, 0};
     private float time;
     private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
-    private static final Logger LOGGER = Logger.getLogger(RunningClientAppState.class);
+//    private static final Logger LOGGER = Logger.getLogger(RunningClientAppState.class);
 
     @Override
     public void initialize(AppStateManager stateManager, Application app) {

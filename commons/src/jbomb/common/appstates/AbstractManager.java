@@ -18,11 +18,11 @@ import jbomb.common.game.JBombContext;
 import jbomb.common.messages.BasePhysicMessage;
 import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.ElevatorMovesMessage;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 public abstract class AbstractManager<T> implements MessageListener<T>, AppState {
 
-    private static final Logger LOGGER = Logger.getLogger(AbstractManager.class);
+//    private static final Logger LOGGER = Logger.getLogger(AbstractManager.class);
     private float maxTime = 1f / JBombContext.MESSAGES_PER_SECOND;
     private float time;
     private Map<Long, Object> physicsObjects = new HashMap<Long, Object>();
@@ -134,14 +134,14 @@ public abstract class AbstractManager<T> implements MessageListener<T>, AppState
         return repository;
     }
 
-    private void showPhysicsObject() {
-        synchronized (getPhysicsObjects()) {
-            for (Long id : getPhysicsObjects().keySet()) {
-                LOGGER.debug("Id: " + id + ": " + getPhysicsObjects().get(id));
-            }
-            LOGGER.debug("Cantidad: " + repository.getCount());
-        }
-    }
+//    private void showPhysicsObject() {
+//        synchronized (getPhysicsObjects()) {
+//            for (Long id : getPhysicsObjects().keySet()) {
+//                LOGGER.debug("Id: " + id + ": " + getPhysicsObjects().get(id));
+//            }
+//            LOGGER.debug("Cantidad: " + repository.getCount());
+//        }
+//    }
     
     public Set<Long> keySet() {
         synchronized(getPhysicsObjects()) {

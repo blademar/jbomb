@@ -9,11 +9,11 @@ import jbomb.common.game.Player;
 import jbomb.common.messages.ThrowBombMessage;
 import jbomb.server.controls.BaseBombControl;
 import jbomb.server.game.ServerContext;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 public class ThrowBombListener implements MessageListener<HostedConnection> {
 
-    private static final Logger LOGGER = Logger.getLogger(ThrowBombListener.class);
+//    private static final Logger LOGGER = Logger.getLogger(ThrowBombListener.class);
     @Override
     public void messageReceived(HostedConnection source, Message m) {
 //        LOGGER.debug("ThrowBombMessage recibido");

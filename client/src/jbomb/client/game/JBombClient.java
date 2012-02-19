@@ -254,7 +254,8 @@ public class JBombClient extends BaseGame {
         return BombsSecondsPictures;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void addMessageListeners() {
         client.addMessageListener(createPlayerListener, CreatePlayerMessage.class);
         client.addMessageListener(newPlayerListener, NewPlayerMessage.class);
@@ -342,7 +343,7 @@ public class JBombClient extends BaseGame {
         getBombsSecondsPictures().setLocalTranslation(settings.getWidth() - 45 - 5f, 55f, 0f);
         winnerMessage = new BitmapText(guiFont, false);
         winnerMessage.setSize(guiFont.getCharSet().getRenderedSize() * 1.5f);
-        winnerMessage.setText("The winner is # player");
+        winnerMessage.setText("El ganador es el jugador #");
         pointer = new BitmapText(guiFont, false);
         pointer.setSize(guiFont.getCharSet().getRenderedSize() * 2);
         pointer.setText("+");
@@ -358,7 +359,7 @@ public class JBombClient extends BaseGame {
                 1);
         youWinner = new BitmapText(guiFont, false);
         youWinner.setSize(guiFont.getCharSet().getRenderedSize() * 1.5f);
-        youWinner.setText("Congratulations, You are the winner!");
+        youWinner.setText("¡Felicitaciones tú eres el ganador!");
     }
     
     public void printWinnerMessage(int id) {

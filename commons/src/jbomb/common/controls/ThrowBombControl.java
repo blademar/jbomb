@@ -4,7 +4,7 @@ import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.PhysicsTickListener;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 public class ThrowBombControl extends RigidBodyControl implements PhysicsTickListener {
 
@@ -12,7 +12,7 @@ public class ThrowBombControl extends RigidBodyControl implements PhysicsTickLis
     private boolean angular;
     private Vector3f linearVelocity;
     private Vector3f angularVelocity;
-    private static final Logger LOGGER = Logger.getLogger(ThrowBombControl.class);
+//    private static final Logger LOGGER = Logger.getLogger(ThrowBombControl.class);
 
     public ThrowBombControl(float mass) {
         super(mass);
