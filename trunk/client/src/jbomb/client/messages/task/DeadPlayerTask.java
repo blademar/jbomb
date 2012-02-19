@@ -16,7 +16,7 @@ public class DeadPlayerTask implements Task<DeadPlayerMessage> {
     public void doThis(DeadPlayerMessage message) {
         Vector3f location = null;
         if (message.getId() == ClientContext.PLAYER.getIdUserData()) {
-            LOGGER.debug("I died");
+            LOGGER.debug("He perdido");
             location = ClientContext.PLAYER.getGeometry().getLocalTranslation();
             JBombContext.ROOT_NODE.detachChild(ClientContext.PLAYER.getGeometry());
             ClientContext.PLAYER = null;
@@ -25,7 +25,7 @@ public class DeadPlayerTask implements Task<DeadPlayerMessage> {
             ClientContext.APP.cleanScreenBombs();
             ClientContext.APP.youAreLooser();
         } else {
-            LOGGER.debug("Player #" + message.getId() + " died");
+            LOGGER.debug("Jugador #" + message.getId() + " perdió");
             Player player = (Player) JBombContext.MANAGER.removePhysicObject(message.getId());
             location = player.getGeometry().getLocalTranslation();
             JBombContext.ROOT_NODE.detachChild(player.getGeometry());

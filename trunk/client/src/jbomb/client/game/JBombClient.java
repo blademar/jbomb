@@ -306,12 +306,12 @@ public class JBombClient extends BaseGame {
     }
     
     public void youAreLooser() {
-        LOGGER.debug("Setting looser image");
+        LOGGER.debug("Estableciendo imágen perdedor");
         guiNode.attachChild(looser);
     }
     
     public void youAreWinner() {
-        LOGGER.debug("Setting winner image");
+        LOGGER.debug("Estableciendo imágen ganador");
         guiNode.attachChild(winner);
         guiNode.detachChild(pointer);
         youWinner.setLocalTranslation(

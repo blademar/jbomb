@@ -12,7 +12,7 @@ public class DeadPlayerListener extends AbstractClientMessageListener<DeadPlayer
     
     @Override
     public void messageReceived(Client source, Message m) {
-        LOGGER.debug("DeadPlayerMessage received");
+        LOGGER.debug("DeadPlayerMessage recibido");
         doTask(new DeadPlayerTask(), (DeadPlayerMessage) m);
     }
 }

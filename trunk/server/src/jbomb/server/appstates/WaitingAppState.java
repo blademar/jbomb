@@ -14,14 +14,14 @@ public class WaitingAppState extends AbstractAppState {
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
-        LOGGER.debug("Initializing waiting time: " + maxTime + " seconds");
+        LOGGER.debug("Inicializando tiempo de espera: " + maxTime + " seconds");
     }
 
     @Override
     public void update(float tpf) {
         time += tpf;
         if (time >= maxTime) {
-            LOGGER.debug("Finalizing waiting time");
+            LOGGER.debug("Finalizando tiempo de espera");
             time = 0;
             setEnabled(false);
             ServerContext.APP.initNewRound();

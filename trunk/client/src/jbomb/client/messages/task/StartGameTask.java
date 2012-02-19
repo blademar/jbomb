@@ -16,6 +16,6 @@ public class StartGameTask implements Task<StartGameMessage> {
         ClientContext.APP.initHealthMarker();
         ClientContext.APP.startGame();
         ClientContext.APP.resetDirections();
-        LOGGER.debug("Starting game...");
+        LOGGER.debug("Comenzando juego...");
     }
 }

@@ -13,9 +13,9 @@ public class CreatePlayerListener implements MessageListener<HostedConnection> {
     @Override
     public void messageReceived(HostedConnection s, Message msg) {
         ServerContext.CONNECTED_PLAYERS++;
-        LOGGER.debug("Connected players: " + ServerContext.CONNECTED_PLAYERS);
+        LOGGER.debug("Jugadores conectados: " + ServerContext.CONNECTED_PLAYERS);
         if (ServerContext.CONNECTED_PLAYERS == ServerContext.PLAYERS_COUNT) {
-            LOGGER.debug("Init counterAppState");
+            LOGGER.debug("Iniciando counterAppState");
             ServerContext.APP.initCounter();
         }
     }

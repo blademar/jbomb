@@ -137,9 +137,9 @@ public abstract class AbstractManager<T> implements MessageListener<T>, AppState
     private void showPhysicsObject() {
         synchronized (getPhysicsObjects()) {
             for (Long id : getPhysicsObjects().keySet()) {
-                LOGGER.debug("id: " + id + ": " + getPhysicsObjects().get(id));
+                LOGGER.debug("Id: " + id + ": " + getPhysicsObjects().get(id));
             }
-            LOGGER.debug("Count: " + repository.getCount());
+            LOGGER.debug("Cantidad: " + repository.getCount());
         }
     }
     
