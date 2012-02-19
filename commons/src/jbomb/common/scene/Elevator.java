@@ -21,8 +21,8 @@ public class Elevator {
         geometry = GeometryUtils.makeCube(1f, .1f, 1f, name, texture, localTraslation, new Vector2f(1f, 1f), transparency, JBombContext.NODE_ELEVATORS);
         geometry.setUserData("initialLocation", localTraslation);
         id = JBombContext.MANAGER.getRepository().nextFree();
-        LOGGER.debug("Creating elevator: " + id);
-        LOGGER.debug("InitialLocation: " + geometry.getUserData("initialLocation"));
+        LOGGER.debug("Creando elevador: " + id);
+        LOGGER.debug("Posicion Inicial: " + geometry.getUserData("initialLocation"));
         JBombContext.MANAGER.addPhysicObject(id, this);
         geometry.getControl(RigidBodyControl.class).setMass(1f);
         geometry.getControl(RigidBodyControl.class).setKinematic(true);

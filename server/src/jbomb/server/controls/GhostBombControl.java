@@ -18,7 +18,7 @@ public class GhostBombControl extends GhostControl {
     public void update(float tpf) {
         super.update(tpf);
         time += tpf;
-//        LOGGER.debug("GhostTime: " + time);
+//        LOGGER.debug("Tiempo Fantasma: " + time);
         if (time >= maxTime)
             JBombContext.PHYSICS_SPACE.remove(this);
     }

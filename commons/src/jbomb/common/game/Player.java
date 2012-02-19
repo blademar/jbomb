@@ -29,7 +29,7 @@ public class Player {
     private static final Logger LOGGER = Logger.getLogger(Player.class);
 
     public Player(Vector3f location, ColorRGBA color) {
-        LOGGER.debug("Creating player at: " + location);
+        LOGGER.debug("Creando jugador en: " + location);
         Sphere s = new Sphere(10, 10, .55f);
         geometry = new Geometry("player", s);
         Material m = new Material(JBombContext.ASSET_MANAGER, MatDefs.UNSHADED);

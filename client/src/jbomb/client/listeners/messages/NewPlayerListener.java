@@ -13,7 +13,7 @@ public class NewPlayerListener extends AbstractClientMessageListener<NewPlayerTa
     @Override
     public void messageReceived(Client source, Message m) {
         NewPlayerMessage message = (NewPlayerMessage) m;
-        LOGGER.debug("Adding new player # " + message.getId() + "...");
+        LOGGER.debug("Agregando nuevo jugador # " + message.getId() + "...");
         doTask(new NewPlayerTask(), message);
     }
     

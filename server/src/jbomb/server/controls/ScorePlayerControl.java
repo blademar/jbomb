@@ -41,7 +41,7 @@ public class ScorePlayerControl extends JBombAbstractControl {
                 health = (Float) spatial.getUserData("health");
                 health -= temporalDamage;
                 if (health <= 0) {
-                    LOGGER.debug("Player #" + id + " has died!");
+                    LOGGER.debug("Jugador #" + id + " ha perdido");
                     health = 0;
                     ServerContext.SERVER.broadcast(new DeadPlayerMessage(id, "Player #" + id + " has died!"));
                     ServerContext.NODE_PLAYERS.detachChild(spatial);
@@ -53,7 +53,7 @@ public class ScorePlayerControl extends JBombAbstractControl {
                     if (ServerContext.NODE_PLAYERS.getChildren().size() == 1) {
                         Spatial winner = ServerContext.NODE_PLAYERS.getChildren().iterator().next();
                         int winnerId = (Integer) winner.getUserData("id");
-                        LOGGER.debug("Winner player #" + winnerId);
+                        LOGGER.debug("Jugador ganador #" + winnerId);
                         ServerContext.SERVER.broadcast(new WinnerMessage(winnerId));
                         ServerContext.ROUND_FINISHED = true;
                         ServerContext.NODE_PLAYERS.detachAllChildren();

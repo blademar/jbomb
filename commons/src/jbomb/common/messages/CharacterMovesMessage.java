@@ -43,7 +43,7 @@ public class CharacterMovesMessage extends BasePhysicMessage {
                 isFirstInterpolation = true;
             }
             p.getGeometry().setLocalTranslation(FastMath.interpolateLinear(percent, oldPosition, location));
-//            LOGGER.debug("Interpolated to: " + FastMath.interpolateLinear(percent, oldPosition, location));
+//            LOGGER.debug("Interpolado a: " + FastMath.interpolateLinear(percent, oldPosition, location));
         }
     }
 }

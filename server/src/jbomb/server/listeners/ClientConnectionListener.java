@@ -47,7 +47,7 @@ public class ClientConnectionListener implements ConnectionListener {
             ServerContext.CONNECTION_LIST.add(conn);
             if (!ServerContext.APP.isRunning()) {
                 final int nextId = nextId(conn.getId());
-                LOGGER.debug("Client #" + conn.getId() + " with id #" + nextId + " online.");
+                LOGGER.debug("Jugador #" + conn.getId() + " con Id #" + nextId + " en línea.");
                 Vector3f loc = null;
                 ColorRGBA color = null;
                 Iterator<Long> it = JBombContext.MANAGER.keySet().iterator();
@@ -103,7 +103,7 @@ public class ClientConnectionListener implements ConnectionListener {
                 @Override
                 public Void call() throws Exception {
                     InternPlayer ip = getInternPlayerByConnId(conn.getId());
-                    LOGGER.debug("Client #" + ip.getConn() + " with id #" + ip.getId() + " offline.");
+                    LOGGER.debug("Jugador #" + ip.getConn() + " con Id #" + ip.getId() + " desconectado.");
                     releaseIn(ip);
                     Player player = (Player) JBombContext.MANAGER.removePhysicObject(ip.getId());
                     if (player != null) 
@@ -111,7 +111,7 @@ public class ClientConnectionListener implements ConnectionListener {
                     ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), new RemovePlayerMessage(ip.getId()));
                     ServerContext.CONNECTED_PLAYERS--;
                     if (ServerContext.CONNECTED_PLAYERS <= 1) {
-                        LOGGER.debug("Starting new game");
+                        LOGGER.debug("Comenzando nuevo juego");
                         Vector3f nextPosition = null;
                         if (ServerContext.CONNECTED_PLAYERS == 1 && ServerContext.NODE_PLAYERS.getChildren().size() > 0) {
                             List<Spatial> children = ServerContext.NODE_PLAYERS.getChildren();
@@ -149,7 +149,7 @@ public class ClientConnectionListener implements ConnectionListener {
 
     private synchronized void occupyIn(InternPlayer ip) {
         freeIds.put(ip, false);
-        LOGGER.debug("Occupy in: " + ip.getId());
+        LOGGER.debug("Ocupando en: " + ip.getId());
     }
 
     public synchronized int nextId(long conn) {
@@ -165,7 +165,7 @@ public class ClientConnectionListener implements ConnectionListener {
 
     public synchronized void releaseIn(InternPlayer ip) {
         freeIds.put(ip, true);
-        LOGGER.debug("Release in: " + ip.getId());
+        LOGGER.debug("Liberando en: " + ip.getId());
     }
 
     public synchronized InternPlayer getInternPlayerByConnId(int id) {

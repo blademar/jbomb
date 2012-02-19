@@ -12,7 +12,7 @@ public class CreatePlayerListener extends AbstractClientMessageListener<CreatePl
     @Override
     public void messageReceived(Client source, Message m) {
         CreatePlayerMessage message = (CreatePlayerMessage) m;
-        LOGGER.debug("Creating player #" + message.getId() + "...");
+        LOGGER.debug("Creando jugador #" + message.getId() + "...");
         doTask(new CreatePlayerTask(), message);
     }
 }

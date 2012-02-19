@@ -10,7 +10,7 @@ public class CounterTask implements Task<CounterMessage> {
 
     @Override
     public void doThis(CounterMessage message) {
-        LOGGER.debug("Ready: " + message.getNum());
+        LOGGER.debug("¿Listo?: " + message.getNum());
         if (message.getNum() == 3)
             ClientContext.APP.initGuiCounter();
         else

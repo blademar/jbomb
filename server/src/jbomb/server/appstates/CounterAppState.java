@@ -20,11 +20,11 @@ public class CounterAppState extends AbstractAppState {
             if (time < 4) {
                 return;
             } else {
-                LOGGER.debug("Stop counterAppState");
+                LOGGER.debug("Deteniendo counterAppState");
                 setEnabled(false);
                 ServerContext.APP.startGame();
                 ServerContext.SERVER.broadcast(new StartGameMessage());
-                LOGGER.debug("Starting game...");
+                LOGGER.debug("Comenzando juego...");
                 return;
             }
         }

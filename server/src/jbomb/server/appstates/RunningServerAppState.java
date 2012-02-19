@@ -26,10 +26,10 @@ public class RunningServerAppState extends RunningAppState {
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
         elevators = JBombContext.NODE_ELEVATORS.getChildren();
-        LOGGER.debug("Elevators size: " + elevators.size());
+        LOGGER.debug("Tamaño lista elevador: " + elevators.size());
         for (Spatial s : elevators)
             s.getControl(ElevatorControl.class).setEnabled(true);
-        LOGGER.debug("RunningServerAppState initialized!");
+        LOGGER.debug("¡RunningServerAppState inicializado!");
     }
 
     @Override

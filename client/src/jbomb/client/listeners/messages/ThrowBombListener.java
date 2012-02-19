@@ -13,9 +13,9 @@ public class ThrowBombListener extends AbstractClientMessageListener<ThrowBombTa
     @Override
     public void messageReceived(Client source, Message m) {
         ThrowBombMessage message = (ThrowBombMessage) m;
-//        LOGGER.debug("ThrowBombMessage received");
-//        LOGGER.debug("idClient: " + message.getIdClient());
-//        LOGGER.debug("Id of new bomb: " + message.getId());
+//        LOGGER.debug("ThrowBombMessage recibido");
+//        LOGGER.debug("Id Cliente: " + message.getIdClient());
+//        LOGGER.debug("Id de nueva bomba: " + message.getId());
         doTask(new ThrowBombTask(), message);
     }
     

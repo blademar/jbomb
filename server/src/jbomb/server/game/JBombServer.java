@@ -44,7 +44,7 @@ public class JBombServer extends BaseGame {
 
     public JBombServer(String playersNumber) {
         ServerContext.PLAYERS_COUNT = setPlayersCount(playersNumber);
-        LOGGER.debug("PlayersCount: " + ServerContext.PLAYERS_COUNT);
+        LOGGER.debug("Cantidad de jugadores: " + ServerContext.PLAYERS_COUNT);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class JBombServer extends BaseGame {
                     new NewPlayerMessage(loc2, color2, nextId));
         }
         if (ServerContext.CONNECTED_PLAYERS == ServerContext.PLAYERS_COUNT) {
-            LOGGER.debug("Init counterAppState");
+            LOGGER.debug("Iniciando counterAppState");
             ServerContext.APP.initCounter();
         }
         connectionListener.setBuzzy(false);
