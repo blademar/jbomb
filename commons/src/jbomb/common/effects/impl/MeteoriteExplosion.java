@@ -23,7 +23,6 @@ public class MeteoriteExplosion extends MultiExplosion {
         flameExplosion1.emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_XYZ);
         flameExplosion1.emitter.getParticleInfluencer().setVelocityVariation(.5f);
         flameExplosion1.setTimeforDie(2f);
-        addExplosion(flameExplosion1);
 
         flameExplosion2.emitter.setStartColor(ColorRGBA.Yellow);
         flameExplosion2.emitter.setEndColor(ColorRGBA.Orange);
@@ -32,7 +31,6 @@ public class MeteoriteExplosion extends MultiExplosion {
         flameExplosion2.emitter.getParticleInfluencer().setInitialVelocity(Vector3f.UNIT_XYZ);
         flameExplosion2.emitter.getParticleInfluencer().setVelocityVariation(.5f);
         flameExplosion2.setTimeforDie(2f);
-        addExplosion(flameExplosion2);
         
         roundsparkExplosion.emitter.setStartColor(ColorRGBA.Red);
         roundsparkExplosion.emitter.setEndColor(ColorRGBA.Red);
@@ -41,7 +39,6 @@ public class MeteoriteExplosion extends MultiExplosion {
         roundsparkExplosion.emitter.getParticleInfluencer().setInitialVelocity(Vector3f.ZERO);
         roundsparkExplosion.emitter.getParticleInfluencer().setVelocityVariation(3f);
         roundsparkExplosion.setTimeforDie(2f);
-        addExplosion(roundsparkExplosion);
         
         starExplosion.emitter.setStartColor(ColorRGBA.Yellow);
         starExplosion.emitter.setEndColor(ColorRGBA.Red);
@@ -50,6 +47,10 @@ public class MeteoriteExplosion extends MultiExplosion {
         starExplosion.emitter.getParticleInfluencer().setInitialVelocity(Vector3f.ZERO);
         starExplosion.emitter.getParticleInfluencer().setVelocityVariation(3f);
         starExplosion.setTimeforDie(2f);
+        
+        addExplosion(flameExplosion1);
+        addExplosion(flameExplosion2);
+        addExplosion(roundsparkExplosion);
         addExplosion(starExplosion);
     }
 }
