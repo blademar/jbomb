@@ -19,6 +19,7 @@ import jbomb.common.messages.CharacterMovesMessage;
 import jbomb.common.messages.CreatePlayerMessage;
 import jbomb.common.messages.NewPlayerMessage;
 import jbomb.common.messages.ThrowBombMessage;
+import jbomb.common.utils.MeteoritePoints;
 import jbomb.server.appstates.CounterAppState;
 import jbomb.server.appstates.RunningServerAppState;
 import jbomb.server.appstates.ServerManager;
@@ -193,8 +194,8 @@ public class JBombServer extends BaseGame {
     }
 
     @Override
-    public Control createMeteoriteControl(Vector3f point, Vector3f location, float speed) {
-        return new MeteoriteControl(point, location, speed);
+    public Control createMeteoriteControl(MeteoritePoints points, float speed) {
+        return new MeteoriteControl(points, speed);
     }
     
     

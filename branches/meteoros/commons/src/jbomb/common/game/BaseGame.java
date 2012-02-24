@@ -21,6 +21,7 @@ import jbomb.common.messages.*;
 import jbomb.common.scene.Elevator;
 import jbomb.common.scene.Meteorite;
 import jbomb.common.utils.GeometryUtils;
+import jbomb.common.utils.MeteoritePoints;
 import org.apache.log4j.xml.DOMConfigurator;
 
 public abstract class BaseGame extends SimpleApplication {
@@ -107,7 +108,18 @@ public abstract class BaseGame extends SimpleApplication {
         new Elevator(new Vector3f(14f, 20.1f, -16f), 29.9f, 20.1f, 3f, true, getElevatorServerControlled());
         new Elevator(new Vector3f(-14f, 20.1f, 16f), 29.9f, 20.1f, 3f, true, getElevatorServerControlled());
         
-        meteorite = new Meteorite(1.3f, new Vector3f(600f, 175f, 20f), new Vector3f(22.5f, 20f, 0f), 3f);
+        MeteoritePoints points = new MeteoritePoints();
+        points.addPoints(new Vector3f(800f, 175f, 20f), new Vector3f(21.3f, 20f, 12f));
+        points.addPoints(new Vector3f(-800f, 475f, -355f), new Vector3f(-21.3f, 7f, 5f));
+        points.addPoints(new Vector3f(40f, -800f, 185f), new Vector3f(2f, -1.3f, 1.5f));
+        points.addPoints(new Vector3f(500f, 500f, -500f), new Vector3f(15f, 33f, -21.3f));
+        points.addPoints(new Vector3f(-375f, 210f, 700f), new Vector3f(2f, 13f, 21.3f));
+        points.addPoints(new Vector3f(125f, 840f, 300f), new Vector3f(9f, 41.3f, 7f));
+        points.addPoints(new Vector3f(800f, -400f, 100f), new Vector3f(21.3f, 15f, 2f));
+        points.addPoints(new Vector3f(-800f, 125f, -15f), new Vector3f(-21.3f, 4f, 16f));
+        points.addPoints(new Vector3f(-500f, -150f, -600f), new Vector3f(-17f, 32f, -21.3f));
+        points.addPoints(new Vector3f(-450f, 700f, 700f), new Vector3f(7f, 24f, 21.3f));
+        meteorite = new Meteorite(1.3f, points, 1.7f);
     }
 
     public void makeWallsAtThirdPlatform() {
@@ -946,7 +958,7 @@ public abstract class BaseGame extends SimpleApplication {
         return null;
     }
     
-    public Control createMeteoriteControl(Vector3f point, Vector3f location, float speed) {
+    public Control createMeteoriteControl(MeteoritePoints points, float speed) {
         return null;
     }
 
