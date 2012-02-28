@@ -25,7 +25,7 @@ public class GeometryUtils {
         geometry.setMaterial(material);
         geometry.setLocalTranslation(localTranslation);
         if (scaleTexture != null) {
-            box.scaleTextureCoordinates(scaleTexture);
+            box.scaleTextureCoordinates(scaleTexture.mult(2));
             texture.setWrap(Texture.WrapMode.Repeat);
         }
         if (transparent) {
