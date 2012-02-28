@@ -110,6 +110,7 @@ public class ClientConnectionListener implements ConnectionListener {
                         ServerContext.NODE_PLAYERS.detachChild(player.getGeometry());
                     ServerContext.SERVER.broadcast(Filters.notEqualTo(conn), new RemovePlayerMessage(ip.getId()));
                     ServerContext.CONNECTED_PLAYERS--;
+                    LOGGER.debug("Cantidad de jugadores: " + ServerContext.CONNECTED_PLAYERS);
                     if (ServerContext.CONNECTED_PLAYERS <= 1) {
                         LOGGER.debug("Comenzando nuevo juego");
                         Vector3f nextPosition = null;
