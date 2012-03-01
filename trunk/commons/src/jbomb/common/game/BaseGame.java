@@ -524,8 +524,8 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(3.5f, .25f, .5f, "2md_wall", boxTextures + "w_darkgray.png", new Vector3f(11.5f, 9.75f, 15.5f), new Vector2f(3.5f, .5f));
 
         GeometryUtils.makeCube(5f, .25f, .5f, "3rd_wall", boxTextures + "w_darkgray.png", new Vector3f(0f, 9.75f, 15.5f), new Vector2f(5f, .5f));
-        GeometryUtils.makeCube(1f, 1f, .5f, "3rd_wall", boxTextures + "w_blue2.png", new Vector3f(3f, 11f, 15.5f), new Vector2f(1f, 1f));
-        GeometryUtils.makeCube(1f, 1f, .5f, "3rd_wall", boxTextures + "w_blue2.png", new Vector3f(-3f, 11f, 15.5f), new Vector2f(1f, 1f));
+        GeometryUtils.makeCube(1f, 1f, .5f, "3rd_wall", boxTextures + "w_blue2.png", new Vector3f(3f, 11f, 15.5f));
+        GeometryUtils.makeCube(1f, 1f, .5f, "3rd_wall", boxTextures + "w_blue2.png", new Vector3f(-3f, 11f, 15.5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "3rd_wall", boxTextures + "w_blue2.png", new Vector3f(4.5f, 10.5f, 15.5f), new Vector2f(-.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "3rd_wall", boxTextures + "w_blue2.png", new Vector3f(-4.5f, 10.5f, 15.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "3rd_wall", boxTextures + "w_blue2.png", new Vector3f(2.5f, 12.5f, 15.5f), new Vector2f(-.5f, .5f));
@@ -546,7 +546,7 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(.875f, 1.75f, .1f, "4th_wall", glass, new Vector3f(-14.125f, 11.75f, 2.525f), new Vector2f(1f, 1f), true);
         GeometryUtils.makeCube(.5f, .25f, 4.5f, "4th_wall", boxTextures + "w_darkgray.png", new Vector3f(-15.5f, 9.75f, -1.5f), new Vector2f(4.5f, .5f));
         GeometryUtils.makeCube(.5f, 1.5f, .5f, "4th_wall", boxTextures + "w_blue2.png", new Vector3f(-15.5f, 11.5f, -2.5f), new Vector2f(.5f, -1.5f));
-        GeometryUtils.makeCube(.5f, 1f, 1f, "4th_wall", boxTextures + "w_blue2.png", new Vector3f(-15.5f, 11f, -4f), new Vector2f(1f, 1f));
+        GeometryUtils.makeCube(.5f, 1f, 1f, "4th_wall", boxTextures + "w_blue2.png", new Vector3f(-15.5f, 11f, -4f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "4th_wall", boxTextures + "w_blue2.png", new Vector3f(-15.5f, 10.5f, -5.5f), new Vector2f(.5f, .5f));
 
         GeometryUtils.makeCube(3.5f, .25f, .5f, "5th_wall", boxTextures + "w_darkgray.png", new Vector3f(.5f, 9.75f, -15.5f), new Vector2f(3.5f, .5f));
@@ -647,26 +647,26 @@ public abstract class BaseGame extends SimpleApplication {
         GeometryUtils.makeCube(4f, .5f, .5f, "basePilar", basePilars, new Vector3f(0f, 9.5f, -4.5f), new Vector2f(4f, .5f));
         GeometryUtils.makeCube(.5f, .5f, 4f, "basePilar", basePilars, new Vector3f(4.5f, 9.5f, 0f), new Vector2f(4f, .5f));
         GeometryUtils.makeCube(.5f, .5f, 4f, "basePilar", basePilars, new Vector3f(-4.5f, 9.5f, 0f), new Vector2f(4f, .5f));
-        GeometryUtils.makeCube(1f, 1f, .5f, "basePilar", basePilars, new Vector3f(3f, 8f, 4.5f), new Vector2f(1f, 1f));
-        GeometryUtils.makeCube(1f, 1f, .5f, "basePilar", basePilars, new Vector3f(-3f, 8f, 4.5f), new Vector2f(1f, 1f));
+        GeometryUtils.makeCube(1f, 1f, .5f, "basePilar", basePilars, new Vector3f(3f, 8f, 4.5f));
+        GeometryUtils.makeCube(1f, 1f, .5f, "basePilar", basePilars, new Vector3f(-3f, 8f, 4.5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(3.5f, 6.5f, 4.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(1.5f, 8.5f, 4.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(-3.5f, 6.5f, 4.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(-1.5f, 8.5f, 4.5f), new Vector2f(.5f, .5f));
-        GeometryUtils.makeCube(1f, 1f, .5f, "basePilar", basePilars, new Vector3f(3f, 8f, -4.5f), new Vector2f(1f, 1f));
-        GeometryUtils.makeCube(1f, 1f, .5f, "basePilar", basePilars, new Vector3f(-3f, 8f, -4.5f), new Vector2f(1f, 1f));
+        GeometryUtils.makeCube(1f, 1f, .5f, "basePilar", basePilars, new Vector3f(3f, 8f, -4.5f));
+        GeometryUtils.makeCube(1f, 1f, .5f, "basePilar", basePilars, new Vector3f(-3f, 8f, -4.5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(3.5f, 6.5f, -4.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(1.5f, 8.5f, -4.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(-3.5f, 6.5f, -4.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(-1.5f, 8.5f, -4.5f), new Vector2f(.5f, .5f));
-        GeometryUtils.makeCube(.5f, 1f, 1f, "basePilar", basePilars, new Vector3f(4.5f, 8f, 3f), new Vector2f(1f, 1f));
-        GeometryUtils.makeCube(.5f, 1f, 1f, "basePilar", basePilars, new Vector3f(-4.5f, 8f, 3f), new Vector2f(1f, 1f));
+        GeometryUtils.makeCube(.5f, 1f, 1f, "basePilar", basePilars, new Vector3f(4.5f, 8f, 3f));
+        GeometryUtils.makeCube(.5f, 1f, 1f, "basePilar", basePilars, new Vector3f(-4.5f, 8f, 3f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(4.5f, 6.5f, 3.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(4.5f, 8.5f, 1.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(-4.5f, 6.5f, 3.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(-4.5f, 8.5f, 1.5f), new Vector2f(.5f, .5f));
-        GeometryUtils.makeCube(.5f, 1f, 1f, "basePilar", basePilars, new Vector3f(4.5f, 8f, -3f), new Vector2f(1f, 1f));
-        GeometryUtils.makeCube(.5f, 1f, 1f, "basePilar", basePilars, new Vector3f(-4.5f, 8f, -3f), new Vector2f(1f, 1f));
+        GeometryUtils.makeCube(.5f, 1f, 1f, "basePilar", basePilars, new Vector3f(4.5f, 8f, -3f));
+        GeometryUtils.makeCube(.5f, 1f, 1f, "basePilar", basePilars, new Vector3f(-4.5f, 8f, -3f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(4.5f, 6.5f, -3.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(4.5f, 8.5f, -1.5f), new Vector2f(.5f, .5f));
         GeometryUtils.makeCube(.5f, .5f, .5f, "basePilar", basePilars, new Vector3f(-4.5f, 6.5f, -3.5f), new Vector2f(.5f, .5f));
