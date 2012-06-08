@@ -1,0 +1,77 @@
+\select@language {spanish}
+\contentsline {chapter}{\numberline {1}Antecedentes Generales}{15}
+\contentsline {section}{\numberline {1.1}Motivaci\IeC {\'o}n}{15}
+\contentsline {section}{\numberline {1.2}Objetivos Generales y Espec\IeC {\'\i }ficos}{18}
+\contentsline {subsection}{\numberline {1.2.1}Objetivos Generales}{18}
+\contentsline {subsection}{\numberline {1.2.2}Objetivos Espec\IeC {\'\i }ficos}{19}
+\contentsline {section}{\numberline {1.3}Alcances y Limitaciones}{19}
+\contentsline {chapter}{\numberline {2}Estado del arte}{20}
+\contentsline {chapter}{\numberline {3}El motor de juegos jMonkeyEngine 3}{26}
+\contentsline {section}{\numberline {3.1}Descripci\IeC {\'o}n}{26}
+\contentsline {section}{\numberline {3.2}Arquitectura}{28}
+\contentsline {subsection}{\numberline {3.2.1}Sistema Operativo}{28}
+\contentsline {subsection}{\numberline {3.2.2}OpenGL}{29}
+\contentsline {subsection}{\numberline {3.2.3}Java Native Interface (JNI)}{30}
+\contentsline {subsection}{\numberline {3.2.4}Renderer}{30}
+\contentsline {subsection}{\numberline {3.2.5}Gr\IeC {\'a}fico de escena (Scene Graph)}{31}
+\contentsline {subsection}{\numberline {3.2.6}Geometr\IeC {\'\i }as}{34}
+\contentsline {subsection}{\numberline {3.2.7}Interfaz gr\IeC {\'a}fica del usuario (GUI)}{34}
+\contentsline {subsection}{\numberline {3.2.8}Sistema de sonido}{35}
+\contentsline {subsection}{\numberline {3.2.9}Gr\IeC {\'a}ficos, Efectos, Entradas, C\IeC {\'a}mara}{35}
+\contentsline {subsection}{\numberline {3.2.10}Nivel superior}{37}
+\contentsline {chapter}{\numberline {4}Descripci\IeC {\'o}n del juego}{38}
+\contentsline {section}{\numberline {4.1}Objetivos}{39}
+\contentsline {section}{\numberline {4.2}Caracter\IeC {\'\i }sticas}{40}
+\contentsline {subsection}{\numberline {4.2.1}Tridimensional}{40}
+\contentsline {subsection}{\numberline {4.2.2}Primera persona}{41}
+\contentsline {subsection}{\numberline {4.2.3}Juego en red}{41}
+\contentsline {subsection}{\numberline {4.2.4}Ambiente}{42}
+\contentsline {subsection}{\numberline {4.2.5}Interfaz de informaci\IeC {\'o}n}{43}
+\contentsline {subsection}{\numberline {4.2.6}Perspectivas de espectador}{44}
+\contentsline {subsection}{\numberline {4.2.7}Gesti\IeC {\'o}n de jugadores}{45}
+\contentsline {subsection}{\numberline {4.2.8}Multijugador}{46}
+\contentsline {subsection}{\numberline {4.2.9}Software Libre}{46}
+\contentsline {section}{\numberline {4.3}Mec\IeC {\'a}nicas de juego}{47}
+\contentsline {chapter}{\numberline {5}Herramientas de trabajo}{49}
+\contentsline {section}{\numberline {5.1}Herramientas}{50}
+\contentsline {subsection}{\numberline {5.1.1}NetBeans}{50}
+\contentsline {subsection}{\numberline {5.1.2}Java}{51}
+\contentsline {subsection}{\numberline {5.1.3}Subversion}{52}
+\contentsline {subsection}{\numberline {5.1.4}Google Code}{54}
+\contentsline {subsection}{\numberline {5.1.5}Gimp y Photoshop}{55}
+\contentsline {section}{\numberline {5.2}Librer\IeC {\'\i }as y Frameworks}{56}
+\contentsline {chapter}{\numberline {6}Metodolog\IeC {\'\i }a de trabajo}{58}
+\contentsline {chapter}{\numberline {7}jBomb}{64}
+\contentsline {section}{\numberline {7.1}Estructura}{64}
+\contentsline {section}{\numberline {7.2}M\IeC {\'o}dulo de Activos}{66}
+\contentsline {subsection}{\numberline {7.2.1}Sonidos}{68}
+\contentsline {subsection}{\numberline {7.2.2}Im\IeC {\'a}genes}{69}
+\contentsline {subsection}{\numberline {7.2.3}Texturas}{71}
+\contentsline {section}{\numberline {7.3}M\IeC {\'o}dulo Com\IeC {\'u}n}{72}
+\contentsline {subsection}{\numberline {7.3.1}Estados de aplicaci\IeC {\'o}n}{73}
+\contentsline {subsubsection}{RunningAppState}{74}
+\contentsline {subsubsection}{AbstractManager}{78}
+\contentsline {subsection}{\numberline {7.3.2}Controles}{81}
+\contentsline {subsection}{\numberline {7.3.3}Efectos}{85}
+\contentsline {subsection}{\numberline {7.3.4}Juego Base}{88}
+\contentsline {subsection}{\numberline {7.3.5}Repositorio de ID's}{90}
+\contentsline {subsection}{\numberline {7.3.6}Contexto jBomb}{91}
+\contentsline {section}{\numberline {7.4}M\IeC {\'o}dulo Cliente}{93}
+\contentsline {subsection}{\numberline {7.4.1}Listeners}{94}
+\contentsline {subsubsection}{Listeners de mensajes}{94}
+\contentsline {subsubsection}{Listeners de acci\IeC {\'o}n}{97}
+\contentsline {section}{\numberline {7.5}M\IeC {\'o}dulo Servidor}{99}
+\contentsline {chapter}{\numberline {8}T\IeC {\'e}cnicas}{104}
+\contentsline {section}{\numberline {8.1}Problem\IeC {\'a}tica}{105}
+\contentsline {section}{\numberline {8.2}Soluci\IeC {\'o}n propuesta}{107}
+\contentsline {subsection}{\numberline {8.2.1}Interpolaci\IeC {\'o}n}{108}
+\contentsline {subsubsection}{Paso 1: Mensaje o Interpolaci\IeC {\'o}n}{112}
+\contentsline {subsubsection}{Paso 2: Aplicaci\IeC {\'o}n de mensaje}{113}
+\contentsline {subsubsection}{Paso 3: Interpolaci\IeC {\'o}n}{114}
+\contentsline {subsubsection}{Paso 4: C\IeC {\'a}lculo de proporci\IeC {\'o}n}{115}
+\contentsline {subsubsection}{Paso 5: Primera interpolaci\IeC {\'o}n}{115}
+\contentsline {subsubsection}{Paso 6: Punto inicial}{116}
+\contentsline {subsubsection}{Paso 7: Aplicaci\IeC {\'o}n de interpolaci\IeC {\'o}n}{116}
+\contentsline {subsubsection}{Paso 8: Descarte de mensaje}{117}
+\contentsline {chapter}{\numberline {9}Pruebas}{118}
+\contentsline {chapter}{\numberline {10}Trabajo Futuro y Conclusi\IeC {\'o}n}{122}
