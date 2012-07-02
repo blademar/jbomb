@@ -1,7 +1,53 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{book}
+\bibitem{EBERLY}
+David Eberly.
+\newblock {\em 3D Game Engine Design}.
+
+\bibitem{BOOK}
 http://book.jmonkeyengine.org/.
 \newblock {\em jMonkeyEngine 3 Beginners Guide}.
+
+\bibitem{JAVA}
+http://docs.oracle.com/javase/tutorial/.
+\newblock {\em The Java Tutorials}.
+
+\bibitem{WIKI}
+http://en.wikipedia.org/wiki/Main\_Page.
+\newblock {\em Wikipedia, The Free Encyclopedia}.
+
+\bibitem{GB}
+http://gamebanana.com/.
+\newblock {\em The Home of PC Game Customization}.
+
+\bibitem{JSR}
+http://jcp.org/en/jsr/detail?id=231.
+\newblock {\em Java Binding for the OpenGL API}.
+
+\bibitem{JMONKEY}
+http://jmonkeyengine.com/.
+\newblock {\em Modern Java 3D}.
+
+\bibitem{BEGINNERS}
+http://jmonkeyengine.org/wiki/doku.php/jme3\#tutorials\_for\_beginners.
+\newblock {\em Documentation and Tutorials}.
+
+\bibitem{LOG}
+http://logging.apache.org/log4j/1.2/.
+\newblock {\em Apache log4j}.
+
+\bibitem{LWJGL}
+http://lwjgl.org/.
+\newblock {\em Lightweight Java Game Library}.
+
+\bibitem{VALVE2}
+https://developer.valvesoftware.com/wiki/Latency\_Compensating\_Methods\_in\_Client/Server\_In
+  game\_Protocol\_Design\_and\_Optimization.
+\newblock {\em Latency Compensating Methods in Client/Server In-game Protocol
+  Design and Optimization}.
+
+\bibitem{VALVE1}
+https://developer.valvesoftware.com/wiki/Source\_Multiplayer\_Networking.
+\newblock {\em Basic networking}.
 
 \end{thebibliography}

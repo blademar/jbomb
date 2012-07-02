@@ -2,26 +2,29 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Arquitectura de motor jMonkeyEngine}}{28}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Ejemplo Culling 1}}{33}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Ejemplo Culling 2}}{33}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Arquitectura de motor jMonkeyEngine}}{29}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Ejemplo Culling 1}}{34}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Ejemplo Culling 2}}{35}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Cubo de escenario}}{40}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Im\IeC {\'a}gen de escenario 3D en jBomb}}{40}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Fondo espacial utilizado en jBomb (1)}}{42}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Fondo espacial utilizado en jBomb (2)}}{43}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Escenario principal, cuarto nivel}}{44}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Escenario principal, segundo nivel}}{46}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Escenario principal, perspectiva de espectador}}{47}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Cubo de escenario}}{43}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Im\IeC {\'a}gen de escenario 3D en jBomb}}{44}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Fondo espacial utilizado en jBomb (1)}}{47}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Fondo espacial utilizado en jBomb (2)}}{48}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Escenario principal, cuarto nivel}}{50}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Escenario principal, segundo nivel}}{53}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Escenario principal, perspectiva de espectador}}{55}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Mec\IeC {\'a}nicas de juego}}{56}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Metodolog\IeC {\'\i }a en espiral}}{61}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Metodolog\IeC {\'\i }a en espiral}}{70}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Estructura jBomb}}{65}
-\contentsline {figure}{\numberline {7.2}{\ignorespaces Utilizaci\IeC {\'o}n de im\IeC {\'a}genes en jBomb}}{70}
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Utilizaci\IeC {\'o}n de texturas en jBomb}}{71}
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Forma de trabajo IDRepository}}{91}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Estructura jBomb}}{74}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Utilizaci\IeC {\'o}n de im\IeC {\'a}genes en jBomb}}{80}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Utilizaci\IeC {\'o}n de texturas en jBomb}}{82}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Diagrama de clases - Explosion API}}{99}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Diagrama de clases - Componentes principales}}{105}
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Forma de trabajo IDRepository}}{106}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces Interpolaci\IeC {\'o}n de 33.3\% y 66.6\% de avance}}{114}
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Interpolaci\IeC {\'o}n de 33.3\% y 66.6\% de avance}}{131}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
