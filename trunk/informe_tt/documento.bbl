@@ -1,53 +1,58 @@
 \begin{thebibliography}{10}
 
+\bibitem{VALVE1}
+Anónimo.
+\newblock {\em Basic networking,
+  https://developer.valvesoftware.com/wiki\\/Source\_Multiplayer\_Networking}.
+
+\bibitem{VALVE2}
+Yahn~W. Bernier.
+\newblock {\em Latency Compensating Methods in Client/Server In-game Protocol
+  Design and Optimization,\\
+  https://developer.valvesoftware.com/wiki/Latency\_Compensating\_Methods\_in\_Client/\\Server\_In-game\_Protocol\_Design\_and\_Optimization}.
+
+\bibitem{GB}
+Gamebanana community.
+\newblock {\em The Home of PC Game Customization, http://gamebanana.com/}.
+
+\bibitem{LWJGL}
+LWJGL Community.
+\newblock {\em Lightweight Java Game Library, http://lwjgl.org/}.
+
+\bibitem{JAVA}
+Oracle Corporation.
+\newblock {\em The Java Tutorials, \\http://docs.oracle.com/javase/tutorial/}.
+
 \bibitem{EBERLY}
 David Eberly.
 \newblock {\em 3D Game Engine Design}.
 
-\bibitem{BOOK}
-http://book.jmonkeyengine.org/.
-\newblock {\em jMonkeyEngine 3 Beginners Guide}.
-
-\bibitem{JAVA}
-http://docs.oracle.com/javase/tutorial/.
-\newblock {\em The Java Tutorials}.
+\bibitem{LOG}
+Apache~Software Foundation.
+\newblock {\em Apache log4j, \\http://logging.apache.org/log4j/1.2/}.
 
 \bibitem{WIKI}
-http://en.wikipedia.org/wiki/Main\_Page.
-\newblock {\em Wikipedia, The Free Encyclopedia}.
+Wikimedia Foundation.
+\newblock {\em Wikipedia, The Free
+  Encyclopedia,\\http://en.wikipedia.org/wiki/Main\_Page}.
 
-\bibitem{GB}
-http://gamebanana.com/.
-\newblock {\em The Home of PC Game Customization}.
-
-\bibitem{JSR}
-http://jcp.org/en/jsr/detail?id=231.
-\newblock {\em Java Binding for the OpenGL API}.
-
-\bibitem{JMONKEY}
-http://jmonkeyengine.com/.
-\newblock {\em Modern Java 3D}.
+\bibitem{BOOK}
+Ruth Kusterer.
+\newblock {\em jMonkeyEngine 3 Beginners Guide,
+  \\http://book.jmonkeyengine.org/}.
 
 \bibitem{BEGINNERS}
-http://jmonkeyengine.org/wiki/doku.php/jme3\#tutorials\_for\_beginners.
-\newblock {\em Documentation and Tutorials}.
+JME~Core Team.
+\newblock {\em Documentation and Tutorials,
+  \\http://jmonkeyengine.org/wiki/doku.php/jme3\#tutorials\_for\_beginners}.
 
-\bibitem{LOG}
-http://logging.apache.org/log4j/1.2/.
-\newblock {\em Apache log4j}.
+\bibitem{JMONKEY}
+JME~Core Team.
+\newblock {\em Modern Java 3D, http://jmonkeyengine.com/}.
 
-\bibitem{LWJGL}
-http://lwjgl.org/.
-\newblock {\em Lightweight Java Game Library}.
-
-\bibitem{VALVE2}
-https://developer.valvesoftware.com/wiki/Latency\_Compensating\_Methods\_in\_Client/Server\_In
-  game\_Protocol\_Design\_and\_Optimization.
-\newblock {\em Latency Compensating Methods in Client/Server In-game Protocol
-  Design and Optimization}.
-
-\bibitem{VALVE1}
-https://developer.valvesoftware.com/wiki/Source\_Multiplayer\_Networking.
-\newblock {\em Basic networking}.
+\bibitem{JSR}
+Kenneth~Russell Travis~Bryson.
+\newblock {\em Java Binding for the OpenGL API,
+  \\http://jcp.org/en/jsr/detail?id=231}.
 
 \end{thebibliography}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2012.6.29)  2 JUL 2012 12:41
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2012.6.29)  7 JUL 2012 22:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1118,59 +1118,47 @@ Cap\'{\i }tulo 9.
 [134
 
 ]
-LaTeX Info: Redefining \. on input line 1297.
-LaTeX Info: Redefining \% on input line 1297.
+LaTeX Info: Redefining \. on input line 1299.
+LaTeX Info: Redefining \% on input line 1299.
  [135]
 LaTeX Info: Redefining \. on input line 1305.
 LaTeX Info: Redefining \% on input line 1305.
  [136]
-LaTeX Info: Redefining \. on input line 1309.
-LaTeX Info: Redefining \% on input line 1309.
+LaTeX Info: Redefining \. on input line 1311.
+LaTeX Info: Redefining \% on input line 1311.
  [137]
 Cap\'{\i }tulo 10.
 [138
 
 ]
-LaTeX Info: Redefining \. on input line 1323.
-LaTeX Info: Redefining \% on input line 1323.
+LaTeX Info: Redefining \. on input line 1325.
+LaTeX Info: Redefining \% on input line 1325.
  [139]
-LaTeX Info: Redefining \. on input line 1331.
-LaTeX Info: Redefining \% on input line 1331.
+LaTeX Info: Redefining \. on input line 1333.
+LaTeX Info: Redefining \% on input line 1333.
  [140] (./documento.bbl
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
  [141]
-Overfull \hbox (4.7045pt too wide) in paragraph at lines 32--34
-[]\OT1/cmr/m/n/12 http://jmonkeyengine.org/wiki/doku.php/jme3#tutorials[]for[]b
-eginners.
- []
-
-
-Overfull \hbox (122.12105pt too wide) in paragraph at lines 44--48
-[]\OT1/cmr/m/n/12 https://developer.valvesoftware.com/wiki/Latency[]Compensatin
-g[]Methods[]in[]Client/Server[]In
+Overfull \hbox (66.21994pt too wide) in paragraph at lines 9--13
+\OT1/cmr/m/it/12 https://developer.valvesoftware.com/wiki/Latency[]Compensating
+[]Methods[]in[]Client/ 
  []
 
 [142
 
-]
-Overfull \hbox (16.44604pt too wide) in paragraph at lines 50--52
-[]\OT1/cmr/m/n/12 https://developer.valvesoftware.com/wiki/Source[]Multiplayer[
-]Networking.
- []
-
-)
-LaTeX Info: Redefining \. on input line 1335.
-LaTeX Info: Redefining \% on input line 1335.
+])
+LaTeX Info: Redefining \. on input line 1337.
+LaTeX Info: Redefining \% on input line 1337.
  [143] (./documento.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 4440 strings out of 495059
- 58319 string characters out of 3182030
+ 4445 strings out of 495059
+ 58394 string characters out of 3182030
  160751 words of memory out of 3000000
- 7552 multiletter control sequences out of 15000+200000
+ 7557 multiletter control sequences out of 15000+200000
  9854 words of font info for 34 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,9n,42p,818b,1409s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1186,7 +1174,7 @@ fonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on documento.pdf (143 pages, 3909192 bytes).
+Output written on documento.pdf (143 pages, 3910570 bytes).
 PDF statistics:
  669 PDF objects out of 1000 (max. 8388607)
  450 compressed objects within 5 object streams
