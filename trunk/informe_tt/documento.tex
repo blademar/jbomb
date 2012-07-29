@@ -1,5 +1,6 @@
 %definición del artículo
 \documentclass[a4paper,12pt,openany,oneside]{book}
+\usepackage[left=5cm,right=2cm,top=4cm,bottom=4cm,paperwidth=216mm,paperheight=330mm,pdftex]{geometry}
 %paquete usado para silabación en español
 \usepackage[spanish]{babel}
 %codificación del documento
@@ -50,7 +51,7 @@ SANTIAGO - 2012
 \vspace{20mm}
 Nota: \line(1, 0){140} \\
 \vspace{30 mm}
-\line(1, 0){180}	
+\line(1, 0){180}\\	
 Firma y Timbre\\
 Autoridad Responsable
 \end{flushright}
@@ -67,7 +68,7 @@ The enterprise software development is crucial in these days given the role play
 
 However, this kind of software is not the only provider of revenue and earnings to companies, now with the development of new mobile platforms and social networks is possible to generate business within the video game market. The number of companies that risen through Facebook game development is enormous, so has shown the great mobile operating system Android.
 
-The video game market is gaining followers and has become very demanded today as ways to interact with them is not limited to having gamepad in their hands. This work presents the development of a video game for multiple platforms in conventional computers (PC) via the Java platform.
+The video game market is gaining followers and has become very demanded today as ways to interact with them is not limited to having a gamepad in their hands. This work presents the development of a video game for multiple platforms in conventional computers (PC) via the Java platform.
 \chapter*{Agradecimientos}
 \thispagestyle{empty}
 Mis agradecimientos se extienden a muchas personas sin embargo algunas han jugado un papel fundamental en el desarrollo de mi persona y de mi rol profesional. En primera instancia agradezco a mi novia Daniela Zúñiga y mi hija Constanza Villablanca por ser ambas mi fuente de inspiración en este arduo trabajo.
@@ -132,8 +133,8 @@ videojuegos de calidad. Las herramientas están a disposición de las personas, 
 \subsection{Objetivos Específicos}
 \begin{enumerate}
 \item Utilizar el motor de Juegos para Java jMonkeyEngine en su más reciente versión 3.
-\item Utilización de activos externos para su uso en el juego tales como animaciones, mallas geométricas, texturas, escenas y sonidos \cite{JMONKEY}.
-\item Uso de la API SpyderMonkey \cite{BEGINNERS} para la comunicación en red.
+\item Usar activos (assets) externos tales como animaciones, mallas geométricas, texturas, escenas y sonidos \cite{JMONKEY}.
+\item Usar el API SpyderMonkey \cite{BEGINNERS} para la comunicación en red.
 \item Ofrecer un Gameplay clásico de los juegos en primera persona, donde el objetivo principal será la supervivencia de los jugadores ante los ataques de los jugadores rivales, proveyendo a éstos de armas y herramientas
 necesarias para su supervivencia.
 \end{enumerate}
@@ -196,7 +197,7 @@ Los avances realizados en el ámbito de la computación gráfica han sido muy r�
 
 Por otro lado, el lenguaje de programación y plataforma Java es una de las más utilizadas actualmente, y cuenta con una comunidad de desarrollo activa que se encarga de todo el proceso de liberación de APIs y desarrollo del lenguaje como tal, por lo que su avance y desarrollo son muy rápidos \cite{JAVA}.
 
-Según Tiobe\footnote{Tiobe realiza su ranking en base a las habilidades de desarrolladores web, cursos, terceras partes y busquedas en Google, Bing, Yahoo, etc.}, la comunidad que se encarga de listar mes a mes los lenguajes más populares según un índice de búsquedas en la web, establece que Java junto a C son los lenguajes más populares (no los mejores necesariamente).
+Según Tiobe\footnote{Tiobe (http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html) realiza su ranking en base a las habilidades de desarrolladores web, cursos, terceras partes y busquedas en Google, Bing, Yahoo, etc.}, la comunidad que se encarga de listar mes a mes los lenguajes más populares según un índice de búsquedas en la web, establece que Java junto a C son los lenguajes más populares (no los mejores necesariamente).
 
 A pesar de la popularidad de Java, no había hasta hace un tiempo un motor de alto rendimiento que permitiese trabajar con aplicaciones de gráficos en 2D y 3D.
 
@@ -206,7 +207,7 @@ JME también hace uso de las últimas características de OpenGL, de manera que 
 \section{Arquitectura}
 La forma en que está hecho JME se ejemplifica como una arquitectura modular que permite independencia entre sus componentes en donde cada uno de éstos se preocupan de proveer los servicios a las demás. 
 
-Gráficamente la arquitectura de JME se puede ver en la figura \ref{archjme}
+Gráficamente la arquitectura de JME se puede ver en la Figura \ref{archjme}
 \begin{figure}[!hbp]
 \begin{center}
 \includegraphics[scale=0.6]{arquitectura.pdf}
@@ -236,26 +237,26 @@ Por lo tanto el renderizador tiene al menos 3 responsabilidades en JME:
 \item Dibujar la escena transformada en la pantalla.
 \end{enumerate}
 \subsection{Grafo de escena (Scene Graph)}
-El gráfico de escena es la estructura de datos que almacena todos los objetos que deberán ser dibujados. La implementación del gráfico de escena de JME tiene una estructura de árbol, es decir está formado por un conjunto de nodos padres e hijos, y también nodos finales llamados nodos hojas.
+El gráfico de escena es la estructura de datos que almacena todos los objetos que deberán ser dibujados. La implementación del gráfico de escena de JME tiene una estructura de árbol, es decir está formado por un conjunto de nodos padres e Hijos, y también nodos finales llamados nodos hojas.
 
 Los tipos de nodos por los que está compuesto el gráfico de escena son los siguientes:
 \begin{description}
-\item[Nodos padres] pueden tener cualquier cantidad de nodos hijos. 
-\item[hijos] que sólo pueden tener un nodo padre.
+\item[Nodos padres] pueden tener cualquier cantidad de nodos Hijos. 
+\item[Hijos] que sólo pueden tener un nodo padre.
 \item[Nodo raíz] que no tiene nodo padre y es el nodo inicial del cuál inicia la jerarquía.
 \item[Nodos hojas] que son los que tienen las figuras geométricas que serán renderizadas en la pantalla.
 \end{description}
 Existen muchos beneficios de tener el gráfico de escena en el motor, entre ellos se destacan los siguientes:
 \begin{itemize}
-\item Simplifica enormemente la gestión de todos los atributos: Por ejemplo para establecer la efectos de luz a los atributos o geometrías de una escena basta con establecerla sólo al padre de todos los hijos, y no a cada hijo por separado.
-\item Permite la agrupación de los objetos en la misma región espacial: Esto es muy eficiente para el descarte de objetos que no necesitan ser procesados, de manera que se descarta todo un sub-árbol del gráfico de escena, de este modo se ignoran todos sus hijos. 
+\item Simplifica enormemente la gestión de todos los atributos: Por ejemplo para establecer la efectos de luz a los atributos o geometrías de una escena basta con establecerla sólo al padre de todos los Hijos, y no a cada hijo por separado.
+\item Permite la agrupación de los objetos en la misma región espacial: Esto es muy eficiente para el descarte de objetos que no necesitan ser procesados, de manera que se descarta todo un sub-árbol del gráfico de escena, de este modo se ignoran todos sus Hijos. 
 \item Facilita la posición de una jerarquía de modelos, por ejemplo para el caso de un modelo de un humano, el torso determina la posición de los brazos, la cabeza y las piernas. Los brazos determinan la posición de las manos, y ésta la posición de los dedos, etc. 
-\item Ayuda a la persistencia del juego, dado que al guardar el nodo raíz, se realiza un salvado recursivo de todos sus hijos, y los hijos de sus hijos y así.
+\item Ayuda a la persistencia del juego, dado que al guardar el nodo raíz, se realiza un guardado recursivo de todos sus Hijos, y los Hijos de sus Hijos y así.
 \end{itemize}
 Anteriormente se habló de dos técnicas que se utiliza en el motor, Culling y Clipping. Ambas técnicas se utilizan para descartar objetos que a vista del observador no son visibles y por tanto no necesitan ser procesadas por el renderizador \cite{BEGINNERS}.
 
 Mediante culling es posible descartar un conjunto de objetos que no necesitan ser renderizados. 
-\\Por ejemplo, en una habitación hay un conjunto de objetos y todos ellos comparten un padre, en este caso la habitación. Todas las habitaciones comparten un padre, que puede ser el piso de un edificio. Todos los pisos comparten también un padre, el edificio. La jerarquía puede verse en la figura \ref{culling1label}.
+\\Por ejemplo, en una habitación hay un conjunto de objetos y todos ellos comparten un padre, en este caso la habitación. Todas las habitaciones comparten un padre, que puede ser el piso de un edificio. Todos los pisos comparten también un padre, el edificio. La jerarquía puede verse en la Figura \ref{culling1label}.
 \begin{figure}[!hbp]
 \begin{center}
 \includegraphics[scale=0.7]{culling1.pdf}
@@ -263,7 +264,7 @@ Mediante culling es posible descartar un conjunto de objetos que no necesitan se
 \end{center}
 \end{figure}
 
-Si se necesitara renderizar una escena donde un individuo (el observador) estuviese dentro de la habitación 302 del piso 3 del edificio, sólo sería necesario procesar una rama en particular de toda la jerarquía, lo que se muestra en la figura \ref{culling2label}.
+Si se necesitara renderizar una escena donde un individuo (el observador) estuviese dentro de la habitación 302 del piso 3 del edificio, sólo sería necesario procesar una rama en particular de toda la jerarquía, lo que se muestra en la Figura \ref{culling2label}.
 \begin{figure}[!hbp]
 \begin{center}
 \includegraphics[scale=0.7]{culling2.pdf}
@@ -365,7 +366,7 @@ Esto permite descentralizar el juego de tal manera que el servidor puede ser ini
 \subsection{Ambiente}
 jBomb tiene un estilo espacial y es por ello que tanto las texturas \cite{GB} utilizadas en el juego, así como las propiedades que forman el fondo tienen imágenes de planetas y estrellas, además la música utilizada para el acompañamiento del juego es de tipo Electrónica, diseñada especialmente para jBomb. Esta característica hace que el juego tenga un estilo futurista.
 
-Las figuras \ref{sky1label} y \ref{sky2label} muestran un par de imágenes utilizadas en el fondo de horizonte del juego.
+Las Figuras \ref{sky1label} y \ref{sky2label} muestran un par de imágenes utilizadas en el fondo de horizonte del juego.
 \begin{figure}
 \begin{center}
 \includegraphics[scale=.7]{sky.pdf}
@@ -418,7 +419,7 @@ jBomb maneja muy bien este problema y se encarga de continuar con el juego cuand
 jBomb puede ser personalizado para jugar con distintas cantidades de jugadores en línea. Las posibilidades actuales son iniciar el servidor con 2, 3 o 4 jugadores simultáneos. En este sentido se asemeja a Bomberman en donde la cantidad máxima de jugadores también era 4.
 \subsection{Software Libre}
 Esta es una característica que tal vez no es muy importante para los usuarios del juego, pero si lo es para los desarrolladores de juegos.
-El beneficio para los jugadores de jBomb es que éste puede ser descargado desde la página de descarga de forma completamente gratuita (https://github.com/downloads/rvillablanca/jbomb/jbomb.zip), nunca habrá un costo asociado por la utilización del juego, en ninguna de sus dos versiones (cliente y servidor).
+El beneficio para los jugadores de jBomb es que éste puede ser descargado desde la página de descarga de forma completamente gratuita\footnote{https://github.com/downloads/rvillablanca/jbomb/jbomb.zip}, nunca habrá un costo asociado por la utilización del juego, en ninguna de sus dos versiones (cliente y servidor).
 
 \begin{figure}
 \begin{center}
@@ -429,7 +430,7 @@ El beneficio para los jugadores de jBomb es que éste puede ser descargado desde
 
 Por otra parte, las personas que tengan la intención de aportar con el juego serán bienvenidas,  éstas pueden ser Desarrolladores, Ingenieros en diversas áreas, especialistas en sonido, diseñadores, etc. Además cualquier desarrollador o persona interesada tiene la posibilidad de tomar el juego y será libre de modificarlo, mejorarlo, e incluso crear su propio juego en base a jBomb.
 \section{Mecánicas de juego}
-Las mecánicas de juego son las reglas que están implementadas en el juego y definen la forma en cómo se interactua con éste. En la figura \ref{meclabel} se muestra cómo GUI Node se encarga de informar el estado actual de algunas mecánicas de juego, por ejemplo el número de bombas disponibles, el tiempo de explosión de las bombas y un indicador de energía por cada jugador en la ronda.
+Las mecánicas de juego son las reglas que están implementadas en el juego y definen la forma en cómo se interactua con éste. En la Figura \ref{meclabel} se muestra cómo GUI Node se encarga de informar el estado actual de algunas mecánicas de juego, por ejemplo el número de bombas disponibles, el tiempo de explosión de las bombas y un indicador de energía por cada jugador en la ronda.
 
 \begin{figure}
 \begin{center}
@@ -514,7 +515,7 @@ Existen diversas alternativas a este tipo de herramientas, entre las más conoci
 \subsection{Gimp y Photoshop}
 Gimp y Photoshop son dos herramientas muy potentes y reconocidas en el mundo del software, especialmente por los diseñadores gráficos. Ambas herramientas están orientadas a la manipulación profesional de imágenes, aunque actualmente se puede hacer mucho más que eso. Photoshop es una herramienta propietaria de Adobe que trabaja sobre Windows y MacOS y es la herramienta más utilizada para trabajar con edición de imágenes.
 
-Gimp es la alternativa libre a Photoshop y funciona sobre diversas plataformas, incluyendo Linux. En el proyecto ambas herramientas fueron utilizadas para crear todas las texturas en el juego. Estas dos aplicaciones fueron las que menos se utilizaron, esto se debe a que formaron parte de el módulo de activos en el juego, lo que significa que se utilizaron solamente para trabajar con las imágenes y una vez terminadas no fue necesario trabajar sobre ellas nuevamente, a diferencia de los demás módulos que fueron cambiando en el transcurso del tiempo.
+Gimp es la alternativa libre a Photoshop y funciona sobre diversas plataformas, incluyendo Linux. En el proyecto ambas herramientas fueron utilizadas para crear todas las texturas en el juego. Estas dos aplicaciones fueron las que menos se utilizaron, esto se debe a que formaron parte de el módulo de assets en el juego, lo que significa que se utilizaron solamente para trabajar con las imágenes y una vez terminadas no fue necesario trabajar sobre ellas nuevamente, a diferencia de los demás módulos que fueron cambiando en el transcurso del tiempo.
 
 Ambas herramientas se utilizaron para afinar detalles en las texturas utilizadas, focalizándose sobre todo en las capa de transparencias.
 Photoshop fue utilizado además para realizar el logotipo del juego.
@@ -577,7 +578,7 @@ La metodología utilizada fue básicamente un espiral a la hora de implementar l
 \end{description}
 Estas cuatro etapas fueron realizadas por todas y cada una de las funciones esperadas en el juego. Esta forma de trabajo se mantuvo desde el inicio hasta el final del proyecto y su utilización fue muy exitosa, para ello fue necesario tomar un poco de ambas metodologías nombradas antes y añadirles lo necesario para que el equipo pudiese sobrellevar bien el proyecto.
 
-El equipo principal de desarrollo fue conformado por dos desarrolladores y un diseñador que apoyó en activos de imágenes y log, así como la publicación y publicidad del juego. Otro integrante hizo su aporte en la música de fondo del juego.
+El equipo principal de desarrollo fue conformado por dos desarrolladores y un diseñador que apoyó en assets de imágenes y log, así como la publicación y publicidad del juego. Otro integrante hizo su aporte en la música de fondo del juego.
 Los nombres de los integrantes son:
 \begin{itemize}
 \item Rodrigo Villablanca (Desarrollador)
@@ -609,11 +610,11 @@ Los cuatro archivos principales definen la estructura en la que se distribuye el
 \item[server.jar] Finalmente el servidor proporciona toda la lógica necesaria para que los jugadores puedan conectarse entre sí. Generalmente este archivo es ejecutado en un ordenador con mayor capacidad y debe ser ejecutado por el administrador del juego para que pueda establecer algunas opciones al iniciarlo.
 \end{description}
 \section{Módulo de Assets}
-Como se dijo anteriormente los activos de cualquier juego corresponden a todos los recursos utilizados por éste para poder hacer uso de ellos. Estos activos son de diversos tipos y los más comunes son:
+Como se dijo anteriormente los assets de cualquier juego corresponden a todos los recursos utilizados por éste para poder hacer uso de ellos. Estos assets son de diversos tipos y los más comunes son:
 \begin{description}
 \item[Modelos] Los modelos por lo general corresponden a objetos específicos dentro de un videojuego, por ejemplo, personas, vehículos, maquinarias, animales, cosas, etc. Los modelos facilitan el desarrollo de los videojuegos porque independizan la creación de estos recursos necesarios, los hace más portables y disminuyen la tarea para los desarrolladores, dejándoselas a los diseñadores.
 \item[Imágenes] Las imágenes son utilizadas en todos los juegos, como por ejemplo para el logo del juego.
-\item[Texturas] Las texturas no son muy diferentes de las imágenes, de hecho son imágenes pero que poseen componentes adicionales que permiten aumentar la velocidad de renderización de éstas. La diferencia está en la funcionalidad que proveen, mientras las imágenes sirven como para ilustrar algo, las texturas tienen patrones conocidos que hacen que al colocarlas juntas se forme una gran imágen, por ejemplo para las murallas en vez de utilizar una gran imágen, se utiliza una sola textura que represente el ladrillo de la muralla, de manera que al hacer un arrastre de ella en sentido vertical y horizontal se forme la imágen de la muralla. Esto mejora en el rendimiento del juego  \cite{JMONKEY}.
+\item[Texturas] Las texturas no son muy diferentes de las imágenes, de hecho son imágenes pero que poseen componentes adicionales que permiten aumentar la velocidad de renderización de éstas. La diferencia está en la funcionalidad que proveen, mientras las imágenes sirven como para ilustrar algo, las texturas tienen patrones conocidos que hacen que al colocarlas juntas se forme una gran imágen, por ejemplo para las murallas en vez de utilizar una gran imágen, se utiliza una sola textura que represente el ladrillo de la muralla, de manera que al hacer un arrastre de ella en sentido vertical y horizontal se forme la imágen de la muralla. Esto mejora el rendimiento del juego  \cite{JMONKEY}.
 \item[Sonidos] Los sonidos son utilizados nada más que para el propósito que fueron hechos, para los videojuegos pueden utilizarse al desencadenar ciertas acciones, como por ejemplo al realizar un disparo o al caer desde cierto lugar, al rugir un animal o como sonido ambiental del bosque.
 \end{description}
 Por lo general esos son los más comunes pero también existen algunos especializados, en este caso JMonkeyEngine ofrece algunos tales como:
@@ -624,14 +625,14 @@ Por lo general esos son los más comunes pero también existen algunos especiali
 \item Materiales
 \item Shaders
 \end{itemize}
-jBomb no hace utilización de estos activos especializados sino que utiliza los más comunes y actualmente posee sonidos, texturas e imágenes.
+jBomb no hace utilización de estos assets especializados sino que utiliza los más comunes y actualmente posee sonidos, texturas e imágenes.
 \subsection{Sonidos}
 En jBomb se utilizan al menos 2 tipos de sonidos, éstos son:
 \begin{description}
 \item[Background] Se utiliza como sonido de trasfondo durante la ejecución del juego. Anteriormente se dijo que el videojuego estaba inspirado en el espacio y por tanto el juego es acompañado por un estilo de música Electrónica. El sonido comienza cuando se inicia la cuenta regresiva del comienzo de la ronda. La música fue hecha especialmente para jBomb, el autor es Ricardo Reyes, técnico en sonido.
 \item[Instancia] El sonido de este tipo se desencadena luego de alguna acción realizada por el jugador. Para jBomb, esto se refleja al lanzar bombas y en la explosión de éstas.
 \end{description}
-Cabe destacar que a pesar de ser recursos utilizados por el juego, son éstos los que finalmente le añaden mucho valor agregado al juego y que son fácilmente perceptible por los jugadores. Se hace esta mención debido a que el proceso de desarrollo del videojuego es bastante costoso en términos de trabajo, y si el juego sólo contara con el resultado de este proceso tal vez no sería tan entretenido para el usuario, a pesar que el juego ofrece la misma funcionalidad. Los activos dan mucho valor agregado al juego y los usuarios se dan cuenta de ello, ésto puede ser determinante a la hora de decidir si volver a jugar el juego o no hacerlo.
+Cabe destacar que a pesar de ser recursos utilizados por el juego, son éstos los que finalmente le añaden mucho valor agregado al juego y que son fácilmente perceptible por los jugadores. Se hace esta mención debido a que el proceso de desarrollo del videojuego es bastante costoso en términos de trabajo, y si el juego sólo contara con el resultado de este proceso tal vez no sería tan entretenido para el usuario, a pesar que el juego ofrece la misma funcionalidad. Los assets dan mucho valor agregado al juego y los usuarios se dan cuenta de ello, ésto puede ser determinante a la hora de decidir si volver a jugar el juego o no hacerlo.
 \subsection{Imágenes} El juego hace utilización de imágenes para mantener informado al usuario. Dentro de toda la escena gráfica existen 2 tipos de nodos que permiten dibujar en la pantalla. Está el nodo raíz \cite{BEGINNERS} que se encarga de dibujar todo lo que pertenece a la acción del juego, como los jugadores, las bombas, el escenario y todo lo que está involucrado con la lógica y objetivo del juego. Pero para llevar a cabo el estado actual del juego es necesario mostrar la información de éste, y para esto está el nodo de Interfaces Gráficas de Usuario (GUI Node).
 
 Este nodo se encarga de dibujar en la pantalla de una manera diferente al nodo raíz, principal diferencia es que lo que dibuja es generalmente en dos dimensiones y se utiliza generalmente para mostrar información \cite{BEGINNERS}. Todos los juegos tiene ciertas mecánicas de juego, por ejemplo para jBomb está la mecánica de juego que permite mantener al jugador con al menos 3 bombas disponibles para ser lanzadas cada cierto tiempo. Si el jugador lanza una bomba, es necesario que se le avise cuántas bombas les queda luego de haber hecho ese lanzamiento.  El GUI Node sirve para aquello y éste dibuja en la pantalla toda esta información.
@@ -649,18 +650,18 @@ GUI Node trabaja con imágenes para representar toda esta información relaciona
 \caption[Utilización de imágenes en jBomb]{Imágenes utilizadas por GUI Node en jBomb, para mostrar información general}\label{infogeneral}
 \end{center}
 \end{figure}
-Toda esta información es mostrada a través de imágenes que se encuentran en el archivo de activos. A pesar de que la mayoría de la información se presenta con imágenes y texto en 2D (dos dimensiones), GUI Node no sólo se limita a trabajar con este tipo de formatos, también posee la característica de poder mostrar objetos 3D (tres dimensiones) tales como modelos.
+Toda esta información es mostrada a través de imágenes que se encuentran en el archivo de assets. A pesar de que la mayoría de la información se presenta con imágenes y texto en 2D (dos dimensiones), GUI Node no sólo se limita a trabajar con este tipo de formatos, también posee la característica de poder mostrar objetos 3D (tres dimensiones) tales como modelos.
 \subsection{Texturas}
-Los activos más utilizados dentro de jBomb son lejos las texturas. jBomb no hace utilización de modelos y por tanto la mayoría de la escena gráfica está compuesta por figuras geométricas que forman todo el escenario, entre ellos los personajes (que son simples esferas movíendose), las paredes y vidrios, las bombas, etc.
+Los assets más utilizados dentro de jBomb son lejos las texturas. jBomb no hace utilización de modelos y por tanto la mayoría de la escena gráfica está compuesta por figuras geométricas que forman todo el escenario, entre ellos los personajes (que son simples esferas movíendose), las paredes y vidrios, las bombas, etc.
 
 Es por esto que al ser figuras geométricas es necesario pintarlas o establecer en ellas texturas que les permitan verse dentro de la escena gráfica. Por este motivo existen diversas texturas que son utilizadas por el juego. Actualmente las texturas que hay son para las cajas, figurás básicas que forman toda la escena, jugadores, cielo, bombas, vidrios y efectos de explosiones.
 
-En la figura \ref{textureslabel} se muestran algunas texturas utilizadas por jBomb.
+En la Figura \ref{textureslabel} se muestran algunas texturas utilizadas por jBomb.
 \begin{figure}
 \begin{center}
 \includegraphics[scale=0.7]{textures.pdf} 
 \end{center}
-\caption[Utilización de texturas en jBomb]{Texturas utilizadas por GUI Node en jBomb, para ser utilizadas en objetos que forman la escenografía de jBomb}\label{textureslabel}
+\caption[Utilización de texturas en jBomb]{Texturas utilizadas en jBomb, para ser utilizadas en objetos que forman la escenografía}\label{textureslabel}
 \end{figure}
 
 Las texturas permiten fácilmente pintar estas figuras con un ahorro considerable de recursos dado que la textura se repite hacia arriba y abajo, hacia los lados y también sobre el eje Z del espacio 3D.
@@ -820,7 +821,7 @@ En todos los motores de juegos existe una forma común de ejecutar su actualizac
 
 Para delegar cierta porción de tiempo del \textit{Event Loop} al usuario, JMonkeyEngine proporciona un método llamado \textit{update()} que permite trabajar la lógica del juego \cite{BEGINNERS}. Dentro de este método por lo general va incluido todo el estado de la aplicación y de los objetos que participan en la escena. Estos objetos se denominan Instancias y por lo general se trata de personajes que son reelevantes en la historia del juego. Estas instancias tienen sus propias variables que definen todo su estado actual y por lo general son fácilmente reconocidas por los usuarios. 
 
-En el método \textit{update()} se controla todo el comporatamiento del juego y las instancias, pero a medida que éste va creciendo la mantención del software se hace más dificil de mantener. Para ello, se elaboraron dos formas de delegar esta tarea a componentes que pudieran ser reutilizables y que permitieran estructurar el código de una manera más ordenada. Uno de estos componentes son los estados de aplicación mencionados antes que se encargan jústamente de llevar un seguimiento del estado de la aplicación a través de múltiples estados de aplicación y así poder controlar el comportamiento general del juego.
+En el método \textit{update()} se controla todo el comportamiento del juego y las instancias, pero a medida que éste va creciendo la mantención del software se hace más dificil de mantener. Para ello, se elaboraron dos formas de delegar esta tarea a componentes que pudieran ser reutilizables y que permitieran estructurar el código de una manera más ordenada. Uno de estos componentes son los estados de aplicación mencionados antes que se encargan jústamente de llevar un seguimiento del estado de la aplicación a través de múltiples estados de aplicación y así poder controlar el comportamiento general del juego.
 
 El otro tipo de componente son los controles que están encargados de lo mismo que los estados de aplicación pero esta vez orientados a las instancias. En jBomb se utilizaron varios controladores ya implementados en JMonkeyEngine, pero otros fueron desarrollados a medida para Instancias tales como los elevadores, bombas y jugadores.
 
@@ -831,7 +832,6 @@ Los controladores incluidos en el módulo común son:
 \item[AbstractBombControl] Este control está encargado de iniciar la explosión según ciertos criterios. Los dos criterios que se usan para determinar si la bomba explota son, si ésta llega a su tiempo de expiración debe explotar inmediatamente o bien si ésta determina alguna colisión con alguna Instancia de Jugador, debe explotar inmediatamente. Este controlador actúa siempre antes que \textit{BaseControlExplosion}.
 \item[ThrowBombControl] Este control se encarga de sincronizar la aplicación de fuerzas a las bombas con la velocidad de los ticks del motor de físicas. Esto sucede porque por lo general el motor de físicas trabaja a una velocidad de 60 [Ticks/seg] constante, y hay ocaciones en las que el motor de renderizado está trabajando a una velocidad mayor y por esa razón la aplicación de fuerzas físicas deben postergarse para cuando sea el momento correcto, de lo contrario se obtienen resultados incorrectos.
 \end{description}
-\newpage
 En la caja de código \ref{lst6} se ilustra un fragmento de código del Control \textit{BaseControlExplosion}.
 \begin{codigo}
 \begin{lstlisting}[language=Java,frame=single,basicstyle=\scriptsize]
@@ -956,7 +956,7 @@ jBomb necesita compartir mucha información general que es accedida por muchas c
 
 Por último, en secciones anteriores se explicó todo sobre los estados de aplicación y entre ello se mencionó uno muy importante que gestiona muchos mensajes asociados con la identificación de objetos en la escena llamado \textit{AbstractManager}. A pesar que la implementación de este componente difiere sutílmente en el cliente y el servidor, la parte común es instanciada por \textit{BaseGame}.
 
-Como se puede ver \textit{BaseGame} encapsula y gestiona la mayoría del comportamiento común que hay entre el cliente y el servidor, y para llevar esto a cabo hace utilización de los componentes principales antes mencionados. La figura \ref{diagramlabel} se muestra un diagrama de clases de los principales componentes de jBomb.
+Como se puede ver \textit{BaseGame} encapsula y gestiona la mayoría del comportamiento común que hay entre el cliente y el servidor, y para llevar esto a cabo hace utilización de los componentes principales antes mencionados. La Figura \ref{diagramlabel} se muestra un diagrama de clases de los principales componentes de jBomb.
 
 \begin{figure}
 \begin{center}
@@ -980,7 +980,7 @@ Como se dijo antes \textit{AbstractManager} cuenta con un repositorio que se enc
 \caption[Forma de trabajo IDRepository]{Se muestra la forma de trabajo de IDRepository y el manejo de su memoria}
 \label{repositorylabel}
 \end{figure}
-En la figura \ref{repositorylabel} se muestra cómo trabaja IDRepository a través de 3 etapas. En la primera de ellas se muestra el espacio reservado marcado en gris por IDRepository para la gestión de los jugadores y un área ocupada por los objetos iniciales del juego marcada en rojo.
+En la Figura \ref{repositorylabel} se muestra cómo trabaja IDRepository a través de 3 etapas. En la primera de ellas se muestra el espacio reservado marcado en gris por IDRepository para la gestión de los jugadores y un área ocupada por los objetos iniciales del juego marcada en rojo.
 
 Luego en la etapa 2 se muestra un área ocupada por los objetos en la escena. Posteriormente el área ocupada anterior está disponible para ser reservada por otros objetos. En esta parte el área sigue siendo ocupada en memoria física sin embargo los nuevos objetos no incurrirán en una nueva reserva.
 
@@ -992,8 +992,8 @@ Para solucionar esto existe el contexto de jBomb que se encarga de almacenar tod
 
 La información contenida en el contexto son referencias a algunos componentes antes descritos, estos son:
 \begin{description}
-\item[AssetManager] Está encargado de cargar los recursos de el módulo de activos, es decir se encarga de cargar las texturas, imágenes y sonidos \cite{BEGINNERS}.
-\item[Nodo] Se encarga de almacenar una referencia al nodo raíz (Root Node), es el responsable de mantener visibles todos los objetos hijos que tenga.
+\item[AssetManager] Está encargado de cargar los recursos de el módulo de assets, es decir se encarga de cargar las texturas, imágenes y sonidos \cite{BEGINNERS}.
+\item[Nodo] Se encarga de almacenar una referencia al nodo raíz (Root Node), es el responsable de mantener visibles todos los objetos Hijos que tenga.
 \item[PhysicsSpace] Es una referencia a todo el espacio físico y su función es agrupar todos los objetos que están expuestos a se afectados por las fuerzas de colisiones, gravedad o cualquier interacción física.
 \item[BaseGame] Es una referencia al propio módulo que permite un rápido acceso para los demás componentes a la interfaz del juego.
 \item[AbstractManager] El contexto mantiene una referencia a \textit{AbstractManager} para que pueda ser consultado sobre la cantidad de mensajes recibidos, asignar o eliminar identificadores a los objetos, etc.
@@ -1175,6 +1175,8 @@ Al mismo tiempo, se detecta que la información que requiere ser enviada a cada 
 Una técnica para reducir el número de mensajes enviados (recibidos) a los (por los) clientes es la Interpolación \cite{VALVE1}.
 \subsection{Interpolación} 
 La interpolación es un subconjunto de la matemática que se dedica al análisis numérico, el cual permite encontrar nuevos datos a partir de un conjunto de datos discretos. El caso más fácil y conocido es la interpolación lineal.
+$$I = At + (1-t)B$$
+$A$ y $B$ corresponden a al punto inicial y final respectivamente, con $0 <= t <= 1$ y representa el porcentaje de la distancia entre ambos puntos a la que se desea interpolar, $I$ es el punto interplado.
 
 jBomb hace utilización de la interpolación lineal para reducir el número de mensajes que tienen que ser enviados a los clientes, de esa manera se optimiza la forma en cómo se está controlando a los clientes y permite al servidor dedicar más capacidad de procesamiento a tareas que tienen que ser aplicadas de manera local para llevar un correcto funcionamiento del juego.
 
@@ -1201,9 +1203,9 @@ Para determinar las posiciones de ambos objetos (elevadores y jugadores) se debe
 \item Si no es la primera, se aplica la interpolación a una distancia que corresponde a la proporción calculada en el paso 4 entre el punto inicial establecido en el paso 6 y el punto final que corresponde a la posición informada en el mensaje, luego volver al paso 1.
 \item Descartar el mensaje porque su información ya no tiene validez dentro de los proximos segundos.
 \end{enumerate}
-Los siguientes fragmentos de código ilustran la implementación de la interpolación para los mensajes \textit{CharacterMovesMessage} y \textit{ElevatorMovesMessage} respectivamente.
+Las cajas de código \ref{frag1} y \ref{frag2} ilustran la implementación de la interpolación para los mensajes \textit{CharacterMovesMessage} y \textit{ElevatorMovesMessage} respectivamente.
 \begin{codigo}
-\begin{lstlisting}[language=Java,frame=single,basicstyle=\scriptsize,caption={Interpolación en \textit{CharacterMovesMessage}}]
+\begin{lstlisting}[language=Java,frame=single,basicstyle=\scriptsize]
 	@Override
     public void interpolate(float percent) {
         Player p = (Player) JBombContext.MANAGER.getPhysicObject(getId());
@@ -1217,10 +1219,12 @@ Los siguientes fragmentos de código ilustran la implementación de la interpola
         }
     }
 \end{lstlisting}
+\caption{Interpolación en \textit{CharacterMovesMessage}}
+\label{frag1}
 \end{codigo}
 \newpage
 \begin{codigo}
-\begin{lstlisting}[language=Java,frame=single,basicstyle=\scriptsize,caption={Interpolación en \textit{ElevatorMovesMessage}}]
+\begin{lstlisting}[language=Java,frame=single,basicstyle=\scriptsize]
 	@Override
     public void interpolate(float percent) {
         Elevator e = (Elevator) 
@@ -1235,6 +1239,8 @@ Los siguientes fragmentos de código ilustran la implementación de la interpola
         }
     }
 \end{lstlisting}
+\caption{Interpolación en \textit{ElevatorMovesMessage}}
+\label{frag2}
 \end{codigo}
 A continuación se explica de forma detallada el proceso de interpolación.
 \subsubsection{Paso 1: Mensaje o Interpolación}
@@ -1262,7 +1268,7 @@ Teniendo estos dos puntos es posible interpolar los puntos existentes entre ello
 
 Por ejemplo, si el tiempo transcurrido hasta el momento es de 1/40 [segs] desde la última aplicación del mensaje, este es un medio del tiempo de máximo de interpolación (1/20 [segs]) por lo que lo correcto sería que el objeto esté al menos a la mitad de la distancia entre el punto inicial y el punto final.
 
-En la figura \ref{interpolacionlabel} se resume de forma gráfica el proceso de interpolación, en donde se determinan 2 puntos antes de aplicar la información final contenida en el mensaje de actualización de posición de algún objeto en la escena.
+En la Figura \ref{interpolacionlabel} se resume de forma gráfica el proceso de interpolación, en donde se determinan 2 puntos antes de aplicar la información final contenida en el mensaje de actualización de posición de algún objeto en la escena.
 \subsubsection{Paso 4: Cálculo de proporción}
 Esta etapa corresponde al cálculo para determinar cuánto es la candidad que se tendrá que avanzar en la interpolación. El cálculo no es más que una simple división entre la sumatoria de todos los tiempos acumulados de los ciclos transcurridos desde la última aplicación del mensaje y el tiempo máximo de interpolación.
 $$\frac{(t_1 + t_2 + t_3 + ... + t_n )}{T}$$

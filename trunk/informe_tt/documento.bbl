@@ -3,25 +3,28 @@
 \bibitem{VALVE1}
 Anónimo.
 \newblock {\em Basic networking,
-  https://developer.valvesoftware.com/wiki\\/Source\_Multiplayer\_Networking}.
+  https://developer.valvesoftware.com/wiki\\/Source\_Multiplayer\_Networking\\Accedido
+  en Noviembre, 2011}.
 
 \bibitem{VALVE2}
 Yahn~W. Bernier.
 \newblock {\em Latency Compensating Methods in Client/Server In-game Protocol
   Design and Optimization,\\
-  https://developer.valvesoftware.com/wiki/Latency\_Compensating\_Methods\_in\_Client/\\Server\_In-game\_Protocol\_Design\_and\_Optimization}.
+  https://developer.valvesoftware.com/wiki/Latency\_Compensating\_Methods\_in\_Client/\\Server\_In-game\_Protocol\_Design\_and\_Optimization\\Accedido
+  en Noviembre, 2011}.
 
 \bibitem{GB}
 Gamebanana community.
-\newblock {\em The Home of PC Game Customization, http://gamebanana.com/}.
+\newblock {\em The Home of PC Game Customization}.
 
 \bibitem{LWJGL}
 LWJGL Community.
-\newblock {\em Lightweight Java Game Library, http://lwjgl.org/}.
+\newblock {\em Lightweight Java Game Library, http://lwjgl.org/\\Accedido en
+  Septiembre, 2011}.
 
 \bibitem{JAVA}
 Oracle Corporation.
-\newblock {\em The Java Tutorials, \\http://docs.oracle.com/javase/tutorial/}.
+\newblock {\em The Java Tutorials}.
 
 \bibitem{EBERLY}
 David Eberly.
@@ -29,7 +32,8 @@ David Eberly.
 
 \bibitem{LOG}
 Apache~Software Foundation.
-\newblock {\em Apache log4j, \\http://logging.apache.org/log4j/1.2/}.
+\newblock {\em Apache log4j, \\http://logging.apache.org/log4j/1.2/\\Accedido
+  en Octubre, 2011}.
 
 \bibitem{WIKI}
 Wikimedia Foundation.
@@ -39,20 +43,21 @@ Wikimedia Foundation.
 \bibitem{BOOK}
 Ruth Kusterer.
 \newblock {\em jMonkeyEngine 3 Beginners Guide,
-  \\http://book.jmonkeyengine.org/}.
+  \\http://book.jmonkeyengine.org/\\Accedido en Diciembre, 2011}.
 
 \bibitem{BEGINNERS}
 JME~Core Team.
 \newblock {\em Documentation and Tutorials,
-  \\http://jmonkeyengine.org/wiki/doku.php/jme3\#tutorials\_for\_beginners}.
+  \\http://jmonkeyengine.org/wiki/doku.php/jme3\#tutorials\_for\_beginners\\Accedido
+  en Octubre, 2011}.
 
 \bibitem{JMONKEY}
 JME~Core Team.
-\newblock {\em Modern Java 3D, http://jmonkeyengine.com/}.
+\newblock {\em Modern Java 3D, http://jmonkeyengine.com/\\Accedido en
+  Septiembre, 2011}.
 
 \bibitem{JSR}
 Kenneth~Russell Travis~Bryson.
-\newblock {\em Java Binding for the OpenGL API,
-  \\http://jcp.org/en/jsr/detail?id=231}.
+\newblock {\em Java Binding for the OpenGL API}.
 
 \end{thebibliography}

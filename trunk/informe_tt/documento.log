@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2012.6.29)  7 JUL 2012 22:06
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2012.7.14)  28 JUL 2012 23:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -25,6 +25,37 @@ File: bk12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count88
+\Gm@cntv=\count89
+\c@Gm@tempcnt=\count90
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@layoutwidth=\dimen107
+\Gm@layoutheight=\dimen108
+\Gm@layouthoffset=\dimen109
+\Gm@layoutvoffset=\dimen110
+\Gm@dimlist=\toks15
+)
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2008/07/08 v3.8m The Babel package
 
@@ -33,8 +64,8 @@ Language: spanish.ldf 2011/10/06 v5.0k Spanish support from the babel system
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2008/07/08 v3.8m Babel common definitions
-\babel@savecnt=\count88
-\U@D=\dimen103
+\babel@savecnt=\count91
+\U@D=\dimen111
 )
 
 Package babel Warning: No hyphenation patterns were loaded for
@@ -42,17 +73,17 @@ Package babel Warning: No hyphenation patterns were loaded for
 (babel)                I will use the patterns loaded for \language=0 instead.
 
 \l@spanish = a dialect from \language0
-\es@datefmt=\count89
-\es@quottoks=\toks14
-\es@quotdepth=\count90
+\es@datefmt=\count92
+\es@quottoks=\toks16
+\es@quotdepth=\count93
 Package babel Info: Making " an active character on input line 496.
 Package babel Info: Making . an active character on input line 599.
 Package babel Info: Making < an active character on input line 644.
 Package babel Info: Making > an active character on input line 644.
 )) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
-\inpenc@prehook=\toks15
-\inpenc@posthook=\toks16
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
@@ -269,10 +300,6 @@ Now handling font encoding U ...
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks17
-)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
@@ -293,29 +320,29 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
-\Gread@gobject=\count91
+\Gread@gobject=\count94
 ))
-\Gin@req@height=\dimen104
-\Gin@req@width=\dimen105
+\Gin@req@height=\dimen112
+\Gin@req@width=\dimen113
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count92
+\lst@mode=\count95
 \lst@gtempboxa=\box26
-\lst@token=\toks18
-\lst@length=\count93
-\lst@currlwidth=\dimen106
-\lst@column=\count94
-\lst@pos=\count95
-\lst@lostspace=\dimen107
-\lst@width=\dimen108
-\lst@newlines=\count96
-\lst@lineno=\count97
-\lst@maxwidth=\dimen109
+\lst@token=\toks19
+\lst@length=\count96
+\lst@currlwidth=\dimen114
+\lst@column=\count97
+\lst@pos=\count98
+\lst@lostspace=\dimen115
+\lst@width=\dimen116
+\lst@newlines=\count99
+\lst@lineno=\count100
+\lst@maxwidth=\dimen117
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-\c@lstnumber=\count98
-\lst@skipnumbers=\count99
+\c@lstnumber=\count101
+\lst@skipnumbers=\count102
 \lst@framebox=\box27
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
@@ -325,48 +352,81 @@ Package: listings 2007/02/22 1.4 (Carsten Heinz)
 
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count100
-\float@exts=\toks19
+\c@float@type=\count103
+\float@exts=\toks20
 \float@box=\box28
-\@float@everytoks=\toks20
+\@float@everytoks=\toks21
 \@floatcapt=\box29
 )
-\@float@every@codigo=\toks21
-\c@codigo=\count101
+\@float@every@codigo=\toks22
+\c@codigo=\count104
  (./documento.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 )
 \openout1 = `documento.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Info: Redefining \. on input line 25.
-LaTeX Info: Redefining \% on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
 
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(142.26378pt, 415.41023pt, 56.9055pt)
+* v-part:(T,H,B)=(113.81102pt, 711.3189pt, 113.81102pt)
+* \paperwidth=614.57951pt
+* \paperheight=938.94093pt
+* \textwidth=415.41023pt
+* \textheight=711.3189pt
+* \oddsidemargin=69.99379pt
+* \evensidemargin=69.99379pt
+* \topmargin=9.66724pt
+* \headheight=12.0pt
+* \headsep=19.8738pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=38.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Info: Redefining \. on input line 26.
+LaTeX Info: Redefining \% on input line 26.
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count102
-\scratchdimen=\dimen110
+\scratchcounter=\count105
+\scratchdimen=\dimen118
 \scratchbox=\box30
-\nofMPsegments=\count103
-\nofMParguments=\count104
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count105
-\MPscratchDim=\dimen111
-\MPnumerator=\count106
-\makeMPintoPDFobject=\count107
-\everyMPtoPDFconversion=\toks23
+\nofMPsegments=\count106
+\nofMParguments=\count107
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count108
+\MPscratchDim=\dimen119
+\MPnumerator=\count109
+\makeMPintoPDFobject=\count110
+\everyMPtoPDFconversion=\toks24
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -374,10 +434,6 @@ Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -415,7 +471,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count108
+\c@lstlisting=\count111
 
 [1
 
@@ -438,20 +494,20 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [6
 
 ]
-LaTeX Info: Redefining \. on input line 26.
-LaTeX Info: Redefining \% on input line 26.
+LaTeX Info: Redefining \. on input line 32.
+LaTeX Info: Redefining \% on input line 32.
  [7]
-LaTeX Info: Redefining \. on input line 40.
-LaTeX Info: Redefining \% on input line 40.
+LaTeX Info: Redefining \. on input line 49.
+LaTeX Info: Redefining \% on input line 49.
  [8]
-LaTeX Info: Redefining \. on input line 56.
-LaTeX Info: Redefining \% on input line 56.
+LaTeX Info: Redefining \. on input line 76.
+LaTeX Info: Redefining \% on input line 76.
  [9])
 \tf@toc=\write3
 \openout3 = `documento.toc'.
 
-LaTeX Info: Redefining \. on input line 81.
-LaTeX Info: Redefining \% on input line 81.
+LaTeX Info: Redefining \. on input line 82.
+LaTeX Info: Redefining \% on input line 82.
  [10] (./documento.lof
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
@@ -461,704 +517,608 @@ LaTeX Info: Redefining \% on input line 1.
 \tf@lof=\write4
 \openout4 = `documento.lof'.
 
-LaTeX Info: Redefining \. on input line 82.
-LaTeX Info: Redefining \% on input line 82.
+LaTeX Info: Redefining \. on input line 83.
+LaTeX Info: Redefining \% on input line 83.
  [12] [13
 
 ]
-Overfull \hbox (15.55711pt too wide) in paragraph at lines 95--96
-[]\OT1/cmr/m/n/12 El cap^^S^^Ptu-lo 6 con-tiene la metodolog^^S^^Pa uti-liza-da
-, se pre-sen-tan las metodolog^^S^^Pas
- []
-
 [14]
 Cap\'{\i }tulo 1.
+
+Overfull \hbox (6.66199pt too wide) in paragraph at lines 111--113
+[]\OT1/cmr/m/n/12 Los avances tec-nol^^Sogi-cos no s^^Solo fa-cil-i-tan la vi-d
+a de las per-sonas con conocimien-
+ []
+
 [15
 
 ]
+Overfull \hbox (0.14378pt too wide) in paragraph at lines 114--115
+\OT1/cmr/m/n/12 bus-can de-sar-rol-lan-do los video-jue-gos. Sin em-bar-go no t
+o-dos lo-gran re-alizar grandes
+ []
+
+
+Overfull \hbox (16.52834pt too wide) in paragraph at lines 114--115
+\OT1/cmr/m/n/12 avances da-do que el tema del de-sar-rol-lo de un video-juego i
+n-volu-cra mu-cho conocimien-
+ []
+
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 117.
+(Font)              <7> on input line 118.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 117.
-LaTeX Info: Redefining \. on input line 118.
-LaTeX Info: Redefining \% on input line 118.
- [16]
-LaTeX Info: Redefining \. on input line 124.
-LaTeX Info: Redefining \% on input line 124.
- [17]
-LaTeX Info: Redefining \. on input line 135.
-LaTeX Info: Redefining \% on input line 135.
+(Font)              <5> on input line 118.
+LaTeX Info: Redefining \. on input line 122.
+LaTeX Info: Redefining \% on input line 122.
+[16]
+Overfull \hbox (3.76569pt too wide) in paragraph at lines 132--133
+[]\OT1/cmr/m/it/12 Desarrollar un video-juego mul-ti-platafor-ma para com-puta-
+dores per-son-ales (PCs)
+ []
+
+LaTeX Info: Redefining \. on input line 133.
+LaTeX Info: Redefining \% on input line 133.
+[17]
+LaTeX Info: Redefining \. on input line 145.
+LaTeX Info: Redefining \% on input line 145.
  [18]
-LaTeX Info: Redefining \. on input line 144.
-LaTeX Info: Redefining \% on input line 144.
+LaTeX Info: Redefining \. on input line 145.
+LaTeX Info: Redefining \% on input line 145.
  [19]
 Cap\'{\i }tulo 2.
 [20
 
 ]
-LaTeX Info: Redefining \. on input line 158.
-LaTeX Info: Redefining \% on input line 158.
+LaTeX Info: Redefining \. on input line 163.
+LaTeX Info: Redefining \% on input line 163.
  [21]
-Overfull \hbox (4.76697pt too wide) in paragraph at lines 161--162
-[]\OT1/cmr/m/n/12 Luego de dos a~nos en 1997 se pub-li-ca la se-gun-da es-peci-
-fi-caci^^Son de OpenGL,
- []
-
-LaTeX Info: Redefining \. on input line 167.
-LaTeX Info: Redefining \% on input line 167.
-[22]
-LaTeX Info: Redefining \. on input line 177.
-LaTeX Info: Redefining \% on input line 177.
+LaTeX Info: Redefining \. on input line 176.
+LaTeX Info: Redefining \% on input line 176.
+ [22]
+LaTeX Info: Redefining \. on input line 188.
+LaTeX Info: Redefining \% on input line 188.
  [23]
-LaTeX Info: Redefining \. on input line 187.
-LaTeX Info: Redefining \% on input line 187.
+LaTeX Info: Redefining \. on input line 194.
+LaTeX Info: Redefining \% on input line 194.
  [24]
-LaTeX Info: Redefining \. on input line 193.
-LaTeX Info: Redefining \% on input line 193.
- [25]
 Cap\'{\i }tulo 3.
-[26
 
-]
-LaTeX Info: Redefining \. on input line 208.
-LaTeX Info: Redefining \% on input line 208.
- [27] <arquitectura.pdf, id=96, 686.565pt x 632.3625pt>
-File: arquitectura.pdf Graphic file (type pdf)
-
-<use arquitectura.pdf>
-Package pdftex.def Info: arquitectura.pdf used on input line 212.
-(pdftex.def)             Requested size: 411.94218pt x 379.42043pt.
-
-Overfull \hbox (21.94218pt too wide) in paragraph at lines 212--213
- [] 
+Underfull \hbox (badness 1810) in paragraph at lines 200--200
+[][]\OT1/cmr/m/n/10 Tiobe (http://www.tiobe.com/index.php/content/paperinfo/tpc
+i/index.html) re-al-iza su
  []
 
-LaTeX Info: Redefining \. on input line 221.
-LaTeX Info: Redefining \% on input line 221.
-[28]
-LaTeX Info: Redefining \. on input line 221.
-LaTeX Info: Redefining \% on input line 221.
- [29 <./arquitectura.pdf>]
-LaTeX Info: Redefining \. on input line 229.
-LaTeX Info: Redefining \% on input line 229.
+[25
+
+] <arquitectura.pdf, id=90, 686.565pt x 632.3625pt>
+File: arquitectura.pdf Graphic file (type pdf)
+ <use arquitectura.pdf>
+Package pdftex.def Info: arquitectura.pdf used on input line 213.
+(pdftex.def)             Requested size: 411.94218pt x 379.42043pt.
+LaTeX Info: Redefining \. on input line 220.
+LaTeX Info: Redefining \% on input line 220.
+
+[26]
+LaTeX Info: Redefining \. on input line 220.
+LaTeX Info: Redefining \% on input line 220.
+ [27 <./arquitectura.pdf>]
+LaTeX Info: Redefining \. on input line 230.
+LaTeX Info: Redefining \% on input line 230.
+ [28]
+LaTeX Info: Redefining \. on input line 241.
+LaTeX Info: Redefining \% on input line 241.
+ [29]
+LaTeX Info: Redefining \. on input line 257.
+LaTeX Info: Redefining \% on input line 257.
  [30]
-LaTeX Info: Redefining \. on input line 240.
-LaTeX Info: Redefining \% on input line 240.
- [31]
-LaTeX Info: Redefining \. on input line 253.
-LaTeX Info: Redefining \% on input line 253.
- [32]
-<culling1.pdf, id=116, 597.50786pt x 604.14508pt>
+<culling1.pdf, id=109, 597.50786pt x 604.14508pt>
 File: culling1.pdf Graphic file (type pdf)
  <use culling1.pdf>
-Package pdftex.def Info: culling1.pdf used on input line 261.
+Package pdftex.def Info: culling1.pdf used on input line 262.
 (pdftex.def)             Requested size: 418.25264pt x 422.89867pt.
 
-Overfull \hbox (28.25264pt too wide) in paragraph at lines 261--262
+Overfull \hbox (2.8424pt too wide) in paragraph at lines 262--263
  [] 
  []
 
-<culling2.pdf, id=117, 597.50786pt x 604.14508pt>
+<culling2.pdf, id=110, 597.50786pt x 604.14508pt>
 File: culling2.pdf Graphic file (type pdf)
  <use culling2.pdf>
-Package pdftex.def Info: culling2.pdf used on input line 269.
+Package pdftex.def Info: culling2.pdf used on input line 270.
 (pdftex.def)             Requested size: 418.25264pt x 422.89867pt.
 
-Overfull \hbox (28.25264pt too wide) in paragraph at lines 269--270
+Overfull \hbox (2.8424pt too wide) in paragraph at lines 270--271
  [] 
  []
 
-LaTeX Info: Redefining \. on input line 275.
-LaTeX Info: Redefining \% on input line 275.
-[33]
-LaTeX Info: Redefining \. on input line 275.
-LaTeX Info: Redefining \% on input line 275.
- [34 <./culling1.pdf>]
-LaTeX Info: Redefining \. on input line 275.
-LaTeX Info: Redefining \% on input line 275.
- [35 <./culling2.pdf>]
-LaTeX Info: Redefining \. on input line 283.
-LaTeX Info: Redefining \% on input line 283.
- [36]
-LaTeX Info: Redefining \. on input line 292.
-LaTeX Info: Redefining \% on input line 292.
- [37]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 295.
+LaTeX Info: Redefining \. on input line 274.
+LaTeX Info: Redefining \% on input line 274.
+[31 <./culling1.pdf>]
+LaTeX Info: Redefining \. on input line 278.
+LaTeX Info: Redefining \% on input line 278.
+ [32 <./culling2.pdf>]
+LaTeX Info: Redefining \. on input line 286.
+LaTeX Info: Redefining \% on input line 286.
+ [33]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 296.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 295.
-LaTeX Info: Redefining \. on input line 315.
-LaTeX Info: Redefining \% on input line 315.
- [38]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 296.
+LaTeX Info: Redefining \. on input line 304.
+LaTeX Info: Redefining \% on input line 304.
+ [34]
+Overfull \hbox (5.75345pt too wide) in paragraph at lines 310--311
+[]\OT1/cmr/m/n/12 Varias prim-i-ti-vas con-stru-idas por de-fec-to, co-mo l^^S^
+^Pneas, pun-tos, cu-bos, tri^^Sangu-
+ []
+
 LaTeX Info: Redefining \. on input line 325.
 LaTeX Info: Redefining \% on input line 325.
- [39]
+[35]
+LaTeX Info: Redefining \. on input line 326.
+LaTeX Info: Redefining \% on input line 326.
+ [36]
 Cap\'{\i }tulo 4.
-[40
+[37
 
-]
-LaTeX Info: Redefining \. on input line 339.
-LaTeX Info: Redefining \% on input line 339.
- [41] <img1.pdf, id=165, 597.50786pt x 491.72508pt>
+] <img1.pdf, id=153, 597.50786pt x 491.72508pt>
 File: img1.pdf Graphic file (type pdf)
  <use img1.pdf>
-Package pdftex.def Info: img1.pdf used on input line 342.
+Package pdftex.def Info: img1.pdf used on input line 343.
 (pdftex.def)             Requested size: 418.25264pt x 344.2052pt.
 
-Overfull \hbox (28.25264pt too wide) in paragraph at lines 342--343
+Overfull \hbox (2.8424pt too wide) in paragraph at lines 343--344
  [] 
  []
 
-<tri.pdf, id=166, 597.50786pt x 443.54507pt>
+<tri.pdf, id=154, 597.50786pt x 443.54507pt>
 File: tri.pdf Graphic file (type pdf)
  <use tri.pdf>
-Package pdftex.def Info: tri.pdf used on input line 351.
+Package pdftex.def Info: tri.pdf used on input line 352.
 (pdftex.def)             Requested size: 418.25264pt x 310.47943pt.
 
-Overfull \hbox (28.25264pt too wide) in paragraph at lines 351--352
+Overfull \hbox (2.8424pt too wide) in paragraph at lines 352--353
  [] 
  []
 
-LaTeX Info: Redefining \. on input line 360.
-LaTeX Info: Redefining \% on input line 360.
-[42]
-LaTeX Info: Redefining \. on input line 360.
-LaTeX Info: Redefining \% on input line 360.
- [43 <./img1.pdf>]
-LaTeX Info: Redefining \. on input line 360.
-LaTeX Info: Redefining \% on input line 360.
- [44 <./tri.pdf>]
-LaTeX Info: Redefining \. on input line 367.
-LaTeX Info: Redefining \% on input line 367.
- [45]
-<sky.pdf, id=189, 597.50786pt x 604.14508pt>
+LaTeX Info: Redefining \. on input line 359.
+LaTeX Info: Redefining \% on input line 359.
+[38]
+LaTeX Info: Redefining \. on input line 359.
+LaTeX Info: Redefining \% on input line 359.
+ [39 <./img1.pdf>]
+LaTeX Info: Redefining \. on input line 359.
+LaTeX Info: Redefining \% on input line 359.
+ [40 <./tri.pdf>]
+LaTeX Info: Redefining \. on input line 368.
+LaTeX Info: Redefining \% on input line 368.
+ [41]
+<sky.pdf, id=176, 597.50786pt x 604.14508pt>
 File: sky.pdf Graphic file (type pdf)
  <use sky.pdf>
-Package pdftex.def Info: sky.pdf used on input line 371.
+Package pdftex.def Info: sky.pdf used on input line 372.
 (pdftex.def)             Requested size: 418.25264pt x 422.89867pt.
 
-Overfull \hbox (28.25264pt too wide) in paragraph at lines 371--372
+Overfull \hbox (2.8424pt too wide) in paragraph at lines 372--373
  [] 
  []
 
-<sky2.pdf, id=190, 597.50786pt x 604.14508pt>
+<sky2.pdf, id=177, 597.50786pt x 604.14508pt>
 File: sky2.pdf Graphic file (type pdf)
  <use sky2.pdf>
-Package pdftex.def Info: sky2.pdf used on input line 378.
+Package pdftex.def Info: sky2.pdf used on input line 379.
 (pdftex.def)             Requested size: 418.25264pt x 422.89867pt.
 
-Overfull \hbox (28.25264pt too wide) in paragraph at lines 378--379
+Overfull \hbox (2.8424pt too wide) in paragraph at lines 379--380
  [] 
  []
 
-LaTeX Info: Redefining \. on input line 390.
-LaTeX Info: Redefining \% on input line 390.
-[46]
-LaTeX Info: Redefining \. on input line 390.
-LaTeX Info: Redefining \% on input line 390.
- [47 <./sky.pdf>]
-LaTeX Info: Redefining \. on input line 390.
-LaTeX Info: Redefining \% on input line 390.
- [48 <./sky2.pdf>]
-<img2.pdf, id=208, 597.50786pt x 491.72508pt>
+LaTeX Info: Redefining \. on input line 393.
+LaTeX Info: Redefining \% on input line 393.
+[42]
+LaTeX Info: Redefining \. on input line 393.
+LaTeX Info: Redefining \% on input line 393.
+ [43 <./sky.pdf>]
+LaTeX Info: Redefining \. on input line 393.
+LaTeX Info: Redefining \% on input line 393.
+ [44 <./sky2.pdf>]
+<img2.pdf, id=196, 597.50786pt x 491.72508pt>
 File: img2.pdf Graphic file (type pdf)
  <use img2.pdf>
-Package pdftex.def Info: img2.pdf used on input line 397.
+Package pdftex.def Info: img2.pdf used on input line 398.
 (pdftex.def)             Requested size: 418.25264pt x 344.2052pt.
 
-Overfull \hbox (28.25264pt too wide) in paragraph at lines 397--398
+Overfull \hbox (2.8424pt too wide) in paragraph at lines 398--399
  [] 
  []
 
-LaTeX Info: Redefining \. on input line 407.
-LaTeX Info: Redefining \% on input line 407.
-[49]
-LaTeX Info: Redefining \. on input line 407.
-LaTeX Info: Redefining \% on input line 407.
- [50 <./img2.pdf>]
-LaTeX Info: Redefining \. on input line 417.
-LaTeX Info: Redefining \% on input line 417.
- [51]
-Overfull \hbox (171.57889pt too wide) in paragraph at lines 420--422
-\OT1/cmr/m/n/12 de descar-ga de for-ma com-ple-ta-mente gra-tui-ta (https://git
-hub.com/downloads/rvillablanca/jbomb/jbomb.zip),
- []
-
-<img3.pdf, id=223, 597.50786pt x 491.72508pt>
+LaTeX Info: Redefining \. on input line 404.
+LaTeX Info: Redefining \% on input line 404.
+[45 <./img2.pdf>]
+LaTeX Info: Redefining \. on input line 418.
+LaTeX Info: Redefining \% on input line 418.
+ [46] <img3.pdf, id=207, 597.50786pt x 491.72508pt>
 File: img3.pdf Graphic file (type pdf)
- <use img3.pdf>
-Package pdftex.def Info: img3.pdf used on input line 425.
+
+<use img3.pdf>
+Package pdftex.def Info: img3.pdf used on input line 426.
 (pdftex.def)             Requested size: 418.25264pt x 344.2052pt.
 
-Overfull \hbox (28.25264pt too wide) in paragraph at lines 425--426
+Overfull \hbox (2.8424pt too wide) in paragraph at lines 426--427
  [] 
  []
 
-LaTeX Info: Redefining \. on input line 433.
-LaTeX Info: Redefining \% on input line 433.
-[52]
-LaTeX Info: Redefining \. on input line 433.
-LaTeX Info: Redefining \% on input line 433.
- [53 <./img3.pdf>] <img4.pdf, id=234, 597.50786pt x 491.72508pt>
+LaTeX Info: Redefining \. on input line 434.
+LaTeX Info: Redefining \% on input line 434.
+[47]
+LaTeX Info: Redefining \. on input line 434.
+LaTeX Info: Redefining \% on input line 434.
+ [48 <./img3.pdf>] <img4.pdf, id=218, 597.50786pt x 491.72508pt>
 File: img4.pdf Graphic file (type pdf)
 
 <use img4.pdf>
-Package pdftex.def Info: img4.pdf used on input line 436.
+Package pdftex.def Info: img4.pdf used on input line 437.
 (pdftex.def)             Requested size: 418.25264pt x 344.2052pt.
 
-Overfull \hbox (28.25264pt too wide) in paragraph at lines 436--437
+Overfull \hbox (2.8424pt too wide) in paragraph at lines 437--438
  [] 
  []
 
-LaTeX Info: Redefining \. on input line 447.
-LaTeX Info: Redefining \% on input line 447.
-[54]
-LaTeX Info: Redefining \. on input line 447.
-LaTeX Info: Redefining \% on input line 447.
- [55 <./img4.pdf>] <mec.pdf, id=246, 196.00427pt x 282.94508pt>
+LaTeX Info: Redefining \. on input line 445.
+LaTeX Info: Redefining \% on input line 445.
+[49 <./img4.pdf>] <mec.pdf, id=227, 196.00427pt x 282.94508pt>
 File: mec.pdf Graphic file (type pdf)
-
-<use mec.pdf>
-Package pdftex.def Info: mec.pdf used on input line 451.
+ <use mec.pdf>
+Package pdftex.def Info: mec.pdf used on input line 452.
 (pdftex.def)             Requested size: 137.20203pt x 198.0602pt.
-LaTeX Info: Redefining \. on input line 456.
-LaTeX Info: Redefining \% on input line 456.
- [56 <./mec.pdf>]
+LaTeX Info: Redefining \. on input line 457.
+LaTeX Info: Redefining \% on input line 457.
+
+[50 <./mec.pdf>]
 Cap\'{\i }tulo 5.
-[57
+[51
 
 ]
-LaTeX Info: Redefining \. on input line 480.
-LaTeX Info: Redefining \% on input line 480.
- [58]
-LaTeX Info: Redefining \. on input line 488.
-LaTeX Info: Redefining \% on input line 488.
- [59]
-LaTeX Info: Redefining \. on input line 496.
-LaTeX Info: Redefining \% on input line 496.
- [60]
-LaTeX Info: Redefining \. on input line 509.
-LaTeX Info: Redefining \% on input line 509.
- [61]
-LaTeX Info: Redefining \. on input line 516.
-LaTeX Info: Redefining \% on input line 516.
- [62]
-Overfull \hbox (5.91139pt too wide) in paragraph at lines 517--518
-[]\OT1/cmr/m/n/12 Gimp es la al-ter-na-ti-va li-bre a Pho-to-shop y fun-ciona s
-o-bre di-ver-sas platafor-
- []
-
-LaTeX Info: Redefining \. on input line 523.
-LaTeX Info: Redefining \% on input line 523.
-[63]
-LaTeX Info: Redefining \. on input line 529.
-LaTeX Info: Redefining \% on input line 529.
- [64]
-LaTeX Info: Redefining \. on input line 536.
-LaTeX Info: Redefining \% on input line 536.
- [65]
+LaTeX Info: Redefining \. on input line 485.
+LaTeX Info: Redefining \% on input line 485.
+ [52]
+LaTeX Info: Redefining \. on input line 495.
+LaTeX Info: Redefining \% on input line 495.
+ [53]
+LaTeX Info: Redefining \. on input line 511.
+LaTeX Info: Redefining \% on input line 511.
+ [54]
+LaTeX Info: Redefining \. on input line 519.
+LaTeX Info: Redefining \% on input line 519.
+ [55]
+LaTeX Info: Redefining \. on input line 530.
+LaTeX Info: Redefining \% on input line 530.
+ [56]
+LaTeX Info: Redefining \. on input line 537.
+LaTeX Info: Redefining \% on input line 537.
+ [57]
 Cap\'{\i }tulo 6.
-[66
+[58
 
 ]
-Overfull \hbox (2.8528pt too wide) in paragraph at lines 542--543
-[]\OT1/cmr/m/n/12 Estas metodolog^^S^^Pas son to-
- []
-
-
-Overfull \hbox (23.07349pt too wide) in paragraph at lines 544--545
-\OT1/cmr/m/n/12 Sin em-bar-go este proyec-to tom^^So s^^Solo al-gu-nas cosas de
- am-bos tipos de metodolog^^S^^Pas
- []
-
-LaTeX Info: Redefining \. on input line 550.
-LaTeX Info: Redefining \% on input line 550.
-[67]
-LaTeX Info: Redefining \. on input line 558.
-LaTeX Info: Redefining \% on input line 558.
- [68]
-Overfull \hbox (6.09193pt too wide) in paragraph at lines 559--560
-[]\OT1/cmr/m/n/12 Fue as^^S^^P en-tonces que en el de-sar-rol-lo evo-lu-ti-vo a
-parecieron y de-sa-parecieron
- []
-
-<espiral.pdf, id=292, 597.50786pt x 604.14508pt>
+LaTeX Info: Redefining \. on input line 557.
+LaTeX Info: Redefining \% on input line 557.
+ [59] <espiral.pdf, id=263, 597.50786pt x 604.14508pt>
 File: espiral.pdf Graphic file (type pdf)
  <use espiral.pdf>
-Package pdftex.def Info: espiral.pdf used on input line 567.
+Package pdftex.def Info: espiral.pdf used on input line 568.
 (pdftex.def)             Requested size: 238.9989pt x 241.65375pt.
 LaTeX Info: Redefining \. on input line 575.
 LaTeX Info: Redefining \% on input line 575.
- [69]
-LaTeX Info: Redefining \. on input line 575.
-LaTeX Info: Redefining \% on input line 575.
 
-[70 <./espiral.pdf>]
-LaTeX Info: Redefining \. on input line 584.
-LaTeX Info: Redefining \% on input line 584.
- [71]
-LaTeX Info: Redefining \. on input line 588.
-LaTeX Info: Redefining \% on input line 588.
- [72]
+[60]
+LaTeX Info: Redefining \. on input line 580.
+LaTeX Info: Redefining \% on input line 580.
+ [61 <./espiral.pdf>]
+LaTeX Info: Redefining \. on input line 589.
+LaTeX Info: Redefining \% on input line 589.
+ [62]
 Cap\'{\i }tulo 7.
+[63
 
-Overfull \hbox (18.56937pt too wide) in paragraph at lines 589--591
-\OT1/cmr/m/n/12 fueron uti-lizadas en su de-sar-rol-lo, cu^^Sales son sus car-a
-c-ter^^S^^Psti-cas y qu^^Se metodolog^^S^^Pa
- []
-
-[73
-
-] <estructura.pdf, id=318, 597.50786pt x 845.04686pt>
+] <estructura.pdf, id=286, 597.50786pt x 845.04686pt>
 File: estructura.pdf Graphic file (type pdf)
  <use estructura.pdf>
-Package pdftex.def Info: estructura.pdf used on input line 599.
+Package pdftex.def Info: estructura.pdf used on input line 600.
 (pdftex.def)             Requested size: 238.9989pt x 338.01276pt.
-LaTeX Info: Redefining \. on input line 605.
-LaTeX Info: Redefining \% on input line 605.
+LaTeX Info: Redefining \. on input line 610.
+LaTeX Info: Redefining \% on input line 610.
 
-[74 <./estructura.pdf>]
-LaTeX Info: Redefining \. on input line 615.
-LaTeX Info: Redefining \% on input line 615.
- [75]
-LaTeX Info: Redefining \. on input line 622.
-LaTeX Info: Redefining \% on input line 622.
- [76]
-LaTeX Info: Redefining \. on input line 635.
-LaTeX Info: Redefining \% on input line 635.
- [77]
-Overfull \hbox (0.73921pt too wide) in paragraph at lines 635--636
-[]\OT1/cmr/m/n/12 El juego hace uti-lizaci^^Son de im^^Sagenes para man-ten-er 
-in-for-ma-do al usuario.
- []
-
-LaTeX Info: Redefining \. on input line 638.
-LaTeX Info: Redefining \% on input line 638.
-[78] <images.pdf, id=344, 597.50786pt x 845.04686pt>
+[64 <./estructura.pdf>]
+LaTeX Info: Redefining \. on input line 619.
+LaTeX Info: Redefining \% on input line 619.
+ [65]
+LaTeX Info: Redefining \. on input line 634.
+LaTeX Info: Redefining \% on input line 634.
+ [66]
+LaTeX Info: Redefining \. on input line 641.
+LaTeX Info: Redefining \% on input line 641.
+ [67]
+<images.pdf, id=309, 597.50786pt x 845.04686pt>
 File: images.pdf Graphic file (type pdf)
  <use images.pdf>
-Package pdftex.def Info: images.pdf used on input line 648.
+Package pdftex.def Info: images.pdf used on input line 649.
 (pdftex.def)             Requested size: 418.25264pt x 591.52878pt.
 
-Overfull \hbox (28.25264pt too wide) in paragraph at lines 648--649
+Overfull \hbox (2.8424pt too wide) in paragraph at lines 649--650
  [] 
  []
 
-
-LaTeX Warning: Float too large for page by 69.36209pt on input line 651.
-
-LaTeX Info: Redefining \. on input line 653.
-LaTeX Info: Redefining \% on input line 653.
-[79]
-LaTeX Info: Redefining \. on input line 653.
-LaTeX Info: Redefining \% on input line 653.
- [80 <./images.pdf>] <textures.pdf, id=362, 597.50786pt x 845.04686pt>
+LaTeX Info: Redefining \. on input line 658.
+LaTeX Info: Redefining \% on input line 658.
+[68]
+LaTeX Info: Redefining \. on input line 658.
+LaTeX Info: Redefining \% on input line 658.
+ [69 <./images.pdf>] <textures.pdf, id=326, 597.50786pt x 845.04686pt>
 File: textures.pdf Graphic file (type pdf)
 
 <use textures.pdf>
-Package pdftex.def Info: textures.pdf used on input line 661.
+Package pdftex.def Info: textures.pdf used on input line 662.
 (pdftex.def)             Requested size: 418.25264pt x 591.52878pt.
 
-Overfull \hbox (28.25264pt too wide) in paragraph at lines 661--662
+Overfull \hbox (2.8424pt too wide) in paragraph at lines 662--663
  [] 
  []
 
-
-LaTeX Warning: Float too large for page by 69.36209pt on input line 664.
-
-LaTeX Info: Redefining \. on input line 669.
-LaTeX Info: Redefining \% on input line 669.
-[81]
-LaTeX Info: Redefining \. on input line 669.
-LaTeX Info: Redefining \% on input line 669.
- [82 <./textures.pdf>]
 LaTeX Info: Redefining \. on input line 675.
 LaTeX Info: Redefining \% on input line 675.
- [83]
-LaTeX Info: Redefining \. on input line 681.
-LaTeX Info: Redefining \% on input line 681.
- [84]
-LaTeX Info: Redefining \. on input line 689.
-LaTeX Info: Redefining \% on input line 689.
- [85]
+[70]
+LaTeX Info: Redefining \. on input line 675.
+LaTeX Info: Redefining \% on input line 675.
+ [71 <./textures.pdf>]
+LaTeX Info: Redefining \. on input line 684.
+LaTeX Info: Redefining \% on input line 684.
+ [72]
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 694.
-LaTeX Info: Redefining \. on input line 711.
-LaTeX Info: Redefining \% on input line 711.
- [86]
-LaTeX Info: Redefining \. on input line 737.
-LaTeX Info: Redefining \% on input line 737.
- [87]
-LaTeX Info: Redefining \. on input line 756.
-LaTeX Info: Redefining \% on input line 756.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 695.
+LaTeX Info: Redefining \. on input line 712.
+LaTeX Info: Redefining \% on input line 712.
+ [73]
+LaTeX Info: Redefining \. on input line 712.
+LaTeX Info: Redefining \% on input line 712.
+ [74]
+LaTeX Info: Redefining \. on input line 739.
+LaTeX Info: Redefining \% on input line 739.
 
-[88]
-LaTeX Info: Redefining \. on input line 765.
-LaTeX Info: Redefining \% on input line 765.
- [89]
-LaTeX Info: Redefining \. on input line 772.
-LaTeX Info: Redefining \% on input line 772.
- [90]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 788.
+[75]
+LaTeX Info: Redefining \. on input line 760.
+LaTeX Info: Redefining \% on input line 760.
+ [76]
+LaTeX Info: Redefining \. on input line 773.
+LaTeX Info: Redefining \% on input line 773.
+ [77]
+LaTeX Info: Redefining \. on input line 773.
+LaTeX Info: Redefining \% on input line 773.
+ [78]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 789.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <8> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 788.
-LaTeX Info: Redefining \. on input line 814.
-LaTeX Info: Redefining \% on input line 814.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 789.
+LaTeX Info: Redefining \. on input line 817.
+LaTeX Info: Redefining \% on input line 817.
 
-[91]
-LaTeX Info: Redefining \. on input line 820.
-LaTeX Info: Redefining \% on input line 820.
- [92]
-LaTeX Info: Redefining \. on input line 827.
-LaTeX Info: Redefining \% on input line 827.
- [93]
-LaTeX Info: Redefining \. on input line 833.
-LaTeX Info: Redefining \% on input line 833.
- [94]
+[79]
+LaTeX Info: Redefining \. on input line 825.
+LaTeX Info: Redefining \% on input line 825.
+ [80]
+Overfull \hbox (1.4799pt too wide) in paragraph at lines 832--833
+[]\OT1/cmr/m/n/12 Este con-trol est^^Sa en-car-ga-do de ini-ciar la ex-plosi^^S
+on seg^^Sun
+ []
+
 LaTeX Info: Redefining \. on input line 834.
 LaTeX Info: Redefining \% on input line 834.
- [95]
-<explosions-diagram.pdf, id=439, 813.0375pt x 632.3625pt>
+[81] <explosions-diagram.pdf, id=395, 813.0375pt x 632.3625pt>
 File: explosions-diagram.pdf Graphic file (type pdf)
 
 <use explosions-diagram.pdf>
 Package pdftex.def Info: explosions-diagram.pdf used on input line 909.
 (pdftex.def)             Requested size: 406.51776pt x 316.18048pt.
-
-Overfull \hbox (16.51776pt too wide) in paragraph at lines 909--910
- [] 
- []
-
 LaTeX Info: Redefining \. on input line 918.
 LaTeX Info: Redefining \% on input line 918.
-[96]
+ [82]
 LaTeX Info: Redefining \. on input line 918.
 LaTeX Info: Redefining \% on input line 918.
- [97]
+ [83]
 LaTeX Info: Redefining \. on input line 918.
 LaTeX Info: Redefining \% on input line 918.
- [98]
-LaTeX Info: Redefining \. on input line 918.
-LaTeX Info: Redefining \% on input line 918.
- [99 <./explosions-diagram.pdf>]
-Overfull \hbox (47.18457pt too wide) in paragraph at lines 924--941
+ [84 <./explosions-diagram.pdf>]
+Overfull \hbox (21.77434pt too wide) in paragraph at lines 924--941
  [] 
  []
 
 LaTeX Info: Redefining \. on input line 941.
 LaTeX Info: Redefining \% on input line 941.
-[100]
-Overfull \vbox (57.69984pt too high) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 941.
-LaTeX Info: Redefining \% on input line 941.
-
-[101]
-LaTeX Info: Redefining \. on input line 952.
-LaTeX Info: Redefining \% on input line 952.
- [102]
-LaTeX Info: Redefining \. on input line 960.
-LaTeX Info: Redefining \% on input line 960.
- [103] <diagram.pdf, id=470, 873.2625pt x 742.775pt>
+[85]
+LaTeX Info: Redefining \. on input line 944.
+LaTeX Info: Redefining \% on input line 944.
+ [86]
+LaTeX Info: Redefining \. on input line 955.
+LaTeX Info: Redefining \% on input line 955.
+ [87] <diagram.pdf, id=419, 873.2625pt x 742.775pt>
 File: diagram.pdf Graphic file (type pdf)
-
-<use diagram.pdf>
+ <use diagram.pdf>
 Package pdftex.def Info: diagram.pdf used on input line 963.
 (pdftex.def)             Requested size: 436.63017pt x 371.38658pt.
 
-Overfull \hbox (46.63017pt too wide) in paragraph at lines 963--964
+Overfull \hbox (21.21994pt too wide) in paragraph at lines 963--964
  [] 
  []
 
 LaTeX Info: Redefining \. on input line 973.
 LaTeX Info: Redefining \% on input line 973.
-[104]
+[88]
 LaTeX Info: Redefining \. on input line 973.
 LaTeX Info: Redefining \% on input line 973.
- [105 <./diagram.pdf>]
-<repository.pdf, id=481, 597.50786pt x 845.04686pt>
+ [89 <./diagram.pdf>] <repository.pdf, id=430, 597.50786pt x 845.04686pt>
 File: repository.pdf Graphic file (type pdf)
- <use repository.pdf>
+
+<use repository.pdf>
 Package pdftex.def Info: repository.pdf used on input line 978.
 (pdftex.def)             Requested size: 179.25374pt x 253.516pt.
-LaTeX Info: Redefining \. on input line 984.
-LaTeX Info: Redefining \% on input line 984.
-
-[106 <./repository.pdf>]
-LaTeX Info: Redefining \. on input line 994.
-LaTeX Info: Redefining \% on input line 994.
- [107]
+LaTeX Info: Redefining \. on input line 986.
+LaTeX Info: Redefining \% on input line 986.
+ [90 <./repository.pdf>]
+LaTeX Info: Redefining \. on input line 1000.
+LaTeX Info: Redefining \% on input line 1000.
+ [91]
 LaTeX Info: Redefining \. on input line 1002.
 LaTeX Info: Redefining \% on input line 1002.
- [108]
-LaTeX Info: Redefining \. on input line 1034.
-LaTeX Info: Redefining \% on input line 1034.
- [109]
-LaTeX Info: Redefining \. on input line 1042.
-LaTeX Info: Redefining \% on input line 1042.
- [110]
+ [92]
+LaTeX Info: Redefining \. on input line 1037.
+LaTeX Info: Redefining \% on input line 1037.
+ [93]
 Underfull \hbox (badness 1314) in paragraph at lines 1048--1049
 []\OT1/cmr/m/n/12 Este lis-ten-er est^^Sa es-cuchan-do men-sajes que tienen
  []
 
 
-Overfull \hbox (63.0165pt too wide) in paragraph at lines 1046--1065
+Overfull \hbox (37.60626pt too wide) in paragraph at lines 1046--1065
  [] 
  []
 
 LaTeX Info: Redefining \. on input line 1065.
 LaTeX Info: Redefining \% on input line 1065.
-[111]
-Overfull \vbox (58.09982pt too high) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1065.
-LaTeX Info: Redefining \% on input line 1065.
-
-[112]
-Overfull \hbox (40.83871pt too wide) in paragraph at lines 1067--1076
+[94]
+Overfull \hbox (15.42848pt too wide) in paragraph at lines 1067--1076
  [] 
  []
 
-LaTeX Info: Redefining \. on input line 1082.
-LaTeX Info: Redefining \% on input line 1082.
-[113]
-Overfull \hbox (5.77505pt too wide) in paragraph at lines 1082--1083
-\OT1/cmr/m/n/12 ci^^Son valiosa en tiem-po de de-sar-rol-lo (de-bug) y es men-c
-iona-do aqu^^S^^P porque
+LaTeX Info: Redefining \. on input line 1076.
+LaTeX Info: Redefining \% on input line 1076.
+[95]
+Overfull \hbox (2.68121pt too wide) in paragraph at lines 1083--1084
+[]\OT1/cmr/m/n/12 Este lis-ten-er re-sponde a las pul-sa-ciones del bot^^Son is
+quier-
  []
 
-LaTeX Info: Redefining \. on input line 1091.
-LaTeX Info: Redefining \% on input line 1091.
-[114]
-LaTeX Info: Redefining \. on input line 1101.
-LaTeX Info: Redefining \% on input line 1101.
- [115]
-LaTeX Info: Redefining \. on input line 1112.
-LaTeX Info: Redefining \% on input line 1112.
- [116]
+LaTeX Info: Redefining \. on input line 1084.
+LaTeX Info: Redefining \% on input line 1084.
+[96]
+LaTeX Info: Redefining \. on input line 1096.
+LaTeX Info: Redefining \% on input line 1096.
+ [97]
+LaTeX Info: Redefining \. on input line 1111.
+LaTeX Info: Redefining \% on input line 1111.
+ [98]
 LaTeX Info: Redefining \. on input line 1119.
 LaTeX Info: Redefining \% on input line 1119.
- [117]
-Overfull \hbox (74.62372pt too wide) in paragraph at lines 1130--1147
+ [99]
+Overfull \hbox (49.21349pt too wide) in paragraph at lines 1130--1147
  [] 
  []
 
 LaTeX Info: Redefining \. on input line 1147.
 LaTeX Info: Redefining \% on input line 1147.
-[118]
+[100]
 LaTeX Info: Redefining \. on input line 1148.
 LaTeX Info: Redefining \% on input line 1148.
- [119]
+ [101]
 Cap\'{\i }tulo 8.
-[120
+[102
 
 ]
-LaTeX Info: Redefining \. on input line 1160.
-LaTeX Info: Redefining \% on input line 1160.
- [121]
-LaTeX Info: Redefining \. on input line 1168.
-LaTeX Info: Redefining \% on input line 1168.
- [122]
+LaTeX Info: Redefining \. on input line 1165.
+LaTeX Info: Redefining \% on input line 1165.
+ [103]
 LaTeX Info: Redefining \. on input line 1174.
 LaTeX Info: Redefining \% on input line 1174.
- [123]
-LaTeX Info: Redefining \. on input line 1182.
-LaTeX Info: Redefining \% on input line 1182.
- [124]
-LaTeX Info: Redefining \. on input line 1189.
-LaTeX Info: Redefining \% on input line 1189.
- [125]
-LaTeX Info: Redefining \. on input line 1200.
-LaTeX Info: Redefining \% on input line 1200.
- [126]
-LaTeX Info: Redefining \. on input line 1221.
-LaTeX Info: Redefining \% on input line 1221.
- [127]
-LaTeX Info: Redefining \. on input line 1244.
-LaTeX Info: Redefining \% on input line 1244.
- [128]
-<interpolacion1.pdf, id=565, 597.50786pt x 604.14508pt>
+ [104]
+LaTeX Info: Redefining \. on input line 1184.
+LaTeX Info: Redefining \% on input line 1184.
+ [105]
+LaTeX Info: Redefining \. on input line 1194.
+LaTeX Info: Redefining \% on input line 1194.
+ [106]
+LaTeX Info: Redefining \. on input line 1225.
+LaTeX Info: Redefining \% on input line 1225.
+ [107]
+LaTeX Info: Redefining \. on input line 1249.
+LaTeX Info: Redefining \% on input line 1249.
+ [108]
+<interpolacion1.pdf, id=502, 597.50786pt x 604.14508pt>
 File: interpolacion1.pdf Graphic file (type pdf)
 
 <use interpolacion1.pdf>
-Package pdftex.def Info: interpolacion1.pdf used on input line 1255.
+Package pdftex.def Info: interpolacion1.pdf used on input line 1261.
 (pdftex.def)             Requested size: 418.25264pt x 422.89867pt.
 
-Overfull \hbox (28.25264pt too wide) in paragraph at lines 1255--1256
+Overfull \hbox (2.8424pt too wide) in paragraph at lines 1261--1262
  [] 
  []
 
-LaTeX Info: Redefining \. on input line 1259.
-LaTeX Info: Redefining \% on input line 1259.
-[129]
-LaTeX Info: Redefining \. on input line 1272.
-LaTeX Info: Redefining \% on input line 1272.
- [130]
-LaTeX Info: Redefining \. on input line 1272.
-LaTeX Info: Redefining \% on input line 1272.
- [131 <./interpolacion1.pdf>]
-LaTeX Info: Redefining \. on input line 1278.
-LaTeX Info: Redefining \% on input line 1278.
- [132]
-LaTeX Info: Redefining \. on input line 1284.
-LaTeX Info: Redefining \% on input line 1284.
- [133]
+LaTeX Info: Redefining \. on input line 1268.
+LaTeX Info: Redefining \% on input line 1268.
+[109]
+LaTeX Info: Redefining \. on input line 1268.
+LaTeX Info: Redefining \% on input line 1268.
+ [110 <./interpolacion1.pdf>]
+LaTeX Info: Redefining \. on input line 1280.
+LaTeX Info: Redefining \% on input line 1280.
+ [111]
+LaTeX Info: Redefining \. on input line 1288.
+LaTeX Info: Redefining \% on input line 1288.
+ [112]
+LaTeX Info: Redefining \. on input line 1290.
+LaTeX Info: Redefining \% on input line 1290.
+ [113]
 Cap\'{\i }tulo 9.
-[134
+[114
 
 ]
-LaTeX Info: Redefining \. on input line 1299.
-LaTeX Info: Redefining \% on input line 1299.
- [135]
-LaTeX Info: Redefining \. on input line 1305.
-LaTeX Info: Redefining \% on input line 1305.
- [136]
-LaTeX Info: Redefining \. on input line 1311.
-LaTeX Info: Redefining \% on input line 1311.
- [137]
+LaTeX Info: Redefining \. on input line 1307.
+LaTeX Info: Redefining \% on input line 1307.
+ [115]
+LaTeX Info: Redefining \. on input line 1317.
+LaTeX Info: Redefining \% on input line 1317.
+ [116]
+LaTeX Info: Redefining \. on input line 1317.
+LaTeX Info: Redefining \% on input line 1317.
+ [117]
 Cap\'{\i }tulo 10.
-[138
+[118
 
 ]
-LaTeX Info: Redefining \. on input line 1325.
-LaTeX Info: Redefining \% on input line 1325.
- [139]
-LaTeX Info: Redefining \. on input line 1333.
-LaTeX Info: Redefining \% on input line 1333.
- [140] (./documento.bbl
+LaTeX Info: Redefining \. on input line 1335.
+LaTeX Info: Redefining \% on input line 1335.
+ [119] (./documento.bbl
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
- [141]
-Overfull \hbox (66.21994pt too wide) in paragraph at lines 9--13
+ [120]
+Overfull \hbox (40.80971pt too wide) in paragraph at lines 10--15
 \OT1/cmr/m/it/12 https://developer.valvesoftware.com/wiki/Latency[]Compensating
 []Methods[]in[]Client/ 
  []
 
-[142
+[121
 
 ])
-LaTeX Info: Redefining \. on input line 1337.
-LaTeX Info: Redefining \% on input line 1337.
- [143] (./documento.aux
+LaTeX Info: Redefining \. on input line 1343.
+LaTeX Info: Redefining \% on input line 1343.
+ [122] (./documento.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 4445 strings out of 495059
- 58394 string characters out of 3182030
- 160751 words of memory out of 3000000
- 7557 multiletter control sequences out of 15000+200000
+ 4925 strings out of 495059
+ 65417 string characters out of 3182030
+ 176542 words of memory out of 3000000
+ 8027 multiletter control sequences out of 15000+200000
  9854 words of font info for 34 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,9n,42p,818b,1409s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1174,10 +1134,10 @@ fonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on documento.pdf (143 pages, 3910570 bytes).
+Output written on documento.pdf (122 pages, 3901942 bytes).
 PDF statistics:
- 669 PDF objects out of 1000 (max. 8388607)
- 450 compressed objects within 5 object streams
+ 603 PDF objects out of 1000 (max. 8388607)
+ 405 compressed objects within 5 object streams
  0 named destinations out of 1000 (max. 500000)
  96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
