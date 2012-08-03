@@ -919,9 +919,8 @@ También se definen dos métodos que están vinculados con el inicio y término 
 Los demás métodos tienen que ver con la posición donde aparecerá el efecto, el tiempo de duración del efecto en escena y por último una referencia al objeto sobre el cuál tendrá acceso. Los métodos para esto son \textit{setLocation(Vector3f location)}, \textit{getTimeForDie()} y \textit{getGeometry()} respectivamente.
 
 En cuanto a las implementaciones existen al menos 7 y se resumen en la siguiente tabla.
-
-\begin{center}
-\begin{tabular}{|r|p{10cm}|}
+\begin{flushleft}
+\begin{tabular}{|r|p{9cm}|}
 \hline
 \textbf{BaseExplosion} & Esta es la clase base para todas las demás explosiones. Se encarga de suministrar una implementación básica de la API y proporciona una configuración básica de la forma de la explosión.\\
 \hline
@@ -938,7 +937,7 @@ En cuanto a las implementaciones existen al menos 7 y se resumen en la siguiente
 \textbf{GrandExplosion} & Esta es una implementación concreta de \textit{Multiexplosión} e incluye diversas implementaciones tales como \textit{WormsExplosion}, \textit{RoundsparkExplosion} y \textit{StarExplosion}. Esta implementación es la utilizada para simular la explosión de las bombas.\\
 \hline
 \end{tabular}
-\end{center}
+\end{flushleft}
 \subsection{Juego Base}
 El juego base es una clase llamada \textit{BaseGame} y es uno de los componentes principales del juego y uno de los más importantes en general. \textit{BaseGame} es la clase a partir de la cual se ramifican el cliente y el servidor, donde ellos son en última instancia los que definen el comportamiento final de la clase que marca justamente las diferencias entre éstos.
 
@@ -1042,8 +1041,8 @@ Estos listeners están asociados a todos los mensajes provenientes desde el serv
 
 A continuación se definen los siguientes listeners de mensajes y su acción task asociada.
 
-\begin{center}
-\begin{tabular}{|r|p{10cm}|}
+\begin{flushleft}
+\begin{tabular}{|r|p{8.5cm}|}
 \hline
 \textbf{CounterListener} & Este listener está escuchando mensajes que tienen relación con el conteo regresivo previo al inicio de la ronda y sirve para alertar al jugador del inicio de éste. \\	
 \hline
@@ -1062,9 +1061,9 @@ A continuación se definen los siguientes listeners de mensajes y su acción tas
 \textbf{StartGameListener} & Una vez que la cuenta regresiva ha terminado el servidor envía un mensaje que indica que la ronda ha comenzado. \textit{StartGameListener} se encarga de iniciar el juego en el cliente. \\	
 \hline
 \end{tabular}
-\end{center}
-\begin{center}
-\begin{tabular}{|r|p{10cm}|}
+\end{flushleft}
+\begin{flushleft}
+\begin{tabular}{|r|p{9.3cm}|}
 \hline
 \textbf{StartingNewListener} & Una vez que la primera ronda del juego ha terminado el servidor empieza a preparar todo para iniciar la otra ronda, y \textit{StartingNewListener} tiene la tarea de reiniciar las posiciones de algunos objetos de la escenta tales como jugadores y elevadores.\\	
 \hline
@@ -1073,7 +1072,7 @@ A continuación se definen los siguientes listeners de mensajes y su acción tas
 \textbf{WinnerListener} & Está encargado de mostrar el mensaje de ganador a los jugadores. \\	
 \hline
 \end{tabular}
-\end{center}
+\end{flushleft}
 \subsubsection{Listeners de acción}
 Los listeners de acción están asociados a acciones del usuario tales como pulsaciones de teclado o pulsaciones del mouse. jBomb define 4 listeners de acción y se describen a continuación:
 \begin{description}
@@ -1126,8 +1125,8 @@ El módulo de servidor define el equivalente a \textit{JBombClient} y que tambi�
 
 Al igual que en el módulo común y en el módulo de cliente este módulo define un contexto llamado \textit{ServerContext} con la finalidad de facilitar el acceso a variables ampliamente utilizadas que sólo tienen sentido dentro del módulo de servidor. Las variables definidas dentro de este contexto se definen en la siguiente tabla:
 
-\begin{center}
-\begin{tabular}{|r|p{10cm}|}
+\begin{flushleft}
+\begin{tabular}{|r|p{8.3cm}|}
 \hline
 \textbf{SERVER} & Almacena una referencia al componente que obtiene la conexión con los clientes y es utilizada por diferentes componentes dentro del módulo con el fin de enviar mensajes a todos los clientes conectados.\\	
 \hline
@@ -1144,7 +1143,7 @@ Al igual que en el módulo común y en el módulo de cliente este módulo define
 \textbf{CONNECTION\_LIST} & Mantiene una lista de conexiones con los clientes que es usada cuando el servidor termina una ronda y está en condiciones de realizar una inspección del estado actual de todas las conexiones, de esa manera éste puede determinar si es posible empezar con una nueva ronda o es necesario esperar por más conexiones.\\	
 \hline
 \end{tabular}
-\end{center}
+\end{flushleft}
 \chapter{Sincronización de Jugadores}
 Una de las características más importantes del juego es la posibilidad de jugar online con amigos que pueden estar dentro de la misma red o internet. Sin embargo esta característica conlleva un montón de consideraciones que deben ser controladas de manera correcta, algunas de éstas son la latencia \cite{VALVE2} y la sincronización \cite{VALVE1}.
 
