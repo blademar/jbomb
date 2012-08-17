@@ -553,7 +553,7 @@ El desarrollo del proyecto comenzó definiendo objetivos generales semiflexibles
 \item Juego tipo FPS
 \item Juego en base a Bomberman
 \end{itemize}
-Todos éstos objetivos se cumplieron, pero también se agregarón más características que hicieron que el proyecto se transformara en algo más interesante para los jugadores, pero también triplico el trabajo necesario para el desarrollador. Una vez establecidos los objetivos generales se comenzó con el análisis y diseño de toda la estructura del proyecto. El aprendizaje de todas las herramientas y librerias utilizadas también se considera parte evolutiva del proyecto, ya que en ésto se invirtió cerca de un tercio del total de tiempo invertido.
+Todos éstos objetivos se cumplieron, pero también se agregarón más características que hicieron que el proyecto se transformara en algo más interesante para los jugadores, pero también triplico el trabajo necesario para el desarrollador. Una vez establecidos los objetivos generales se comenzó con el análisis y diseño de toda la estructura del proyecto. El aprendizaje de todas las herramientas y librerias utilizadas también se considera parte evolutiva del proyecto, ya que en ésto se invirtió cerca de un tercio del total de tiempo.
 
 Una vez bien definidos esos objetivos y luego del análisis y diseño del juego en general, se comenzó el desarrollo núcelo del proyecto. En este sentido se trazó la línea que llevaría al cumplimiento de los objetivos generales y en el transcurso de ésta ocurrieron diversos sucesos, por ejemplo se integró un nuevo desarrollador llamado Diego Villablanca que apoyaría la parte gráfica y de escenario, además de poseer total independencia para implementar nuevas ideas o cambiar las que ya habían con respecto a esos dos temas.
 
@@ -578,7 +578,7 @@ La metodología utilizada fue básicamente un espiral a la hora de implementar l
 \end{description}
 Estas cuatro etapas fueron realizadas por todas y cada una de las funciones esperadas en el juego. Esta forma de trabajo se mantuvo desde el inicio hasta el final del proyecto y su utilización fue muy exitosa, para ello fue necesario tomar un poco de ambas metodologías nombradas antes y añadirles lo necesario para que el equipo pudiese sobrellevar bien el proyecto.
 
-El equipo principal de desarrollo fue conformado por dos desarrolladores y un diseñador que apoyó en assets de imágenes y log, así como la publicación y publicidad del juego. Otro integrante hizo su aporte en la música de fondo del juego.
+El equipo principal de desarrollo fue conformado por dos desarrolladores y un diseñador que apoyó en assets de imágenes y logos, así como la publicación y publicidad del juego. Otro integrante hizo su aporte en la música de fondo del juego.
 Los nombres de los integrantes son:
 \begin{itemize}
 \item Rodrigo Villablanca (Desarrollador)
@@ -671,7 +671,7 @@ Este módulo es el más importante porque es el que provee la funcionalidad base
 Cabe mencionar que aquí se detallarán sólo los componentes más importantes que se encuentran en este módulo dado que la cantidad de componentes que se encuentran en él son demasiados y se salen del foco de estudio de este capítulo. Los componentes principales se puden agrupar de la siguiente manera:
 \begin{description}
 \item[Estados de aplicación] Permiten a una aplicación agrupar ciertas características que tienen sentido sólo dentro de una determinado contexto \cite{BEGINNERS}. Por ejemplo cuando un jugador decide poner en estado de pausa un juego, éste presiona el botón que desencadena dicha acción y posteriormente el juego detiene su ejecución. Este estado en pausa es un estado de aplicación.
-\item[Controles] Los controles permiten a un objeto en el juego tener un comportamiento predeterminado que es definido en los controles. Esto permite que el comportamiento pueda ser más modularizado y dividido en varios controles, y posteriormente pueden ser agregados al objeto para definir todos sus comportamientos \cite{BEGINNERS}.
+\item[Controles] Los controles permiten a un objeto en el juego tener un comportamiento definido. Esto permite que el comportamiento pueda ser más modularizado y dividido en varios controles, y posteriormente pueden ser agregados al objeto para definir todos sus comportamientos \cite{BEGINNERS}.
 \item[Efectos] jBomb hace utilización de varios efectos visuales que son lanzados cuando ocurren ciertos sucesos, como por ejemplo cuando una bomba estalla o cuando un jugador pierde en la ronda\cite{BEGINNERS}.
 \item[Juego Base] Aquí se define la mayoría de el contrato que debe cumplir el juego en sus dos modalidades, dejándole a las instancias proveer el comportamiento adecuado para esa interfaz. De aquí heredan el cliente y el servidor.
 \item[Contexto] El juego utiliza un contexto en donde almacena algunas de las variables más utilizadas por los módulos, esto con el fin de proveer facilidad de acceso a estas variables.
@@ -686,7 +686,7 @@ El estado inicia cuando termina otro estado de aplicación que se encarga de rea
 
 Dentro del servidor el componente que se encarga de dar la funcionalidad y extender de \textit{RunningAppState} es un componente llamado \textit{RunningServerAppState} y las acciones que se realizan son las siguientes:
 \begin{description}
-\item[Coordinación de bombas] El componente se encarga de llevar a cabo toda la coordinación de las bombas que son lanzadas por los jugadorers de la ronda Coordinar se entiende por llevar un seguimiento de todas las bombas e informarles a los demás clientes de la posición actual de dicha bomba, además se encarga de avisar a todos sobre cuándo es el momento en que la bomba explotará, de esa manera todos los clientes verán en casi el mismo instante la explisión de la bomba.
+\item[Coordinación de bombas] El componente se encarga de llevar a cabo toda la coordinación de las bombas que son lanzadas por los jugadorers de la ronda Coordinar se entiende por llevar un seguimiento de todas las bombas e informarles a los demás clientes de la posición actual de dicha bomba, además se encarga de avisar a todos sobre cuándo es el momento en que la bomba explotará, de esa manera todos los clientes verán en casi el mismo instante la explosión de la bomba.
 \item[Coordinación de elevadores] Dentro del juego existen unos elevadores que permiten a los jugadores subir más niveles en la etapa, esto es parte del juego. La dificultad está en que estos elevadores deben ser vistos por todos los jugadores desde distintos puntos de vista por lo que se debe llevar una coordinación de éstos para que todos vean el mismo elevador en una posición determinada pero desde distintas perspectivas, toda esta coordinación también es llevada a cabo por \textit{RunningServerAppState}.
 \end{description}
 En las cajas de código \ref{lst1} y \ref{lst2} se muestran un par de fragmentos de código correspondientes a la funcionalidad de \textit{RunningServerAppState}.
