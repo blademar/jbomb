@@ -1169,7 +1169,7 @@ A pesar de que el problema de mantener coordinados a todos los clientes se ha so
 \section{Solución Implementada}
 En la sección anterior se propone el envío de mensajes para mantener a los clientes coordinados sobre lo que está pasando en el juego de manera que éstos puedan ver lo mismo desde sus diferentes posiciones y ángulos, es decir existe un componente encargado de mantener actualizados a todos los clientes con la información absoluta sobre la posición de los diferentes objetos en el juego, entre ellos los elevadores, bombas y jugadores.
 
-Al mismo tiempo, se detecta que la información que requiere ser enviada a cada cliente es del orden de 1400 [mensajes / seg] y a pesar de que es harta información es probable que la red no se sature con ello pero aún así es necesario optimizar dicho proceso para que el juego pueda escalar sin problemas al aumentar el número de jugadores dentro de la ronda. Los grandes juegos basados en la red utilizan técnicas especiales para tratar con la latencia y el envío de estos mensajes.
+Al mismo tiempo, se detecta que la información que requiere ser enviada a cada cliente es del orden de 840 [mensajes / seg] y a pesar de que es harta información es probable que la red no se sature con ello pero aún así es necesario optimizar dicho proceso para que el juego pueda escalar sin problemas al aumentar el número de jugadores dentro de la ronda. Los grandes juegos basados en la red utilizan técnicas especiales para tratar con la latencia y el envío de estos mensajes.
 
 Una técnica para reducir el número de mensajes enviados (recibidos) a los (por los) clientes es la Interpolación \cite{VALVE1}.
 \subsection{Interpolación} 
