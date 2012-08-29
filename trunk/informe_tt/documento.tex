@@ -276,7 +276,7 @@ La rama marcada con naranjo indica la rama a ser procesada, y en este caso el no
 
 Para el caso de Clipping es bastante similar, sólo que en vez de trabajar con ramas, se hace directamente con los objetos, y los divide en partes más pequeñas, determinando entonces cuáles partes del objeto deben ser las dibujadas. 
 \subsection{Geometrías}
-Las geometrías son los nodos hojas dentro del gráfico de escena y son los objetos que finalmente son dibujados en la pantalla. Éstos contienen los datos necesarios para poder renderizar los objetos, gestionan toda es información tales como materiales que son las que describen qué y cómo debería ser renderizada la superficie de la geometría \cite{BEGINNERS}.
+Las geometrías son los nodos hojas dentro del gráfico de escena y son los objetos que finalmente son dibujados en la pantalla. Éstos contienen los datos necesarios para poder renderizar los objetos, gestionan toda la información tales como materiales que son las que describen qué y cómo debería ser renderizada la superficie de la geometría \cite{BEGINNERS}.
 \subsection{Interfaz gráfica del usuario (GUI)}
 La interfaz gráfica de usuario en el motor está soportada por nifty- gui, un proyecto independiente que está orientado a proveer un conjunto abundante de componentes gráficos para aplicaciones generales y juegos en general. Ésta está desarrollada en Java y también hace utilización de OpenGL para el renderizado de las imágenes a través de LWJGL.
 
@@ -309,7 +309,7 @@ Las capacidades gráficas del motor son bastante buenas y aceptable a pesar de q
 \end{itemize}
 \item Varias primitivas construidas por defecto, como líneas, puntos, cubos, triángulos, esferas, etc. 
 \end{itemize}
-En cuanto a los tipos de efectos, posee de tipo partículas entre los que destacan explosiones, fuego, humo, etc. Y efectos 2D como efectos de agua, reflejos de agua, luz solar, nibla, manchas, etc \cite{JMONKEY}. 
+En cuanto a los tipos de efectos, posee de tipo partículas entre los que destacan explosiones, fuego, humo, etc. Y efectos 2D como efectos de agua, reflejos de agua, luz solar, niebla, manchas, etc \cite{JMONKEY}. 
 
 El sistema de cámara es el que permite proyectar los objetos a la pantalla. El sistema completo está compuesto por 4 componentes:
 \begin{description}
@@ -359,7 +359,7 @@ Dado que el juego se desarrolla en un ambiente en 3 dimensiones, la perspectiva 
 
 Esta es la característica que se le atribuye a los juegos de tipo Shooter, donde la forma de interactuar con el juego hace que fuese el propio jugador el que está en la escena. Existe una infinidad de juegos de este tipo, pero jBomb en un comienzo trató de simular tales características parecidas a las del juego Counter Strike, de la empresa Valve.
 \subsection{Juego en red}
-Una de las características más importantes del juego es la forma en la que participan los jugadores. Bomberman se ejecutaba en consolas como Nintendo y Super Nintendo y a pesar que que los participantes en el juego eran 4, sólo 2 podían ser controlados por las personas dado que las consolas ofrecían 2 mandos de juego. Aún así se desconoce si el juego fue extendido a otras consolas o si se desarrolló un mecanismo que permitiese a los jugadores participar todos a las vez.
+Una de las características más importantes del juego es la forma en la que participan los jugadores. Bomberman se ejecutaba en consolas como Nintendo y Super Nintendo y a pesar que los participantes en el juego eran 4, sólo 2 podían ser controlados por las personas dado que las consolas ofrecían 2 mandos de juego. Aún así se desconoce si el juego fue extendido a otras consolas o si se desarrolló un mecanismo que permitiese a los jugadores participar todos a las vez.
 
 En jBomb, los jugadores no tienen que estar físicamente en el mismo lugar para poder participar en el juego, dado que éste permite ser ejecutado en red con una arquitectura Cliente-Servidor \cite{VALVE1}.\\
 Esto permite descentralizar el juego de tal manera que el servidor puede ser iniciado en una máquina totalmente independiente de los jugadores, y éstos a su vez pueden estar en cualquier máquina que esté conectada a internet o bien a la red local. Como se dijo anteriormente, ésta es la característica más potente y valiosa que posee el juego, porque su implementación tiene un fuerte impacto en la satisfacción del usuario.
@@ -391,7 +391,7 @@ Esta interfaz tiene la particularidad de que a pesar de que forma parte del jueg
 \subsection{Perspectivas de espectador}
 El objetivo principal del jugador es participar en la ronda y tratar de lograr la victoria. Sin embargo el juego es en línea y colaborativo, todos los jugadores son personas reales por lo que una vez que algún jugador pierda el juego no puede ser reiniciado porque los demás aún están en la ronda.
 
-Cuando el jugador pierde, ser realiza un cambio en la perspectiva del jugador, pasa de un estado de participante a espectador que le permitirá ver en tiempo real que sigue sucediendo en la ronda actual. La perspectiva de espectador permite al jugador moverse libremente por el escenario pero sin tener influencia en este, es una representación casi como la de un fantasma.
+Cuando el jugador pierde, se realiza un cambio en la perspectiva del jugador, pasa de un estado de participante a espectador que le permitirá ver en tiempo real que sigue sucediendo en la ronda actual. La perspectiva de espectador permite al jugador moverse libremente por el escenario pero sin tener influencia en este, es una representación casi como la de un fantasma.
 
 \begin{figure}
 \begin{center}
@@ -412,7 +412,7 @@ Esto es así porque el servidor una vez que es ejecutado, no necesita ser manipu
 Esta característica se agregó con la finalidad de depurar el juego y poder ver que el servidor mostraba realmente lo que estaba sucediendo con cada uno de los jugadores, una vez implementado, se dejó para poder registrar qué sucedía en el escenario. Pasó de ser una característica como apoyo para el desarrollo a ser una característica de juego.
 \end{enumerate}
 \subsection{Gestión de jugadores}
-jBomb funciona en base al modelo Cliente-Servidor y gracias a ello el juego puede ser jugado a través de Internet. Esto hace que la complejidad del desarrollo del juego aumente porque se debe lidiar con problemas relacionados con redes. Unos de esos problemas pueden ser las conexiones y desconexiones de los jugadores con el servidor \cite{VALVE1}.
+jBomb funciona en base al modelo Cliente-Servidor y gracias a ello el juego puede ser jugado a través de Internet. Esto hace que la complejidad del desarrollo del juego aumente porque se debe lidiar con problemas relacionados con redes. Uno de esos problemas pueden ser las conexiones y desconexiones de los jugadores con el servidor \cite{VALVE1}.
 
 jBomb maneja muy bien este problema y se encarga de continuar con el juego cuando sucede una desconexión de jugador, siempre y cuando sea posible y tenga sentido, ésto sin perjudicar a los demás usuarios.
 \subsection{Multijugador} 
@@ -495,7 +495,7 @@ Existen varios sistemas de control de versiones conocidos, algunos de ellos son 
 
 Subversion trabaja de forma centralizada lo que quiere decir que siempre hay un sólo servidor que se encarga de realizar todo el trabajo, y los desarrolladores crean copias de trabajo que son idénticos al servidor, excepto por la cualidad de que éstas son solo copias y no servidores (a diferencia de lo que sucede con sistemas distribuidos).
 
-Subversion permite llevar todo el software versionado, es decir que por cada cambio que sea realizado por algún desarrollador en el servidor, marcará una versión del software a la que posteriormente podría volverse nuevamente, o incluso a una anterior. Gracias a estos sistemas la colaboración entre cada integrante del proyecto se hace más fácil, permite saber en qué está cada integrante y también ofrecen diversas funciones como:
+Subversion permite llevar todo el software versionado, es decir que por cada cambio que sea realizado por algún desarrollador en el servidor se creará una nueva revisión del software a la que posteriormente podría volverse. Gracias a estos sistemas la colaboración entre cada integrante del proyecto se hace más fácil, permite saber en qué está cada integrante y también ofrecen diversas funciones como:
 \begin{itemize}
 \item Explorar remotamente los fuentes y archivos que están en el servidor
 \item Subir cambios al servidor
@@ -504,7 +504,7 @@ Subversion permite llevar todo el software versionado, es decir que por cada cam
 \item Crear ramas independientes de la rama principal y marcado de etiquetas para sucesos importantes
 \item Ver diferencias entre las copias de trabajo y el servidor
 \end{itemize}
-Esas son sólo algunas de las funciones que nos ofrecen los sistemas de control de versiones, y en este caso en particulas Subversion.
+Esas son sólo algunas de las funciones que nos ofrecen los sistemas de control de versiones, y en este caso en particular Subversion.
 \subsection{Google Code}
 Google Code es un sistema de alojamiento de proyectos libres. Este pone a disposición 3 tipos de sistemas de control de versiones, Git, Mercurial y Subversion. 
 
@@ -515,7 +515,7 @@ Existen diversas alternativas a este tipo de herramientas, entre las más conoci
 \subsection{Gimp y Photoshop}
 Gimp y Photoshop son dos herramientas muy potentes y reconocidas en el mundo del software, especialmente por los diseñadores gráficos. Ambas herramientas están orientadas a la manipulación profesional de imágenes, aunque actualmente se puede hacer mucho más que eso. Photoshop es una herramienta propietaria de Adobe que trabaja sobre Windows y MacOS y es la herramienta más utilizada para trabajar con edición de imágenes.
 
-Gimp es la alternativa libre a Photoshop y funciona sobre diversas plataformas, incluyendo Linux. En el proyecto ambas herramientas fueron utilizadas para crear todas las texturas en el juego. Estas dos aplicaciones fueron las que menos se utilizaron, esto se debe a que formaron parte de el módulo de assets en el juego, lo que significa que se utilizaron solamente para trabajar con las imágenes y una vez terminadas no fue necesario trabajar sobre ellas nuevamente, a diferencia de los demás módulos que fueron cambiando en el transcurso del tiempo.
+Gimp es la alternativa libre a Photoshop y funciona sobre diversas plataformas, incluyendo Linux. En el proyecto ambas herramientas fueron utilizadas para crear todas las texturas del juego. Estas dos aplicaciones fueron las que menos se utilizaron, esto se debe a que formaron parte de el módulo de assets en el juego, lo que significa que se utilizaron solamente para trabajar con las imágenes y una vez terminadas no fue necesario trabajar sobre ellas nuevamente, a diferencia de los demás módulos que fueron cambiando en el transcurso del tiempo.
 
 Ambas herramientas se utilizaron para afinar detalles en las texturas utilizadas, focalizándose sobre todo en las capa de transparencias.
 Photoshop fue utilizado además para realizar el logotipo del juego.
@@ -524,11 +524,11 @@ Anteriormente ya se había hablado sobre JMonkeyEngine y LWJGL, sin embargó se 
 
 Además se incluye la descripción de una librería que se utiliza implícitamente a través del motor llamada JBullet, la cual está encargada de realizar todo el comportamiento de simulación de físicas.
 \begin{description}
-\item[JMonkeyEngine] JMonkeyEngine es el motor de juegos que permite automtizar y facilitar las tareas involucradas en el desarrollo de un videojuego. A bajo nivel no es más que un framework que permite tal tarea \cite{JMONKEY}.
+\item[JMonkeyEngine] JMonkeyEngine es el motor de juegos que permite automatizar y facilitar las tareas involucradas en el desarrollo de un videojuego. A bajo nivel no es más que un framework que permite tal tarea \cite{JMONKEY}.
 \item[LWJGL (Lightweight Java Game Library)] Esta es una librería que da acceso a todas las funciones primitivas de OpenGL, lo que permite al desarrollador aislarse aún más de la detalles específicos de sistema operativo a través de clases en Java. A pesar de que funciona como una librería, no es considerada un motor porque está un nivel más abajo y su principal función es abstraer al desarrollador sobre las funciones nativas de OpenGL \cite{LWJGL}.
 \item[Log4j](Log for Java): Log4j es una librería que permite realizar registros o logs sobre el flujo de la aplicación. Es muy común que los desarrolladores utilicen ciertas sentencias que les facilitan la tarea de depurar sus proyectos, pero muchas veces esto deja dependencias entre el log y el código de producción, lo cual es algo que comúnmente no se desea porque estos registros son utilizados en su mayoría en modo de desarrollo \cite{LOG}.
 
-La forma más simple de realizar registros es escribirlos directamente a la salida estándar (por lo general la pantalla) a través de funciones especiales, pero aunque esto sea correcto no es la manera más óptima de realizarlo porque conlleva un mucho trabajo cuando no se desea utilizar más los registros, además comúnmente esas sentencias son compiladas y para borrarlas el código debe ser editado nuevamente \cite{LOG}.
+La forma más simple de realizar registros es escribirlos directamente a la salida estándar (por lo general la pantalla) a través de funciones especiales, pero aunque esto sea correcto no es la manera más óptima de realizarlo porque conlleva mucho trabajo cuando no se desea utilizar más los registros, además comúnmente esas sentencias son compiladas y para borrarlas el código debe ser editado nuevamente \cite{LOG}.
 
 Para evitar todo ese tipo de problemas, existen librerías especializadas que ayudan con este proceso y jústamente Log4j es una de ellas.
 Una de las características de Log4j es que es altamente personalizable y muy fácil de controlar, además el control se puede llevar a través de archivos de configuración de tipo XML o archivos Properties\footnote{Archivos muy utilizados por Java definir configuraciones a través de pares de valores, un valor y una clave para acceder a dicho valor} y se evita el recompilado de los fuentes, y se permite un control de logs en tiempo de ejecución.
@@ -537,7 +537,7 @@ Una de las características de Log4j es que es altamente personalizable y muy f�
 \chapter{Metodología de trabajo}
 Las metodologías de desarrollo de software nos permiten gestionar el proyecto de manera ordenada, es decir nos permite llevar muy bien los controles de tiempos o plazos, las delegaciones de tareas y responsabilidades, y permite que el proyecto se realice en los plazos establecidos por los clientes.
 
-Existen muchas metodologías orientadas a hacer de una u otra forma los pasos a seguir para conseguir el éxito en la realización de los proyectos y una de las formas más comunes de clasificarlas es según su forma de avance y trato con el cliente:
+Las metodologías nos permiten conseguir el éxito en la realización de los proyectos, una de las formas más comunes de clasificarlas es según su forma de avance y trato con el cliente:
 \begin{description}
 \item[Metodologías Ágiles] Las metodologías ágiles están orientadas a desarrollar los proyectos a través de desarrollos funcionales en tiempos cortos que puedan ser verificados por el cliente, a esto se le denomina comúnmente iteración. Otro punto más sobre los que se centran las metodologías ágiles son el tratamiendo comunicacional cara a cara con el cliente, algo por sobre la documentación técnica sobre todos los procesos y procedimientos involucrados \cite{WIKI}.
 \item[Metodologías estructuradas o tradicionales] Estas metodologías son totalmente lo contrario de las metodologías ágiles, mientras estas últimas son criticadas por su informalidad y falta de disciplina, las tradicionales promueven el desarrollo del proyecto de forma totalmente estructurada y predictiva, en el sentido que el avance va evolucionando a través de etapas consecutivas y para pasar a la siguiente no se puede avanzar si no está la etapa anterior realizada completamente. Además estas metodologías establecen que los requerimientos del proyecto deben ser establecidos con anterioridad y por tanto eso la hace menos flexibles y adaptables a los cambios \cite{WIKI}.
@@ -555,7 +555,7 @@ El desarrollo del proyecto comenzó definiendo objetivos generales semiflexibles
 \end{itemize}
 Todos éstos objetivos se cumplieron, pero también se agregarón más características que hicieron que el proyecto se transformara en algo más interesante para los jugadores, pero también triplico el trabajo necesario para el desarrollador. Una vez establecidos los objetivos generales se comenzó con el análisis y diseño de toda la estructura del proyecto. El aprendizaje de todas las herramientas y librerias utilizadas también se considera parte evolutiva del proyecto, ya que en ésto se invirtió cerca de un tercio del total de tiempo.
 
-Una vez bien definidos esos objetivos y luego del análisis y diseño del juego en general, se comenzó el desarrollo núcelo del proyecto. En este sentido se trazó la línea que llevaría al cumplimiento de los objetivos generales y en el transcurso de ésta ocurrieron diversos sucesos, por ejemplo se integró un nuevo desarrollador llamado Diego Villablanca que apoyaría la parte gráfica y de escenario, además de poseer total independencia para implementar nuevas ideas o cambiar las que ya habían con respecto a esos dos temas.
+Una vez bien definidos esos objetivos y luego del análisis y diseño del juego en general, se comenzó el desarrollo principal del proyecto. En este sentido se trazó la línea que llevaría al cumplimiento de los objetivos generales y en el transcurso de ésta ocurrieron diversos sucesos, por ejemplo se integró un nuevo desarrollador llamado Diego Villablanca que apoyaría la parte gráfica y de escenario, además de poseer total independencia para implementar nuevas ideas o cambiar las que ya habían con respecto a esos dos temas.
 
 Fue así entonces que en el desarrollo evolutivo aparecieron y desaparecieron nuevas ideas, mecánicas de juegos y el crecimiento del proyecto fue muy dinámico pero siempre con los objetivos generales claros. Esto se asemeja al la ruta que uno traza para llegar a algún lugar, en donde existen diversas maneras de hacerlo y no sólo una, en el camino pueden surgir desviós inesperados. Así fue cómo sucedio con el proyecto, cada vez se tuvo que hacer desvíos porque algunas ideas no estuvieron bien pensadas o bien fueron apareciendo algunas mejores, pero el destino siempre fue el mismo.
 
@@ -588,7 +588,7 @@ Los nombres de los integrantes son:
 \end{itemize}
 \chapter{Desarrollo de jBomb}
 Anteriormente ya se ha dicho de qué trata el juego, qué herramientas fueron utilizadas en su desarrollo, cuáles son sus características y qué metodología se abordó para gestionar el proyecto de una manera exitosa.\\
-En este capítulo y el siguiente se entrará en aspectos mucho más técnicos y que tienen que ver con el proceso núcleo en el proyecto, el proceso de desarrollo.
+En este capítulo y el siguiente se entrará en aspectos mucho más técnicos y que tienen que ver con la etapa más importante del proyecto, el proceso de desarrollo.
 
 \section{Estructura}
 Muchos proyectos a la hora de ser desarrollados adoptan diversas formas en la que se distribuye el software. Por lo general se puede distribuir a través de un único archivo ejecutable, o bien a través de un conjunto de ellos, un archivo de instalación o un script de arranque. En general, existen diversas formas de hacerlo y las anteriores mencionadas son las más comunes. 
